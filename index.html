@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>מחשבון שלא יקרה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-label {
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>מחשבון חרבות ברזל</h2>
+        <div class="checkbox-container">
+            <input id="combat" type="checkbox" class="custom-checkbox" />
+            <label style="width:100%" for="combat" class="checkbox-label">לוחם</label>
+        </div>
+        <label for="serviceBefore">ימי מילואים לפני המלחמה</label>
+        <input type="number" id="serviceBefore" value="0" />
+        <label for="serviceDate">תחילת השירות</label>
+        <input type="date" id="serviceDate" value="2023-10-07" min="2023-10-07" />
+        <label for="endServiceDate">סיום השירות</label>
+        <input type="date" id="endServiceDate" />
+
+        <div class="checkbox-container">
+            <input id="children" type="checkbox" class="custom-checkbox" />
+            <label style="width:100%" for="children" class="checkbox-label"> ילדים מתחת לגיל 14</label>
+        </div>
+        <div class="checkbox-container">
+            <input id="student" type="checkbox" class="custom-checkbox" />
+            <label style="width:100%" for="student" class="checkbox-label"> סטודנט</label>
+        </div>
+
+        <button onclick="calculateCompensation()">Calculate</button>
+
+        <div id="result"></div>
+        <div id="compensation"></div>
+        <div id="studentFund"></div>
+        <div id="vacation"></div>
+        <div id="mental"></div>
+
+    </div>
+
+    <script>
+
+        document.getElementById('endServiceDate').valueAsDate = new Date();
+
+        function calculateCompensation() {
+            let sum = 0
+            let compensation = 0
+            const combat = document.getElementById('combat').checked;
+            const date = new Date(document.getElementById('serviceDate').value);
+            const endDate = new Date(document.getElementById('endServiceDate').value);
+            const children = document.getElementById('children').checked;
+            const student = document.getElementById('student').checked;
+            const serviceBefore = document.getElementById('serviceBefore').value;
+
+            // calculate today minus date days
+            const days = Math.floor((endDate - date) / (1000 * 60 * 60 * 24)) + parseInt(serviceBefore);
+            // calculate months by calculating the months passed since the start of the service and subtracting the months passed since the start of the service
+            const months = (endDate.getMonth() + 1) - (date.getMonth() + 1) + (12 * (endDate.getFullYear() - date.getFullYear()));
+
+            // if the soldier is a combat soldier, add 1400 per month
+            if (combat) {
+                sum += 1400 * months
+            } else {
+                sum += 800 * months
+            }
+
+            // if the soldier served more than 45 days, add 2500
+            if (days >= 45) {
+                sum += 2500
+            }
+
+            // if there are children under the age of 14, add 2500 per month
+            if (children) {
+                sum += 2500 * months
+            }
+
+
+            if (days >= 9 && days < 14) {
+                compensation = 1410
+            } else if (days >= 14 && days < 20) {
+                compensation = 2820
+            } else if (days >= 20 && days < 37) {
+                compensation = 4230
+            } else if (days >= 37) {
+                compensation = 5640
+            }
+
+            if (days >= 32) {
+                compensation += (days - 31) * 133
+            }
+
+            if (student && days >= 60) {
+                if (combat) {
+                    document.getElementById('studentFund').innerText = 'מגיע לך 100% סבסוד לשנת לימודים תשפ״ד';
+                }
+                else {
+                    document.getElementById('studentFund').innerText = 'מגיע לך 30% סבסוד לשנת לימודים תשפ״ד';
+                }
+            }
+
+            // vacation
+            if (days >= 45) {
+                if (children) {
+                    if (combat) {
+                        document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 4500 ש״ח לחופשה';
+                    }
+                    else {
+                        document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 2000 ש״ח לחופשה';
+                    }
+                }
+                else if (combat) {
+                    document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 3500 ש״ח לחופשה';
+                } else {
+                    document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 1500 ש״ח לחופשה';
+                }
+            }
+
+            if (days >= 30) {
+                document.getElementById('mental').innerText = 'מגיע לך תשלום על סך 1500 ש״ח לטיפול נפשי';
+            }
+
+
+
+            document.getElementById('result').innerText = 'מגיע לך ' + sum;
+            document.getElementById('compensation').innerText = 'במאי תקבל ' + compensation;
+        }
+    </script>
+</body>
+
+</html>
