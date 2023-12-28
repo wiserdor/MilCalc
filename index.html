@@ -2,37 +2,69 @@
 <html dir="rtl">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <title>מחשבון שלא יקרה</title>
+    <title>מחשבון חרבות ברזל</title>
     <style>
+        h2 {
+            color: #4a4a4a;
+            text-align: center;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
         }
 
         .container {
-            width: 300px;
+            width: 340px;
             margin: auto;
+            overflow: hidden;
             padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        @media screen and (max-width: 600px) {
-            .container {
-                width: 100%;
-                margin: 0;
-                padding: 10px;
-            }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="date"],
+        input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
 
         .checkbox-container {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            gap: 0.5rem;
         }
 
         .checkbox-label {
             margin-left: 8px;
             font-size: 16px;
+            cursor: pointer;
         }
 
         .custom-checkbox {
@@ -41,15 +73,28 @@
             cursor: pointer;
         }
 
-        input,
-        select,
         button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
             width: 100%;
-            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
         }
 
-        #result {
-            margin-top: 20px;
+        button:hover {
+            background-color: #218838;
+        }
+
+        #results p {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
     </style>
 </head>
@@ -57,93 +102,157 @@
 <body>
     <div class="container">
         <h2>מחשבון חרבות ברזל</h2>
-        <div class="checkbox-container">
-            <input id="combat" type="checkbox" class="custom-checkbox" />
-            <label style="width:100%" for="combat" class="checkbox-label">לוחם</label>
-        </div>
-        <label for="serviceBefore">ימי מילואים לפני המלחמה</label>
-        <input type="number" id="serviceBefore" value="0" />
+
         <label for="serviceDate">תחילת השירות</label>
         <input type="date" id="serviceDate" value="2023-10-07" min="2023-10-07" />
+
         <label for="endServiceDate">סיום השירות</label>
         <input type="date" id="endServiceDate" />
 
+        <label for="serviceBefore">ימי מילואים לפני המלחמה</label>
+        <input type="number" id="serviceBefore" value="0" min="0" />
+
+        <div class="checkbox-container">
+            <input id="combat" type="checkbox" class="custom-checkbox" />
+            <label style="width: 100%" for="combat" class="checkbox-label">לוחם</label>
+        </div>
         <div class="checkbox-container">
             <input id="children" type="checkbox" class="custom-checkbox" />
-            <label style="width:100%" for="children" class="checkbox-label"> ילדים מתחת לגיל 14</label>
+            <label style="width: 100%" for="children" class="checkbox-label">
+                ילדים מתחת לגיל 14</label>
         </div>
         <div class="checkbox-container">
             <input id="student" type="checkbox" class="custom-checkbox" />
-            <label style="width:100%" for="student" class="checkbox-label"> סטודנט</label>
+            <label style="width: 100%" for="student" class="checkbox-label">
+                סטודנט</label>
         </div>
 
-        <button onclick="calculateCompensation()">Calculate</button>
+        <button onclick="calculateCompensation()">לחץ לחישוב</button>
 
-        <div id="result"></div>
-        <div id="compensation"></div>
-        <div id="studentFund"></div>
-        <div id="vacation"></div>
-        <div id="mental"></div>
-
+        <div id="results"></div>
     </div>
 
     <script>
-
-        document.getElementById('endServiceDate').valueAsDate = new Date();
+        document.getElementById("endServiceDate").valueAsDate = new Date();
 
         function calculateCompensation() {
-            let sum = 0
-            let compensation = 0
-            const combat = document.getElementById('combat').checked;
-            const date = new Date(document.getElementById('serviceDate').value);
-            const endDate = new Date(document.getElementById('endServiceDate').value);
-            const children = document.getElementById('children').checked;
-            const student = document.getElementById('student').checked;
-            const serviceBefore = document.getElementById('serviceBefore').value;
+            // reset results
+            document.getElementById("results").innerHTML = "";
+
+            let sum = 0;
+            let compensationPerYear = [];
+            const combat = document.getElementById("combat").checked;
+            const date = new Date(document.getElementById("serviceDate").value);
+            const endDate = new Date(
+                document.getElementById("endServiceDate").value
+            );
+            const children = document.getElementById("children").checked;
+            const student = document.getElementById("student").checked;
+            const serviceBefore = document.getElementById("serviceBefore").value;
 
             // calculate today minus date days
-            const days = Math.floor((endDate - date) / (1000 * 60 * 60 * 24)) + parseInt(serviceBefore);
+            const days =
+                Math.floor((endDate - date) / (1000 * 60 * 60 * 24)) +
+                parseInt(serviceBefore);
             // calculate months by calculating the months passed since the start of the service and subtracting the months passed since the start of the service
-            const months = (endDate.getMonth() + 1) - (date.getMonth() + 1) + (12 * (endDate.getFullYear() - date.getFullYear()));
+            const months =
+                endDate.getMonth() +
+                1 -
+                (date.getMonth() + 1) +
+                12 * (endDate.getFullYear() - date.getFullYear());
+
+            // how much days served for each year
+            // for example, if he served between 31st december 2020 to 2nd january 2021, he served 2 days in 2020 and 1 day in 2021
+            const daysPerYear = [];
+
+            // calculate how much days served for each year
+            for (let i = date.getFullYear(); i <= endDate.getFullYear(); i++) {
+                const year = i;
+                const yearEndDate = new Date(year, 11, 31);
+                const yearStartDate = new Date(year, 0, 1);
+
+                // if the year is the start year, calculate the days from the start date to the end of the year
+                if (year === date.getFullYear()) {
+                    daysPerYear.push(
+                        Math.floor((yearEndDate - date) / (1000 * 60 * 60 * 24)) + 1
+                    );
+                }
+                // if the year is the end year, calculate the days from the start of the year to the end date
+                else if (year === endDate.getFullYear()) {
+                    daysPerYear.push(
+                        Math.floor((endDate - yearStartDate) / (1000 * 60 * 60 * 24)) + 1
+                    );
+                }
+                // if the year is not the start or the end year, calculate the days from the start of the year to the end of the year
+                else {
+                    daysPerYear.push(
+                        Math.floor(
+                            (yearEndDate - yearStartDate) / (1000 * 60 * 60 * 24)
+                        ) + 1
+                    );
+                }
+            }
 
             // if the soldier is a combat soldier, add 1400 per month
             if (combat) {
-                sum += 1400 * months
+                sum += 1400 * months;
             } else {
-                sum += 800 * months
+                sum += 800 * months;
             }
 
             // if the soldier served more than 45 days, add 2500
             if (days >= 45) {
-                sum += 2500
+                sum += 2500;
             }
 
             // if there are children under the age of 14, add 2500 per month
             if (children) {
-                sum += 2500 * months
+                sum += 2500 * months;
             }
 
+            for (let i = 0; i < daysPerYear.length; i++) {
+                compensationPerYear.push(0);
+                if (i === 0) {
+                    compensationPerYear[0] + parseInt(serviceBefore);
+                }
 
-            if (days >= 9 && days < 14) {
-                compensation = 1410
-            } else if (days >= 14 && days < 20) {
-                compensation = 2820
-            } else if (days >= 20 && days < 37) {
-                compensation = 4230
-            } else if (days >= 37) {
-                compensation = 5640
+                if (daysPerYear[i] >= 9 && daysPerYear[i] < 14) {
+                    compensationPerYear[i] = 1410;
+                } else if (daysPerYear[i] >= 14 && daysPerYear[i] < 20) {
+                    compensationPerYear[i] = 2820;
+                } else if (daysPerYear[i] >= 20 && daysPerYear[i] < 37) {
+                    compensationPerYear[i] = 4230;
+                } else if (daysPerYear[i] >= 37) {
+                    compensationPerYear[i] = 5640;
+                }
+
+                if (daysPerYear[i] >= 32) {
+                    compensationPerYear[i] += (daysPerYear[i] - 31) * 133;
+                }
             }
 
-            if (days >= 32) {
-                compensation += (days - 31) * 133
+            const el = document.getElementById("results");
+            console.log(el);
+
+            // append to <p> to results
+            el.appendChild(document.createElement("p")).innerText =
+                "סה״כ מגיע לך " + sum + " ש״ח";
+
+            for (let i = 0; i < compensationPerYear.length; i++) {
+                el.appendChild(document.createElement("p")).innerText =
+                    "מגיע לך " +
+                    compensationPerYear[i] +
+                    " ש״ח לשנת " +
+                    (date.getFullYear() + i);
             }
 
             if (student && days >= 60) {
                 if (combat) {
-                    document.getElementById('studentFund').innerText = 'מגיע לך 100% סבסוד לשנת לימודים תשפ״ד';
-                }
-                else {
-                    document.getElementById('studentFund').innerText = 'מגיע לך 30% סבסוד לשנת לימודים תשפ״ד';
+                    el.appendChild(document.createElement("p")).innerText =
+                        "מגיע לך 100% סבסוד לשנת לימודים תשפ״ד";
+                } else {
+                    el.appendChild(document.createElement("p")).innerText =
+                        "מגיע לך 30% סבסוד לשנת לימודים תשפ״ד";
                 }
             }
 
@@ -151,27 +260,30 @@
             if (days >= 45) {
                 if (children) {
                     if (combat) {
-                        document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 4500 ש״ח לחופשה';
+                        el.appendChild(document.createElement("p")).innerText =
+                            "מגיע לך שובר על סך 4500 ש״ח לחופשה";
+                    } else {
+                        el.appendChild(document.createElement("p")).innerText =
+                            "מגיע לך שובר על סך 2000 ש״ח לחופשה";
                     }
-                    else {
-                        document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 2000 ש״ח לחופשה';
-                    }
-                }
-                else if (combat) {
-                    document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 3500 ש״ח לחופשה';
+                } else if (combat) {
+                    el.appendChild(document.createElement("p")).innerText =
+                        "מגיע לך שובר על סך 3500 ש״ח לחופשה";
                 } else {
-                    document.getElementById('vacation').innerText = 'מגיע לך שובר על סך 1500 ש״ח לחופשה';
+                    el.appendChild(document.createElement("p")).innerText =
+                        "מגיע לך שובר על סך 1500 ש״ח לחופשה";
                 }
             }
 
             if (days >= 30) {
-                document.getElementById('mental').innerText = 'מגיע לך תשלום על סך 1500 ש״ח לטיפול נפשי';
+                el.appendChild(document.createElement("p")).innerText =
+                    "מגיע לך תשלום על סך 1500 ש״ח לטיפול נפשי";
             }
 
-
-
-            document.getElementById('result').innerText = 'מגיע לך ' + sum;
-            document.getElementById('compensation').innerText = 'במאי תקבל ' + compensation;
+            // scroll to results smoothly
+            document.getElementById("results").scrollIntoView({
+                behavior: "smooth",
+            });
         }
     </script>
 </body>
