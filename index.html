@@ -27,7 +27,8 @@
       }
 
       .container {
-        width: 350px;
+        width: 90%; /* Use percentage for relative width */
+        max-width: 350px; /* Maximum width for larger screens */
         margin: auto;
         overflow: hidden;
         padding: 20px;
@@ -36,6 +37,13 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
+      @media screen and (max-width: 600px) {
+        /* Adjust for small screens */
+        .container {
+          width: 100%; /* Take full width on small screens */
+          padding: 10px; /* Optional: Adjust padding for smaller screens */
+        }
+      }
       h2 {
         color: #333;
         text-align: center;
@@ -107,15 +115,20 @@
       }
     </style>
   </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZE1RDY2L6L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-ZE1RDY2L6L"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-ZE1RDY2L6L');
-</script>
+    gtag("config", "G-ZE1RDY2L6L");
+  </script>
   <body>
     <div class="container">
       <h2>מחשבון חרבות ברזל</h2>
