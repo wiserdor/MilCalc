@@ -143,12 +143,20 @@ const calculateCompensation = () => {
   let sum = isCombat ? 1400 * months : 800 * months;
 
   // if the soldier served more than 45 days, add 2500
-  let sum45 = days >= 45 ? 2500 : 0;
+  let sum45 = isCombat && days >= 45 ? 2500 : 0;
 
   let sumOperation24 = didOperation24 ? 4500 : 0;
 
-  // if there are children under the age of 14, add 2500 per month
-  let sumChildren = hasChildren ? 2500 * months : 0;
+  // if there are children under the age of 14
+  let sumChildren = 0;
+
+  if (hasChildren) {
+    if (isCombat) {
+      sumChildren = 2500 * months;
+    } else {
+      sumChildren = 1500 * months;
+    }
+  }
 
   let sumVacation = calculateVacation(days, hasChildren, isCombat);
 
