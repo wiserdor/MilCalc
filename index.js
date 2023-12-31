@@ -42,6 +42,12 @@ const calculateCompensationPerYear = (daysPerYear) => {
 const getDaysForEachYear = (startDate, endDate, serviceBefore) => {
   // how much days served for each year
   // for example, if he served between 31st december 2020 to 2nd january 2021, he served 2 days in 2020 and 1 day in 2021
+
+  // if the year is the only year, calculate the days from the start date to the end date
+  if (startDate.getFullYear() === endDate.getFullYear()) {
+    return [Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1];
+  }
+
   const daysPerYear = [];
 
   // calculate how much days served for each year
