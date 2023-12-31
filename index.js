@@ -223,7 +223,7 @@ const calculateCompensation = () => {
     const sumEl2 = sumEl1.appendChild(document.createElement("ul"));
     if (sumChildren > 0) {
       sumEl2.appendChild(document.createElement("li")).innerText =
-        sumChildren + " מענק חודשי להורים לילדים עד גיל 14.";
+        sumChildren + " ש״ח מענק חודשי להורים לילדים עד גיל 14.";
     }
     //vacation
     if (sumVacation > 0) {
