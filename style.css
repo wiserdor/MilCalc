@@ -1,0 +1,99 @@
+h2 {
+  color: #4a4a4a;
+  text-align: center;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%; /* Use percentage for relative width */
+  max-width: 350px; /* Maximum width for larger screens */
+  margin: auto;
+  overflow: hidden;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 600px) {
+  /* Adjust for small screens */
+  .container {
+    width: 100%; /* Take full width on small screens */
+    padding: 10px; /* Optional: Adjust padding for smaller screens */
+  }
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input[type="date"],
+input[type="number"] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 0.5rem;
+}
+
+.checkbox-label {
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+ul {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+#alerts {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
