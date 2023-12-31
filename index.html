@@ -366,7 +366,7 @@
         if (totalCompensation > 0) {
           const compenEl1 = el.appendChild(document.createElement("ul"));
           compenEl1.appendChild(document.createElement("li")).innerText =
-            "תגמולים ומענקים - סה״כ " + totalCompensation + " ש״ח";
+            "תגמולים ומענקים - סה״כ " + totalCompensation + " ש״ח:";
           compenEl1.lastChild.style.fontWeight = "bold";
           const compEl2 = compenEl1.appendChild(document.createElement("ul"));
 
@@ -398,7 +398,7 @@
         if (totalSum > 0) {
           const sumEl1 = el.appendChild(document.createElement("ul"));
           sumEl1.appendChild(document.createElement("li")).innerText =
-            "מעטפת משפחתית וכלכלית - סה״כ " + totalSum + " ש״ח.";
+            "מעטפת משפחתית וכלכלית - סה״כ " + totalSum + " ש״ח:";
           sumEl1.lastChild.style.fontWeight = "bold";
           const sumEl2 = sumEl1.appendChild(document.createElement("ul"));
           if (sumChildren > 0) {
@@ -421,7 +421,7 @@
         if (totalCare > 0 || isStudent) {
           const careEl1 = el.appendChild(document.createElement("ul"));
           careEl1.appendChild(document.createElement("li")).innerText =
-            "מעטפת משלימה - סה״כ " + totalCare + " ש״ח";
+            "מעטפת משלימה - סה״כ " + totalCare + " ש״ח:";
           careEl1.lastChild.style.fontWeight = "bold";
           const careEl2 = careEl1.appendChild(document.createElement("ul"));
 
