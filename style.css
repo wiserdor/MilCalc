@@ -38,7 +38,8 @@ body {
 @media screen and (max-width: 600px) {
   /* Adjust for small screens */
   .container {
-    width: 93%; /* Take full width on small screens */
+    width: 92%; /* Take full width on small screens */
+    max-width: none;
     padding: 10px; /* Optional: Adjust padding for smaller screens */
   }
 }
