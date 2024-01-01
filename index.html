@@ -35,55 +35,81 @@
   </script>
   <body>
     <div class="container">
-      <h2>מחשבון חרבות ברזל</h2>
-
-      <label for="serviceDate">תחילת השירות</label>
-      <input
-        type="date"
-        id="serviceDate"
-        value="2023-10-07"
-        min="2023-10-07"
-        max="2023-12-31"
-      />
-
-      <label for="endServiceDate">סיום השירות</label>
-      <input type="date" id="endServiceDate" />
-
-      <label for="serviceBefore">ימי מילואים בשנת 2023 לפני ה7/10</label>
-      <input type="number" id="serviceBefore" value="0" min="0" />
-
-      <div class="checkbox-container">
-        <input id="combat" type="checkbox" class="custom-checkbox" />
-        <label style="width: 100%" for="combat" class="checkbox-label"
-          >אני לוחם/ת</label
-        >
+      <div class="header">
+        <h2>מחשבון מענקים ״מגויסים למילואים״ - מלחמת חרבות ברזל</h2>
+        <p class="description-intro">
+          בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
+          שירות המילואים במלחמת חרבות ברזל. המחשבון מבוסס על
+          <a
+            href="https://usms.cellcom.co.il/files/QEIKC4/nvxy0yv36s.pdf?ISPN=_BK2te&CustomerId=1060534&ProjectId=127109&Domain=l5k.me&Key=5JDBX&MessageId=0&CampaignId=SIF0KNZHAX59I5A5"
+            >המצגת הצה״לית ששוחררה.</a
+          >
+        </p>
+        <p class="description-bold">
+          <b>רוצים לדעת כמה מגיע לכם? בדקו עכשיו בעצמכם!</b>
+        </p>
       </div>
-      <div class="checkbox-container">
-        <input id="student" type="checkbox" class="custom-checkbox" />
-        <label style="width: 100%" for="student" class="checkbox-label"
-          >אני סטודנט/ית</label
-        >
-      </div>
-      <div class="checkbox-container">
-        <input id="operation24" type="checkbox" class="custom-checkbox" />
-        <label style="width: 100%" for="operation24" class="checkbox-label"
-          >ביצעתי תעסוקה מבצעית בשנת 2024</label
-        >
-      </div>
-      <div class="checkbox-container">
-        <input id="children" type="checkbox" class="custom-checkbox" />
-        <label style="width: 100%" for="children" class="checkbox-label"
-          >יש לי ילד/ים עד גיל 14</label
-        >
-      </div>
-      <div class="checkbox-container">
-        <input id="children-special" type="checkbox" class="custom-checkbox" />
-        <label style="width: 100%" for="children-special" class="checkbox-label"
-          >יש לי ילד/ים עם צרכים מיוחדים</label
-        >
-      </div>
+      <div class="form">
+        <label for="serviceDate">בחר את התאריך שבו התגייסת למילואים</label>
+        <input
+          type="date"
+          id="serviceDate"
+          value="2023-10-07"
+          min="2023-10-07"
+          max="2023-12-31"
+          dir="rtl"
+        />
 
-      <button onclick="calculateCompensation()">לחץ לחישוב</button>
+        <label for="endServiceDate">בחר את התאריך שבו השתחררת מהמילואים</label>
+        <input type="date" id="endServiceDate" min="2023-10-07" dir="rtl" />
+
+        <label for="serviceBefore"
+          >כמות ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10)</label
+        >
+        <input type="number" id="serviceBefore" value="0" min="0" />
+
+        <div class="checkbox-container">
+          <input id="combat" type="checkbox" class="custom-checkbox" />
+          <label style="width: 100%" for="combat" class="checkbox-label"
+            >אני לוחם/ת</label
+          >
+        </div>
+        <div class="checkbox-container">
+          <input id="student" type="checkbox" class="custom-checkbox" />
+          <label style="width: 100%" for="student" class="checkbox-label"
+            >אני סטודנט/ית</label
+          >
+        </div>
+        <div class="checkbox-container">
+          <input id="operation24" type="checkbox" class="custom-checkbox" />
+          <label style="width: 100%" for="operation24" class="checkbox-label"
+            >ביצעתי תעסוקה מבצעית בשנת 2024</label
+          >
+        </div>
+        <div class="checkbox-container">
+          <input id="children" type="checkbox" class="custom-checkbox" />
+          <label style="width: 100%" for="children" class="checkbox-label"
+            >יש לי ילד/ים עד גיל 14</label
+          >
+        </div>
+        <div class="checkbox-container">
+          <input
+            id="children-special"
+            type="checkbox"
+            class="custom-checkbox"
+          />
+          <label
+            style="width: 100%"
+            for="children-special"
+            class="checkbox-label"
+            >יש לי ילד/ים עם צרכים מיוחדים</label
+          >
+        </div>
+
+        <button onclick="calculateCompensation()">
+          לחץ כאן לחישוב המענקים
+        </button>
+      </div>
       <ul id="alerts"></ul>
       <div id="results"></div>
     </div>
