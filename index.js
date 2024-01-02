@@ -1,5 +1,3 @@
-document.getElementById("endServiceDate").valueAsDate = new Date();
-
 const calculateVacation = (days, children, combat) => {
   // vacation
   if (days >= 45) {
@@ -270,3 +268,21 @@ const calculateCompensation = () => {
     behavior: "smooth",
   });
 };
+
+const dateToString = (date) => {
+  return (
+    date.getDate() +
+    "/" +
+    (date.getMonth() + 1) +
+    "/" +
+    date.getFullYear() +
+    " " +
+    date.getHours() +
+    ":" +
+    date.getMinutes()
+  );
+};
+
+document.getElementById("endServiceDate").valueAsDate = new Date();
+document.getElementById("lastModified").textContent =
+  "עדכון אחרון: " + dateToString(new Date(document.lastModified));

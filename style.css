@@ -52,6 +52,12 @@ body {
   }
 }
 
+.last-updated {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   /* Adjust for small screens */
   .container {
