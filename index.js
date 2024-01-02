@@ -279,6 +279,8 @@ const dateToString = (date) => {
     " " +
     date.getHours() +
     ":" +
+    // add leading zero if minutes is less than 10
+    (date.getMinutes() < 10 ? "0" : "") +
     date.getMinutes()
   );
 };
