@@ -35,6 +35,23 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.footer {
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
+
+  a {
+    color: #6c757d;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   /* Adjust for small screens */
   .container {
