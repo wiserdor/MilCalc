@@ -3,8 +3,7 @@
 מחשבון חרבות ברזל
 </h2>
   
-<a href="https://wiserdor.github.io/MilCalc/">https://wiserdor.github.io/MilCalc/</a>
-מנסה להבין כמה כסף מגיע לך על המילואים? מחשבון מצורף הישר מהשטח 
+מנסה להבין כמה כסף מגיע לך על המילואים? מחשבון מצורף הישר מהשטח <a href="https://wiserdor.github.io/MilCalc/">https://wiserdor.github.io/MilCalc/</a>
 
 
 
