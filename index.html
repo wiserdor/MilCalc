@@ -1,127 +1,100 @@
 <!DOCTYPE html>
 <html dir="rtl">
-  <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
 
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 
-    <title>מחשבון חרבות ברזל</title>
-  </head>
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-ZE1RDY2L6L"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
-    gtag("config", "G-ZE1RDY2L6L");
-  </script>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h2>מחשבון מענקים ״מגויסים למילואים״ - מלחמת חרבות ברזל</h2>
-        <p class="description-intro">
-          בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
-          שירות המילואים במלחמת חרבות ברזל. המחשבון מבוסס על
-          <a
-            href="https://usms.cellcom.co.il/files/QEIKC4/nvxy0yv36s.pdf?ISPN=_BK2te&CustomerId=1060534&ProjectId=127109&Domain=l5k.me&Key=5JDBX&MessageId=0&CampaignId=SIF0KNZHAX59I5A5"
-            >נתוני המענקים שפורסמו מטעם צה״ל.</a
-          >
-        </p>
-        <p class="description-bold">
-          <b>רוצים לדעת כמה מגיע לכם? בדקו עכשיו בעצמכם!</b>
-        </p>
-      </div>
-      <div class="form">
-        <label for="serviceDate">בחר את התאריך שבו התגייסת למילואים</label>
-        <input
-          type="date"
-          id="serviceDate"
-          value="2023-10-07"
-          min="2023-10-07"
-          max="2023-12-31"
-          dir="rtl"
-        />
+  <title>מחשבון חרבות ברזל</title>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZE1RDY2L6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-        <label for="endServiceDate">בחר את התאריך שבו השתחררת מהמילואים</label>
-        <input type="date" id="endServiceDate" min="2023-10-07" dir="rtl" />
+  gtag("config", "G-ZE1RDY2L6L");
+</script>
 
-        <label for="serviceBefore"
-          >כמות ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10)</label
-        >
-        <input type="number" id="serviceBefore" value="0" min="0" />
-
-        <div class="checkbox-container">
-          <input id="combat" type="checkbox" class="custom-checkbox" />
-          <label style="width: 100%" for="combat" class="checkbox-label"
-            >אני לוחם/ת</label
-          >
-        </div>
-        <div class="checkbox-container">
-          <input id="student" type="checkbox" class="custom-checkbox" />
-          <label style="width: 100%" for="student" class="checkbox-label"
-            >אני סטודנט/ית</label
-          >
-        </div>
-        <div class="checkbox-container">
-          <input id="operation24" type="checkbox" class="custom-checkbox" />
-          <label style="width: 100%" for="operation24" class="checkbox-label"
-            >ביצעתי תעסוקה מבצעית בשנת 2024</label
-          >
-        </div>
-        <div class="checkbox-container">
-          <input id="children" type="checkbox" class="custom-checkbox" />
-          <label style="width: 100%" for="children" class="checkbox-label"
-            >יש לי ילד/ים עד גיל 14</label
-          >
-        </div>
-        <div class="checkbox-container">
-          <input
-            id="children-special"
-            type="checkbox"
-            class="custom-checkbox"
-          />
-          <label
-            style="width: 100%"
-            for="children-special"
-            class="checkbox-label"
-            >יש לי ילד/ים עם צרכים מיוחדים</label
-          >
-        </div>
-
-        <button onclick="calculateCompensation()">
-          לחץ כאן לחישוב המענקים
-        </button>
-      </div>
-      <ul id="alerts"></ul>
-      <div id="results"></div>
-      <footer class="footer">
-        <!-- contact us -->
-        <div class="contact-us">
-          <p>
-            נשמח לשמוע מכם בכל נושא שקשור למחשבון זה. ניתן ליצור קשר במייל:
-            <a href="mailto:yslook7@gmail.com">yslook7@gmail.com</a>
-          </p>
-              
-      </footer>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>מחשבון מענקים ״מגויסים למילואים״ - מלחמת חרבות ברזל</h2>
+      <p class="description-intro">
+        בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
+        שירות המילואים במלחמת חרבות ברזל. המחשבון מבוסס על
+        <a
+          href="https://usms.cellcom.co.il/files/QEIKC4/nvxy0yv36s.pdf?ISPN=_BK2te&CustomerId=1060534&ProjectId=127109&Domain=l5k.me&Key=5JDBX&MessageId=0&CampaignId=SIF0KNZHAX59I5A5">נתוני
+          המענקים שפורסמו מטעם צה״ל.</a>
+      </p>
+      <p class="description-bold">
+        <b>רוצים לדעת כמה מגיע לכם? בדקו עכשיו בעצמכם!</b>
+      </p>
     </div>
-    <script src="index.js"></script>
-  </body>
+    <div class="form">
+      <label for="serviceDate">בחר את התאריך שבו התגייסת למילואים</label>
+      <input type="date" id="serviceDate" value="2023-10-07" min="2023-10-07" max="2023-12-31" dir="rtl" />
+
+      <label for="endServiceDate">בחר את התאריך שבו השתחררת מהמילואים</label>
+      <input type="date" id="endServiceDate" min="2023-10-07" dir="rtl" />
+
+      <label for="serviceBefore">כמות ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10)</label>
+      <input type="number" id="serviceBefore" value="0" min="0" />
+
+      <div class="checkbox-container">
+        <input id="combat" type="checkbox" class="custom-checkbox" />
+        <label style="width: 100%" for="combat" class="checkbox-label">אני לוחם/ת</label>
+      </div>
+      <div class="checkbox-container">
+        <input id="student" type="checkbox" class="custom-checkbox" />
+        <label style="width: 100%" for="student" class="checkbox-label">אני סטודנט/ית</label>
+      </div>
+      <div class="checkbox-container">
+        <input id="operation24" type="checkbox" class="custom-checkbox" />
+        <label style="width: 100%" for="operation24" class="checkbox-label">ביצעתי תעסוקה מבצעית בשנת 2024</label>
+      </div>
+      <div class="checkbox-container">
+        <input id="children" type="checkbox" class="custom-checkbox" />
+        <label style="width: 100%" for="children" class="checkbox-label">יש לי ילד/ים עד גיל 14</label>
+      </div>
+      <div class="checkbox-container">
+        <input id="children-special" type="checkbox" class="custom-checkbox" />
+        <label style="width: 100%" for="children-special" class="checkbox-label">יש לי ילד/ים עם צרכים מיוחדים</label>
+      </div>
+
+      <button onclick="calculateCompensation()">
+        לחץ כאן לחישוב המענקים
+      </button>
+    </div>
+    <ul id="alerts"></ul>
+    <div id="results"></div>
+    <footer class="footer">
+      <!-- contact us -->
+      <div class="contact-us">
+        <p>
+          נשמח לשמוע מכם בכל נושא שקשור למחשבון זה. ניתן ליצור קשר במייל:
+          <a href="mailto:yslook7@gmail.com">yslook7@gmail.com</a>
+        </p>
+
+    </footer>
+  </div>
+  <script src="index.js"></script>
+</body>
+
 </html>
