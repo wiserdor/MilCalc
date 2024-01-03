@@ -145,3 +145,23 @@ li {
   margin-bottom: 1rem;
   font-weight: 600;
 }
+
+.disclaimer {
+  border-radius: 5px;
+  border-color: #6c757d;
+  border-width: 1px;
+  border-style: dashed;
+  padding-inline: 0.7rem;
+  padding-block: 0.2rem;
+  line-height: 1.5;
+}
+
+.disclaimer-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.disclaimer-title::before {
+  content: "⚠️ ";
+}
