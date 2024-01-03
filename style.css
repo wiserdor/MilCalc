@@ -81,6 +81,11 @@ input[type="number"] {
   border: 1px solid #ddd;
 }
 
+
+input[type="date"] {
+  -webkit-appearance: none;
+}
+
 .checkbox-container {
   display: flex;
   align-items: center;
