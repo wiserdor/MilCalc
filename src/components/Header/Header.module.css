@@ -1,32 +1,50 @@
 .pageTitle {
-  color: #4a4a4a;
   text-align: center;
-  font-size: 1.5em;
-  letter-spacing: 2px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.subTitle {
+  color: #28a745;
+  text-align: center;
+  font-size: 1.2em;
   display: inline-block;
   font-weight: 600;
+  width: 100%;
 }
 
 .header {
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #ccc;
+}
+
+.logo {
+  width: 100%;
+  text-align: center;
+
+  fill: #28a745;
 }
 
 .lastUpdated {
-  font-size: 0.8rem;
-  color: #6c757d;
+  font-size: 0.9rem;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .descriptionIntro {
   font-size: 1rem;
-  color: #6c757d;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .descriptionBold {
   font-weight: 600;
-  padding-top: 1.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+}
+
+.descriptionFill {
+  text-align: center;
+  color: #767676;
 }

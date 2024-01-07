@@ -1,5 +1,5 @@
 .form {
-  padding-block: 1rem;
+  padding-bottom: 1rem;
 }
 
 .label {
@@ -7,21 +7,27 @@
   margin: 10px 0 5px;
 }
 
+.submitButtonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .submitButton {
-  background-color: rgb(28, 69, 135);
+  background-color: rgba(0, 102, 255, 1);
   color: #fff;
   border: none;
-  padding-block: 1rem;
+  padding-block: 0.8rem;
   padding-inline: 1rem;
   margin-top: 1rem;
-  border-radius: 5px;
+  border-radius: 2rem;
   cursor: pointer;
-  width: 100%;
+  width: 70%;
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
 
   &:hover {
-    background-color: rgba(28, 69, 135, 0.8);
+    background-color: rgba(0, 102, 255, 0.9);
   }
 }
 
@@ -29,4 +35,22 @@
   color: red;
   margin-bottom: 1rem;
   font-weight: 600;
+}
+
+.formSection {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  border-radius: 0.8rem;
+  margin-block: 1rem;
+}
+
+.formSectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem;
+  align-items: baseline;
 }

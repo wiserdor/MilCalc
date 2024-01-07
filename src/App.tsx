@@ -9,9 +9,7 @@ function App() {
     <div className="container">
       <Header />
       <Form />
-
       <Results />
-
       <Footer />
     </div>
   )

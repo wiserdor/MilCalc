@@ -25,20 +25,19 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <p className={styles.lastUpdated}>
-        עודכן לאחרונה בתאריך: {getLastModified()}
-      </p>
-      <h2 className={styles.pageTitle}>
-        מחשבון מענקים ״מגויסים למילואים״ - מלחמת חרבות ברזל
-      </h2>
+      <p className={styles.lastUpdated}>🕑 עדכון אחרון: {getLastModified()}</p>
+      <div className={styles.logo}></div>
+      <div className={styles.pageTitle}>מחשבון מענקים ״מגויסים למילואים״</div>
+      <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
       <p className={styles.descriptionIntro}>
         בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
         שירות המילואים במלחמת חרבות ברזל.
       </p>
       <Disclaimer />
-      <p className={styles.descriptionBold}>
-        <b>רוצים לדעת כמה מגיע לכם? בדקו עכשיו בעצמכם!</b>
-      </p>
+      <div className={styles.descriptionBold}>
+        רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו:
+      </div>
+      <div className={styles.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
     </div>
   )
 }
