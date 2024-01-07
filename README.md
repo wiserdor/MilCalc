@@ -1,41 +1,30 @@
-<div dir="rtl">
-  <h2>
-מחשבון חרבות ברזל
-</h2>
-  
-מנסה להבין כמה כסף מגיע לך על המילואים? מחשבון מצורף הישר מהשטח <a href="https://wiserdor.github.io/MilCalc/">https://wiserdor.github.io/MilCalc/</a>
+# React + TypeScript + Vite
 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+Currently, two official plugins are available:
 
-בתקופה האחרונה במילואים שמתי לב לשאלה שמעסיקה את החיילים לא פחות ממתי יוצאים הביתה והיא - כמה כסף מגיע לי.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Expanding the ESLint configuration
 
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-חיילים מתוסכלים מביטים בקבצים מעורפלים ומנסים לחלץ את המספר המיוחל בעזרת המחשבון בטלפון. הכאב (ראש) היה ניכר. 
+- Configure the top-level `parserOptions` property like this:
 
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
 
-
-יחד עם המתכנת מספר אחד בפלוגה שלא לומר בצה״ל Dor Wiser החלטנו לנקוט מעשה ולמצוא פתרון שיקל על כאבם של החיילים. 
-
-
-
-התהליך היה מהיר: 
-
-1. קוד ראשון נבנה עם Chat GPT
-
-2. השלמנו את הפונקציונליות בהתאם לצרכים
-
-3. עשינו Q&A והתאמות לעיצוב
-
-4. אספנו פידבקים ותיקונים נוספים
-
-5. שחרור
-
-</div>
-
-בעזרת המחשבון שיצרנו תוכלו להבין כמה כסף מגיע לכם - רק צריך למלא כמה שדות פשוטים ומיד תקבלו את המספר כולל פירוט.  
-
-
- 
-
-דיסקליימר - המחשבון נבנה על סמך המצגת הצה״לית ששוחררה. אין האמור במחשבון כל הבטחה לקבלת תשלום מהמדינה :)
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

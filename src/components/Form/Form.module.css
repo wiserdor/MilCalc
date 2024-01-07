@@ -1,0 +1,32 @@
+.form {
+  padding-block: 1rem;
+}
+
+.label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.submitButton {
+  background-color: rgb(28, 69, 135);
+  color: #fff;
+  border: none;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: rgba(28, 69, 135, 0.8);
+  }
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
