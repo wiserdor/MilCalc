@@ -45,7 +45,8 @@ const Form = () => {
         <div
           style={{
             display: 'flex',
-            gap: '1.5rem',
+            flexFlow: 'wrap',
+            gap: '1rem',
           }}
         >
           <FormInput

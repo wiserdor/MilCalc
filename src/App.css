@@ -14,5 +14,7 @@
   .container {
     width: 94%; /* Take full width on small screens */
     padding: 10px; /* Optional: Adjust padding for smaller screens */
+    box-shadow: none;
+    border: none;
   }
 }

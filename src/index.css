@@ -10,3 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media screen and (max-width: 600px) {
+  :root {
+    background-color: #fff;
+  }
+}
