@@ -17,11 +17,11 @@
   color: #fff;
   border: none;
   padding-block: 0.8rem;
-  padding-inline: 1rem;
+  padding-inline: 1.2rem;
   margin-top: 1rem;
   border-radius: 2rem;
   cursor: pointer;
-  width: 70%;
+  width: max-content;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
