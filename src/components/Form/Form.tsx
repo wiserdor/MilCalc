@@ -14,7 +14,7 @@ const Form = () => {
     serviceBefore,
     isCombat,
     isStudent,
-    didOperation24,
+    operation24Days,
     hasChildren,
     hasChildrenSpecial,
     validateAndSetErrors,
@@ -23,6 +23,11 @@ const Form = () => {
   // Results ref
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.type === 'number' && e.target.value === '') {
+      setFormState(e.target.name, 0)
+      return
+    }
+
     setFormState(
       e.target.name,
       e.target.type === 'checkbox' ? e.target.checked : e.target.value
@@ -44,9 +49,9 @@ const Form = () => {
         </div>
         <div
           style={{
-            display: 'flex',
-            gap: '0.8rem',
-            flexWrap: 'wrap',
+            display: 'grid',
+            gridTemplateColumns: '50% 50%',
+            columnGap: '0.5rem',
           }}
         >
           <FormInput
@@ -85,6 +90,21 @@ const Form = () => {
       <div className={style.formSection}>
         <div className={style.formSectionTitle}>
           <NumberCircle number={3} />
+          <div style={{ flex: 1 }}>
+            כמות ימי תעסוקה מבצעית שביצעת בשנת 2024:
+          </div>
+        </div>
+        <FormInput
+          type="number"
+          name="operation24Days"
+          value={operation24Days}
+          min={0}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className={style.formSection}>
+        <div className={style.formSectionTitle}>
+          <NumberCircle number={4} />
           <div style={{ flex: 1 }}>סמנו אחת או יותר מהאפשרויות הבאות:</div>
         </div>
         <FormCheckbox
@@ -97,12 +117,6 @@ const Form = () => {
           label="אני סטודנט/ית"
           name="isStudent"
           checked={isStudent}
-          onChange={handleInputChange}
-        />
-        <FormCheckbox
-          label="ביצעתי תעסוקה מבצעית בשנת 2024"
-          name="didOperation24"
-          checked={didOperation24}
           onChange={handleInputChange}
         />
         <FormCheckbox
@@ -120,7 +134,7 @@ const Form = () => {
       </div>
 
       <div className={style.submitButtonWrapper}>
-        <button className={style.submitButton}>לחצו כאן לחישוב המענקים</button>
+        <button className={style.submitButton}>לחישוב המענקים</button>
       </div>
       <ValidationSection />
     </form>

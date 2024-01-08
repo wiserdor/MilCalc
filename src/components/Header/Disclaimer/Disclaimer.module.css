@@ -16,8 +16,12 @@
   font-weight: 600;
   padding-bottom: 1rem;
   color: black;
+  display: flex;
+  align-items: center;
 
-  &::before {
-    content: '💙 ';
+  img {
+    width: 18px;
+    height: 18px;
+    margin-left: 0.3rem;
   }
 }

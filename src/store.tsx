@@ -25,7 +25,7 @@ export interface CalculatorState extends CalculatorResults {
   hasChildrenSpecial: boolean
   isStudent: boolean
   serviceBefore: string
-  didOperation24: boolean
+  operation24Days: string
 
   // Function to update form states
   setFormState: (name: string, value: any) => void
@@ -48,7 +48,7 @@ const useStore = create<CalculatorState>((set) => ({
   hasChildrenSpecial: false,
   isStudent: false,
   serviceBefore: '0',
-  didOperation24: false,
+  operation24Days: '0',
 
   // Results
   totalPerMonth: 0,
@@ -121,7 +121,7 @@ const useStore = create<CalculatorState>((set) => ({
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
-      didOperation24: state.didOperation24,
+      operation24Days: state.operation24Days,
     })
 
     set({

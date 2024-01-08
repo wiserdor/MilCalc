@@ -4,9 +4,12 @@ const Disclaimer = () => {
   return (
     <div className={styles.disclaimer}>
       <div>
-        <div className={styles.disclaimerTitle}>הערה חשובה</div>
+        <div className={styles.disclaimerTitle}>
+          <img src="/svg/heart.svg" />
+          הערה חשובה
+        </div>
         המחשבון מבוסס על{' '}
-        <a href="https://usms.cellcom.co.il/files/QEIKC4/nvxy0yv36s.pdf?ISPN=_BK2te&CustomerId=1060534&ProjectId=127109&Domain=l5k.me&Key=5JDBX&MessageId=0&CampaignId=SIF0KNZHAX59I5A5">
+        <a href="https://go.idf.il/q7h7s8e8p4">
           נתוני המענקים שפורסמו מטעם צה״ל
         </a>
         . אין האמור במחשבון כל הבטחה לקבלת הסכום מהמדינה. ממליצים להשתמש בשביל

@@ -1,6 +1,7 @@
 ul {
   padding-inline: 1rem;
   padding-block: 0.5rem;
+  list-style: none;
 }
 
 li {
@@ -9,4 +10,33 @@ li {
 
 .sectionTitle {
   font-weight: 600;
+}
+
+.resultsTitle {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+}
+
+.moneyLogo {
+  width: 100%;
+  text-align: center;
+}
+
+.results {
+  margin-top: 2rem;
+}
+
+.resultsSection {
+  padding: 16px;
+  border-radius: 8px;
+  margin-block: 1rem;
+  background-color: #edf4ff;
+}
+
+.resultsSectionResults li {
+  color: #767676;
+  list-style: initial;
 }

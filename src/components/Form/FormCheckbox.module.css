@@ -17,3 +17,7 @@
   height: 24px;
   cursor: pointer;
 }
+
+input[type='checkbox']:checked {
+  accent-color: 0066ff;
+}

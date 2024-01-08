@@ -48,12 +48,17 @@ const Results = () => {
 
   return (
     <div className={style.results} ref={resultsRef}>
+      <div className={style.moneyLogo}>
+        <img src="/svg/money.svg" />
+      </div>
+      <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
+      <div className={style.resultsSubtitle}></div>
       {totalCompensation > 0 && (
-        <ul>
+        <ul className={style.resultsSection}>
           <li className={style.sectionTitle}>
             {'תגמולים ומענקים - סה״כ ' + totalCompensation + ' ש״ח:'}
           </li>
-          <ul>
+          <ul className={style.resultsSectionResults}>
             {compensationPerYear.map((compensation, i) =>
               compensation > 0 ? (
                 <li key={i}>
@@ -77,11 +82,11 @@ const Results = () => {
         </ul>
       )}
       {totalSum > 0 && (
-        <ul>
+        <ul className={style.resultsSection}>
           <li className={style.sectionTitle}>
             {'מעטפת משפחתית וכלכלית - סה״כ ' + totalSum + ' ש״ח:'}
           </li>
-          <ul>
+          <ul className={style.resultsSectionResults}>
             {totalFromChildren > 0 && (
               <li>
                 {totalFromChildren + ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
@@ -98,11 +103,11 @@ const Results = () => {
         </ul>
       )}
       {(totalCare > 0 || isStudent) && (
-        <ul>
+        <ul className={style.resultsSection}>
           <li className={style.sectionTitle}>
             {'מעטפת משלימה - סה״כ ' + totalCare + ' ש״ח:'}
           </li>
-          <ul>
+          <ul className={style.resultsSectionResults}>
             {totalFamilyCare > 0 && (
               <li>{totalFamilyCare + ' ש״ח מימון טיפול אישי ומשפחתי.'}</li>
             )}

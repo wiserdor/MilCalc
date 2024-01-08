@@ -6,11 +6,10 @@ import {
 } from 'date-fns'
 import {
   COMBAT_RATE,
-  EXTRA_45_DAYS_COMPENSATION,
+  EXTRA_DAYS_COMPENSATION,
   FAMILY_CARE_COMPENSATION,
   MENTAL_HEALTH_COMPENSATION,
   NON_COMBAT_RATE,
-  OPERATION_24_COMPENSATION,
   SPECIAL_NEEDS_COMPENSATION,
 } from './constants'
 
@@ -19,7 +18,7 @@ export const calculateVacation = (
   hasChildren: boolean,
   isCombat: boolean
 ) => {
-  if (totalDays < 45) return 0
+  if (totalDays < 60) return 0
 
   const baseVacation = isCombat ? 3500 : 1500
   const additionalForChildren = isCombat ? 1000 : 500
@@ -69,14 +68,44 @@ const calculateDays = (
   return dayDifference + serviceBefore
 }
 
-const calculateMonthlyCompensation = (isCombat: boolean, months: number) => {
-  return isCombat ? COMBAT_RATE * months : NON_COMBAT_RATE * months
+const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
+  //should be for each 10 days
+  const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
+  const total = Math.floor(days / 10) * rate
+  return total
+}
+
+const operation24Calculation = (operation24Days: number) => {
+  // 100 per day for first 10 days
+  // extra 150 per day for 11 to 20 days
+  // extra 200 per day from 21 and on
+  if (operation24Days <= 0) return 0
+
+  let totalAmount = 0
+
+  // Calculate for the first 10 days
+  const firstTierDays = Math.min(operation24Days, 10)
+  totalAmount += firstTierDays * 100
+
+  // Calculate for days 11 to 20
+  if (operation24Days > 10) {
+    const secondTierDays = Math.min(operation24Days - 10, 10)
+    totalAmount += secondTierDays * 250 // 100 + 150
+  }
+
+  // Calculate for days 21 and beyond
+  if (operation24Days > 20) {
+    const thirdTierDays = operation24Days - 20
+    totalAmount += thirdTierDays * 300 // 100 + 200
+  }
+
+  return totalAmount
 }
 
 export const calculateCompensation = (inputs: {
   startDate: string
   endDate: string
-  didOperation24: boolean
+  operation24Days: string
   isCombat: boolean
   hasChildren: boolean
   hasChildrenSpecial: boolean
@@ -85,7 +114,7 @@ export const calculateCompensation = (inputs: {
   const {
     startDate: start,
     endDate: end,
-    didOperation24,
+    operation24Days: operation24DaysString,
     isCombat,
     hasChildren,
     hasChildrenSpecial,
@@ -95,6 +124,7 @@ export const calculateCompensation = (inputs: {
   const startDate = new Date(start)
   const endDate = new Date(end)
   const serviceBefore = parseInt(serviceBeforeString)
+  const operation24Days = parseInt(operation24DaysString)
 
   const days = calculateDays(startDate, endDate, serviceBefore)
   const months =
@@ -103,15 +133,16 @@ export const calculateCompensation = (inputs: {
     12 * (endDate.getFullYear() - startDate.getFullYear()) +
     1
 
-  let totalPerMonth = calculateMonthlyCompensation(isCombat, months)
-  let totalMoreThan45 = isCombat && days >= 45 ? EXTRA_45_DAYS_COMPENSATION : 0
-  let totalOperation24 = didOperation24 ? OPERATION_24_COMPENSATION : 0
+  let totalPerMonth = calculateMonthlyCompensation(isCombat, days)
+  let totalExtraDays =
+    isCombat && days >= 32 ? EXTRA_DAYS_COMPENSATION * (days - 31) : 0
+  let totalOperation24 = operation24Calculation(operation24Days)
 
   let totalFromChildren = hasChildren ? (isCombat ? 2500 : 1500) * months : 0
   let totalVacation = calculateVacation(days, hasChildren, isCombat)
   let totalSpecialChildren = hasChildrenSpecial ? SPECIAL_NEEDS_COMPENSATION : 0
 
-  let totalMental = MENTAL_HEALTH_COMPENSATION
+  let totalMental = days > 30 ? MENTAL_HEALTH_COMPENSATION : 0
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   const compensationPerYear = calculateCompensationPerYear(
@@ -120,7 +151,7 @@ export const calculateCompensation = (inputs: {
 
   return {
     totalPerMonth,
-    totalMoreThan45,
+    totalMoreThan45: totalExtraDays,
     totalOperation24,
     totalFromChildren,
     totalVacation,

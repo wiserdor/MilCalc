@@ -1,5 +1,6 @@
 .input {
   -webkit-appearance: none;
+  box-sizing: border-box;
 
   padding: 10px;
   margin-bottom: 20px;
@@ -14,4 +15,6 @@
 
 .inputLabel {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }

@@ -25,9 +25,14 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <p className={styles.lastUpdated}>🕑 עדכון אחרון: {getLastModified()}</p>
-      <div className={styles.logo}></div>
-      <div className={styles.pageTitle}>מחשבון מענקים ״מגויסים למילואים״</div>
+      <p className={styles.lastUpdated}>
+        <img src="/svg/time.svg" /> עדכון אחרון: {getLastModified()}
+      </p>
+      <div className={styles.logo}>
+        <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
+      </div>
+      <div className={styles.pageTitle}>מחשבון מענקים</div>
+      <div className={styles.pageTitle}>״מגויסים למילואים״</div>
       <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
       <div className={styles.importantNotice}>
         ברגעים אלו אנו מעדכנים את המחשבון בהתאם לאישורי הממשלה. ממליצים להיכנס
