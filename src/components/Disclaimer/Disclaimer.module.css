@@ -20,8 +20,13 @@
   align-items: center;
 
   img {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     margin-left: 0.3rem;
   }
+}
+
+a {
+  color: #0066ff;
+  text-decoration: none;
 }
