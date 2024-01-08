@@ -137,6 +137,7 @@ export const calculateCompensation = (inputs: {
   let totalExtraDays =
     isCombat && days >= 32 ? EXTRA_DAYS_COMPENSATION * (days - 31) : 0
   let totalOperation24 = operation24Calculation(operation24Days)
+  let totalMoreThan45 = isCombat && days > 45 ? 2500 : 0
 
   let totalFromChildren = hasChildren ? (isCombat ? 2500 : 1500) * months : 0
   let totalVacation = calculateVacation(days, hasChildren, isCombat)
@@ -151,7 +152,8 @@ export const calculateCompensation = (inputs: {
 
   return {
     totalPerMonth,
-    totalMoreThan45: totalExtraDays,
+    totalExtraDays,
+    totalMoreThan45,
     totalOperation24,
     totalFromChildren,
     totalVacation,

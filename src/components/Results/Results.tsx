@@ -25,9 +25,8 @@ const Results = () => {
     () =>
       totalPerMonth +
       totalOperation24 +
-      totalMoreThan45 +
       compensationPerYear?.reduce((a, b) => a + b, 0),
-    [totalPerMonth, totalOperation24, totalMoreThan45, compensationPerYear]
+    [totalPerMonth, totalOperation24, compensationPerYear]
   )
 
   useEffect(() => {
@@ -39,7 +38,8 @@ const Results = () => {
 
   if (validationErrors?.length > 0) return null
 
-  const totalSum = totalFromChildren + totalSpecialChildren + totalVacation
+  const totalSum =
+    totalFromChildren + totalSpecialChildren + totalVacation + totalMoreThan45
 
   const totalCare = totalMental + totalFamilyCare
 
@@ -72,9 +72,7 @@ const Results = () => {
             {totalPerMonth > 0 && (
               <li>{totalPerMonth + ' ש״ח מענקים חודשיים.'}</li>
             )}
-            {totalMoreThan45 > 0 && (
-              <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
-            )}
+
             {totalOperation24 > 0 && (
               <li>{totalOperation24 + ' ש״ח מענק תע״מ 2024.'}</li>
             )}
@@ -91,6 +89,9 @@ const Results = () => {
               <li>
                 {totalFromChildren + ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
               </li>
+            )}
+            {totalMoreThan45 > 0 && (
+              <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
             )}
             {totalVacation > 0 && <li>{totalVacation + ' ש״ח מענק חופשה.'}</li>}
             {totalSpecialChildren > 0 && (
