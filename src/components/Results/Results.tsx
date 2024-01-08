@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import useStore from '../../store'
 import style from './Results.module.css'
+import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 
 const Results = () => {
   const {
@@ -21,11 +22,31 @@ const Results = () => {
 
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const totalCompensation = useMemo(
+  const totalFromChildrenApproved =
+    totalFromChildren > getMaxChildApproval(isCombat)
+      ? getMaxChildApproval(isCombat)
+      : totalFromChildren
+
+  const totalFromChildrenNotApproved = Math.max(
+    totalFromChildren - totalFromChildrenApproved,
+    0
+  )
+
+  const totalPerMonthApproved =
+    totalPerMonth > getMaxMonthApproval(isCombat)
+      ? getMaxMonthApproval(isCombat)
+      : totalPerMonth
+
+  const totalPerMonthNotApproved = Math.max(
+    totalPerMonth - totalPerMonthApproved,
+    0
+  )
+
+  const totalApproved = useMemo(
     () =>
-      totalPerMonth +
+      totalPerMonthApproved +
       totalOperation24 +
-      totalFromChildren +
+      totalFromChildrenApproved +
       totalSpecialChildren +
       compensationPerYear?.reduce((a, b) => a + b, 0),
     [totalPerMonth, totalOperation24, compensationPerYear]
@@ -40,11 +61,16 @@ const Results = () => {
 
   if (validationErrors?.length > 0) return null
 
-  const totalSum =
-    totalVacation + totalMoreThan45 + totalMental + totalFamilyCare
+  const totalNotApproved =
+    totalVacation +
+    totalMoreThan45 +
+    totalMental +
+    totalFamilyCare +
+    totalFromChildrenNotApproved +
+    totalPerMonthNotApproved
 
   // if sum of all is 0, don't show anything
-  if (totalSum + totalCompensation === 0) return null
+  if (totalNotApproved + totalApproved === 0) return null
 
   return (
     <div className={style.results} ref={resultsRef}>
@@ -53,11 +79,11 @@ const Results = () => {
       </div>
       <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
       <div className={style.resultsSubtitle}></div>
-      {totalCompensation > 0 && (
+      {totalApproved > 0 && (
         <ul className={style.resultsSection}>
           <div className={style.approvalBlock}>עבר אישור</div>
           <li className={style.sectionTitle}>
-            {'סה״כ ' + totalCompensation + ' ש״ח:'}
+            {'סה״כ ' + totalApproved + ' ש״ח:'}
           </li>
           <ul className={style.resultsSectionResults}>
             {compensationPerYear.map((compensation, i) =>
@@ -70,15 +96,16 @@ const Results = () => {
                 </li>
               ) : null
             )}
-            {totalPerMonth > 0 && (
-              <li>{totalPerMonth + ' ש״ח מענקים חודשיים.'}</li>
+            {totalPerMonthApproved > 0 && (
+              <li>{totalPerMonthApproved + ' ש״ח מענקים חודשיים.'}</li>
             )}
             {totalOperation24 > 0 && (
               <li>{totalOperation24 + ' ש״ח מענק תע״מ 2024.'}</li>
             )}
-            {totalFromChildren > 0 && (
+            {totalFromChildrenApproved > 0 && (
               <li>
-                {totalFromChildren + ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
+                {totalFromChildrenApproved +
+                  ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
               </li>
             )}
             {totalSpecialChildren > 0 && (
@@ -90,11 +117,13 @@ const Results = () => {
           </ul>
         </ul>
       )}
-      {(totalSum > 0 || isStudent) && (
+      {(totalNotApproved > 0 || isStudent) && (
         <ul className={style.resultsSection}>
           <div className={style.maybeApprovalBlock}>צפוי לעבור אישור בקרוב</div>
 
-          <li className={style.sectionTitle}>{'סה״כ ' + totalSum + ' ש״ח:'}</li>
+          <li className={style.sectionTitle}>
+            {'סה״כ ' + totalNotApproved + ' ש״ח:'}
+          </li>
           <ul className={style.resultsSectionResults}>
             {totalMoreThan45 > 0 && (
               <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
@@ -111,6 +140,15 @@ const Results = () => {
                 {isCombat
                   ? 'מגיע לך 100% סבסוד לשנת לימודים תשפ״ד.'
                   : 'מגיע לך 30% סבסוד לשנת לימודים תשפ״ד.'}
+              </li>
+            )}
+            {totalPerMonthNotApproved > 0 && (
+              <li>{totalPerMonthNotApproved + ' ש״ח מענקים חודשיים.'}</li>
+            )}
+            {totalFromChildrenNotApproved > 0 && (
+              <li>
+                {totalFromChildrenNotApproved +
+                  ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
               </li>
             )}
           </ul>
