@@ -16,15 +16,15 @@
   background-color: rgba(0, 102, 255, 1);
   color: #fff;
   border: none;
-  padding: 12px, 24px, 12px, 24px;
+  padding: 12px 24px 12px 24px;
   margin-top: 1rem;
   border-radius: 44px;
   cursor: pointer;
-  width: 163px;
-  height: 43px;
+
   font-size: 18px;
   font-weight: 600;
   text-align: center;
+  white-space: nowrap;
 
   &:hover {
     background-color: rgba(0, 102, 255, 0.9);
