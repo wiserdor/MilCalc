@@ -11,6 +11,10 @@ import {
 import Disclaimer from '../Disclaimer/Disclaimer'
 import styles from './Header.module.css'
 
+const SHARE_MESSAGE =
+  'המענקים למילואימניקים אושרו בממשלה! כנסו למחשבון לבדוק לכמה אתם זכאים:'
+const SHARE_URL = 'https://miluimnik.info'
+
 export const dateToString = (date: Date) => {
   return (
     date.getDate() +
@@ -47,32 +51,16 @@ const Header = () => {
       <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
       <div className={styles.share}>
         <div>שתפו:</div>
-        <WhatsappShareButton
-          url="https://miluimnik.info"
-          title="המענקים למילואימניקים אושרו בממשלה!
-          כנסו למחשבון לבדוק לכמה אתם זכאים:"
-        >
+        <WhatsappShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>
-        <TelegramShareButton
-          url="https://miluimnik.info"
-          title="המענקים למילואימניקים אושרו בממשלה!
-כנסו למחשבון לבדוק לכמה אתם זכאים:"
-        >
+        <TelegramShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
           <TelegramIcon size={32} round={true} />
         </TelegramShareButton>
-        <FacebookShareButton
-          url="https://miluimnik.info"
-          title="המענקים למילואימניקים אושרו בממשלה!
-כנסו למחשבון לבדוק לכמה אתם זכאים:"
-        >
+        <FacebookShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
-        <TwitterShareButton
-          url="https://miluimnik.info"
-          title="המענקים למילואימניקים אושרו בממשלה!
-כנסו למחשבון לבדוק לכמה אתם זכאים:"
-        >
+        <TwitterShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
           <XIcon size={32} round={true} />
         </TwitterShareButton>
       </div>
