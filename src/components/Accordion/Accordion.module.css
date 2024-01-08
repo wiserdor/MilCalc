@@ -1,0 +1,40 @@
+.accordion {
+  border-radius: 4px;
+  margin-block: 1.8rem;
+}
+
+.accordionItem {
+  margin-bottom: 10px;
+}
+
+.accordionButton {
+  width: 100%;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.8rem;
+}
+
+.accordionButtonContent {
+}
+
+.accordionButtonIcon {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.accordionContent {
+  font-size: 16px;
+  font-weight: 400;
+  padding-block: 1rem;
+  color: #767676;
+}
+
+.accordionItem.active .accordionContent {
+  display: block;
+}
