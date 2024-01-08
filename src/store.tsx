@@ -73,7 +73,8 @@ const useStore = create<CalculatorState>((set) => ({
     const errors = validateForm(
       state.startDate,
       state.endDate,
-      state.serviceBefore.toString()
+      state.serviceBefore,
+      state.operation24Days
     )
     set({ validationErrors: errors })
   },

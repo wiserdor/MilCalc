@@ -1,7 +1,7 @@
 .pageTitle {
   text-align: center;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
 }
 
@@ -27,6 +27,16 @@
   &::before {
     content: '⚠️ ';
   }
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  font-weight: 600;
+  font-size: 14px;
+  justify-content: center;
 }
 
 .header {

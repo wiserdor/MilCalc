@@ -72,6 +72,7 @@ const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
   if (days < 40) return 0
   //should be for each 10 days
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
+
   const total = Math.floor(days / 10) * rate
   return total
 }
@@ -112,6 +113,29 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
+const calculateDaysInOctober2023 = (startDate: Date, endDate: Date) => {
+  const octoberStart = new Date('2023-10-01')
+  const octoberEnd = new Date('2023-10-31')
+
+  // Find the later of the two start dates
+  const overlapStart = startDate > octoberStart ? startDate : octoberStart
+
+  // Find the earlier of the two end dates
+  const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
+
+  // Check if there is an overlap
+  if (overlapStart <= overlapEnd) {
+    // +1 because the end date is inclusive
+    return (
+      (overlapEnd.getTime() - overlapStart.getTime()) / (1000 * 60 * 60 * 24) +
+      1
+    )
+  }
+
+  // No overlap
+  return 0
+}
+
 export const calculateCompensation = (inputs: {
   startDate: string
   endDate: string
@@ -133,12 +157,16 @@ export const calculateCompensation = (inputs: {
 
   const startDate = new Date(start)
   const endDate = new Date(end)
-  const serviceBefore = parseInt(serviceBeforeString)
-  const operation24Days = parseInt(operation24DaysString)
+  const serviceBefore = parseFloat(serviceBeforeString)
+  const operation24Days = parseFloat(operation24DaysString)
 
   const days = calculateDays(startDate, endDate, serviceBefore)
+  const daysInOctober2023 = calculateDaysInOctober2023(startDate, endDate)
 
-  let totalPerMonth = calculateMonthlyCompensation(isCombat, days)
+  let totalPerMonth = calculateMonthlyCompensation(
+    isCombat,
+    Math.max(days - daysInOctober2023, 0)
+  )
   let totalExtraDays =
     isCombat && days >= 32 ? EXTRA_DAYS_COMPENSATION * (days - 31) : 0
   let totalOperation24 = operation24Calculation(operation24Days)

@@ -1,7 +1,8 @@
 export const validateForm = (
   startDate: string,
   endDate: string,
-  serviceBefore: string
+  serviceBefore: string,
+  operation24Days: string
 ) => {
   const errors = []
   const startDateDate = new Date(startDate)
@@ -20,6 +21,11 @@ export const validateForm = (
   // service before cannot be nan
   if (serviceBefore === '') {
     errors.push('ימי מילואים לפני ה7/10: ערך לא תקין')
+  }
+
+  // operation 24 cannot be nan
+  if (operation24Days === '') {
+    errors.push('ימי פעולה 24: ערך לא תקין')
   }
 
   return errors

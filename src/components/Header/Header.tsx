@@ -1,4 +1,15 @@
-import Disclaimer from './Disclaimer/Disclaimer'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  XIcon,
+} from 'react-share'
+import Disclaimer from '../Disclaimer/Disclaimer'
 import styles from './Header.module.css'
 
 export const dateToString = (date: Date) => {
@@ -28,12 +39,44 @@ const Header = () => {
       <p className={styles.lastUpdated}>
         <img src="/svg/time.svg" /> עדכון אחרון: {getLastModified()}
       </p>
+
       <div className={styles.logo}>
         <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
       </div>
       <div className={styles.pageTitle}>מחשבון מענקים</div>
       <div className={styles.pageTitle}>״מגויסים למילואים״</div>
       <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
+      <div className={styles.share}>
+        <div>שתפו:</div>
+        <WhatsappShareButton
+          url="https://miluimnik.info"
+          title="המענקים למילואימניקים אושרו בממשלה!
+          כנסו למחשבון לבדוק לכמה אתם זכאים:"
+        >
+          <WhatsappIcon size={32} round={true} />
+        </WhatsappShareButton>
+        <TelegramShareButton
+          url="https://miluimnik.info"
+          title="המענקים למילואימניקים אושרו בממשלה!
+כנסו למחשבון לבדוק לכמה אתם זכאים:"
+        >
+          <TelegramIcon size={32} round={true} />
+        </TelegramShareButton>
+        <FacebookShareButton
+          url="https://miluimnik.info"
+          title="המענקים למילואימניקים אושרו בממשלה!
+כנסו למחשבון לבדוק לכמה אתם זכאים:"
+        >
+          <FacebookIcon size={32} round={true} />
+        </FacebookShareButton>
+        <TwitterShareButton
+          url="https://miluimnik.info"
+          title="המענקים למילואימניקים אושרו בממשלה!
+כנסו למחשבון לבדוק לכמה אתם זכאים:"
+        >
+          <XIcon size={32} round={true} />
+        </TwitterShareButton>
+      </div>
       {/* <div className={styles.importantNotice}>
         ברגעים אלו אנו מעדכנים את המחשבון בהתאם לאישורי הממשלה. ממליצים להיכנס
         שוב ולהתעדכן מחר

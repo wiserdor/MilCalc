@@ -9,7 +9,11 @@ const Disclaimer = () => {
           הערה חשובה
         </div>
         המחשבון מבוסס על{' '}
-        <a href="https://go.idf.il/q7h7s8e8p4">
+        <a
+          href="https://go.idf.il/q7h7s8e8p4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           נתוני המענקים שפורסמו מטעם צה״ל
         </a>
         . אין האמור במחשבון כל הבטחה לקבלת הסכום מהמדינה. ממליצים להשתמש בשביל

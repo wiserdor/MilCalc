@@ -23,11 +23,6 @@ const Form = () => {
   // Results ref
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.type === 'number' && e.target.value === '') {
-      setFormState(e.target.name, 0)
-      return
-    }
-
     setFormState(
       e.target.name,
       e.target.type === 'checkbox' ? e.target.checked : e.target.value
@@ -84,6 +79,7 @@ const Form = () => {
           name="serviceBefore"
           value={serviceBefore}
           min={0}
+          step={0.5}
           onChange={handleInputChange}
         />
       </div>
@@ -99,6 +95,7 @@ const Form = () => {
           name="operation24Days"
           value={operation24Days}
           min={0}
+          step={0.5}
           onChange={handleInputChange}
         />
       </div>

@@ -29,9 +29,7 @@ const Accordion = (props: AccordionProps) => {
             onClick={() => handleClick(index)}
             className={style.accordionButton}
             style={{
-              borderBottom: activeIndexes.includes(index)
-                ? '2px solid #0066FF'
-                : '2px solid #DCE4EE',
+              fontWeight: activeIndexes.includes(index) ? '600' : '500',
             }}
           >
             <div>{item.title}</div>
