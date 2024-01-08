@@ -29,6 +29,10 @@ const Header = () => {
       <div className={styles.logo}></div>
       <div className={styles.pageTitle}>מחשבון מענקים ״מגויסים למילואים״</div>
       <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
+      <div className={styles.importantNotice}>
+        ברגעים אלו אנו מעדכנים את המחשבון בהתאם לאישורי הממשלה. ממליצים להיכנס
+        שוב ולהתעדכן מחר
+      </div>
       <p className={styles.descriptionIntro}>
         בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
         שירות המילואים במלחמת חרבות ברזל.
