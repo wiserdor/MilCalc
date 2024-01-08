@@ -81,6 +81,12 @@ const Form = () => {
           min={0}
           step={0.5}
           onChange={handleInputChange}
+          onInvalid={(e: any) => {
+            if (parseFloat(e.target.value) % 0.5 !== 0) {
+              e.target.setCustomValidity('המספר צריך להיות בקפיצות של 0.5')
+            }
+          }}
+          onInput={(e: any) => e.target.setCustomValidity('')}
         />
       </div>
       <div className={style.formSection}>
@@ -96,6 +102,12 @@ const Form = () => {
           value={operation24Days}
           min={0}
           step={0.5}
+          onInvalid={(e: any) => {
+            if (parseFloat(e.target.value) % 0.5 !== 0) {
+              e.target.setCustomValidity('המספר צריך להיות בקפיצות של 0.5')
+            }
+          }}
+          onInput={(e: any) => e.target.setCustomValidity('')}
           onChange={handleInputChange}
         />
       </div>
