@@ -25,6 +25,8 @@ const Results = () => {
     () =>
       totalPerMonth +
       totalOperation24 +
+      totalFromChildren +
+      totalSpecialChildren +
       compensationPerYear?.reduce((a, b) => a + b, 0),
     [totalPerMonth, totalOperation24, compensationPerYear]
   )
@@ -39,12 +41,10 @@ const Results = () => {
   if (validationErrors?.length > 0) return null
 
   const totalSum =
-    totalFromChildren + totalSpecialChildren + totalVacation + totalMoreThan45
-
-  const totalCare = totalMental + totalFamilyCare
+    totalVacation + totalMoreThan45 + totalMental + totalFamilyCare
 
   // if sum of all is 0, don't show anything
-  if (totalSum + totalCare + totalCompensation === 0) return null
+  if (totalSum + totalCompensation === 0) return null
 
   return (
     <div className={style.results} ref={resultsRef}>
@@ -55,8 +55,9 @@ const Results = () => {
       <div className={style.resultsSubtitle}></div>
       {totalCompensation > 0 && (
         <ul className={style.resultsSection}>
+          <div className={style.approvalBlock}>עבר אישור</div>
           <li className={style.sectionTitle}>
-            {'תגמולים ומענקים - סה״כ ' + totalCompensation + ' ש״ח:'}
+            {'סה״כ ' + totalCompensation + ' ש״ח:'}
           </li>
           <ul className={style.resultsSectionResults}>
             {compensationPerYear.map((compensation, i) =>
@@ -72,28 +73,14 @@ const Results = () => {
             {totalPerMonth > 0 && (
               <li>{totalPerMonth + ' ש״ח מענקים חודשיים.'}</li>
             )}
-
             {totalOperation24 > 0 && (
               <li>{totalOperation24 + ' ש״ח מענק תע״מ 2024.'}</li>
             )}
-          </ul>
-        </ul>
-      )}
-      {totalSum > 0 && (
-        <ul className={style.resultsSection}>
-          <li className={style.sectionTitle}>
-            {'מעטפת משפחתית וכלכלית - סה״כ ' + totalSum + ' ש״ח:'}
-          </li>
-          <ul className={style.resultsSectionResults}>
             {totalFromChildren > 0 && (
               <li>
                 {totalFromChildren + ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
               </li>
             )}
-            {totalMoreThan45 > 0 && (
-              <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
-            )}
-            {totalVacation > 0 && <li>{totalVacation + ' ש״ח מענק חופשה.'}</li>}
             {totalSpecialChildren > 0 && (
               <li>
                 {totalSpecialChildren +
@@ -103,12 +90,16 @@ const Results = () => {
           </ul>
         </ul>
       )}
-      {(totalCare > 0 || isStudent) && (
+      {(totalSum > 0 || isStudent) && (
         <ul className={style.resultsSection}>
-          <li className={style.sectionTitle}>
-            {'מעטפת משלימה - סה״כ ' + totalCare + ' ש״ח:'}
-          </li>
+          <div className={style.maybeApprovalBlock}>צפוי לעבור אישור בקרוב</div>
+
+          <li className={style.sectionTitle}>{'סה״כ ' + totalSum + ' ש״ח:'}</li>
           <ul className={style.resultsSectionResults}>
+            {totalMoreThan45 > 0 && (
+              <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
+            )}
+            {totalVacation > 0 && <li>{totalVacation + ' ש״ח מענק חופשה.'}</li>}
             {totalFamilyCare > 0 && (
               <li>{totalFamilyCare + ' ש״ח מימון טיפול אישי ומשפחתי.'}</li>
             )}

@@ -69,8 +69,18 @@ const calculateDays = (
 }
 
 const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
+  if (days < 40) return 0
   //should be for each 10 days
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
+  const total = Math.floor(days / 10) * rate
+  return total
+}
+
+const calculateChildrenCompensation = (isCombat: boolean, days: number) => {
+  // 833 for combat for each 10 days
+  //500 for non combat for each 10 days
+  if (days < 40) return 0
+  const rate = isCombat ? 833 : 500
   const total = Math.floor(days / 10) * rate
   return total
 }
@@ -127,11 +137,6 @@ export const calculateCompensation = (inputs: {
   const operation24Days = parseInt(operation24DaysString)
 
   const days = calculateDays(startDate, endDate, serviceBefore)
-  const months =
-    endDate.getMonth() -
-    startDate.getMonth() +
-    12 * (endDate.getFullYear() - startDate.getFullYear()) +
-    1
 
   let totalPerMonth = calculateMonthlyCompensation(isCombat, days)
   let totalExtraDays =
@@ -139,7 +144,9 @@ export const calculateCompensation = (inputs: {
   let totalOperation24 = operation24Calculation(operation24Days)
   let totalMoreThan45 = isCombat && days > 45 ? 2500 : 0
 
-  let totalFromChildren = hasChildren ? (isCombat ? 2500 : 1500) * months : 0
+  let totalFromChildren = hasChildren
+    ? calculateChildrenCompensation(isCombat, days)
+    : 0
   let totalVacation = calculateVacation(days, hasChildren, isCombat)
   let totalSpecialChildren = hasChildrenSpecial ? SPECIAL_NEEDS_COMPENSATION : 0
 
