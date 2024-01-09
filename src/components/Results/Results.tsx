@@ -180,7 +180,9 @@ const Results = () => {
             {totalVacation > 0 && (
               <li>
                 <div className={style.sumLine}>
-                  <span className={style.boldSum}>{totalVacation} ש״ח</span>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalVacation} ש״ח `}</span>
                   מענק חופשה.
                 </div>
               </li>
