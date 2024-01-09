@@ -12,9 +12,9 @@
     "deploy": "gh-pages -d docs"
   },
   "dependencies": {
+    "@mui/x-date-pickers": "^6.18.7",
     "date-fns": "^3.1.0",
     "react": "^18.2.0",
-    "react-date-range": "2.0.0-alpha.4",
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-share": "^5.0.3",
