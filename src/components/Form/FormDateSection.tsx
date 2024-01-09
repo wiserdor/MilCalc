@@ -54,7 +54,7 @@ const FormDateSection = () => {
           <FormInput
             type="date"
             label="תאריך גיוס:"
-            name="startDate"
+            name={`startDate-${index}}`}
             value={dateRange.startDate}
             min="2023-10-07"
             onChange={(e) => handleInputChange(e, index)}
@@ -62,7 +62,7 @@ const FormDateSection = () => {
           <FormInput
             type="date"
             label="תאריך שחרור:"
-            name="endDate"
+            name={`endDate-${index}}`}
             value={dateRange.endDate}
             min="2023-10-07"
             onChange={(e) => handleInputChange(e, index)}

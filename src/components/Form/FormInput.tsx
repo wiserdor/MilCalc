@@ -10,10 +10,11 @@ export interface FormInputProps
 
 const FormInput = (props: FormInputProps) => {
   const { onChange, label, ...inputProps } = props
+  const id = `formInput-${inputProps.name}`
   return (
     <div className={style.inputLabel}>
       {label && (
-        <label htmlFor="serviceDate" className={style.label}>
+        <label htmlFor={id} className={style.label}>
           {label}
         </label>
       )}
@@ -21,6 +22,7 @@ const FormInput = (props: FormInputProps) => {
         dir="rtl"
         className={style.input}
         onChange={onChange}
+        id={id}
         {...inputProps}
       />
     </div>
