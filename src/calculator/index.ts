@@ -161,7 +161,6 @@ const calculateDaysInOctober2023 = (
     }
   })
 
-  console.log('total', total)
   return total
 }
 
