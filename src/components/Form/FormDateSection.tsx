@@ -54,22 +54,18 @@ const FormDateSection = () => {
           <FormInput
             type="date"
             label="תאריך גיוס:"
-            name={`startDate-${index}}`}
+            name="startDate"
             value={dateRange.startDate}
             min="2023-10-07"
             onChange={(e) => handleInputChange(e, index)}
-            onFocus={(e) => e.target.showPicker()}
-            style={{ cursor: 'pointer' }}
           />
           <FormInput
             type="date"
             label="תאריך שחרור:"
-            name={`endDate-${index}}`}
+            name="endDate"
             value={dateRange.endDate}
             min="2023-10-07"
             onChange={(e) => handleInputChange(e, index)}
-            onFocus={(e) => e.target.showPicker()}
-            style={{ cursor: 'pointer' }}
           />
           <div
             className={style.removeDateRange}
