@@ -1,7 +1,16 @@
 import { useEffect, useMemo, useRef } from 'react'
-import useStore from '../../store'
+import useStore from '../../store/store'
 import style from './Results.module.css'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
+import { DateRange } from '../../store/types'
+
+function getEarliestYear(dateRanges: DateRange[]) {
+  const years = dateRanges.map((dateRange) =>
+    new Date(dateRange.startDate).getFullYear()
+  )
+  console.log(years)
+  return Math.min(...years)
+}
 
 const Results = () => {
   const {
@@ -15,12 +24,14 @@ const Results = () => {
     totalFamilyCare,
     validationErrors,
     compensationPerYear,
-    startDate,
+    dateRanges,
     isStudent,
     isCombat,
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
+
+  const earliestYear = useMemo(() => getEarliestYear(dateRanges), [dateRanges])
 
   const totalFromChildrenApproved =
     totalFromChildren > getMaxChildApproval(isCombat)
@@ -89,10 +100,7 @@ const Results = () => {
             {compensationPerYear.map((compensation, i) =>
               compensation > 0 ? (
                 <li key={i}>
-                  {compensation +
-                    ' ש״ח מענק לשנת ' +
-                    (new Date(startDate).getFullYear() + i) +
-                    '.'}
+                  {compensation + ' ש״ח מענק לשנת ' + (earliestYear + i) + '.'}
                 </li>
               ) : null
             )}

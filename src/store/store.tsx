@@ -1,26 +1,13 @@
 // store.js
 import { create } from 'zustand'
-import { validateForm } from './components/Form/validation'
-import { calculateCompensation } from './calculator'
-
-export interface CalculatorResults {
-  // Results
-  totalPerMonth: number
-  totalMoreThan45: number
-  totalOperation24: number
-  totalFromChildren: number
-  totalVacation: number
-  totalSpecialChildren: number
-  totalMental: number
-  totalFamilyCare: number
-  compensationPerYear: number[]
-}
+import { validateForm } from '../components/Form/validation'
+import { calculateCompensation } from '../calculator'
+import { CalculatorResults, DateRange } from './types'
 
 export interface CalculatorState extends CalculatorResults {
   // Form states
   isCombat: boolean
-  startDate: string
-  endDate: string
+  dateRanges: DateRange[]
   hasChildren: boolean
   hasChildrenSpecial: boolean
   isStudent: boolean
@@ -42,6 +29,12 @@ export interface CalculatorState extends CalculatorResults {
 const useStore = create<CalculatorState>((set) => ({
   // Form states
   isCombat: false,
+  dateRanges: [
+    {
+      startDate: '2023-10-07',
+      endDate: new Date().toISOString().split('T')[0],
+    },
+  ],
   startDate: '2023-10-07',
   endDate: new Date().toISOString().split('T')[0],
   hasChildren: false,
@@ -71,8 +64,7 @@ const useStore = create<CalculatorState>((set) => ({
   validateAndSetErrors: () => {
     const state = useStore.getState()
     const errors = validateForm(
-      state.startDate,
-      state.endDate,
+      state.dateRanges,
       state.serviceBefore,
       state.operation24Days
     )
@@ -117,8 +109,7 @@ const useStore = create<CalculatorState>((set) => ({
       compensationPerYear,
     } = calculateCompensation({
       isCombat: state.isCombat,
-      startDate: state.startDate,
-      endDate: state.endDate,
+      dateRanges: state.dateRanges,
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,

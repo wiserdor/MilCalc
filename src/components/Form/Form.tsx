@@ -1,7 +1,8 @@
-import useStore from '../../store'
+import useStore from '../../store/store'
 import NumberCircle from '../NumberCircle/NumberCircle'
-import style from './Form.module.css'
+import style from './style/Form.module.css'
 import FormCheckbox from './FormCheckbox'
+import FormDateSection from './FormDateSection'
 import FormInput from './FormInput'
 import ValidationSection from './ValidationSection'
 
@@ -9,8 +10,6 @@ const Form = () => {
   const {
     setFormState,
     updateCalculatorResults,
-    startDate,
-    endDate,
     serviceBefore,
     isCombat,
     isStudent,
@@ -37,36 +36,7 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
-      <div className={`${style.formSection}`}>
-        <div className={style.formSectionTitle}>
-          <NumberCircle number={1} />
-          <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים</div>
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '50% 50%',
-            columnGap: '0.5rem',
-          }}
-        >
-          <FormInput
-            type="date"
-            label="תאריך גיוס:"
-            name="startDate"
-            value={startDate}
-            min="2023-10-07"
-            onChange={handleInputChange}
-          />
-          <FormInput
-            type="date"
-            label="תאריך שחרור:"
-            name="endDate"
-            value={endDate}
-            min="2023-10-07"
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
+      <FormDateSection />
       <div className={style.formSection}>
         <div className={style.formSectionTitle}>
           <NumberCircle number={2} />

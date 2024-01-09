@@ -12,6 +12,7 @@ import {
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION,
 } from './constants'
+import { DateRange } from '../store/types'
 
 export const calculateVacation = (
   totalDays: number,
@@ -43,29 +44,48 @@ export const calculateCompensationPerYear = (daysPerYear: number[]) => {
 }
 
 export const getDaysForEachYear = (
-  startDate: Date,
-  endDate: Date,
+  dateRanges: { startDate: Date; endDate: Date }[],
   serviceBefore: number
 ) => {
-  const interval = { start: startDate, end: endDate }
-  const years = eachYearOfInterval(interval)
+  const yearsMap = new Map()
+  let addedServiceBefore = false
 
-  return years.map((date, index) => {
-    const start = index === 0 ? startDate : startOfYear(date)
-    const end = index === years.length - 1 ? endDate : endOfYear(date)
+  dateRanges.forEach(({ startDate, endDate }) => {
+    const interval = { start: startDate, end: endDate }
+    const years = eachYearOfInterval(interval)
 
-    let days = differenceInDays(end, start) + 1
-    return index === 0 ? days + serviceBefore : days
+    years.forEach((date, index) => {
+      const year = date.getFullYear()
+      const start = index === 0 ? startDate : startOfYear(date)
+      const end = index === years.length - 1 ? endDate : endOfYear(date)
+
+      let days = differenceInDays(end, start) + 1
+
+      // Add serviceBefore only once to the year 2023
+      if (year === 2023 && !yearsMap.has(2023) && !addedServiceBefore) {
+        days += serviceBefore
+        addedServiceBefore = true
+      }
+
+      yearsMap.set(year, (yearsMap.get(year) || 0) + days)
+    })
   })
+
+  return Array.from(yearsMap)
+    .sort((a, b) => a[0] - b[0])
+    .map((entry) => entry[1])
 }
 
 const calculateDays = (
-  startDate: Date,
-  endDate: Date,
+  dateRanges: { startDate: Date; endDate: Date }[],
   serviceBefore: number
 ) => {
-  const dayDifference = differenceInDays(endDate, startDate)
-  return dayDifference + serviceBefore
+  let total = 0
+  dateRanges.forEach(({ startDate, endDate }) => {
+    total += differenceInDays(endDate, startDate)
+  })
+
+  return total + serviceBefore
 }
 
 const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
@@ -113,32 +133,40 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
-const calculateDaysInOctober2023 = (startDate: Date, endDate: Date) => {
+const calculateDaysInOctober2023 = (
+  dateRanges: {
+    startDate: Date
+    endDate: Date
+  }[]
+) => {
   const octoberStart = new Date('2023-10-01')
   const octoberEnd = new Date('2023-10-31')
 
-  // Find the later of the two start dates
-  const overlapStart = startDate > octoberStart ? startDate : octoberStart
+  let total = 0
 
-  // Find the earlier of the two end dates
-  const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
+  dateRanges.forEach(({ startDate, endDate }) => {
+    // Find the later of the two start dates
+    const overlapStart = startDate > octoberStart ? startDate : octoberStart
 
-  // Check if there is an overlap
-  if (overlapStart <= overlapEnd) {
-    // +1 because the end date is inclusive
-    return (
-      (overlapEnd.getTime() - overlapStart.getTime()) / (1000 * 60 * 60 * 24) +
-      1
-    )
-  }
+    // Find the earlier of the two end dates
+    const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
 
-  // No overlap
-  return 0
+    // Check if there is an overlap
+    if (overlapStart <= overlapEnd) {
+      // +1 because the end date is inclusive
+      total +=
+        (overlapEnd.getTime() - overlapStart.getTime()) /
+          (1000 * 60 * 60 * 24) +
+        1
+    }
+  })
+
+  console.log('total', total)
+  return total
 }
 
 export const calculateCompensation = (inputs: {
-  startDate: string
-  endDate: string
+  dateRanges: DateRange[]
   operation24Days: string
   isCombat: boolean
   hasChildren: boolean
@@ -146,8 +174,7 @@ export const calculateCompensation = (inputs: {
   serviceBefore: string
 }) => {
   const {
-    startDate: start,
-    endDate: end,
+    dateRanges: dateRangesString,
     operation24Days: operation24DaysString,
     isCombat,
     hasChildren,
@@ -155,13 +182,19 @@ export const calculateCompensation = (inputs: {
     serviceBefore: serviceBeforeString,
   } = inputs
 
-  const startDate = new Date(start)
-  const endDate = new Date(end)
+  // date Ranges to dates
+  const dateRanges = dateRangesString.map((dateRange) => {
+    return {
+      startDate: new Date(dateRange.startDate),
+      endDate: new Date(dateRange.endDate),
+    }
+  })
+
   const serviceBefore = parseFloat(serviceBeforeString)
   const operation24Days = parseFloat(operation24DaysString)
 
-  const days = calculateDays(startDate, endDate, serviceBefore)
-  const daysInOctober2023 = calculateDaysInOctober2023(startDate, endDate)
+  const days = calculateDays(dateRanges, serviceBefore)
+  const daysInOctober2023 = calculateDaysInOctober2023(dateRanges)
 
   let totalPerMonth = calculateMonthlyCompensation(
     isCombat,
@@ -182,7 +215,7 @@ export const calculateCompensation = (inputs: {
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   const compensationPerYear = calculateCompensationPerYear(
-    getDaysForEachYear(startDate, endDate, serviceBefore)
+    getDaysForEachYear(dateRanges, serviceBefore)
   )
 
   return {

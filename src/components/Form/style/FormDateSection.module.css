@@ -1,0 +1,28 @@
+.addDateRange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.plusSvg {
+  fill: #0066ff;
+}
+
+.addDateRangeText {
+  color: #6f6f6f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.removeDateRange {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #6f6f6f;
+}

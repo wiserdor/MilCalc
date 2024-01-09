@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './FormCheckbox.module.css'
+import style from './style/FormCheckbox.module.css'
 
 export interface FormCheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
