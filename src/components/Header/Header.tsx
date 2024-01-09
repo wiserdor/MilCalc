@@ -64,11 +64,11 @@ const Header = () => {
           <XIcon size={32} round={true} />
         </TwitterShareButton>
       </div>
-      <div className={styles.importantNotice}>
+      {/* <div className={styles.importantNotice}>
         <div>⚠️</div>
         היי חברים מילואימניקים, שוב יצאה אגרת חדשה ולכן ייתכנו אי דיוקים... אנו
         עובדים לעדכן את המחשבון עם הפרטים החדשים בהקדם האפשרי.
-      </div>
+      </div> */}
       <p className={styles.descriptionIntro}>
         בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
         שירות המילואים במלחמת חרבות ברזל.
