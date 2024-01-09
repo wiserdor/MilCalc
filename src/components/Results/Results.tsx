@@ -4,12 +4,21 @@ import style from './Results.module.css'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 import { DateRange } from '../../store/types'
 
-function getEarliestYear(dateRanges: DateRange[]) {
-  const years = dateRanges.map((dateRange) =>
-    new Date(dateRange.startDate).getFullYear()
-  )
-  console.log(years)
-  return Math.min(...years)
+function getAllYearsSorted(dateRanges: DateRange[]) {
+  const years = dateRanges.map((dateRange) => {
+    const startYear = new Date(dateRange.startDate).getFullYear()
+    const endYear = new Date(dateRange.endDate).getFullYear()
+    const years = []
+    for (let i = startYear; i <= endYear; i++) {
+      years.push(i)
+    }
+    return years
+  })
+  // remove duplicates
+  return years
+    .flat()
+    .filter((year, index, self) => self.indexOf(year) === index)
+    .sort()
 }
 
 const Results = () => {
@@ -31,7 +40,7 @@ const Results = () => {
 
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const earliestYear = useMemo(() => getEarliestYear(dateRanges), [dateRanges])
+  const yearsSorted = useMemo(() => getAllYearsSorted(dateRanges), [dateRanges])
 
   const totalFromChildrenApproved =
     totalFromChildren > getMaxChildApproval(isCombat)
@@ -100,7 +109,7 @@ const Results = () => {
             {compensationPerYear.map((compensation, i) =>
               compensation > 0 ? (
                 <li key={i}>
-                  {compensation + ' ש״ח מענק לשנת ' + (earliestYear + i) + '.'}
+                  {compensation + ' ש״ח מענק לשנת ' + yearsSorted[i] + '.'}
                 </li>
               ) : null
             )}
