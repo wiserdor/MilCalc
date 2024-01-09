@@ -109,26 +109,51 @@ const Results = () => {
             {compensationPerYear.map((compensation, i) =>
               compensation > 0 ? (
                 <li key={i}>
-                  {compensation + ' ש״ח מענק לשנת ' + yearsSorted[i] + '.'}
+                  <div className={style.sumLine}>
+                    <span className={style.boldSum}>{compensation} ש״ח</span>
+                    {' מענק לשנת ' + yearsSorted[i] + '.'}
+                  </div>
                 </li>
               ) : null
             )}
             {totalPerMonthApproved > 0 && (
-              <li>{totalPerMonthApproved + ' ש״ח מענקים חודשיים.'}</li>
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>
+                    {`${totalPerMonthApproved} ש״ח `}
+                  </span>
+                  מענקים חודשיים.
+                </div>
+              </li>
             )}
             {totalOperation24 > 0 && (
-              <li>{totalOperation24 + ' ש״ח מענק תע״מ 2024.'}</li>
+              <li>
+                <div className={style.sumLine}>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalOperation24} ש״ח `}</span>
+                  מענק תע״מ 2024.
+                </div>
+              </li>
             )}
             {totalFromChildrenApproved > 0 && (
               <li>
-                {totalFromChildrenApproved +
-                  ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>
+                    {`${totalFromChildrenApproved} ש״ח `}
+                  </span>
+                  מענק חודשי להורים לילדים עד גיל 14.
+                </div>
               </li>
             )}
             {totalSpecialChildren > 0 && (
               <li>
-                {totalSpecialChildren +
-                  ' ש״ח מענק חודשי להורים לילדים עם צרכים מיוחדים.'}
+                <div className={style.sumLine}>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalSpecialChildren} ש״ח `}</span>
+                  מענק חודשי להורים לילדים עם צרכים מיוחדים.
+                </div>
               </li>
             )}
           </ul>
@@ -143,29 +168,66 @@ const Results = () => {
           </li>
           <ul className={style.resultsSectionResults}>
             {totalMoreThan45 > 0 && (
-              <li>{totalMoreThan45 + ' ש״ח מענק כלכלת בית.'}</li>
+              <li>
+                <div className={style.sumLine}>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalMoreThan45} ש״ח `}</span>
+                  מענק כלכלת בית.
+                </div>
+              </li>
             )}
-            {totalVacation > 0 && <li>{totalVacation + ' ש״ח מענק חופשה.'}</li>}
+            {totalVacation > 0 && (
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>{totalVacation} ש״ח</span>
+                  מענק חופשה.
+                </div>
+              </li>
+            )}
             {totalFamilyCare > 0 && (
-              <li>{totalFamilyCare + ' ש״ח מימון טיפול אישי ומשפחתי.'}</li>
+              <li>
+                <div className={style.sumLine}>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalFamilyCare} ש״ח `}</span>
+                  מענק טיפול אישי ומשפחתי.
+                </div>
+              </li>
             )}
             {totalMental > 0 && (
-              <li>{totalMental + ' ש״ח מימון לליווי וטיפול רגשי.'}</li>
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
+                  מימון לליווי וטיפול רגשי.
+                </div>
+              </li>
+            )}
+            {totalPerMonthNotApproved > 0 && (
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>
+                    {`${totalPerMonthNotApproved} ש״ח `}
+                  </span>
+                  מענקים חודשיים.
+                </div>
+              </li>
+            )}
+            {totalFromChildrenNotApproved > 0 && (
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>
+                    {`${totalFromChildrenNotApproved} ש״ח `}
+                  </span>
+                  מענק חודשי להורים לילדים עד גיל 14.
+                </div>
+              </li>
             )}
             {isStudent && (
               <li>
                 {isCombat
                   ? 'מגיע לך 100% סבסוד לשנת לימודים תשפ״ד.'
                   : 'מגיע לך 30% סבסוד לשנת לימודים תשפ״ד.'}
-              </li>
-            )}
-            {totalPerMonthNotApproved > 0 && (
-              <li>{totalPerMonthNotApproved + ' ש״ח מענקים חודשיים.'}</li>
-            )}
-            {totalFromChildrenNotApproved > 0 && (
-              <li>
-                {totalFromChildrenNotApproved +
-                  ' ש״ח מענק חודשי להורים לילדים עד גיל 14.'}
               </li>
             )}
           </ul>
