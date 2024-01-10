@@ -121,13 +121,13 @@ const operation24Calculation = (operation24Days: number) => {
   // Calculate for days 11 to 20
   if (operation24Days > 10) {
     const secondTierDays = Math.min(operation24Days - 10, 10)
-    totalAmount += secondTierDays * 250 // 100 + 150
+    totalAmount += secondTierDays * 150 // 100 + 150
   }
 
   // Calculate for days 21 and beyond
   if (operation24Days > 20) {
     const thirdTierDays = operation24Days - 20
-    totalAmount += thirdTierDays * 300 // 100 + 200
+    totalAmount += thirdTierDays * 200 // 100 + 200
   }
 
   return totalAmount
