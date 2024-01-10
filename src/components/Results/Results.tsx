@@ -52,6 +52,26 @@ const Results = () => {
     0
   )
 
+  const has2023 = useMemo(
+    () => yearsSorted.some((year) => year === 2023),
+    [yearsSorted]
+  )
+
+  const total2023 = useMemo(
+    () => (has2023 ? compensationPerYear[yearsSorted.indexOf(2023)] : 0),
+    [compensationPerYear, yearsSorted]
+  )
+
+  const totalNot2023 = useMemo(
+    () =>
+      compensationPerYear.reduce(
+        (total, compensation, i) =>
+          yearsSorted[i] !== 2023 ? total + compensation : total,
+        0
+      ),
+    [compensationPerYear, yearsSorted]
+  )
+
   const totalPerMonthApproved =
     totalPerMonth > getMaxMonthApproval(isCombat)
       ? getMaxMonthApproval(isCombat)
@@ -68,7 +88,7 @@ const Results = () => {
       totalOperation24 +
       totalFromChildrenApproved +
       totalSpecialChildren +
-      compensationPerYear?.reduce((a, b) => a + b, 0),
+      total2023,
     [totalPerMonth, totalOperation24, compensationPerYear]
   )
 
@@ -87,7 +107,8 @@ const Results = () => {
     totalMental +
     totalFamilyCare +
     totalFromChildrenNotApproved +
-    totalPerMonthNotApproved
+    totalPerMonthNotApproved +
+    totalNot2023
 
   // if sum of all is 0, don't show anything
   if (totalNotApproved + totalApproved === 0) return null
@@ -106,16 +127,15 @@ const Results = () => {
             {'סה״כ ' + totalApproved + ' ש״ח:'}
           </li>
           <ul className={style.resultsSectionResults}>
-            {compensationPerYear.map((compensation, i) =>
-              compensation > 0 ? (
-                <li key={i}>
-                  <div className={style.sumLine}>
-                    <span className={style.boldSum}>{compensation} ש״ח</span>
-                    {' התגמול המיוחד ' + yearsSorted[i] + '.'}
-                  </div>
-                </li>
-              ) : null
+            {has2023 && (
+              <li>
+                <div className={style.sumLine}>
+                  <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
+                  {'התגמול המיוחד 2023.'}
+                </div>
+              </li>
             )}
+
             {totalPerMonthApproved > 0 && (
               <li>
                 <div className={style.sumLine}>
@@ -167,6 +187,16 @@ const Results = () => {
             {'סה״כ ' + totalNotApproved + ' ש״ח:'}
           </li>
           <ul className={style.resultsSectionResults}>
+            {compensationPerYear.map((compensation, i) =>
+              compensation > 0 && yearsSorted[i] !== 2023 ? (
+                <li key={i}>
+                  <div className={style.sumLine}>
+                    <span className={style.boldSum}>{compensation} ש״ח</span>
+                    {' התגמול המיוחד ' + yearsSorted[i] + '.'}
+                  </div>
+                </li>
+              ) : null
+            )}
             {totalMoreThan45 > 0 && (
               <li>
                 <div className={style.sumLine}>
