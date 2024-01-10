@@ -1,4 +1,14 @@
+import ReactGA from 'react-ga4'
+
 const RiseupBanner = () => {
+  const trackLinkClick = (linkName: string) => {
+    ReactGA.event({
+      category: 'Link',
+      action: 'Click',
+      label: linkName,
+    })
+  }
+
   return (
     <div
       style={{
@@ -19,7 +29,12 @@ const RiseupBanner = () => {
         <br />
         הטבה מיוחדת לגולשי המחשבון:
       </div>
-      <a href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik">
+      <a
+        href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
+        onClick={() => trackLinkClick('Riseup')}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img height="100%" width="100%" src="riseup.jpg" alt="Riseup" />
       </a>
     </div>
