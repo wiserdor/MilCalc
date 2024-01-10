@@ -40,7 +40,10 @@ const Results = () => {
 
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const yearsSorted = useMemo(() => getAllYearsSorted(dateRanges), [dateRanges])
+  const yearsSorted = useMemo(
+    () => (compensationPerYear?.length ? getAllYearsSorted(dateRanges) : []),
+    [dateRanges, compensationPerYear]
+  )
 
   const totalFromChildrenApproved =
     totalFromChildren > getMaxChildApproval(isCombat)
@@ -58,8 +61,8 @@ const Results = () => {
   )
 
   const total2023 = useMemo(
-    () => (has2023 ? compensationPerYear[yearsSorted.indexOf(2023)] : 0),
-    [compensationPerYear, yearsSorted]
+    () => (has2023 ? compensationPerYear[0] : 0),
+    [compensationPerYear]
   )
 
   const totalNot2023 = useMemo(
@@ -85,11 +88,10 @@ const Results = () => {
   const totalApproved = useMemo(
     () =>
       totalPerMonthApproved +
-      totalOperation24 +
       totalFromChildrenApproved +
       totalSpecialChildren +
       total2023,
-    [totalPerMonth, totalOperation24, compensationPerYear]
+    [totalPerMonth, compensationPerYear]
   )
 
   useEffect(() => {
@@ -108,6 +110,7 @@ const Results = () => {
     totalFamilyCare +
     totalFromChildrenNotApproved +
     totalPerMonthNotApproved +
+    totalOperation24 +
     totalNot2023
 
   // if sum of all is 0, don't show anything
@@ -143,16 +146,6 @@ const Results = () => {
                     {`${totalPerMonthApproved} ש״ח `}
                   </span>
                   מענק הוצאות אישיות מוגדל.
-                </div>
-              </li>
-            )}
-            {totalOperation24 > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalOperation24} ש״ח `}</span>
-                  מענק לחימה תע״מ 2024.
                 </div>
               </li>
             )}
@@ -196,6 +189,16 @@ const Results = () => {
                   </div>
                 </li>
               ) : null
+            )}
+            {totalOperation24 > 0 && (
+              <li>
+                <div className={style.sumLine}>
+                  <span
+                    className={style.boldSum}
+                  >{`${totalOperation24} ש״ח `}</span>
+                  מענק לחימה תע״מ 2024.
+                </div>
+              </li>
             )}
             {totalMoreThan45 > 0 && (
               <li>

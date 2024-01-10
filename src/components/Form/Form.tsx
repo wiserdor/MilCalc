@@ -71,6 +71,7 @@ const Form = () => {
           name="operation24Days"
           value={operation24Days}
           min={0}
+          max={365}
           step={0.5}
           onInvalid={(e: any) => {
             if (parseFloat(e.target.value) % 0.5 !== 0) {
