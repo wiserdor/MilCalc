@@ -213,6 +213,8 @@ export const calculateCompensation = (inputs: {
   let totalMental = days > 30 ? MENTAL_HEALTH_COMPENSATION : 0
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
+  let totalDedication = 0
+
   const compensationPerYear = calculateCompensationPerYear(
     getDaysForEachYear(dateRanges, serviceBefore)
   )
@@ -228,5 +230,6 @@ export const calculateCompensation = (inputs: {
     totalMental,
     totalFamilyCare,
     compensationPerYear,
+    totalDedication,
   }
 }

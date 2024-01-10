@@ -46,9 +46,11 @@ const Header = () => {
       <div className={styles.logo}>
         <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
       </div>
-      <div className={styles.pageTitle}>מחשבון מענקים</div>
-      <div className={styles.pageTitle}>״מגויסים למילואים״</div>
-      <div className={styles.subTitle}>מלחמת חרבות ברזל</div>
+      <div className={styles.pageTitle}>מחשבון מענקי מילואים</div>
+      <div className={styles.subTitle}>
+        <img src="/svg/swords.svg" />
+        {' מלחמת חרבות ברזל '} <img src="/svg/swords.svg" />
+      </div>
       <div className={styles.share}>
         <div>שתפו:</div>
         <WhatsappShareButton url={SHARE_URL} title={SHARE_MESSAGE}>

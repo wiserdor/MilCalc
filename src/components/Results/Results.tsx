@@ -111,7 +111,7 @@ const Results = () => {
                 <li key={i}>
                   <div className={style.sumLine}>
                     <span className={style.boldSum}>{compensation} ש״ח</span>
-                    {' מענק לשנת ' + yearsSorted[i] + '.'}
+                    {' התגמול המיוחד ' + yearsSorted[i] + '.'}
                   </div>
                 </li>
               ) : null
@@ -122,7 +122,7 @@ const Results = () => {
                   <span className={style.boldSum}>
                     {`${totalPerMonthApproved} ש״ח `}
                   </span>
-                  מענקים חודשיים.
+                  מענק הוצאות אישיות מוגדל.
                 </div>
               </li>
             )}
@@ -132,7 +132,7 @@ const Results = () => {
                   <span
                     className={style.boldSum}
                   >{`${totalOperation24} ש״ח `}</span>
-                  מענק תע״מ 2024.
+                  מענק לחימה תע״מ 2024.
                 </div>
               </li>
             )}
@@ -142,7 +142,7 @@ const Results = () => {
                   <span className={style.boldSum}>
                     {`${totalFromChildrenApproved} ש״ח `}
                   </span>
-                  מענק חודשי להורים לילדים עד גיל 14.
+                  מענק משפחה מוגדל.
                 </div>
               </li>
             )}
@@ -152,7 +152,7 @@ const Results = () => {
                   <span
                     className={style.boldSum}
                   >{`${totalSpecialChildren} ש״ח `}</span>
-                  מענק חודשי להורים לילדים עם צרכים מיוחדים.
+                  מענק משפחה מיוחדת.
                 </div>
               </li>
             )}
@@ -173,7 +173,7 @@ const Results = () => {
                   <span
                     className={style.boldSum}
                   >{`${totalMoreThan45} ש״ח `}</span>
-                  מענק כלכלת בית.
+                  מענק כלכלת בית מוגדל.
                 </div>
               </li>
             )}
@@ -183,7 +183,7 @@ const Results = () => {
                   <span
                     className={style.boldSum}
                   >{`${totalVacation} ש״ח `}</span>
-                  מענק חופשה.
+                  שובר חופשה.
                 </div>
               </li>
             )}
@@ -193,7 +193,7 @@ const Results = () => {
                   <span
                     className={style.boldSum}
                   >{`${totalFamilyCare} ש״ח `}</span>
-                  מענק טיפול אישי ומשפחתי.
+                  מענק טיפול זוגי.
                 </div>
               </li>
             )}
@@ -201,7 +201,7 @@ const Results = () => {
               <li>
                 <div className={style.sumLine}>
                   <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
-                  מימון לליווי וטיפול רגשי.
+                  טיפול רגשי נפשי ומשלים.
                 </div>
               </li>
             )}
@@ -211,7 +211,7 @@ const Results = () => {
                   <span className={style.boldSum}>
                     {`${totalPerMonthNotApproved} ש״ח `}
                   </span>
-                  מענקים חודשיים.
+                  מענק הוצאות אישיות מוגדל.
                 </div>
               </li>
             )}
@@ -221,15 +221,16 @@ const Results = () => {
                   <span className={style.boldSum}>
                     {`${totalFromChildrenNotApproved} ש״ח `}
                   </span>
-                  מענק חודשי להורים לילדים עד גיל 14.
+                  מענק משפחה מוגדל.
                 </div>
               </li>
             )}
             {isStudent && (
               <li>
-                {isCombat
-                  ? 'מגיע לך 100% סבסוד לשנת לימודים תשפ״ד.'
-                  : 'מגיע לך 30% סבסוד לשנת לימודים תשפ״ד.'}
+                <span className={style.boldSum}>
+                  {isCombat ? '100% ' : '30% '}
+                </span>
+                סבסוד לשנת לימודים תשפ״ד.
               </li>
             )}
           </ul>
