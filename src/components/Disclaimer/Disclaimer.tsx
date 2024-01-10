@@ -10,14 +10,13 @@ const Disclaimer = () => {
         </div>
         המחשבון מבוסס על{' '}
         <a
-          href="https://go.idf.il/q7h7s8e8p4"
+          href="https://usms.cellcom.co.il/files/QEIKC4/khscgxsw2z.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           נתוני המענקים שפורסמו מטעם צה״ל
         </a>
-        . אין האמור במחשבון כל הבטחה לקבלת הסכום מהמדינה. ממליצים להשתמש בשביל
-        לקבל הערכה גסה על מה צפוי בהנחה והכל יאושר ע״י מקבלי ההחלטות.
+        . אין האמור במחשבון כל הבטחה לקבלת הסכום מהמדינה.
       </div>
     </div>
   )
