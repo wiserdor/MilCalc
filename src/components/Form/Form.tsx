@@ -87,7 +87,7 @@ const Form = () => {
           <div style={{ flex: 1 }}>סמנו אחת או יותר מהאפשרויות הבאות:</div>
         </div>
         <FormCheckbox
-          label="אני לוחם/ת"
+          label="אני במערך הלוחם"
           name="isCombat"
           checked={isCombat}
           onChange={handleInputChange}
