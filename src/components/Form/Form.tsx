@@ -12,8 +12,8 @@ const Form = () => {
     updateCalculatorResults,
     serviceBefore,
     isCombat,
-    isStudent,
-    operation24Days,
+    isDaysStraight,
+    isOld,
     hasChildren,
     hasChildrenSpecial,
     validateAndSetErrors,
@@ -58,8 +58,14 @@ const Form = () => {
           }}
           onInput={(e: any) => e.target.setCustomValidity('')}
         />
+        <FormCheckbox
+          label="האם ביצעת 5 ימי שמ״פ רצופים לפני ה7 לאוקטובר?"
+          name="isDaysStraight"
+          checked={isDaysStraight}
+          onChange={handleInputChange}
+        />
       </div>
-      <div className={style.formSection}>
+      {/* <div className={style.formSection}>
         <div className={style.formSectionTitle}>
           <NumberCircle number={3} />
           <div style={{ flex: 1 }}>
@@ -81,7 +87,7 @@ const Form = () => {
           onInput={(e: any) => e.target.setCustomValidity('')}
           onChange={handleInputChange}
         />
-      </div>
+      </div> */}
       <div className={style.formSection}>
         <div className={style.formSectionTitle}>
           <NumberCircle number={4} />
@@ -93,10 +99,16 @@ const Form = () => {
           checked={isCombat}
           onChange={handleInputChange}
         />
-        <FormCheckbox
+        {/* <FormCheckbox
           label="אני סטודנט/ית"
           name="isStudent"
           checked={isStudent}
+          onChange={handleInputChange}
+        /> */}
+        <FormCheckbox
+          label="אני מוחרג/ת גיל"
+          name="isOld"
+          checked={isOld}
           onChange={handleInputChange}
         />
         <FormCheckbox

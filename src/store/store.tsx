@@ -6,6 +6,8 @@ import { CalculatorResults, DateRange } from './types'
 export interface CalculatorState extends CalculatorResults {
   // Form states
   isCombat: boolean
+  isOld: boolean
+  isDaysStraight: boolean
   dateRanges: DateRange[]
   hasChildren: boolean
   hasChildrenSpecial: boolean
@@ -28,6 +30,8 @@ export interface CalculatorState extends CalculatorResults {
 const useStore = create<CalculatorState>((set) => ({
   // Form states
   isCombat: false,
+  isOld: false,
+  isDaysStraight: false,
   dateRanges: [
     {
       startDate: '2023-10-07',
@@ -51,7 +55,8 @@ const useStore = create<CalculatorState>((set) => ({
   totalSpecialChildren: 0,
   totalMental: 0,
   totalFamilyCare: 0,
-  compensationPerYear: [],
+  compensationPerYear: 0,
+  totalOld: 0,
 
   // Function to update form states
   setFormState: (name: string, value: any) =>
@@ -84,7 +89,7 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren: 0,
       totalMental: 0,
       totalFamilyCare: 0,
-      compensationPerYear: [],
+      compensationPerYear: 0,
     })
   },
 
@@ -105,9 +110,12 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren,
       totalMental,
       totalFamilyCare,
+      totalOld,
       compensationPerYear,
     } = calculateCompensation({
       isCombat: state.isCombat,
+      isOld: state.isOld,
+      isDaysStraight: state.isDaysStraight,
       dateRanges: state.dateRanges,
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
@@ -124,6 +132,7 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren,
       totalMental,
       totalFamilyCare,
+      totalOld,
       compensationPerYear,
     })
   },

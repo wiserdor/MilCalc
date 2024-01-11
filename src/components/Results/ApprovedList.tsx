@@ -6,11 +6,12 @@ interface ApprovedListProps {
   totalFromChildrenApproved: number
   totalSpecialChildren: number
   totalApproved: number
-  has2023: boolean
+
   totalMoreThan45: number
   totalVacation: number
   totalFamilyCare: number
   totalMental: number
+  totalOld: number
 }
 
 const ApprovedList = (props: ApprovedListProps) => {
@@ -19,12 +20,12 @@ const ApprovedList = (props: ApprovedListProps) => {
     totalPerMonthApproved,
     totalFromChildrenApproved,
     totalSpecialChildren,
-    has2023,
     totalApproved,
     totalMoreThan45,
     totalVacation,
     totalFamilyCare,
     totalMental,
+    totalOld,
   } = props
 
   return (
@@ -34,14 +35,11 @@ const ApprovedList = (props: ApprovedListProps) => {
         {'סה״כ ' + totalApproved + ' ש״ח:'}
       </li>
       <ul className={style.resultsSectionResults}>
-        {has2023 && (
+        {total2023 > 0 && (
           <li>
             <div className={style.sumLine}>
               <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
               {' התגמול המיוחד 2023.'}
-            </div>
-            <div style={{ color: 'red' }}>
-              * החישוב לא מדויק ויתוקן בשעות הקרובות
             </div>
           </li>
         )}
@@ -105,6 +103,14 @@ const ApprovedList = (props: ApprovedListProps) => {
             <div className={style.sumLine}>
               <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
               טיפול רגשי נפשי ומשלים.
+            </div>
+          </li>
+        )}
+        {totalOld > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalOld} ש״ח `}</span>
+              תגמול למוחרגי גיל.
             </div>
           </li>
         )}

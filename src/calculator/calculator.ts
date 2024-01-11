@@ -8,6 +8,7 @@ import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
   FAMILY_CARE_COMPENSATION,
+  GRANT_DAILY_RATE,
   MENTAL_HEALTH_COMPENSATION,
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION,
@@ -128,82 +129,59 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
-// const calculateDaysInOctober2023 = (
-//   dateRanges: {
-//     startDate: Date
-//     endDate: Date
-//   }[]
-// ) => {
-//   // מחולק לשנתי ונוסף
-//   // הראשון לפי מדרגות
-//   // התגמול המיוחד
+const isOneRangeMoreThan5Days = (
+  dateRanges: {
+    startDate: Date
+    endDate: Date
+  }[]
+) => {
+  return dateRanges.some(
+    ({ startDate, endDate }) => differenceInDays(endDate, startDate) >= 5
+  )
+}
 
-//   //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
-//   //  *32
+const specialGrantCalculation = (
+  daysBefore: number,
+  daysInWar: number,
+  daysStraight: boolean
+) => {
+  // 10-14.5 = 1410
+  // 15-19.5 = 2820
+  // 20-36.5 = 4230
+  //37 and above = 5640
+  // did you do 5-9 days straight 266
+  const totalDays = daysBefore + daysInWar
 
-//   //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
-//   // מהיום ה61 מקבל
+  let total = 0
+  if (totalDays >= 10 && totalDays <= 14.5) {
+    total = 1410
+  } else if (totalDays >= 15 && totalDays <= 19.5) {
+    total = 2820
+  } else if (totalDays >= 20 && totalDays <= 36.5) {
+    total = 4230
+  } else if (totalDays >= 37) {
+    total = 5640
+  }
 
-//   const octoberStart = new Date('2023-10-01')
-//   const octoberEnd = new Date('2023-11-16')
+  // Special Grant
+  const specialDays = Math.min(Math.max(daysBefore - 31, 0), 28)
+  total += specialDays * GRANT_DAILY_RATE
 
-//   let total = 0
+  // Extended Special Grant
+  if (daysInWar > 0) {
+    const extendedDays = daysInWar - (60 - daysBefore > 0 ? 60 - daysBefore : 0)
+    total += Math.max(extendedDays, 0) * GRANT_DAILY_RATE
+  }
 
-//   dateRanges.forEach(({ startDate, endDate }) => {
-//     // Find the later of the two start dates
-//     const overlapStart = startDate > octoberStart ? startDate : octoberStart
-
-//     // Find the earlier of the two end dates
-//     const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
-
-//     // Check if there is an overlap
-//     if (overlapStart <= overlapEnd) {
-//       // +1 because the end date is inclusive
-//       total +=
-//         (overlapEnd.getTime() - overlapStart.getTime()) /
-//           (1000 * 60 * 60 * 24) +
-//         1
-//     }
-//   })
-
-//   return total
-// }
-
-// const daysBeforeCalculation = (daysBefore: number, daysStraight: boolean) => {
-//   // 10-14.5 = 1410
-//   // 15-19.5 = 2820
-//   // 20-36.5 = 4230
-//   //37 and above = 5640
-//   // did you do 5-9 days straight 266
-//   let total = 0
-//   if (daysBefore >= 10 && daysBefore <= 14.5) {
-//     total = 1410
-//   } else if (daysBefore >= 15 && daysBefore <= 19.5) {
-//     total = 2820
-//   } else if (daysBefore >= 20 && daysBefore <= 36.5) {
-//     total = 4230
-//   } else if (daysBefore >= 37) {
-//     total = 5640
-//   }
-
-//   return total + (daysStraight ? 266 : 0)
-// }
-
-// const special = (days: number) => {
-//   // from 33-60 max 28
-//   // are you commander?
-//   // if you after 61
-// }
-
-// const calculateSpecialCompensation = (
-//   daysWar: number,
-//   daysBeforeWar: number
-// ) => {}
+  return total + (daysStraight ? 266 : 0)
+}
 
 export const calculateCompensation = (inputs: {
   dateRanges: DateRange[]
   operation24Days: string
   isCombat: boolean
+  isOld: boolean
+  isDaysStraight: boolean
   hasChildren: boolean
   hasChildrenSpecial: boolean
   serviceBefore: string
@@ -212,6 +190,8 @@ export const calculateCompensation = (inputs: {
     dateRanges: dateRangesString,
     operation24Days: operation24DaysString,
     isCombat,
+    isOld,
+    isDaysStraight,
     hasChildren,
     hasChildrenSpecial,
     serviceBefore: serviceBeforeString,
@@ -228,19 +208,27 @@ export const calculateCompensation = (inputs: {
   const serviceBefore = parseFloat(serviceBeforeString)
   const operation24Days = parseFloat(operation24DaysString)
 
+  const isDaysStraightInWar = isOneRangeMoreThan5Days(dateRanges)
+
   const daysWar = calculateDays(dateRanges)
   // const daysInOctober2023 = calculateDaysInOctober2023(dateRanges)
+
+  const compensationPerYear = specialGrantCalculation(
+    serviceBefore,
+    daysWar,
+    isDaysStraight || isDaysStraightInWar
+  )
 
   let totalPerMonth = calculateMonthlyCompensation(
     isCombat,
     Math.max(daysWar, 0)
   ) //ok
   let totalOperation24 = operation24Calculation(operation24Days)
-  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 0 //ok
+  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 0
 
   let totalFromChildren = hasChildren
     ? calculateChildrenCompensation(isCombat, daysWar)
-    : 0 //ok
+    : 0
   let totalVacation = calculateVacation(daysWar, hasChildren, isCombat)
   let totalSpecialChildren = hasChildrenSpecial ? SPECIAL_NEEDS_COMPENSATION : 0
 
@@ -248,10 +236,7 @@ export const calculateCompensation = (inputs: {
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   let totalDedication = 0
-
-  const compensationPerYear = calculateCompensationPerYear(
-    getDaysForEachYear(dateRanges, serviceBefore)
-  )
+  const totalOld = isOld ? (daysWar + serviceBefore) * GRANT_DAILY_RATE : 0
 
   return {
     totalPerMonth,
@@ -264,5 +249,6 @@ export const calculateCompensation = (inputs: {
     totalFamilyCare,
     compensationPerYear,
     totalDedication,
+    totalOld,
   }
 }
