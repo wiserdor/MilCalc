@@ -139,6 +139,16 @@ const calculateDaysInOctober2023 = (
     endDate: Date
   }[]
 ) => {
+  // מחולק לשנתי ונוסף
+  // הראשון לפי מדרגות
+  // התגמול המיוחד
+
+  //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
+  //  *32
+
+  //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
+  // מהיום ה61 מקבל
+
   const octoberStart = new Date('2023-10-01')
   const octoberEnd = new Date('2023-10-31')
 
@@ -163,6 +173,32 @@ const calculateDaysInOctober2023 = (
 
   return total
 }
+
+// const daysBeforeCalculation = (daysBefore: number, daysStraight: boolean) => {
+//   // 10-14.5 = 1410
+//   // 15-19.5 = 2820
+//   // 20-36.5 = 4230
+//   //37 and above = 5640
+//   // did you do 5-9 days straight 266
+//   let total = 0
+//   if (daysBefore >= 10 && daysBefore <= 14.5) {
+//     total = 1410
+//   } else if (daysBefore >= 15 && daysBefore <= 19.5) {
+//     total = 2820
+//   } else if (daysBefore >= 20 && daysBefore <= 36.5) {
+//     total = 4230
+//   } else if (daysBefore >= 37) {
+//     total = 5640
+//   }
+
+//   return total + (daysStraight ? 266 : 0)
+// }
+
+// const special = (days: number) => {
+//   // from 33-60 max 28
+//   // are you commander?
+//   // if you after 61
+// }
 
 export const calculateCompensation = (inputs: {
   dateRanges: DateRange[]
