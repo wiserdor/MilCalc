@@ -16,6 +16,7 @@ const NewsFeedItem = (props: NewsFeedItemProps) => {
         </div>
         <div className={style.title}>{props.title}</div>
       </div>
+      <div className={style.divider}></div>
     </a>
   )
 }
