@@ -7,8 +7,8 @@ const NewsFeed = () => {
     <div className={style.newsFeed}>
       <div className={style.newsFeedTitle}>עדכונים שוטפים:</div>
       <div className={style.newsFeedList}>
-        {feed.map((item) => (
-          <NewsFeedItem {...item} />
+        {feed.map((item, i) => (
+          <NewsFeedItem key={i} {...item} />
         ))}
       </div>
     </div>
