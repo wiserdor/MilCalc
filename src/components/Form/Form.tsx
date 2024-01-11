@@ -90,7 +90,7 @@ const Form = () => {
       </div> */}
       <div className={style.formSection}>
         <div className={style.formSectionTitle}>
-          <NumberCircle number={4} />
+          <NumberCircle number={3} />
           <div style={{ flex: 1 }}>סמנו אחת או יותר מהאפשרויות הבאות:</div>
         </div>
         <FormCheckbox
