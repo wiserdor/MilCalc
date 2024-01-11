@@ -40,7 +40,7 @@ const NotApprovedList = (props: NotApprovedListProps) => {
                 {' התגמול המיוחד ' + yearsSorted[i] + '.'}
               </div>
               <div style={{ color: 'red' }}>
-                * החישוב לא מדויק ויתוקן בשעות הקרובות
+                * החישוב לא מדויק ויתוקן בשעות הקרובות{''}
               </div>
             </li>
           ) : null
