@@ -56,14 +56,6 @@ const ApprovedList = (props: ApprovedListProps) => {
             </div>
           </li>
         )}
-        {totalMoreThan45 > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalMoreThan45} ש״ח `}</span>
-              מענק כלכלת בית מוגדל.
-            </div>
-          </li>
-        )}
         {totalFromChildrenApproved > 0 && (
           <li>
             <div className={style.sumLine}>
@@ -71,6 +63,14 @@ const ApprovedList = (props: ApprovedListProps) => {
                 {`${totalFromChildrenApproved} ש״ח `}
               </span>
               מענק משפחה מוגדל.
+            </div>
+          </li>
+        )}
+        {totalMoreThan45 > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalMoreThan45} ש״ח `}</span>
+              מענק כלכלת בית מוגדל.
             </div>
           </li>
         )}
