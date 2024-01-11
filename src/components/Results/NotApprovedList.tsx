@@ -1,10 +1,7 @@
 import style from './Results.module.css'
 interface NotApprovedListProps {
   totalOperation24: number
-  totalMoreThan45: number
-  totalVacation: number
-  totalFamilyCare: number
-  totalMental: number
+
   totalPerMonthNotApproved: number
   totalFromChildrenNotApproved: number
   totalNotApproved: number
@@ -17,10 +14,7 @@ interface NotApprovedListProps {
 const NotApprovedList = (props: NotApprovedListProps) => {
   const {
     totalOperation24,
-    totalMoreThan45,
-    totalVacation,
-    totalFamilyCare,
-    totalMental,
+
     totalPerMonthNotApproved,
     totalFromChildrenNotApproved,
     totalNotApproved,
@@ -45,6 +39,9 @@ const NotApprovedList = (props: NotApprovedListProps) => {
                 <span className={style.boldSum}>{compensation} ש״ח</span>
                 {' התגמול המיוחד ' + yearsSorted[i] + '.'}
               </div>
+              <div style={{ color: 'red' }}>
+                * החישוב לא מדויק ויתוקן בשעות הקרובות
+              </div>
             </li>
           ) : null
         )}
@@ -58,38 +55,7 @@ const NotApprovedList = (props: NotApprovedListProps) => {
             </div>
           </li>
         )}
-        {totalMoreThan45 > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalMoreThan45} ש״ח `}</span>
-              מענק כלכלת בית מוגדל.
-            </div>
-          </li>
-        )}
-        {totalVacation > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalVacation} ש״ח `}</span>
-              שובר חופשה.
-            </div>
-          </li>
-        )}
-        {totalFamilyCare > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalFamilyCare} ש״ח `}</span>
-              מענק טיפול זוגי.
-            </div>
-          </li>
-        )}
-        {totalMental > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
-              טיפול רגשי נפשי ומשלים.
-            </div>
-          </li>
-        )}
+
         {totalPerMonthNotApproved > 0 && (
           <li>
             <div className={style.sumLine}>

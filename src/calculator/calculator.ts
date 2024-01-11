@@ -4,15 +4,14 @@ import {
   endOfYear,
   startOfYear,
 } from 'date-fns'
+import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
-  EXTRA_DAYS_COMPENSATION,
   FAMILY_CARE_COMPENSATION,
   MENTAL_HEALTH_COMPENSATION,
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION,
 } from './constants'
-import { DateRange } from '../store/types'
 
 export const calculateVacation = (
   totalDays: number,
@@ -76,24 +75,20 @@ export const getDaysForEachYear = (
     .map((entry) => entry[1])
 }
 
-const calculateDays = (
-  dateRanges: { startDate: Date; endDate: Date }[],
-  serviceBefore: number
-) => {
+const calculateDays = (dateRanges: { startDate: Date; endDate: Date }[]) => {
   let total = 0
   dateRanges.forEach(({ startDate, endDate }) => {
     total += differenceInDays(endDate, startDate)
   })
 
-  return total + serviceBefore
+  return total
 }
 
 const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
   if (days < 40) return 0
-  //should be for each 10 days
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
 
-  const total = Math.floor(days / 10) * rate
+  const total = Math.floor((days - 30) / 10) * rate
   return total
 }
 
@@ -102,7 +97,7 @@ const calculateChildrenCompensation = (isCombat: boolean, days: number) => {
   //500 for non combat for each 10 days
   if (days < 40) return 0
   const rate = isCombat ? 833 : 500
-  const total = Math.floor(days / 10) * rate
+  const total = Math.floor(days - 30 / 10) * rate
   return total
 }
 
@@ -133,46 +128,46 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
-const calculateDaysInOctober2023 = (
-  dateRanges: {
-    startDate: Date
-    endDate: Date
-  }[]
-) => {
-  // מחולק לשנתי ונוסף
-  // הראשון לפי מדרגות
-  // התגמול המיוחד
+// const calculateDaysInOctober2023 = (
+//   dateRanges: {
+//     startDate: Date
+//     endDate: Date
+//   }[]
+// ) => {
+//   // מחולק לשנתי ונוסף
+//   // הראשון לפי מדרגות
+//   // התגמול המיוחד
 
-  //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
-  //  *32
+//   //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
+//   //  *32
 
-  //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
-  // מהיום ה61 מקבל
+//   //  אם עשית מעל 60 יום לפני ה-7.10 33-המחשבון יעצור ביום ה60
+//   // מהיום ה61 מקבל
 
-  const octoberStart = new Date('2023-10-01')
-  const octoberEnd = new Date('2023-10-31')
+//   const octoberStart = new Date('2023-10-01')
+//   const octoberEnd = new Date('2023-11-16')
 
-  let total = 0
+//   let total = 0
 
-  dateRanges.forEach(({ startDate, endDate }) => {
-    // Find the later of the two start dates
-    const overlapStart = startDate > octoberStart ? startDate : octoberStart
+//   dateRanges.forEach(({ startDate, endDate }) => {
+//     // Find the later of the two start dates
+//     const overlapStart = startDate > octoberStart ? startDate : octoberStart
 
-    // Find the earlier of the two end dates
-    const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
+//     // Find the earlier of the two end dates
+//     const overlapEnd = endDate < octoberEnd ? endDate : octoberEnd
 
-    // Check if there is an overlap
-    if (overlapStart <= overlapEnd) {
-      // +1 because the end date is inclusive
-      total +=
-        (overlapEnd.getTime() - overlapStart.getTime()) /
-          (1000 * 60 * 60 * 24) +
-        1
-    }
-  })
+//     // Check if there is an overlap
+//     if (overlapStart <= overlapEnd) {
+//       // +1 because the end date is inclusive
+//       total +=
+//         (overlapEnd.getTime() - overlapStart.getTime()) /
+//           (1000 * 60 * 60 * 24) +
+//         1
+//     }
+//   })
 
-  return total
-}
+//   return total
+// }
 
 // const daysBeforeCalculation = (daysBefore: number, daysStraight: boolean) => {
 //   // 10-14.5 = 1410
@@ -228,25 +223,23 @@ export const calculateCompensation = (inputs: {
   const serviceBefore = parseFloat(serviceBeforeString)
   const operation24Days = parseFloat(operation24DaysString)
 
-  const days = calculateDays(dateRanges, serviceBefore)
-  const daysInOctober2023 = calculateDaysInOctober2023(dateRanges)
+  const daysWar = calculateDays(dateRanges)
+  // const daysInOctober2023 = calculateDaysInOctober2023(dateRanges)
 
   let totalPerMonth = calculateMonthlyCompensation(
     isCombat,
-    Math.max(days - daysInOctober2023, 0)
-  )
-  let totalExtraDays =
-    isCombat && days >= 32 ? EXTRA_DAYS_COMPENSATION * (days - 31) : 0
+    Math.max(daysWar, 0)
+  ) //ok
   let totalOperation24 = operation24Calculation(operation24Days)
-  let totalMoreThan45 = isCombat && days > 45 ? 2500 : 0
+  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 0 //ok
 
   let totalFromChildren = hasChildren
-    ? calculateChildrenCompensation(isCombat, days)
-    : 0
-  let totalVacation = calculateVacation(days, hasChildren, isCombat)
+    ? calculateChildrenCompensation(isCombat, daysWar)
+    : 0 //ok
+  let totalVacation = calculateVacation(daysWar, hasChildren, isCombat)
   let totalSpecialChildren = hasChildrenSpecial ? SPECIAL_NEEDS_COMPENSATION : 0
 
-  let totalMental = days > 30 ? MENTAL_HEALTH_COMPENSATION : 0
+  let totalMental = daysWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   let totalDedication = 0
@@ -257,7 +250,6 @@ export const calculateCompensation = (inputs: {
 
   return {
     totalPerMonth,
-    totalExtraDays,
     totalMoreThan45,
     totalOperation24,
     totalFromChildren,

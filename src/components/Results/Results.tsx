@@ -99,15 +99,25 @@ const Results = () => {
       totalPerMonthApproved +
       totalFromChildrenApproved +
       totalSpecialChildren +
+      totalMoreThan45 +
+      totalFamilyCare +
+      totalMental +
+      totalVacation +
       total2023,
-    [totalPerMonth, compensationPerYear]
+    [
+      totalPerMonth,
+      compensationPerYear,
+      totalFromChildren,
+      totalMoreThan45,
+      total2023,
+      totalSpecialChildren,
+      totalFamilyCare,
+      totalMental,
+      totalVacation,
+    ]
   )
 
   const totalNotApproved =
-    totalVacation +
-    totalMoreThan45 +
-    totalMental +
-    totalFamilyCare +
     totalFromChildrenNotApproved +
     totalPerMonthNotApproved +
     totalOperation24 +
@@ -131,16 +141,16 @@ const Results = () => {
           totalFromChildrenApproved={totalFromChildrenApproved}
           totalSpecialChildren={totalSpecialChildren}
           has2023={has2023}
+          totalMoreThan45={totalMoreThan45}
           totalApproved={totalApproved}
+          totalVacation={totalVacation}
+          totalFamilyCare={totalFamilyCare}
+          totalMental={totalMental}
         />
       )}
       {(totalNotApproved > 0 || isStudent) && (
         <NotApprovedList
           totalOperation24={totalOperation24}
-          totalMoreThan45={totalMoreThan45}
-          totalVacation={totalVacation}
-          totalFamilyCare={totalFamilyCare}
-          totalMental={totalMental}
           totalPerMonthNotApproved={totalPerMonthNotApproved}
           totalFromChildrenNotApproved={totalFromChildrenNotApproved}
           totalNotApproved={totalNotApproved}

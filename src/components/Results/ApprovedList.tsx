@@ -7,6 +7,10 @@ interface ApprovedListProps {
   totalSpecialChildren: number
   totalApproved: number
   has2023: boolean
+  totalMoreThan45: number
+  totalVacation: number
+  totalFamilyCare: number
+  totalMental: number
 }
 
 const ApprovedList = (props: ApprovedListProps) => {
@@ -17,6 +21,10 @@ const ApprovedList = (props: ApprovedListProps) => {
     totalSpecialChildren,
     has2023,
     totalApproved,
+    totalMoreThan45,
+    totalVacation,
+    totalFamilyCare,
+    totalMental,
   } = props
 
   return (
@@ -30,7 +38,10 @@ const ApprovedList = (props: ApprovedListProps) => {
           <li>
             <div className={style.sumLine}>
               <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
-              {'התגמול המיוחד 2023.'}
+              {' התגמול המיוחד 2023.'}
+            </div>
+            <div style={{ color: 'red' }}>
+              * החישוב לא מדויק ויתוקן בשעות הקרובות
             </div>
           </li>
         )}
@@ -42,6 +53,14 @@ const ApprovedList = (props: ApprovedListProps) => {
                 {`${totalPerMonthApproved} ש״ח `}
               </span>
               מענק הוצאות אישיות מוגדל.
+            </div>
+          </li>
+        )}
+        {totalMoreThan45 > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalMoreThan45} ש״ח `}</span>
+              מענק כלכלת בית מוגדל.
             </div>
           </li>
         )}
@@ -62,6 +81,30 @@ const ApprovedList = (props: ApprovedListProps) => {
                 className={style.boldSum}
               >{`${totalSpecialChildren} ש״ח `}</span>
               מענק משפחה מיוחדת.
+            </div>
+          </li>
+        )}
+        {totalVacation > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalVacation} ש״ח `}</span>
+              שובר חופשה.
+            </div>
+          </li>
+        )}
+        {totalFamilyCare > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalFamilyCare} ש״ח `}</span>
+              טיפול זוגי.
+            </div>
+          </li>
+        )}
+        {totalMental > 0 && (
+          <li>
+            <div className={style.sumLine}>
+              <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
+              טיפול רגשי נפשי ומשלים.
             </div>
           </li>
         )}
