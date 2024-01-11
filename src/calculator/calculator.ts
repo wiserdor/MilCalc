@@ -97,7 +97,7 @@ const calculateChildrenCompensation = (isCombat: boolean, days: number) => {
   //500 for non combat for each 10 days
   if (days < 40) return 0
   const rate = isCombat ? 833 : 500
-  const total = Math.floor(days - 30 / 10) * rate
+  const total = Math.floor((days - 30) / 10) * rate
   return total
 }
 
@@ -194,6 +194,11 @@ const operation24Calculation = (operation24Days: number) => {
 //   // are you commander?
 //   // if you after 61
 // }
+
+// const calculateSpecialCompensation = (
+//   daysWar: number,
+//   daysBeforeWar: number
+// ) => {}
 
 export const calculateCompensation = (inputs: {
   dateRanges: DateRange[]
