@@ -1,4 +1,3 @@
-// store.js
 import { create } from 'zustand'
 import { validateForm } from '../components/Form/validation'
 import { calculateCompensation } from '../calculator'

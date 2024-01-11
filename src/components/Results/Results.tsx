@@ -3,6 +3,8 @@ import useStore from '../../store/store'
 import style from './Results.module.css'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 import { DateRange } from '../../store/types'
+import ApprovedList from './ApprovedList'
+import NotApprovedList from './NotApprovedList'
 
 function getAllYearsSorted(dateRanges: DateRange[]) {
   const years = dateRanges.map((dateRange) => {
@@ -39,6 +41,13 @@ const Results = () => {
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // Scroll to results on submit
+    if (validationErrors?.length === 0 && resultsRef.current) {
+      resultsRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [validationErrors])
 
   const yearsSorted = useMemo(
     () => (compensationPerYear?.length ? getAllYearsSorted(dateRanges) : []),
@@ -94,15 +103,6 @@ const Results = () => {
     [totalPerMonth, compensationPerYear]
   )
 
-  useEffect(() => {
-    // Scroll to results on submit
-    if (validationErrors?.length === 0 && resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [validationErrors])
-
-  if (validationErrors?.length > 0) return null
-
   const totalNotApproved =
     totalVacation +
     totalMoreThan45 +
@@ -113,6 +113,8 @@ const Results = () => {
     totalOperation24 +
     totalNot2023
 
+  if (validationErrors?.length > 0) return null
+
   // if sum of all is 0, don't show anything
   if (totalNotApproved + totalApproved === 0) return null
 
@@ -122,152 +124,31 @@ const Results = () => {
         <img src="/svg/money.svg" />
       </div>
       <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
-      <div className={style.resultsSubtitle}></div>
       {totalApproved > 0 && (
-        <ul className={style.resultsSection}>
-          <div className={style.approvalBlock}>עבר אישור</div>
-          <li className={style.sectionTitle}>
-            {'סה״כ ' + totalApproved + ' ש״ח:'}
-          </li>
-          <ul className={style.resultsSectionResults}>
-            {has2023 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
-                  {'התגמול המיוחד 2023.'}
-                </div>
-              </li>
-            )}
-
-            {totalPerMonthApproved > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>
-                    {`${totalPerMonthApproved} ש״ח `}
-                  </span>
-                  מענק הוצאות אישיות מוגדל.
-                </div>
-              </li>
-            )}
-            {totalFromChildrenApproved > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>
-                    {`${totalFromChildrenApproved} ש״ח `}
-                  </span>
-                  מענק משפחה מוגדל.
-                </div>
-              </li>
-            )}
-            {totalSpecialChildren > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalSpecialChildren} ש״ח `}</span>
-                  מענק משפחה מיוחדת.
-                </div>
-              </li>
-            )}
-          </ul>
-        </ul>
+        <ApprovedList
+          total2023={total2023}
+          totalPerMonthApproved={totalPerMonthApproved}
+          totalFromChildrenApproved={totalFromChildrenApproved}
+          totalSpecialChildren={totalSpecialChildren}
+          has2023={has2023}
+          totalApproved={totalApproved}
+        />
       )}
       {(totalNotApproved > 0 || isStudent) && (
-        <ul className={style.resultsSection}>
-          <div className={style.maybeApprovalBlock}>צפוי לעבור אישור בקרוב</div>
-
-          <li className={style.sectionTitle}>
-            {'סה״כ ' + totalNotApproved + ' ש״ח:'}
-          </li>
-          <ul className={style.resultsSectionResults}>
-            {compensationPerYear.map((compensation, i) =>
-              compensation > 0 && yearsSorted[i] !== 2023 ? (
-                <li key={i}>
-                  <div className={style.sumLine}>
-                    <span className={style.boldSum}>{compensation} ש״ח</span>
-                    {' התגמול המיוחד ' + yearsSorted[i] + '.'}
-                  </div>
-                </li>
-              ) : null
-            )}
-            {totalOperation24 > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalOperation24} ש״ח `}</span>
-                  מענק לחימה תע״מ 2024.
-                </div>
-              </li>
-            )}
-            {totalMoreThan45 > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalMoreThan45} ש״ח `}</span>
-                  מענק כלכלת בית מוגדל.
-                </div>
-              </li>
-            )}
-            {totalVacation > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalVacation} ש״ח `}</span>
-                  שובר חופשה.
-                </div>
-              </li>
-            )}
-            {totalFamilyCare > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span
-                    className={style.boldSum}
-                  >{`${totalFamilyCare} ש״ח `}</span>
-                  מענק טיפול זוגי.
-                </div>
-              </li>
-            )}
-            {totalMental > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
-                  טיפול רגשי נפשי ומשלים.
-                </div>
-              </li>
-            )}
-            {totalPerMonthNotApproved > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>
-                    {`${totalPerMonthNotApproved} ש״ח `}
-                  </span>
-                  מענק הוצאות אישיות מוגדל.
-                </div>
-              </li>
-            )}
-            {totalFromChildrenNotApproved > 0 && (
-              <li>
-                <div className={style.sumLine}>
-                  <span className={style.boldSum}>
-                    {`${totalFromChildrenNotApproved} ש״ח `}
-                  </span>
-                  מענק משפחה מוגדל.
-                </div>
-              </li>
-            )}
-            {isStudent && (
-              <li>
-                <span className={style.boldSum}>
-                  {isCombat ? '100% ' : '30% '}
-                </span>
-                סבסוד לשנת לימודים תשפ״ד.
-              </li>
-            )}
-          </ul>
-        </ul>
+        <NotApprovedList
+          totalOperation24={totalOperation24}
+          totalMoreThan45={totalMoreThan45}
+          totalVacation={totalVacation}
+          totalFamilyCare={totalFamilyCare}
+          totalMental={totalMental}
+          totalPerMonthNotApproved={totalPerMonthNotApproved}
+          totalFromChildrenNotApproved={totalFromChildrenNotApproved}
+          totalNotApproved={totalNotApproved}
+          isStudent={isStudent}
+          isCombat={isCombat}
+          compensationPerYear={compensationPerYear}
+          yearsSorted={yearsSorted}
+        />
       )}
     </div>
   )
