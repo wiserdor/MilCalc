@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import useStore from '../../store/store'
 import ApprovedList from './ApprovedList'
 import style from './Results.module.css'
@@ -14,7 +14,7 @@ const Results = () => {
     totalMental,
     totalFamilyCare,
     validationErrors,
-    compensationPerYear,
+    total2023,
     isCombat,
     totalOld,
   } = useStore()
@@ -38,29 +38,16 @@ const Results = () => {
       ? getMaxMonthApproval(isCombat)
       : totalPerMonth
 
-  const totalApproved = useMemo(
-    () =>
-      totalPerMonthApproved +
-      totalFromChildrenApproved +
-      totalSpecialChildren +
-      totalMoreThan45 +
-      totalFamilyCare +
-      totalMental +
-      totalVacation +
-      totalOld +
-      compensationPerYear,
-    [
-      totalPerMonthApproved,
-      totalFromChildrenApproved,
-      totalSpecialChildren,
-      totalMoreThan45,
-      totalFamilyCare,
-      totalMental,
-      totalVacation,
-      totalOld,
-      compensationPerYear,
-    ]
-  )
+  const totalApproved =
+    totalPerMonthApproved +
+    totalFromChildrenApproved +
+    totalSpecialChildren +
+    totalMoreThan45 +
+    totalFamilyCare +
+    totalMental +
+    totalVacation +
+    totalOld +
+    total2023
 
   if (validationErrors?.length > 0) return null
 
@@ -74,7 +61,7 @@ const Results = () => {
       <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
       {totalApproved > 0 && (
         <ApprovedList
-          total2023={compensationPerYear}
+          total2023={total2023}
           totalPerMonthApproved={totalPerMonthApproved}
           totalFromChildrenApproved={totalFromChildrenApproved}
           totalSpecialChildren={totalSpecialChildren}

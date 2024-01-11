@@ -14,5 +14,5 @@ export interface CalculatorResults {
   totalMental: number
   totalFamilyCare: number
   totalOld: number
-  compensationPerYear: number
+  total2023: number
 }

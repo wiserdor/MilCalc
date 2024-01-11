@@ -1,9 +1,4 @@
-import {
-  differenceInDays,
-  eachYearOfInterval,
-  endOfYear,
-  startOfYear,
-} from 'date-fns'
+import { differenceInDays } from 'date-fns'
 import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
@@ -25,55 +20,6 @@ export const calculateVacation = (
   const additionalForChildren = isCombat ? 1000 : 500
 
   return hasChildren ? baseVacation + additionalForChildren : baseVacation
-}
-
-export const calculateCompensationPerYear = (daysPerYear: number[]) => {
-  const compensationPerYear = daysPerYear.map((days) => {
-    let compensation = 0
-
-    if (days >= 9) compensation += 1410
-    if (days >= 14) compensation += 1410
-    if (days >= 20) compensation += 1410
-    if (days >= 37) compensation += 1410
-    if (days >= 32) compensation += (days - 31) * 133
-
-    return compensation
-  })
-
-  return compensationPerYear
-}
-
-export const getDaysForEachYear = (
-  dateRanges: { startDate: Date; endDate: Date }[],
-  serviceBefore: number
-) => {
-  const yearsMap = new Map()
-  let addedServiceBefore = false
-
-  dateRanges.forEach(({ startDate, endDate }) => {
-    const interval = { start: startDate, end: endDate }
-    const years = eachYearOfInterval(interval)
-
-    years.forEach((date, index) => {
-      const year = date.getFullYear()
-      const start = index === 0 ? startDate : startOfYear(date)
-      const end = index === years.length - 1 ? endDate : endOfYear(date)
-
-      let days = differenceInDays(end, start) + 1
-
-      // Add serviceBefore only once to the year 2023
-      if (year === 2023 && !yearsMap.has(2023) && !addedServiceBefore) {
-        days += serviceBefore
-        addedServiceBefore = true
-      }
-
-      yearsMap.set(year, (yearsMap.get(year) || 0) + days)
-    })
-  })
-
-  return Array.from(yearsMap)
-    .sort((a, b) => a[0] - b[0])
-    .map((entry) => entry[1])
 }
 
 const calculateDays = (dateRanges: { startDate: Date; endDate: Date }[]) => {
@@ -211,9 +157,8 @@ export const calculateCompensation = (inputs: {
   const isDaysStraightInWar = isOneRangeMoreThan5Days(dateRanges)
 
   const daysWar = calculateDays(dateRanges)
-  // const daysInOctober2023 = calculateDaysInOctober2023(dateRanges)
 
-  const compensationPerYear = specialGrantCalculation(
+  const total2023 = specialGrantCalculation(
     serviceBefore,
     daysWar,
     isDaysStraight || isDaysStraightInWar
@@ -247,7 +192,7 @@ export const calculateCompensation = (inputs: {
     totalSpecialChildren,
     totalMental,
     totalFamilyCare,
-    compensationPerYear,
+    total2023,
     totalDedication,
     totalOld,
   }

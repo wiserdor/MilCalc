@@ -7,7 +7,7 @@ interface NotApprovedListProps {
   totalNotApproved: number
   isStudent: boolean
   isCombat: boolean
-  compensationPerYear: number[]
+  total2023: number[]
   yearsSorted: number[]
 }
 
@@ -20,7 +20,7 @@ const NotApprovedList = (props: NotApprovedListProps) => {
     totalNotApproved,
     isStudent,
     isCombat,
-    compensationPerYear,
+    total2023,
     yearsSorted,
   } = props
 
@@ -32,7 +32,7 @@ const NotApprovedList = (props: NotApprovedListProps) => {
         {'סה״כ ' + totalNotApproved + ' ש״ח:'}
       </li>
       <ul className={style.resultsSectionResults}>
-        {compensationPerYear.map((compensation, i) =>
+        {total2023.map((compensation, i) =>
           compensation > 0 && yearsSorted[i] !== 2023 ? (
             <li key={i}>
               <div className={style.sumLine}>

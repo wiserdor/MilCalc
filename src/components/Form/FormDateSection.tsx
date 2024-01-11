@@ -74,6 +74,7 @@ const FormDateSection = () => {
           <div
             className={style.removeDateRange}
             onClick={() => onRemoveDateRange(index)}
+            style={{ display: dateRanges.length === 1 ? 'none' : 'block' }}
           >
             X
           </div>
