@@ -51,7 +51,12 @@ const Form = () => {
           value={serviceBefore}
           min={0}
           step={0.5}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            handleInputChange(e)
+            if (parseFloat(e.target.value) < 5) {
+              setFormState('isDaysStraight', false)
+            }
+          }}
           onInvalid={(e: any) => {
             if (parseFloat(e.target.value) % 0.5 !== 0) {
               e.target.setCustomValidity('המספר צריך להיות בקפיצות של 0.5')
@@ -64,6 +69,7 @@ const Form = () => {
           name="isDaysStraight"
           checked={isDaysStraight}
           onChange={handleInputChange}
+          disabled={parseFloat(serviceBefore) < 5}
         />
       </div>
       {/* <div className={style.formSection}>
