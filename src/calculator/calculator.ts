@@ -1,4 +1,3 @@
-import { da } from 'date-fns/locale'
 import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
