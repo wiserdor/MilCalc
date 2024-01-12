@@ -97,10 +97,15 @@ const specialGrantCalculation = (
   daysStraight: boolean,
   isCommander: boolean
 ) => {
+  // 10-14.5 = 1410
+  // 15-19.5 = 2820
+  // 20-36.5 = 4230
+  //37 and above = 5640
+  // did you do 5-9 days straight 266
+  debugger
   const totalDays = daysBefore + daysInWar
-  let total = 0
 
-  // Calculate the Additional Grant
+  let total = 0
   if (totalDays >= 10 && totalDays <= 14.5) {
     total = 1410
   } else if (totalDays >= 15 && totalDays <= 19.5) {
@@ -111,24 +116,18 @@ const specialGrantCalculation = (
     total = 5640
   }
 
-  // Special Grant for days before the war (32nd to 60th day)
-  const specialDays = Math.min(Math.max(daysBefore - 32, 0), 28)
+  // Special Grant
+  const specialDays = Math.min(Math.max(daysBefore - 31, 0), 28)
   total += specialDays * GRANT_DAILY_RATE
 
-  // Extended Special Grant for days during the war
-  // Start counting after 60 days of total service
-  const remainingSpecialDays = 28 - specialDays
-  const effectiveWarDays = daysInWar + Math.min(remainingSpecialDays, 0)
-  if (effectiveWarDays > 0) {
-    total += effectiveWarDays * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
+  // Extended Special Grant
+  if (daysInWar > 0) {
+    const extendedDays = daysInWar - (60 - daysBefore > 0 ? 60 - daysBefore : 0)
+    total +=
+      Math.max(extendedDays, 0) * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
   }
 
-  // Personal Expenses for continuous service
-  if (daysStraight || daysInWar >= 5) {
-    total += 266
-  }
-
-  return total
+  return total + (daysStraight ? 266 : 0)
 }
 
 export const calculateCompensation = (inputs: {
