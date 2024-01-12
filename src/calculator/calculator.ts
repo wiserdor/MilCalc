@@ -117,17 +117,25 @@ const specialGrantCalculation = (
   }
 
   // Special Grant
-  const specialDays = Math.min(Math.max(daysBefore - 31, 0), 28)
+  const specialDays = Math.min(Math.max(daysBefore - 32, 0), 28)
   total += specialDays * GRANT_DAILY_RATE
 
-  // Extended Special Grant
-  if (daysInWar > 0) {
-    const extendedDays = daysInWar - (60 - daysBefore > 0 ? 60 - daysBefore : 0)
-    total +=
-      Math.max(extendedDays, 0) * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
+  let extendedDays = 0
+  if (daysBefore >= 60) {
+    extendedDays = daysInWar
+  } else if (daysBefore > 32) {
+    extendedDays = Math.max(daysInWar - specialDays, 0)
+  } else {
+    extendedDays = Math.max(daysInWar - (31 - daysBefore), 0)
   }
 
-  return total + (daysStraight ? 266 : 0)
+  total += extendedDays * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
+
+  if (daysStraight) {
+    total += 266
+  }
+
+  return total
 }
 
 export const calculateCompensation = (inputs: {
