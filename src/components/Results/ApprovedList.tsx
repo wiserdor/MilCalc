@@ -1,7 +1,10 @@
 import style from './Results.module.css'
 
 interface ApprovedListProps {
-  total2023: number
+  totalSpecialDays: number
+  totalExtended: number
+  totalAdditional: number
+  totalDaysStraight: number
   totalPerMonthApproved: number
   totalFromChildrenApproved: number
   totalSpecialChildren: number
@@ -16,7 +19,10 @@ interface ApprovedListProps {
 
 const ApprovedList = (props: ApprovedListProps) => {
   const {
-    total2023,
+    totalSpecialDays,
+    totalExtended,
+    totalAdditional,
+    totalDaysStraight,
     totalPerMonthApproved,
     totalFromChildrenApproved,
     totalSpecialChildren,
@@ -28,6 +34,9 @@ const ApprovedList = (props: ApprovedListProps) => {
     totalOld,
   } = props
 
+  const total2023 =
+    totalSpecialDays + totalExtended + totalAdditional + totalDaysStraight
+
   return (
     <ul className={style.resultsSection}>
       <div className={style.approvalBlock}>עבר אישור</div>
@@ -36,12 +45,56 @@ const ApprovedList = (props: ApprovedListProps) => {
       </li>
       <ul className={style.resultsSectionResults}>
         {total2023 > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
-              {' התגמול המיוחד 2023.'}
-            </div>
-          </li>
+          <>
+            <li>
+              <div className={style.sumLine}>
+                <span className={style.boldSum}>{`${total2023} ש״ח `}</span>
+                {' התגמול המיוחד 2023.'}
+              </div>
+            </li>
+            <ul>
+              {totalAdditional > 0 && (
+                <li className={style.innerli}>
+                  <div className={style.sumLine}>
+                    <span
+                      className={style.boldSum}
+                    >{`${totalAdditional} ש״ח `}</span>
+                    המענק הנוסף.
+                  </div>
+                </li>
+              )}
+              {totalSpecialDays > 0 && (
+                <li className={style.innerli}>
+                  <div className={style.sumLine}>
+                    <span
+                      className={style.boldSum}
+                    >{`${totalSpecialDays} ש״ח `}</span>
+                    התגמול המיוחד.
+                  </div>
+                </li>
+              )}
+              {totalExtended > 0 && (
+                <li className={style.innerli}>
+                  <div className={style.sumLine}>
+                    <span
+                      className={style.boldSum}
+                    >{`${totalExtended} ש״ח `}</span>
+                    התגמול המיוחד המורחב.
+                  </div>
+                </li>
+              )}
+              {totalDaysStraight > 0 && (
+                <li className={style.innerli}>
+                  <div className={style.sumLine}>
+                    <span
+                      className={style.boldSum}
+                    >{`${totalDaysStraight} ש״ח `}</span>
+                    הוצאות אישיות (5 ימים רצופים).
+                  </div>
+                </li>
+              )}
+            </ul>
+          </>
         )}
 
         {totalPerMonthApproved > 0 && (

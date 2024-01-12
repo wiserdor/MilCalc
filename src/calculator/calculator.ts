@@ -1,3 +1,4 @@
+import { da } from 'date-fns/locale'
 import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
@@ -105,20 +106,20 @@ const specialGrantCalculation = (
   debugger
   const totalDays = daysBefore + daysInWar
 
-  let total = 0
+  let totalAdditional = 0
   if (totalDays >= 10 && totalDays <= 14.5) {
-    total = 1410
+    totalAdditional = 1410
   } else if (totalDays >= 15 && totalDays <= 19.5) {
-    total = 2820
+    totalAdditional = 2820
   } else if (totalDays >= 20 && totalDays <= 36.5) {
-    total = 4230
+    totalAdditional = 4230
   } else if (totalDays >= 37) {
-    total = 5640
+    totalAdditional = 5640
   }
 
   // Special Grant
   const specialDays = Math.min(Math.max(daysBefore - 32, 0), 28)
-  total += specialDays * GRANT_DAILY_RATE
+  const totalSpecialDays = specialDays * GRANT_DAILY_RATE
 
   let extendedDays = 0
   if (daysBefore >= 60) {
@@ -129,13 +130,12 @@ const specialGrantCalculation = (
     extendedDays = Math.max(daysInWar - (31 - daysBefore), 0)
   }
 
-  total += extendedDays * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
+  const totalExtended =
+    extendedDays * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
 
-  if (daysStraight) {
-    total += 266
-  }
+  const totalDaysStraight = daysStraight ? 266 : 0
 
-  return total
+  return { totalDaysStraight, totalSpecialDays, totalExtended, totalAdditional }
 }
 
 export const calculateCompensation = (inputs: {
@@ -176,7 +176,12 @@ export const calculateCompensation = (inputs: {
 
   const daysWar = calculateDays(dateRanges)
 
-  const total2023 = specialGrantCalculation(
+  const {
+    totalSpecialDays,
+    totalExtended,
+    totalAdditional,
+    totalDaysStraight,
+  } = specialGrantCalculation(
     serviceBefore,
     daysWar,
     isDaysStraight || isDaysStraightInWar,
@@ -186,7 +191,8 @@ export const calculateCompensation = (inputs: {
   let totalPerMonth = calculateMonthlyCompensation(
     isCombat,
     Math.max(daysWar, 0)
-  ) //ok
+  )
+
   let totalOperation24 = operation24Calculation(operation24Days)
   let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 0
 
@@ -211,8 +217,11 @@ export const calculateCompensation = (inputs: {
     totalSpecialChildren,
     totalMental,
     totalFamilyCare,
-    total2023,
     totalDedication,
     totalOld,
+    totalSpecialDays,
+    totalExtended,
+    totalAdditional,
+    totalDaysStraight,
   }
 }

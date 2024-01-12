@@ -57,7 +57,10 @@ const useStore = create<CalculatorState>((set) => ({
   totalSpecialChildren: 0,
   totalMental: 0,
   totalFamilyCare: 0,
-  total2023: 0,
+  totalSpecialDays: 0,
+  totalExtended: 0,
+  totalAdditional: 0,
+  totalDaysStraight: 0,
   totalOld: 0,
 
   // Function to update form states
@@ -91,7 +94,10 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren: 0,
       totalMental: 0,
       totalFamilyCare: 0,
-      total2023: 0,
+      totalSpecialDays: 0,
+      totalExtended: 0,
+      totalAdditional: 0,
+      totalDaysStraight: 0,
     })
   },
 
@@ -113,7 +119,10 @@ const useStore = create<CalculatorState>((set) => ({
       totalMental,
       totalFamilyCare,
       totalOld,
-      total2023,
+      totalSpecialDays,
+      totalExtended,
+      totalAdditional,
+      totalDaysStraight,
     } = calculateCompensation({
       isCombat: state.isCombat,
       isOld: state.isOld,
@@ -136,7 +145,10 @@ const useStore = create<CalculatorState>((set) => ({
       totalMental,
       totalFamilyCare,
       totalOld,
-      total2023,
+      totalSpecialDays,
+      totalExtended,
+      totalAdditional,
+      totalDaysStraight,
     })
   },
 }))

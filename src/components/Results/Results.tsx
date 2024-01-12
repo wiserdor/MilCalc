@@ -14,7 +14,10 @@ const Results = () => {
     totalMental,
     totalFamilyCare,
     validationErrors,
-    total2023,
+    totalSpecialDays,
+    totalExtended,
+    totalAdditional,
+    totalDaysStraight,
     isCombat,
     totalOld,
   } = useStore()
@@ -47,7 +50,10 @@ const Results = () => {
     totalMental +
     totalVacation +
     totalOld +
-    total2023
+    totalSpecialDays +
+    totalExtended +
+    totalAdditional +
+    totalDaysStraight
 
   if (validationErrors?.length > 0) return null
 
@@ -61,7 +67,10 @@ const Results = () => {
       <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
       {totalApproved > 0 && (
         <ApprovedList
-          total2023={total2023}
+          totalSpecialDays={totalSpecialDays}
+          totalExtended={totalExtended}
+          totalAdditional={totalAdditional}
+          totalDaysStraight={totalDaysStraight}
           totalPerMonthApproved={totalPerMonthApproved}
           totalFromChildrenApproved={totalFromChildrenApproved}
           totalSpecialChildren={totalSpecialChildren}

@@ -68,3 +68,8 @@ li {
   font-size: 12px;
   margin-bottom: 1rem;
 }
+
+.innerli {
+  list-style-type: none !important;
+  font-size: 14px;
+}
