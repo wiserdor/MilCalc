@@ -8,6 +8,7 @@ export interface CalculatorState extends CalculatorResults {
   isCombat: boolean
   isOld: boolean
   isDaysStraight: boolean
+  isCommander: boolean
   dateRanges: DateRange[]
   hasChildren: boolean
   hasChildrenSpecial: boolean
@@ -32,6 +33,7 @@ const useStore = create<CalculatorState>((set) => ({
   isCombat: false,
   isOld: false,
   isDaysStraight: false,
+  isCommander: false,
   dateRanges: [
     {
       startDate: '2023-10-07',
@@ -121,6 +123,7 @@ const useStore = create<CalculatorState>((set) => ({
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
       operation24Days: state.operation24Days,
+      isCommander: state.isCommander,
     })
 
     set({

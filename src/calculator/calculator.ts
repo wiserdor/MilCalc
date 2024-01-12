@@ -1,4 +1,3 @@
-import { differenceInDays } from 'date-fns'
 import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
@@ -25,7 +24,7 @@ export const calculateVacation = (
 const calculateDays = (dateRanges: { startDate: Date; endDate: Date }[]) => {
   let total = 0
   dateRanges.forEach(({ startDate, endDate }) => {
-    total += differenceInDays(endDate, startDate)
+    total += totalDaysInRange(startDate, endDate)
   })
 
   return total
@@ -75,6 +74,12 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
+const totalDaysInRange = (startDate: Date, endDate: Date) => {
+  let Difference_In_Time = endDate.getTime() - startDate.getTime()
+  let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24)
+  return Difference_In_Days + 1
+}
+
 const isOneRangeMoreThan5Days = (
   dateRanges: {
     startDate: Date
@@ -82,20 +87,22 @@ const isOneRangeMoreThan5Days = (
   }[]
 ) => {
   return dateRanges.some(
-    ({ startDate, endDate }) => differenceInDays(endDate, startDate) >= 5
+    ({ startDate, endDate }) => totalDaysInRange(startDate, endDate) >= 5
   )
 }
 
 const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
-  daysStraight: boolean
+  daysStraight: boolean,
+  isCommander: boolean
 ) => {
   // 10-14.5 = 1410
   // 15-19.5 = 2820
   // 20-36.5 = 4230
   //37 and above = 5640
   // did you do 5-9 days straight 266
+  debugger
   const totalDays = daysBefore + daysInWar
 
   let total = 0
@@ -116,7 +123,8 @@ const specialGrantCalculation = (
   // Extended Special Grant
   if (daysInWar > 0) {
     const extendedDays = daysInWar - (60 - daysBefore > 0 ? 60 - daysBefore : 0)
-    total += Math.max(extendedDays, 0) * GRANT_DAILY_RATE
+    total +=
+      Math.max(extendedDays, 0) * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
   }
 
   return total + (daysStraight ? 266 : 0)
@@ -131,6 +139,7 @@ export const calculateCompensation = (inputs: {
   hasChildren: boolean
   hasChildrenSpecial: boolean
   serviceBefore: string
+  isCommander: boolean
 }) => {
   const {
     dateRanges: dateRangesString,
@@ -138,6 +147,7 @@ export const calculateCompensation = (inputs: {
     isCombat,
     isOld,
     isDaysStraight,
+    isCommander,
     hasChildren,
     hasChildrenSpecial,
     serviceBefore: serviceBeforeString,
@@ -161,7 +171,8 @@ export const calculateCompensation = (inputs: {
   const total2023 = specialGrantCalculation(
     serviceBefore,
     daysWar,
-    isDaysStraight || isDaysStraightInWar
+    isDaysStraight || isDaysStraightInWar,
+    isCommander
   )
 
   let totalPerMonth = calculateMonthlyCompensation(
