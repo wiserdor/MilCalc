@@ -185,7 +185,7 @@ export const calculateCompensation = (inputs: {
   )
 
   let totalOperation24 = operation24Calculation(operation24Days)
-  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 0
+  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 1450
 
   let totalFromChildren = hasChildren
     ? calculateChildrenCompensation(isCombat, daysWar)
