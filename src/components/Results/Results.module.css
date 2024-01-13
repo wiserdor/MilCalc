@@ -10,6 +10,7 @@ li {
 
 .sectionTitle {
   font-weight: 600;
+  color: #0066ff;
 }
 
 .resultsTitle {
@@ -30,10 +31,10 @@ li {
 }
 
 .resultsSection {
-  padding: 16px;
-  border-radius: 8px;
+  padding: 24px 16px 32px 16px;
+  border-radius: 16px;
   margin-block: 1rem;
-  background-color: #edf4ff;
+  background-color: #f2f6fd;
 }
 
 .resultsSectionResults li {
@@ -48,14 +49,12 @@ li {
 .sumLine {
 }
 .approvalBlock {
-  padding-block: 0.6rem;
-  padding-inline: 1rem;
-  border-radius: 8px;
-  background-color: #67df65;
+  padding: 6px 10px 6px 10px;
   width: fit-content;
   font-weight: 600;
   font-size: 12px;
-  margin-bottom: 1rem;
+  background-color: white;
+  color: #0066ff;
 }
 
 .maybeApprovalBlock {
@@ -69,7 +68,46 @@ li {
   margin-bottom: 1rem;
 }
 
-.innerli {
-  list-style-type: none !important;
+.approvedGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 1rem;
+}
+
+.approvedItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2px;
+  padding: 16px 8px 16px 8px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(204, 204, 204, 0.5);
+  background-color: #f2f6fd;
+  text-align: center;
+  font-weight: 400;
   font-size: 14px;
+}
+
+.approvedItemTotalCompensation {
+  color: #0066ff;
+}
+
+.sectionHeader {
+  padding-block: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tooltip {
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px 16px 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+  border: 1px solid rgba(204, 204, 204, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

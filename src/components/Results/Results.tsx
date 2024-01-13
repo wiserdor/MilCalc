@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import useStore from '../../store/store'
-import ApprovedList from './ApprovedList'
+import ApprovedGrid from './ApprovedGrid'
 import style from './Results.module.css'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 
@@ -64,7 +64,7 @@ const Results = () => {
       </div>
       <div className={style.resultsTitle}>המענקים שמגיעים לך</div>
       {totalApproved > 0 && (
-        <ApprovedList
+        <ApprovedGrid
           totalSpecialDays={totalSpecialDays}
           totalExtended={totalExtended}
           totalAdditional={totalAdditional}
