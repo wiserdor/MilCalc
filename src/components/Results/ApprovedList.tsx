@@ -14,7 +14,6 @@ interface ApprovedListProps {
   totalVacation: number
   totalFamilyCare: number
   totalMental: number
-  totalOld: number
 }
 
 const ApprovedList = (props: ApprovedListProps) => {
@@ -31,7 +30,6 @@ const ApprovedList = (props: ApprovedListProps) => {
     totalVacation,
     totalFamilyCare,
     totalMental,
-    totalOld,
   } = props
 
   const total2023 =
@@ -156,14 +154,6 @@ const ApprovedList = (props: ApprovedListProps) => {
             <div className={style.sumLine}>
               <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
               טיפול רגשי נפשי ומשלים.
-            </div>
-          </li>
-        )}
-        {totalOld > 0 && (
-          <li>
-            <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalOld} ש״ח `}</span>
-              תגמול למוחרגי גיל.
             </div>
           </li>
         )}

@@ -6,9 +6,7 @@ import { CalculatorResults, DateRange } from './types'
 export interface CalculatorState extends CalculatorResults {
   // Form states
   isCombat: boolean
-  isOld: boolean
   isDaysStraight: boolean
-  isCommander: boolean
   dateRanges: DateRange[]
   hasChildren: boolean
   hasChildrenSpecial: boolean
@@ -31,9 +29,7 @@ export interface CalculatorState extends CalculatorResults {
 const useStore = create<CalculatorState>((set) => ({
   // Form states
   isCombat: false,
-  isOld: false,
   isDaysStraight: false,
-  isCommander: false,
   dateRanges: [
     {
       startDate: '2023-10-07',
@@ -61,7 +57,6 @@ const useStore = create<CalculatorState>((set) => ({
   totalExtended: 0,
   totalAdditional: 0,
   totalDaysStraight: 0,
-  totalOld: 0,
 
   // Function to update form states
   setFormState: (name: string, value: any) =>
@@ -118,21 +113,18 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren,
       totalMental,
       totalFamilyCare,
-      totalOld,
       totalSpecialDays,
       totalExtended,
       totalAdditional,
       totalDaysStraight,
     } = calculateCompensation({
       isCombat: state.isCombat,
-      isOld: state.isOld,
       isDaysStraight: state.isDaysStraight,
       dateRanges: state.dateRanges,
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
       operation24Days: state.operation24Days,
-      isCommander: state.isCommander,
     })
 
     set({
@@ -144,7 +136,6 @@ const useStore = create<CalculatorState>((set) => ({
       totalSpecialChildren,
       totalMental,
       totalFamilyCare,
-      totalOld,
       totalSpecialDays,
       totalExtended,
       totalAdditional,

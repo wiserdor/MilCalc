@@ -13,8 +13,6 @@ const Form = () => {
     serviceBefore,
     isCombat,
     isDaysStraight,
-    isOld,
-    isCommander,
     hasChildren,
     hasChildrenSpecial,
     validateAndSetErrors,
@@ -124,18 +122,6 @@ const Form = () => {
           checked={isStudent}
           onChange={handleInputChange}
         /> */}
-          <FormCheckbox
-            label="אני מפקד/ת"
-            name="isCommander"
-            checked={isCommander}
-            onChange={handleInputChange}
-          />
-          <FormCheckbox
-            label="אני מוחרג/ת גיל"
-            name="isOld"
-            checked={isOld}
-            onChange={handleInputChange}
-          />
           <FormCheckbox
             label="יש לי ילד/ים עד גיל 14"
             name="hasChildren"

@@ -19,7 +19,6 @@ const Results = () => {
     totalAdditional,
     totalDaysStraight,
     isCombat,
-    totalOld,
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -49,7 +48,6 @@ const Results = () => {
     totalFamilyCare +
     totalMental +
     totalVacation +
-    totalOld +
     totalSpecialDays +
     totalExtended +
     totalAdditional +
@@ -79,7 +77,6 @@ const Results = () => {
           totalVacation={totalVacation}
           totalFamilyCare={totalFamilyCare}
           totalMental={totalMental}
-          totalOld={totalOld}
         />
       )}
     </div>

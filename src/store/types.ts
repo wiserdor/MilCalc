@@ -13,7 +13,6 @@ export interface CalculatorResults {
   totalSpecialChildren: number
   totalMental: number
   totalFamilyCare: number
-  totalOld: number
   totalSpecialDays: number
   totalExtended: number
   totalAdditional: number

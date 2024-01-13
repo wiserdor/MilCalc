@@ -94,8 +94,7 @@ const isOneRangeMoreThan5Days = (
 const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
-  daysStraight: boolean,
-  isCommander: boolean
+  daysStraight: boolean
 ) => {
   // 10-14.5 = 1410
   // 15-19.5 = 2820
@@ -129,8 +128,7 @@ const specialGrantCalculation = (
     extendedDays = Math.max(daysInWar - (31 - daysBefore), 0)
   }
 
-  const totalExtended =
-    extendedDays * (GRANT_DAILY_RATE * (isCommander ? 2 : 1))
+  const totalExtended = extendedDays * GRANT_DAILY_RATE
 
   const totalDaysStraight = daysStraight ? 266 : 0
 
@@ -141,20 +139,16 @@ export const calculateCompensation = (inputs: {
   dateRanges: DateRange[]
   operation24Days: string
   isCombat: boolean
-  isOld: boolean
   isDaysStraight: boolean
   hasChildren: boolean
   hasChildrenSpecial: boolean
   serviceBefore: string
-  isCommander: boolean
 }) => {
   const {
     dateRanges: dateRangesString,
     operation24Days: operation24DaysString,
     isCombat,
-    isOld,
     isDaysStraight,
-    isCommander,
     hasChildren,
     hasChildrenSpecial,
     serviceBefore: serviceBeforeString,
@@ -183,8 +177,7 @@ export const calculateCompensation = (inputs: {
   } = specialGrantCalculation(
     serviceBefore,
     daysWar,
-    isDaysStraight || isDaysStraightInWar,
-    isCommander
+    isDaysStraight || isDaysStraightInWar
   )
 
   let totalPerMonth = calculateMonthlyCompensation(
@@ -205,7 +198,6 @@ export const calculateCompensation = (inputs: {
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   let totalDedication = 0
-  const totalOld = isOld ? (daysWar + serviceBefore) * GRANT_DAILY_RATE : 0
 
   return {
     totalPerMonth,
@@ -217,7 +209,6 @@ export const calculateCompensation = (inputs: {
     totalMental,
     totalFamilyCare,
     totalDedication,
-    totalOld,
     totalSpecialDays,
     totalExtended,
     totalAdditional,
