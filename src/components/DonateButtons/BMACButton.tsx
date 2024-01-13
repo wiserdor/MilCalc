@@ -12,7 +12,7 @@ const BuyMeACoffeeButton = () => {
         src="/svg/bmc-new-btn-logo.svg"
         alt="Buy me a coffee"
       />
-      <span className={style.coffeeButtonText}>קנו לנו פק״ל קפה</span>
+      <span className={style.coffeeButtonText}>קנו לנו קפה שחור</span>
     </a>
   )
 }

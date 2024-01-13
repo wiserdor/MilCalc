@@ -7,7 +7,7 @@
   border-radius: 5px;
   border: 1px solid transparent;
   padding-block: 0.5rem;
-  padding-inline: 1rem;
+  padding-inline: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.6px;
@@ -32,4 +32,5 @@
 .coffeeButtonText {
   margin-right: 8px;
   vertical-align: middle;
+  white-space: nowrap;
 }
