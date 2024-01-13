@@ -57,30 +57,21 @@ const ApprovedList = (props: ApprovedListProps) => {
                     <span
                       className={style.boldSum}
                     >{`${totalAdditional} ש״ח `}</span>
-                    המענק הנוסף.
+                    התגמול הנוסף.
                   </div>
                 </li>
               )}
-              {totalSpecialDays > 0 && (
+              {totalSpecialDays + totalExtended > 0 && (
                 <li className={style.innerli}>
                   <div className={style.sumLine}>
-                    <span
-                      className={style.boldSum}
-                    >{`${totalSpecialDays} ש״ח `}</span>
+                    <span className={style.boldSum}>{`${
+                      totalSpecialDays + totalExtended
+                    } ש״ח `}</span>
                     התגמול המיוחד.
                   </div>
                 </li>
               )}
-              {totalExtended > 0 && (
-                <li className={style.innerli}>
-                  <div className={style.sumLine}>
-                    <span
-                      className={style.boldSum}
-                    >{`${totalExtended} ש״ח `}</span>
-                    התגמול המיוחד המורחב.
-                  </div>
-                </li>
-              )}
+
               {totalDaysStraight > 0 && (
                 <li className={style.innerli}>
                   <div className={style.sumLine}>
