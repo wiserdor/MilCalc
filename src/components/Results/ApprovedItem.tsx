@@ -17,6 +17,7 @@ export interface ApprovedItemProps {
   name: string
   totalCompensation: number
   description?: string
+  nonDirectMoney?: boolean
 }
 
 const Tooltip = (props: { text: string }) => {
@@ -72,11 +73,13 @@ const Tooltip = (props: { text: string }) => {
 }
 
 const ApprovedItem = (props: ApprovedItemProps) => {
-  const { name, totalCompensation, description } = props
+  const { name, totalCompensation, description, nonDirectMoney = false } = props
   return (
     <div className={style.approvedItem}>
       <div className={style.approvedItemTotalCompensation}>
-        {`${totalCompensation.toLocaleString('he-IL')}₪`}
+        {`${nonDirectMoney ? 'בשווי' : ''} ₪${totalCompensation.toLocaleString(
+          'he-IL'
+        )}`}
       </div>
       <div>{name}</div>
       {description && <Tooltip text={description} />}

@@ -84,18 +84,21 @@ const ApprovedGrid = (props: ApprovedGridProps) => {
         totalCompensation: totalVacation,
         description:
           'שובר אישי יישלח במהלך חציון ב׳ 2024 באופן אוטומטי כהודעה לטלפון הנייד של חייל המילואים, למימוש עד סוף שנת 2026.',
+        nonDirectMoney: true,
       },
       {
         name: 'טיפול זוגי',
         totalCompensation: totalFamilyCare,
         description:
           'הסיוע יינתן בכפוף לתצהיר + קבלה שיגיש משרת המילואים ולא יותר מהתשלום בפועל. הגשת קבלת החזר החל מ- 1/2/24 לאחר שליחת מסרון פרטני. לניצול עד סוף 2026.',
+        nonDirectMoney: true,
       },
       {
         name: 'טיפול רגשי, נפשי ומשלים',
         totalCompensation: totalMental,
         description:
           'הסיוע יינתן בכפוף לתצהיר + קבלה שיגיש משרת המילואים ולא יותר מהתשלום בפועל. הגשת קבלת החזר החל מ- 1/2/24 לאחר שליחת מסרון פרטני. לניצול עד סוף 2026.',
+        nonDirectMoney: true,
       },
     ],
     [props]
@@ -108,7 +111,7 @@ const ApprovedGrid = (props: ApprovedGridProps) => {
           סך הכל:
           <span
             className={style.sectionTitle}
-          >{` ${totalApproved.toLocaleString('he-IL')}₪`}</span>
+          >{` ₪${totalApproved.toLocaleString('he-IL')}`}</span>
         </div>
         <div className={style.approvalBlock}>✓ עבר אישור</div>
       </div>
