@@ -43,10 +43,10 @@ const Form = () => {
         />
       </div>
       <div className={style.descriptionBold}>
-        רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו:
+        רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
       </div>
       <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
-      <form onSubmit={handleSubmit}>
+      <form className={style.formForm} onSubmit={handleSubmit}>
         <FormDateSection />
         <div className={style.formSection}>
           <div className={style.formSectionTitle}>

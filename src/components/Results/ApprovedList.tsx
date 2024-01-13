@@ -42,7 +42,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalAdditional > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalAdditional} ש״ח `}</span>
+              <span
+                className={style.boldSum}
+              >{`${totalAdditional.toLocaleString('en-US')} ש״ח `}</span>
               התגמול הנוסף.
             </div>
           </li>
@@ -50,9 +52,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalSpecialDays + totalExtended > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${
+              <span className={style.boldSum}>{`${(
                 totalSpecialDays + totalExtended
-              } ש״ח `}</span>
+              ).toLocaleString('en-US')} ש״ח `}</span>
               התגמול המיוחד.
             </div>
           </li>
@@ -63,7 +65,7 @@ const ApprovedList = (props: ApprovedListProps) => {
             <div className={style.sumLine}>
               <span
                 className={style.boldSum}
-              >{`${totalDaysStraight} ש״ח `}</span>
+              >{`${totalDaysStraight.toLocaleString('en-US')} ש״ח `}</span>
               הוצאות אישיות (5 ימים רצופים).
             </div>
           </li>
@@ -73,7 +75,7 @@ const ApprovedList = (props: ApprovedListProps) => {
           <li>
             <div className={style.sumLine}>
               <span className={style.boldSum}>
-                {`${totalPerMonthApproved} ש״ח `}
+                {`${totalPerMonthApproved.toLocaleString('en-US')} ש״ח `}
               </span>
               מענק הוצאות אישיות מוגדל.
             </div>
@@ -83,7 +85,7 @@ const ApprovedList = (props: ApprovedListProps) => {
           <li>
             <div className={style.sumLine}>
               <span className={style.boldSum}>
-                {`${totalFromChildrenApproved} ש״ח `}
+                {`${totalFromChildrenApproved.toLocaleString('en-US')} ש״ח `}
               </span>
               מענק משפחה מוגדל.
             </div>
@@ -92,7 +94,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalMoreThan45 > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalMoreThan45} ש״ח `}</span>
+              <span
+                className={style.boldSum}
+              >{`${totalMoreThan45.toLocaleString('en-US')} ש״ח `}</span>
               מענק כלכלת בית מוגדל.
             </div>
           </li>
@@ -102,7 +106,7 @@ const ApprovedList = (props: ApprovedListProps) => {
             <div className={style.sumLine}>
               <span
                 className={style.boldSum}
-              >{`${totalSpecialChildren} ש״ח `}</span>
+              >{`${totalSpecialChildren.toLocaleString('en-US')} ש״ח `}</span>
               מענק משפחה מיוחדת.
             </div>
           </li>
@@ -110,7 +114,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalVacation > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalVacation} ש״ח `}</span>
+              <span className={style.boldSum}>{`${totalVacation.toLocaleString(
+                'en-US'
+              )} ש״ח `}</span>
               שובר חופשה.
             </div>
           </li>
@@ -118,7 +124,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalFamilyCare > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalFamilyCare} ש״ח `}</span>
+              <span
+                className={style.boldSum}
+              >{`${totalFamilyCare.toLocaleString('en-US')} ש״ח `}</span>
               טיפול זוגי.
             </div>
           </li>
@@ -126,7 +134,9 @@ const ApprovedList = (props: ApprovedListProps) => {
         {totalMental > 0 && (
           <li>
             <div className={style.sumLine}>
-              <span className={style.boldSum}>{`${totalMental} ש״ח `}</span>
+              <span className={style.boldSum}>{`${totalMental.toLocaleString(
+                'en-US'
+              )} ש״ח `}</span>
               טיפול רגשי נפשי ומשלים.
             </div>
           </li>

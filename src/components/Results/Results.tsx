@@ -62,7 +62,7 @@ const Results = () => {
       <div className={style.moneyLogo}>
         <img src="/svg/money.svg" />
       </div>
-      <div className={style.resultsTitle}>המענקים שמגיעים לך:</div>
+      <div className={style.resultsTitle}>המענקים שמגיעים לך</div>
       {totalApproved > 0 && (
         <ApprovedList
           totalSpecialDays={totalSpecialDays}

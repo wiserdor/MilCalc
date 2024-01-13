@@ -5,7 +5,7 @@ import { faqQuestions } from './questions'
 const FAQ = () => {
   return (
     <div className={style.FAQ}>
-      <div className={style.FAQTitle}>שאלות ותשובות:</div>
+      <div className={style.FAQTitle}>שאלות ותשובות</div>
       <Accordion items={faqQuestions}></Accordion>
       <div style={{ marginTop: 8, textAlign: 'center' }}>
         <a

@@ -48,8 +48,8 @@ const Header = () => {
       </div>
       <div className={styles.pageTitle}>מחשבון מענקי מילואים</div>
       <div className={styles.subTitle}>
-        <img src="/svg/swords.svg" />
-        {' מלחמת חרבות ברזל '} <img src="/svg/swords.svg" />
+        <img src="/svg/israel.svg" />
+        {' מלחמת חרבות ברזל '}
       </div>
       <div className={styles.share}>
         <div>שתפו:</div>

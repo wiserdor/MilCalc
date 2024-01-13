@@ -12,9 +12,7 @@ const RiseupBanner = () => {
   return (
     <div
       style={{
-        marginTop: 16,
         paddingBlock: 24,
-        borderBlock: '2px solid #dce4ee',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -23,6 +21,18 @@ const RiseupBanner = () => {
         fontWeight: 400,
       }}
     >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 16,
+          marginBottom: 8,
+        }}
+      >
+        <img src="/svg/riseup.svg" />
+        <span style={{ color: '#6F6F6F', fontSize: 24 }}>+</span>
+        <img src="/svg/calculator.svg" alt="calculator" />
+      </div>
       <div>
         רייזאפ, שירות דיגיטלי שיתן לכם ודאות כלכלית, אפילו בימים כל כך חסרי
         ודאות. <br />
