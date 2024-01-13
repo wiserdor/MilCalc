@@ -42,43 +42,45 @@ const FormDateSection = () => {
         <NumberCircle number={1} />
         <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים</div>
       </div>
-      {dateRanges.map((dateRange, index) => (
-        <>
-          <div key={index} className={style.dateRange}>
-            <FormInput
-              type="date"
-              label="תאריך גיוס:"
-              name="startDate"
-              value={dateRange.startDate}
-              min="2023-10-07"
-              onChange={(e) => handleInputChange(e, index)}
-              onFocus={(e) => e.target.showPicker()}
-              style={{ cursor: 'pointer' }}
-            />
-            <FormInput
-              type="date"
-              label="תאריך שחרור:"
-              name="endDate"
-              value={dateRange.endDate}
-              min="2023-10-07"
-              onChange={(e) => handleInputChange(e, index)}
-              onFocus={(e) => e.target.showPicker()}
-              style={{ cursor: 'pointer' }}
-            />
-          </div>
-          <div
-            className={style.removeDateRangeWrapper}
-            onClick={() => onRemoveDateRange(index)}
-          >
-            <div
-              className={style.removeDateRange}
-              style={{ display: dateRanges.length === 1 ? 'none' : 'block' }}
-            >
-              -
+      <div className={style.dateRangesWrapper}>
+        {dateRanges.map((dateRange, index) => (
+          <>
+            <div key={index} className={style.dateRange}>
+              <FormInput
+                type="date"
+                label="תאריך גיוס:"
+                name="startDate"
+                value={dateRange.startDate}
+                min="2023-10-07"
+                onChange={(e) => handleInputChange(e, index)}
+                onFocus={(e) => e.target.showPicker()}
+                style={{ cursor: 'pointer' }}
+              />
+              <FormInput
+                type="date"
+                label="תאריך שחרור:"
+                name="endDate"
+                value={dateRange.endDate}
+                min="2023-10-07"
+                onChange={(e) => handleInputChange(e, index)}
+                onFocus={(e) => e.target.showPicker()}
+                style={{ cursor: 'pointer' }}
+              />
             </div>
-          </div>
-        </>
-      ))}
+            <div
+              className={style.removeDateRangeWrapper}
+              onClick={() => onRemoveDateRange(index)}
+            >
+              <div
+                className={style.removeDateRange}
+                style={{ display: dateRanges.length === 1 ? 'none' : 'block' }}
+              >
+                -
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
       <div className={style.addDateRange} onClick={onAddDateRange}>
         <img className={style.plusSvg} src="/svg/plus.svg" alt="הוסף תאריך" />
         <div className={style.addDateRangeText}>להוספת טווח תאריכים נוסף</div>
