@@ -3,6 +3,7 @@ import NumberCircle from '../NumberCircle/NumberCircle'
 import formStyle from './style/Form.module.css'
 import style from './style/FormDateSection.module.css'
 import FormInput from './FormInput'
+import { Fragment } from 'react'
 
 const FormDateSection = () => {
   const { dateRanges } = useStore()
@@ -44,8 +45,8 @@ const FormDateSection = () => {
       </div>
       <div className={style.dateRangesWrapper}>
         {dateRanges.map((dateRange, index) => (
-          <>
-            <div key={index} className={style.dateRange}>
+          <Fragment key={index}>
+            <div className={style.dateRange}>
               <FormInput
                 type="date"
                 label="תאריך גיוס:"
@@ -78,7 +79,7 @@ const FormDateSection = () => {
                 -
               </div>
             </div>
-          </>
+          </Fragment>
         ))}
       </div>
       <div className={style.addDateRange} onClick={onAddDateRange}>
