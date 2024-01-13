@@ -6,6 +6,7 @@
   width: 100%;
   gap: 3px;
   cursor: pointer;
+  margin-top: 24px;
 }
 
 .plusSvg {
@@ -18,11 +19,30 @@
   font-weight: 700;
 }
 
+.removeDateRangeWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .removeDateRange {
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   font-size: 18px;
-  color: #6f6f6f;
+  font-weight: 700;
+  color: #0066ff;
+  position: absolute;
+  height: 18px;
+  width: 32px;
+  background-color: #dce4ee;
+  border-radius: 16px;
+}
+
+.dateRange {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  column-gap: 0.5rem;
+  border-bottom: 1.5px dotted #ccc;
 }

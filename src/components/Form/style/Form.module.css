@@ -1,5 +1,7 @@
 .form {
   padding-bottom: 1rem;
+  background-color: #dce0c8;
+  padding: 48px 16px 48px 16px;
 }
 
 .label {
@@ -47,11 +49,10 @@
 }
 
 .formSection {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  padding-inline: 1rem;
-  padding-block: 1rem;
-  border-radius: 0.8rem;
+  padding: 16px;
+  border-radius: 8px;
   margin-block: 1rem;
+  background-color: #fff;
 }
 
 .formSectionTitle {
@@ -62,4 +63,31 @@
   flex-direction: row;
   gap: 0.7rem;
   align-items: baseline;
+}
+
+.descriptionBold {
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: center;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+}
+
+.descriptionFill {
+  text-align: center;
+  color: #767676;
+  font-weight: 400;
+}
+
+.arrowSvgWrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowSvg {
+  margin-inline: auto;
+  position: absolute;
+  bottom: 20px;
 }

@@ -76,10 +76,6 @@ const Header = () => {
         שירות המילואים במלחמת חרבות ברזל.
       </p>
       <Disclaimer />
-      <div className={styles.descriptionBold}>
-        רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו:
-      </div>
-      <div className={styles.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
     </div>
   )
 }
