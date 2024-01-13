@@ -101,7 +101,6 @@ const specialGrantCalculation = (
   // 20-36.5 = 4230
   //37 and above = 5640
   // did you do 5-9 days straight 266
-  debugger
   const totalDays = daysBefore + daysInWar
 
   let totalAdditional = 0
