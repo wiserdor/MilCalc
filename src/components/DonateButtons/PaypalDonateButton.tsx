@@ -20,8 +20,7 @@ const PaypalDonateButton = () => {
           fontWeight: 500,
         }}
       >
-        תרמו דרך{' '}
-        <img src="/svg/paypal.svg" alt="paypal" width={64} height={64} />{' '}
+        קנו לנו קפה שחור דרך <img src="/svg/paypal.svg" alt="paypal" />{' '}
       </div>
     </a>
   )
