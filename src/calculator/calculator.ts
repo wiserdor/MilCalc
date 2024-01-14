@@ -1,3 +1,10 @@
+import {
+  endOfYear,
+  max,
+  min,
+  startOfYear,
+  differenceInCalendarDays,
+} from 'date-fns'
 import { DateRange } from '../store/types'
 import {
   COMBAT_RATE,
@@ -21,7 +28,9 @@ export const calculateVacation = (
   return hasChildren ? baseVacation + additionalForChildren : baseVacation
 }
 
-const calculateDays = (dateRanges: { startDate: Date; endDate: Date }[]) => {
+export const calculateDays = (
+  dateRanges: { startDate: Date; endDate: Date }[]
+) => {
   let total = 0
   dateRanges.forEach(({ startDate, endDate }) => {
     total += totalDaysInRange(startDate, endDate)
@@ -30,7 +39,10 @@ const calculateDays = (dateRanges: { startDate: Date; endDate: Date }[]) => {
   return total
 }
 
-const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
+export const calculateMonthlyCompensation = (
+  isCombat: boolean,
+  days: number
+) => {
   if (days < 40) return 0
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
 
@@ -38,7 +50,10 @@ const calculateMonthlyCompensation = (isCombat: boolean, days: number) => {
   return total
 }
 
-const calculateChildrenCompensation = (isCombat: boolean, days: number) => {
+export const calculateChildrenCompensation = (
+  isCombat: boolean,
+  days: number
+) => {
   // 833 for combat for each 10 days
   //500 for non combat for each 10 days
   if (days < 40) return 0
@@ -47,7 +62,7 @@ const calculateChildrenCompensation = (isCombat: boolean, days: number) => {
   return total
 }
 
-const operation24Calculation = (operation24Days: number) => {
+export const operation24Calculation = (operation24Days: number) => {
   // 100 per day for first 10 days
   // extra 150 per day for 11 to 20 days
   // extra 200 per day from 21 and on
@@ -74,13 +89,11 @@ const operation24Calculation = (operation24Days: number) => {
   return totalAmount
 }
 
-const totalDaysInRange = (startDate: Date, endDate: Date) => {
-  let Difference_In_Time = endDate.getTime() - startDate.getTime()
-  let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24)
-  return Difference_In_Days + 1
+export const totalDaysInRange = (startDate: Date, endDate: Date) => {
+  return Math.max(differenceInCalendarDays(endDate, startDate) + 1, 0)
 }
 
-const isOneRangeMoreThan5Days = (
+export const isOneRangeMoreThan5Days = (
   dateRanges: {
     startDate: Date
     endDate: Date
@@ -91,7 +104,33 @@ const isOneRangeMoreThan5Days = (
   )
 }
 
-const specialGrantCalculation = (
+export const getTotalDaysIn2023 = (
+  dateRanges: {
+    startDate: Date
+    endDate: Date
+  }[]
+) => {
+  let totalDays = 0
+  const start2023 = startOfYear(new Date('2023-01-01'))
+  const end2023 = endOfYear(new Date('2023-01-01'))
+
+  dateRanges.forEach((range) => {
+    if (range.endDate < start2023 || range.startDate > end2023) {
+      return 0
+    }
+
+    if (range.startDate.getFullYear() < 2023) return
+
+    const start = max([start2023, range.startDate])
+    const end = min([end2023, range.endDate])
+
+    totalDays += totalDaysInRange(start, end)
+  })
+
+  return totalDays
+}
+
+export const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
   daysStraight: boolean
@@ -166,7 +205,7 @@ export const calculateCompensation = (inputs: {
 
   const isDaysStraightInWar = isOneRangeMoreThan5Days(dateRanges)
 
-  const daysWar = calculateDays(dateRanges)
+  const daysInWar = calculateDays(dateRanges)
 
   const {
     totalSpecialDays,
@@ -175,25 +214,28 @@ export const calculateCompensation = (inputs: {
     totalDaysStraight,
   } = specialGrantCalculation(
     serviceBefore,
-    daysWar,
+    daysInWar,
     isDaysStraight || isDaysStraightInWar
   )
 
   let totalPerMonth = calculateMonthlyCompensation(
     isCombat,
-    Math.max(daysWar, 0)
+    Math.max(daysInWar, 0)
   )
 
+  const daysWarIn2023 = getTotalDaysIn2023(dateRanges)
+
   let totalOperation24 = operation24Calculation(operation24Days)
-  let totalMoreThan45 = isCombat && daysWar > 45 ? 2500 : 1250
+  let totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250
 
   let totalFromChildren = hasChildren
-    ? calculateChildrenCompensation(isCombat, daysWar)
+    ? calculateChildrenCompensation(isCombat, daysWarIn2023)
     : 0
-  let totalVacation = calculateVacation(daysWar, hasChildren, isCombat)
+
+  let totalVacation = calculateVacation(daysInWar, hasChildren, isCombat)
   let totalSpecialChildren = hasChildrenSpecial ? SPECIAL_NEEDS_COMPENSATION : 0
 
-  let totalMental = daysWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0
+  let totalMental = daysInWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0
   let totalFamilyCare = FAMILY_CARE_COMPENSATION
 
   let totalDedication = 0
