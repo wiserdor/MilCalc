@@ -1,23 +1,26 @@
-import { useState } from 'react'
-import style from './Results.module.css'
 import {
+  FloatingPortal,
   autoUpdate,
-  useFloating,
-  offset,
   flip,
+  offset,
   shift,
   useDismiss,
+  useFloating,
   useFocus,
   useHover,
-  useRole,
   useInteractions,
-  FloatingPortal,
+  useRole,
 } from '@floating-ui/react'
+import { useState } from 'react'
+import style from './Results.module.css'
+
 export interface ApprovedItemProps {
   name: string
   totalCompensation: number
   description?: string
   nonDirectMoney?: boolean
+  paid?: boolean
+  paidDate?: string
 }
 
 const Tooltip = (props: { text: string }) => {
@@ -72,7 +75,7 @@ const Tooltip = (props: { text: string }) => {
   )
 }
 
-const ApprovedItem = (props: ApprovedItemProps) => {
+const ResultItem = (props: ApprovedItemProps) => {
   const { name, totalCompensation, description, nonDirectMoney = false } = props
   return (
     <div className={style.approvedItem}>
@@ -87,4 +90,4 @@ const ApprovedItem = (props: ApprovedItemProps) => {
   )
 }
 
-export default ApprovedItem
+export default ResultItem

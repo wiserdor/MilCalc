@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import useStore from '../../store/store'
-import ApprovedGrid from './ApprovedGrid'
 import style from './Results.module.css'
+import ResultsSection from './ResultsSection'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
+import { getApprovedItems } from './data'
 
 const Results = () => {
   const {
@@ -53,6 +54,36 @@ const Results = () => {
     totalAdditional +
     totalDaysStraight
 
+  const approvedItems = useMemo(
+    () =>
+      getApprovedItems(
+        totalPerMonthApproved,
+        totalFromChildrenApproved,
+        totalSpecialChildren,
+        totalMoreThan45,
+        totalFamilyCare,
+        totalMental,
+        totalVacation,
+        totalSpecialDays,
+        totalExtended,
+        totalAdditional,
+        totalDaysStraight
+      ),
+    [
+      totalPerMonthApproved,
+      totalFromChildrenApproved,
+      totalSpecialChildren,
+      totalMoreThan45,
+      totalFamilyCare,
+      totalMental,
+      totalVacation,
+      totalSpecialDays,
+      totalExtended,
+      totalAdditional,
+      totalDaysStraight,
+    ]
+  )
+
   if (validationErrors?.length > 0) return null
 
   if (totalApproved === 0) return null
@@ -64,20 +95,7 @@ const Results = () => {
       </div>
       <div className={style.resultsTitle}>המענקים שמגיעים לך</div>
       {totalApproved > 0 && (
-        <ApprovedGrid
-          totalSpecialDays={totalSpecialDays}
-          totalExtended={totalExtended}
-          totalAdditional={totalAdditional}
-          totalDaysStraight={totalDaysStraight}
-          totalPerMonthApproved={totalPerMonthApproved}
-          totalFromChildrenApproved={totalFromChildrenApproved}
-          totalSpecialChildren={totalSpecialChildren}
-          totalMoreThan45={totalMoreThan45}
-          totalApproved={totalApproved}
-          totalVacation={totalVacation}
-          totalFamilyCare={totalFamilyCare}
-          totalMental={totalMental}
-        />
+        <ResultsSection total={totalApproved} results={approvedItems} />
       )}
     </div>
   )
