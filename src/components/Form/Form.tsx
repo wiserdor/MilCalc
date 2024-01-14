@@ -117,6 +117,12 @@ const Form = () => {
             onChange={handleInputChange}
           />
           {/* <FormCheckbox
+            label="אני מוחרג/ת גיל"
+            name="isOld"
+            checked={isOld}
+            onChange={handleInputChange}
+          /> */}
+          {/* <FormCheckbox
           label="אני סטודנט/ית"
           name="isStudent"
           checked={isStudent}

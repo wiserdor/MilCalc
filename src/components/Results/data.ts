@@ -5,9 +5,6 @@ export const getApprovedItems = (
   totalFromChildrenApproved: number,
   totalSpecialChildren: number,
   totalMoreThan45: number,
-  totalFamilyCare: number,
-  totalMental: number,
-  totalVacation: number,
   totalSpecialDays: number,
   totalExtended: number,
   totalAdditional: number,
@@ -60,6 +57,13 @@ export const getApprovedItems = (
     description:
       'ישולם עד 1/3/24 באופן אוטומטי וחד פעמי (ובכפוף לקבלת המידע הנדרש ממשרדי הממשלה) ישירות לחשבון הבנק המדווח במערכות צה״ל.',
   },
+]
+
+export const getApprovedNonPaidItems = (
+  totalFamilyCare: number,
+  totalMental: number,
+  totalVacation: number
+) => [
   {
     name: 'שובר חופשה',
     totalCompensation: totalVacation,

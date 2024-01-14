@@ -11,6 +11,7 @@ export interface CalculatorState extends CalculatorResults {
   hasChildren: boolean
   hasChildrenSpecial: boolean
   isStudent: boolean
+  isOld: boolean
   serviceBefore: string
   operation24Days: string
 
@@ -41,6 +42,7 @@ const useStore = create<CalculatorState>((set) => ({
   hasChildren: false,
   hasChildrenSpecial: false,
   isStudent: false,
+  isOld: false,
   serviceBefore: '0',
   operation24Days: '0',
 

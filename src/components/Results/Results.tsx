@@ -3,7 +3,7 @@ import useStore from '../../store/store'
 import style from './Results.module.css'
 import ResultsSection from './ResultsSection'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
-import { getApprovedItems } from './data'
+import { getApprovedItems, getApprovedNonPaidItems } from './data'
 
 const Results = () => {
   const {
@@ -41,19 +41,6 @@ const Results = () => {
       ? getMaxMonthApproval(isCombat)
       : totalPerMonth
 
-  const totalApproved =
-    totalPerMonthApproved +
-    totalFromChildrenApproved +
-    totalSpecialChildren +
-    totalMoreThan45 +
-    totalFamilyCare +
-    totalMental +
-    totalVacation +
-    totalSpecialDays +
-    totalExtended +
-    totalAdditional +
-    totalDaysStraight
-
   const approvedItems = useMemo(
     () =>
       getApprovedItems(
@@ -61,9 +48,6 @@ const Results = () => {
         totalFromChildrenApproved,
         totalSpecialChildren,
         totalMoreThan45,
-        totalFamilyCare,
-        totalMental,
-        totalVacation,
         totalSpecialDays,
         totalExtended,
         totalAdditional,
@@ -74,9 +58,6 @@ const Results = () => {
       totalFromChildrenApproved,
       totalSpecialChildren,
       totalMoreThan45,
-      totalFamilyCare,
-      totalMental,
-      totalVacation,
       totalSpecialDays,
       totalExtended,
       totalAdditional,
@@ -84,9 +65,28 @@ const Results = () => {
     ]
   )
 
+  const approvedNonPaidItems = useMemo(
+    () => getApprovedNonPaidItems(totalFamilyCare, totalMental, totalVacation),
+    [totalMental, totalFamilyCare, totalVacation]
+  )
+
+  const totalApproved = useMemo(
+    () => approvedItems.reduce((acc, item) => acc + item.totalCompensation, 0),
+    [approvedItems]
+  )
+
+  const totalNonPaidApproved = useMemo(
+    () =>
+      approvedNonPaidItems.reduce(
+        (acc, item) => acc + item.totalCompensation,
+        0
+      ),
+    [approvedNonPaidItems]
+  )
+
   if (validationErrors?.length > 0) return null
 
-  if (totalApproved === 0) return null
+  if (totalApproved + totalNonPaidApproved === 0) return null
 
   return (
     <div className={style.results} ref={resultsRef}>
@@ -95,7 +95,18 @@ const Results = () => {
       </div>
       <div className={style.resultsTitle}>המענקים שמגיעים לך</div>
       {totalApproved > 0 && (
-        <ResultsSection total={totalApproved} results={approvedItems} />
+        <ResultsSection
+          title="תגמולים ומענקים"
+          total={totalApproved}
+          results={approvedItems}
+        />
+      )}
+      {totalNonPaidApproved > 0 && (
+        <ResultsSection
+          title="שוברים וסיוע"
+          total={totalNonPaidApproved}
+          results={approvedNonPaidItems}
+        />
       )}
     </div>
   )

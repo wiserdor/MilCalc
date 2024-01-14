@@ -4,19 +4,23 @@ import style from './Results.module.css'
 interface ResultsSectionProps {
   results: ApprovedItemProps[]
   total: number
+  title: string
 }
 
 const ResultsSection = (props: ResultsSectionProps) => {
-  const { results, total } = props
+  const { results, total, title } = props
 
   return (
     <div className={style.resultsSection}>
       <div className={style.sectionHeader}>
-        <div>
-          סך הכל:
-          <span className={style.sectionTitle}>{` ₪${total.toLocaleString(
-            'he-IL'
-          )}`}</span>
+        <div className={style.sectionTitleWrapper}>
+          <div>
+            סך הכל:
+            <span className={style.sectionTitle}>{` ₪${total.toLocaleString(
+              'he-IL'
+            )}`}</span>
+          </div>
+          <div className={style.subTitle}>{title}</div>
         </div>
         <div className={style.approvalBlock}>✓ עבר אישור</div>
       </div>

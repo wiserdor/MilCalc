@@ -39,9 +39,9 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <p className={styles.lastUpdated}>
+      <div className={styles.lastUpdated}>
         <img src="/svg/time.svg" /> עדכון אחרון: {getLastModified()}
-      </p>
+      </div>
 
       <div className={styles.logo}>
         <img src="/svg/calculator.svg" alt="מחשבון מענקים" />

@@ -116,7 +116,7 @@ const specialGrantCalculation = (
 
   // Special Grant
   const specialDays = Math.min(Math.max(daysBefore - 32, 0), 28)
-  const totalSpecialDays = specialDays * GRANT_DAILY_RATE
+  let totalSpecialDays = specialDays * GRANT_DAILY_RATE
 
   let extendedDays = 0
   if (daysBefore >= 60) {
