@@ -168,7 +168,7 @@ export const specialGrantCalculation = (
 
   const totalExtended = extendedDays * GRANT_DAILY_RATE
 
-  const totalDaysStraight = daysStraight ? 266 : 0
+  const totalDaysStraight = (daysStraight && (totalDays < 10)) ? 266 : 0
 
   return { totalDaysStraight, totalSpecialDays, totalExtended, totalAdditional }
 }
