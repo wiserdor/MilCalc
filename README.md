@@ -1,41 +1,46 @@
-<div dir="rtl">
-  <h2>
-מחשבון חרבות ברזל
-</h2>
-  
-מנסה להבין כמה כסף מגיע לך על המילואים? מחשבון מצורף הישר מהשטח <a href="https://miluimnik.info">https://miluimnik.info</a>
+# MilCalc
 
+## Introduction
 
+URL: [https://miluimnik.info/](https://miluimnik.info/)
 
-בתקופה האחרונה במילואים שמתי לב לשאלה שמעסיקה את החיילים לא פחות ממתי יוצאים הביתה והיא - כמה כסף מגיע לי.
+MilCalc is a React application designed to calculate compensation for military service. This tool aims to simplify and automate the process of calculating various compensation metrics for military personnel.
 
+### Installation
 
+```bash
+git clone https://github.com/wiserdor/MilCalc.git
+cd MilCalc
+npm install # or yarn install
+```
 
-חיילים מתוסכלים מביטים בקבצים מעורפלים ומנסים לחלץ את המספר המיוחל בעזרת המחשבון בטלפון. הכאב (ראש) היה ניכר. 
+### Usage
 
+to run the development server:
 
+```bash
+npm vite # or yarn start
+```
 
-החלטנו לנקוט מעשה ולמצוא פתרון שיקל על כאבם של החיילים. 
+to build the project:
 
+```bash
+npm build # or yarn build
+```
 
+### Contributing
 
-התהליך היה מהיר: 
+Contributions are welcome! Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
 
-1. קוד ראשון נבנה עם Chat GPT
+### Contact
 
-2. השלמנו את הפונקציונליות בהתאם לצרכים
+#### Project Maintainer
 
-3. עשינו Q&A והתאמות לעיצוב
+**Dor Wiser**
 
-4. אספנו פידבקים ותיקונים נוספים
+For any queries regarding the MilCalc project, feel free to reach out to the project maintainer, Dor Wiser. Here are the contact details:
 
-5. שחרור
+- **LinkedIn:** [Dor Wiser](https://www.linkedin.com/in/dor-wiser/)
+- **Email:** [wiserdor@gmail.com](mailto:wiserdor@gmail.com)
 
-</div>
-
-בעזרת המחשבון שיצרנו תוכלו להבין כמה כסף מגיע לכם - רק צריך למלא כמה שדות פשוטים ומיד תקבלו את המספר כולל פירוט.  
-
-
- 
-
-דיסקליימר - המחשבון נבנה על סמך המצגת הצה״לית ששוחררה. אין האמור במחשבון כל הבטחה לקבלת תשלום מהמדינה :)
+I'm is always open to feedback, contributions, and collaborations on this project.
