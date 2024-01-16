@@ -18,7 +18,6 @@ const RiseupBanner = () => {
         alignItems: 'center',
         textAlign: 'center',
         gap: 16,
-        fontWeight: 400,
       }}
     >
       <div
@@ -33,15 +32,13 @@ const RiseupBanner = () => {
         <span style={{ color: '#6F6F6F', fontSize: 24 }}>+</span>
         <img src="/svg/calculator.svg" alt="calculator" />
       </div>
-      <div>
+      <h2>הטבה מיוחדת למשתמשי המחשבון</h2>
+      <div style={{ fontWeight: 400, lineHeight: 1.2, fontSize: 16 }}>
         רייזאפ, שירות דיגיטלי שיתן לכם ודאות כלכלית, אפילו בימים כל כך חסרי
-        ודאות. <br />
-        <br />
-        הטבה מיוחדת למשתמשי המחשבון:
-        <br />
-        <div style={{ fontWeight: 500 }}>
+        ודאות.
+        <span style={{ fontWeight: 600 }}>
           חודש ראשון חינם ו50% הנחה על החודש השני והשלישי.
-        </div>
+        </span>
       </div>
       <a
         href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"

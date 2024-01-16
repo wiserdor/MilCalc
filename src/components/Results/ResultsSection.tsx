@@ -14,12 +14,10 @@ const ResultsSection = (props: ResultsSectionProps) => {
     <div className={style.resultsSection}>
       <div className={style.sectionHeader}>
         <div className={style.sectionTitleWrapper}>
-          <div>
-            סך הכל:
-            <span className={style.sectionTitle}>{` ₪${total.toLocaleString(
-              'he-IL'
-            )}`}</span>
-          </div>
+          <h2 className={style.sectionTitle}>{` ₪${total.toLocaleString(
+            'he-IL'
+          )}`}</h2>
+
           <div className={style.subTitle}>{title}</div>
         </div>
         <div className={style.approvalBlock}>✓ עבר אישור</div>

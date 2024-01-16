@@ -9,7 +9,6 @@ li {
 }
 
 .sectionTitle {
-  font-weight: 600;
   color: #0066ff;
 }
 
@@ -20,7 +19,6 @@ li {
 }
 
 .resultsTitle {
-  font-weight: 600;
   font-size: 16px;
   text-align: center;
   padding-block: 0.5rem;
@@ -37,10 +35,13 @@ li {
 }
 
 .resultsSection {
-  padding: 24px 16px 32px 16px;
+  padding: 24px 16px 24px 16px;
   border-radius: 16px;
   margin-block: 1rem;
   background-color: #f2f6fd;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .resultsSectionResults li {
@@ -102,7 +103,6 @@ li {
 }
 
 .sectionHeader {
-  padding-block: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

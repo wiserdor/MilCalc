@@ -93,7 +93,7 @@ const Results = () => {
       <div className={style.moneyLogo}>
         <img src="/svg/money.svg" />
       </div>
-      <div className={style.resultsTitle}>המענקים שמגיעים לך</div>
+      <h2 className={style.resultsTitle}>המענקים שמגיעים לך</h2>
       {totalApproved > 0 && (
         <ResultsSection
           title="תגמולים ומענקים"
