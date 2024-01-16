@@ -14,6 +14,10 @@ import {
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION,
 } from './constants'
+import {
+  getMaxChildApproval,
+  getMaxMonthApproval,
+} from '../components/Results/constants'
 
 export const calculateVacation = (
   totalDays: number,
@@ -47,7 +51,7 @@ export const calculateMonthlyCompensation = (
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE
 
   const total = Math.floor((days - 30) / 10) * rate
-  return total
+  return Math.min(getMaxMonthApproval(isCombat), total)
 }
 
 export const calculateChildrenCompensation = (
@@ -59,7 +63,7 @@ export const calculateChildrenCompensation = (
   if (days < 40) return 0
   const rate = isCombat ? 833 : 500
   const total = Math.floor((days - 30) / 10) * rate
-  return total
+  return Math.min(total, getMaxChildApproval(isCombat))
 }
 
 export const operation24Calculation = (operation24Days: number) => {

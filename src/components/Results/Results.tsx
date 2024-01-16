@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef } from 'react'
 import useStore from '../../store/store'
+import OneZero from '../OneZero/OneZero'
 import style from './Results.module.css'
 import ResultsSection from './ResultsSection'
-import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 import { getApprovedItems, getApprovedNonPaidItems } from './data'
-import OneZero from '../OneZero/OneZero'
 
 const Results = () => {
   const {
@@ -20,7 +19,6 @@ const Results = () => {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
-    isCombat,
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -32,21 +30,11 @@ const Results = () => {
     }
   }, [validationErrors])
 
-  const totalFromChildrenApproved =
-    totalFromChildren > getMaxChildApproval(isCombat)
-      ? getMaxChildApproval(isCombat)
-      : totalFromChildren
-
-  const totalPerMonthApproved =
-    totalPerMonth > getMaxMonthApproval(isCombat)
-      ? getMaxMonthApproval(isCombat)
-      : totalPerMonth
-
   const approvedItems = useMemo(
     () =>
       getApprovedItems(
-        totalPerMonthApproved,
-        totalFromChildrenApproved,
+        totalPerMonth,
+        totalFromChildren,
         totalSpecialChildren,
         totalMoreThan45,
         totalSpecialDays,
@@ -55,8 +43,8 @@ const Results = () => {
         totalDaysStraight
       ),
     [
-      totalPerMonthApproved,
-      totalFromChildrenApproved,
+      totalPerMonth,
+      totalFromChildren,
       totalSpecialChildren,
       totalMoreThan45,
       totalSpecialDays,

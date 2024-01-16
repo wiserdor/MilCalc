@@ -7,8 +7,10 @@ interface OneZeroProps {
 }
 
 const OneZero = (props: OneZeroProps) => {
-  const { total = 100000 } = props
+  const { total = 0 } = props
   const [isOpen, setIsOpen] = useState(false)
+
+  if (!total) return null
 
   const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1
 
@@ -17,6 +19,7 @@ const OneZero = (props: OneZeroProps) => {
   const afterYearDiff = afterYear - total
 
   useEffect(() => {
+    if (!total) return
     // get url params
     const urlParams = new URLSearchParams(window.location.search)
     const isOneZero = urlParams.get('onezero')
@@ -25,13 +28,13 @@ const OneZero = (props: OneZeroProps) => {
     if (isOneZero === 'true') {
       timeout = setTimeout(() => {
         setIsOpen(true)
-      }, 1000)
+      }, 3000)
     }
 
     return () => {
       if (timeout) clearTimeout(timeout)
     }
-  }, [])
+  }, [total])
 
   const handleOnClick = () => {
     setIsOpen(false)
