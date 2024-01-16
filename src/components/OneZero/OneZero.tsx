@@ -61,7 +61,6 @@ const OneZero = (props: OneZeroProps) => {
             הצעד שלך בדרך לחופשה בתאילנד, רכב חדש או שדרוג לבית.
           </div>
         </div>
-        <img src="/svg/arrow-down.svg" />
         <div
           style={{
             width: '100%',
