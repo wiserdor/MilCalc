@@ -55,7 +55,11 @@ const OneZero = (props: OneZeroProps) => {
           פקדון בטוח עם
           <img src="/svg/onezero.svg" />
         </div>
-        <div>
+        <div
+          style={{
+            width: 290,
+          }}
+        >
           <h2 className={style.slogan}>בא לך להגדיל את הסכום שמגיע לך?</h2>
           <div className={style.subSlogan}>
             הצעד שלך בדרך לחופשה בתאילנד, רכב חדש או שדרוג לבית.
@@ -79,14 +83,23 @@ const OneZero = (props: OneZeroProps) => {
         </div>
         <div className={style.results}>
           <div className={style.resultsRow}>
-            <img src="/svg/time.svg" width="100%" height="100%" />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <img src="/svg/time.svg" width={20} />
+            </div>
             <div
               style={{
                 fontWeight: 400,
                 fontSize: 14,
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'start',
                 alignItems: 'center',
+                textAlign: 'right',
               }}
             >
               סכום הפקדון בעוד 12 חודשים:
@@ -111,11 +124,20 @@ const OneZero = (props: OneZeroProps) => {
             className={style.resultsRow}
             style={{ fontWeight: 400, fontSize: 14, color: '#528322' }}
           >
-            <img width="100%" height="100%" src="/svg/money.svg" />
+            <div
+              style={{
+                width: '90%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <img src="/svg/money.svg" width={20} />
+            </div>
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'start',
                 alignItems: 'center',
               }}
             >
