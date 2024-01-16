@@ -109,7 +109,7 @@ const Results = () => {
           results={approvedNonPaidItems}
         />
       )}
-      <OneZero />
+      <OneZero total={totalApproved} />
     </div>
   )
 }

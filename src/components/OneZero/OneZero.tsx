@@ -2,8 +2,19 @@ import { useEffect, useState } from 'react'
 import Modal from '../Modal/Modal'
 import style from './OneZero.module.css'
 
-const OneZero = () => {
+interface OneZeroProps {
+  total: number
+}
+
+const OneZero = (props: OneZeroProps) => {
+  const { total = 100000 } = props
   const [isOpen, setIsOpen] = useState(false)
+
+  const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1
+
+  const afterYear = total * (1 + afterYearPercentage)
+
+  const afterYearDiff = afterYear - total
 
   useEffect(() => {
     // get url params
@@ -56,7 +67,9 @@ const OneZero = () => {
           <div className={style.totalSum}>
             <div>סכום להפקדה:</div>
             {/* <input type="number" className={style.totalSumInput} /> */}
-            <div className={style.totalSumNumber}>100,000 ש״ח</div>
+            <div className={style.totalSumNumber}>
+              {total.toLocaleString('he-IL')} ש״ח
+            </div>
             <div className={style.disclaimer}>
               *פיקדון בריבית שנתית משתנה של 4.6%. ניתן למשוך את הקרן בכל עת.
             </div>
@@ -74,7 +87,7 @@ const OneZero = () => {
                 alignItems: 'center',
               }}
             >
-              הסכום שהפקדת בעוד 12 חודשים:
+              סכום הפקדון בעוד 12 חודשים:
             </div>
             <div
               style={{
@@ -85,7 +98,10 @@ const OneZero = () => {
                 fontSize: 16,
               }}
             >
-              25,682 ש״ח
+              {afterYear.toLocaleString('he-IL', {
+                maximumFractionDigits: 1,
+              })}{' '}
+              ש״ח
             </div>
           </div>
           <div className={style.divider} />
@@ -112,7 +128,10 @@ const OneZero = () => {
                 alignItems: 'center',
               }}
             >
-              1200 ש״ח
+              {afterYearDiff.toLocaleString('he-il', {
+                maximumFractionDigits: 1,
+              })}{' '}
+              ש״ח
             </div>
           </div>
         </div>
