@@ -4,6 +4,7 @@ import style from './Results.module.css'
 import ResultsSection from './ResultsSection'
 import { getMaxChildApproval, getMaxMonthApproval } from './constants'
 import { getApprovedItems, getApprovedNonPaidItems } from './data'
+import OneZero from '../OneZero/OneZero'
 
 const Results = () => {
   const {
@@ -108,6 +109,7 @@ const Results = () => {
           results={approvedNonPaidItems}
         />
       )}
+      <OneZero />
     </div>
   )
 }
