@@ -10,11 +10,13 @@
   padding: 0;
   max-width: 360px;
   animation: fade-in 1s;
+  overflow: auto;
 }
 
 @media screen and (max-width: 600px) {
   .modal {
     width: 94%;
+    height: calc(100%);
   }
 }
 
