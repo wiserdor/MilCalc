@@ -9,8 +9,6 @@
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  overflow: auto;
-  height: fit-content;
 }
 
 .header {
@@ -78,6 +76,7 @@
   grid-template-rows: 1fr 1px 1fr;
   gap: 6px;
   border-radius: 16px;
+  width: 100%;
 }
 
 .resultsRow {

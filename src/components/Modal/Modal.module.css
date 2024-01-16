@@ -11,12 +11,13 @@
   max-width: 360px;
   animation: fade-in 1s;
   overflow: auto;
+  max-height: calc(94%);
+  border-radius: 24px;
 }
 
 @media screen and (max-width: 600px) {
   .modal {
     width: 94%;
-    height: calc(100%);
   }
 }
 
@@ -39,4 +40,8 @@
   to {
     opacity: 100;
   }
+}
+
+.modalChild {
+  height: fit-content;
 }

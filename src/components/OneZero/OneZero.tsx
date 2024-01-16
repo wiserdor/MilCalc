@@ -42,20 +42,12 @@ const OneZero = () => {
           <img src="/svg/onezero.svg" />
         </div>
         <div>
-          <h2 className={style.slogan}>
-            בא לך להגדיל את הסכום
-            <br />
-            שמגיע לך?
-          </h2>
+          <h2 className={style.slogan}>בא לך להגדיל את הסכום שמגיע לך?</h2>
           <div className={style.subSlogan}>
-            הצעד שלך בדרך לחופשה בתאילנד, רכב חדש
-            <br />
-            או שדרוג לבית.
+            הצעד שלך בדרך לחופשה בתאילנד, רכב חדש או שדרוג לבית.
           </div>
         </div>
-        <div>
-          <img src="/svg/arrow-down.svg" />
-        </div>
+        <img src="/svg/arrow-down.svg" />
         <div
           style={{
             width: '100%',
@@ -66,9 +58,7 @@ const OneZero = () => {
             {/* <input type="number" className={style.totalSumInput} /> */}
             <div className={style.totalSumNumber}>100,000 ש״ח</div>
             <div className={style.disclaimer}>
-              *פיקדון בריבית שנתית משתנה של 4.6%. ניתן
-              <br />
-              למשוך את הקרן בכל עת.
+              *פיקדון בריבית שנתית משתנה של 4.6%. ניתן למשוך את הקרן בכל עת.
             </div>
           </div>
         </div>
@@ -84,9 +74,7 @@ const OneZero = () => {
                 alignItems: 'center',
               }}
             >
-              הסכום שהפקדת
-              <br />
-              בעוד 12 חודשים:
+              הסכום שהפקדת בעוד 12 חודשים:
             </div>
             <div
               style={{

@@ -24,7 +24,7 @@ const Modal = (props: ModalProps) => {
     >
       <div className={style.modalBackdrop} onClick={handleBackdropClick} />
       <dialog className={style.modal} open={isOpen}>
-        {children}
+        <div className={style.modalChild}>{children}</div>
       </dialog>
     </div>
   )
