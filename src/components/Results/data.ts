@@ -62,7 +62,9 @@ export const getApprovedItems = (
 export const getApprovedNonPaidItems = (
   totalFamilyCare: number,
   totalMental: number,
-  totalVacation: number
+  totalVacation: number,
+  isStudent: boolean,
+  isCombat: boolean
 ) => [
   {
     name: 'שובר חופשה',
@@ -85,4 +87,14 @@ export const getApprovedNonPaidItems = (
       'הסיוע יינתן בכפוף לתצהיר + קבלה שיגיש משרת המילואים ולא יותר מהתשלום בפועל. הגשת קבלת החזר החל מ- 1/2/24 לאחר שליחת מסרון פרטני. לניצול עד סוף 2026.',
     nonDirectMoney: true,
   },
+  ...(isStudent
+    ? [
+        {
+          name: `${isCombat ? `100% ` : `30% `}מימון לשנת לימודים תשפ״ד`,
+          totalCompensation: isCombat ? 11296 : 3388.8,
+          description: `מלגה זו תשולם באופן אוטומטי ע״י מופת ב-01/07/2024 ישירות לחשבון הבנק המדווח במערכות צה״ל, בכפוף להזנת ׳סטודנט׳ באזור האישי (תחת עדכון פרטים אישיים, מקצוע אזרחי - סטודנט) והצהרת משרת המילואים לאי קבלת מלגה/גובה המלגה שקיבל (פתיחת פניה למוקד המילואים).`,
+          nonDirectMoney: true,
+        },
+      ]
+    : []),
 ]

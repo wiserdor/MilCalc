@@ -19,6 +19,8 @@ const Results = () => {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
+    isStudent,
+    isCombat,
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -55,19 +57,29 @@ const Results = () => {
   )
 
   const approvedNonPaidItems = useMemo(
-    () => getApprovedNonPaidItems(totalFamilyCare, totalMental, totalVacation),
+    () =>
+      getApprovedNonPaidItems(
+        totalFamilyCare,
+        totalMental,
+        totalVacation,
+        isStudent,
+        isCombat
+      ),
     [totalMental, totalFamilyCare, totalVacation]
   )
-
   const totalApproved = useMemo(
-    () => approvedItems.reduce((acc, item) => acc + item.totalCompensation, 0),
+    () =>
+      approvedItems.reduce(
+        (acc, item) => acc + (item.totalCompensation ?? 0),
+        0
+      ),
     [approvedItems]
   )
 
   const totalNonPaidApproved = useMemo(
     () =>
       approvedNonPaidItems.reduce(
-        (acc, item) => acc + item.totalCompensation,
+        (acc, item) => acc + (item.totalCompensation ?? 0),
         0
       ),
     [approvedNonPaidItems]

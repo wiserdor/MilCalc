@@ -119,15 +119,15 @@ const Form = () => {
             checked={hasChildrenSpecial}
             onChange={handleInputChange}
           />
+          <FormCheckbox
+            label="אני סטודנט"
+            name="isStudent"
+            checked={isStudent}
+            onChange={handleInputChange}
+          />
         </div>
         {isExperimentalQueryParams && (
           <div className={style.formSection}>
-            <FormCheckbox
-              label="אני סטודנט"
-              name="isStudent"
-              checked={isStudent}
-              onChange={handleInputChange}
-            />
             <FormCheckbox
               label="אני עצמאי"
               name="isIndependent"
