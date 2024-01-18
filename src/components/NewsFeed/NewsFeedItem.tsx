@@ -1,4 +1,4 @@
-import style from './NewsFeedItem.module.css'
+import style from './style/NewsFeedItem.module.css'
 export interface NewsFeedItemProps {
   title: string
   link: string
@@ -16,7 +16,7 @@ const NewsFeedItem = (props: NewsFeedItemProps) => {
         </div>
         <div className={style.title}>{props.title}</div>
       </div>
-      <div className={style.divider}></div>
+      <div className={style.divider} />
     </a>
   )
 }

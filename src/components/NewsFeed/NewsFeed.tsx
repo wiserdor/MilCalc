@@ -1,4 +1,4 @@
-import style from './NewsFeed.module.css'
+import style from './style/NewsFeed.module.css'
 import NewsFeedItem from './NewsFeedItem'
 import { feed } from './feed'
 

@@ -1,10 +1,11 @@
 import useStore from '../../store/store'
 import NumberCircle from '../NumberCircle/NumberCircle'
-import style from './style/Form.module.css'
+import useIsExperimental from '../common/hooks/useIsExperimental'
 import FormCheckbox from './FormCheckbox'
 import FormDateSection from './FormDateSection'
 import FormInput from './FormInput'
 import ValidationSection from './ValidationSection'
+import style from './style/Form.module.css'
 
 const Form = () => {
   const {
@@ -13,10 +14,22 @@ const Form = () => {
     serviceBefore,
     isCombat,
     isDaysStraight,
+    isStudent,
+    isIndependent,
+    wifePregnant,
+    isUnemployed,
+    isSpouseUnemployed,
+    hasLostMoney,
+    hasLostMoneyBothServing,
+    isLivingAbroad,
+    didVacationCancelled,
+    personalEquipment,
     hasChildren,
     hasChildrenSpecial,
     validateAndSetErrors,
   } = useStore()
+
+  const isExperimentalQueryParams = useIsExperimental()
 
   // Results ref
 
@@ -82,29 +95,7 @@ const Form = () => {
             disabled={parseFloat(serviceBefore) < 5}
           />
         </div>
-        {/* <div className={style.formSection}>
-        <div className={style.formSectionTitle}>
-          <NumberCircle number={3} />
-          <div style={{ flex: 1 }}>
-            כמות ימי תעסוקה מבצעית שביצעת בשנת 2024:
-          </div>
-        </div>
-        <FormInput
-          type="number"
-          name="operation24Days"
-          value={operation24Days}
-          min={0}
-          max={365}
-          step={0.5}
-          onInvalid={(e: any) => {
-            if (parseFloat(e.target.value) % 0.5 !== 0) {
-              e.target.setCustomValidity('המספר צריך להיות בקפיצות של 0.5')
-            }
-          }}
-          onInput={(e: any) => e.target.setCustomValidity('')}
-          onChange={handleInputChange}
-        />
-      </div> */}
+
         <div className={style.formSection}>
           <div className={style.formSectionTitle}>
             <NumberCircle number={3} />
@@ -116,18 +107,6 @@ const Form = () => {
             checked={isCombat}
             onChange={handleInputChange}
           />
-          {/* <FormCheckbox
-            label="אני מוחרג/ת גיל"
-            name="isOld"
-            checked={isOld}
-            onChange={handleInputChange}
-          /> */}
-          {/* <FormCheckbox
-          label="אני סטודנט/ית"
-          name="isStudent"
-          checked={isStudent}
-          onChange={handleInputChange}
-        /> */}
           <FormCheckbox
             label="יש לי ילד/ים עד גיל 14"
             name="hasChildren"
@@ -141,6 +120,70 @@ const Form = () => {
             onChange={handleInputChange}
           />
         </div>
+        {isExperimentalQueryParams && (
+          <div className={style.formSection}>
+            <FormCheckbox
+              label="אני סטודנט"
+              name="isStudent"
+              checked={isStudent}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="אני עצמאי"
+              name="isIndependent"
+              checked={isIndependent}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="בן/בת הזוג לא חזר/ה מחל״ד"
+              name="wifePregnant"
+              checked={wifePregnant}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="אני לא עובד"
+              name="isUnemployed"
+              checked={isUnemployed}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="בן/בת הזוג לא עובד/ת"
+              name="isSpouseUnemployed"
+              checked={isSpouseUnemployed}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="אובדן הכנסה של בן/בת הזוג הנוכחי/ת"
+              name="hasLostMoney"
+              checked={hasLostMoney}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="אובדן הכנסה כששני בני הזוג משרתים במילואים"
+              name="hasLostMoneyBothServing"
+              checked={hasLostMoneyBothServing}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="מרכז החיים בחו״ל"
+              name="isLivingAbroad"
+              checked={isLivingAbroad}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="טיסות / חופשות בוטלו"
+              name="didVacationCancelled"
+              checked={didVacationCancelled}
+              onChange={handleInputChange}
+            />
+            <FormCheckbox
+              label="אובדן או נזק לציוד אישי"
+              name="personalEquipment"
+              checked={personalEquipment}
+              onChange={handleInputChange}
+            />
+          </div>
+        )}
 
         <div className={style.submitButtonWrapper}>
           <button className={style.submitButton}>לחישוב המענקים</button>

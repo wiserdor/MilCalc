@@ -7,6 +7,16 @@ export interface CalculatorState extends CalculatorResults {
   // Form states
   isCombat: boolean
   isDaysStraight: boolean
+  isIndependent: boolean
+  wifePregnant: boolean
+  isUnemployed: boolean
+  isSpouseUnemployed: boolean
+  hasLostMoney: boolean
+  hasLostMoneyBothServing: boolean
+  isLivingAbroad: boolean
+  didVacationCancelled: boolean
+  personalEquipment: boolean
+
   dateRanges: DateRange[]
   hasChildren: boolean
   hasChildrenSpecial: boolean
@@ -28,9 +38,6 @@ export interface CalculatorState extends CalculatorResults {
 }
 
 const useStore = create<CalculatorState>((set) => ({
-  // Form states
-  isCombat: false,
-  isDaysStraight: false,
   dateRanges: [
     {
       startDate: '2023-10-07',
@@ -39,10 +46,24 @@ const useStore = create<CalculatorState>((set) => ({
   ],
   startDate: '2023-10-07',
   endDate: new Date().toISOString().split('T')[0],
+
+  isCombat: false,
+  isDaysStraight: false,
   hasChildren: false,
   hasChildrenSpecial: false,
-  isStudent: false,
   isOld: false,
+
+  isStudent: false, // אוכלוסיית הסטודנטים
+  isIndependent: false, // סיוע לעצמאים
+  wifePregnant: false, // מענק לבת זוג שלא חזרה מחל"ד
+  isUnemployed: false, // מענק חד"פ למשרתי המילואים שאינם עובדים
+  isSpouseUnemployed: false, // מענק חד"פ לבן/בת זוג שאינו עובד
+  hasLostMoney: false, // אובדן הכנסה של בן/בת זוג נוכחיים
+  hasLostMoneyBothServing: false, // אובדן הכנסה כששני בני הזוג משרתים
+  isLivingAbroad: false, // משרתי מילואים שמרכז חייהם בחו"ל
+  didVacationCancelled: false, // פיצוי בגין טיסות / ביטול חופשות
+  personalEquipment: false, // מענה על אובדן או נזק לציוד אישי
+
   serviceBefore: '0',
   operation24Days: '0',
 

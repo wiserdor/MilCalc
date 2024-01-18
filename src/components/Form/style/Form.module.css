@@ -1,6 +1,5 @@
 .form {
   padding-block: 48px;
-  margin-top: 2rem;
 }
 
 .formForm {
@@ -88,10 +87,8 @@
   position: relative;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .arrowSvg {
-  margin-inline: auto;
-  position: absolute;
-  bottom: 20px;
 }
