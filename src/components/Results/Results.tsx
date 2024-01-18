@@ -65,7 +65,7 @@ const Results = () => {
         isStudent,
         isCombat
       ),
-    [totalMental, totalFamilyCare, totalVacation]
+    [totalMental, totalFamilyCare, totalVacation, isStudent, isCombat]
   )
   const totalApproved = useMemo(
     () =>
