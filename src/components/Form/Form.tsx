@@ -120,7 +120,7 @@ const Form = () => {
             onChange={handleInputChange}
           />
           <FormCheckbox
-            label="אני סטודנט"
+            label="אני סטודנט/ית"
             name="isStudent"
             checked={isStudent}
             onChange={handleInputChange}
