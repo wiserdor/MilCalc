@@ -36,6 +36,10 @@
   font-weight: 400;
 
   color: #0000ff;
+
+  &:hover {
+    color: rgba(0, 0, 255, 0.8);
+  }
 }
 
 .links {
@@ -51,6 +55,15 @@
   color: #0000ff;
 
   font-weight: 400;
+
+  &::after {
+    content: '🔗 ';
+    margin-right: 8px;
+  }
+
+  &:hover {
+    color: rgba(0, 0, 255, 0.8);
+  }
 }
 
 .business {
