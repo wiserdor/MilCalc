@@ -14,7 +14,7 @@ const Independent = () => {
   return (
     <div className={style.independent}>
       <div className={style.header}>
-        <h2 className={style.title}>העסק של המילואימניק</h2>
+        <h2 className={style.title}>העסק של מילואימניק</h2>
         <div className={style.subtitle}>
           חשוב לנו לעזור לעצמאיים שהעסק שלהם נפגע בעקבות המלחמה. רוצים להופיע?
           דברו איתנו במייל:{' '}
