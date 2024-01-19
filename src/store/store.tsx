@@ -24,6 +24,8 @@ export interface CalculatorState extends CalculatorResults {
   isOld: boolean
   serviceBefore: string
   operation24Days: string
+  resultsIsStudent: boolean
+  resultsIsCombat: boolean
 
   // Function to update form states
   setFormState: (name: string, value: any) => void
@@ -80,6 +82,8 @@ const useStore = create<CalculatorState>((set) => ({
   totalExtended: 0,
   totalAdditional: 0,
   totalDaysStraight: 0,
+  resultsIsStudent: false,
+  resultsIsCombat: false,
 
   // Function to update form states
   setFormState: (name: string, value: any) =>
@@ -116,6 +120,8 @@ const useStore = create<CalculatorState>((set) => ({
       totalExtended: 0,
       totalAdditional: 0,
       totalDaysStraight: 0,
+      resultsIsStudent: false,
+      resultsIsCombat: false,
     })
   },
 
@@ -163,6 +169,8 @@ const useStore = create<CalculatorState>((set) => ({
       totalExtended,
       totalAdditional,
       totalDaysStraight,
+      resultsIsCombat: state.isCombat,
+      resultsIsStudent: state.isStudent,
     })
   },
 }))

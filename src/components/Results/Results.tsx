@@ -19,8 +19,8 @@ const Results = () => {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
-    isStudent,
-    isCombat,
+    resultsIsStudent,
+    resultsIsCombat,
   } = useStore()
 
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -62,10 +62,16 @@ const Results = () => {
         totalFamilyCare,
         totalMental,
         totalVacation,
-        isStudent,
-        isCombat
+        resultsIsStudent,
+        resultsIsCombat
       ),
-    [totalMental, totalFamilyCare, totalVacation, isStudent, isCombat]
+    [
+      totalMental,
+      totalFamilyCare,
+      totalVacation,
+      resultsIsStudent,
+      resultsIsCombat,
+    ]
   )
   const totalApproved = useMemo(
     () =>
