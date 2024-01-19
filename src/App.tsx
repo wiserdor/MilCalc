@@ -15,10 +15,10 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Independent />
       <Form />
       <Results />
       <RiseupBanner />
+      <Independent />
       <FAQ />
       <NewsFeed />
       <Footer />
