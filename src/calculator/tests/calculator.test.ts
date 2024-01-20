@@ -158,6 +158,17 @@ describe('Calculator', () => {
         ])
       ).toBe(true)
     })
+
+    it('should return false if range is more than 9 days', () => {
+      expect(
+        isOneRangeMoreThan5Days([
+          {
+            startDate: new Date('2021-01-06'),
+            endDate: new Date('2021-01-16'),
+          },
+        ])
+      ).toBe(false)
+    })
   })
 
   describe('calculateDays', () => {
