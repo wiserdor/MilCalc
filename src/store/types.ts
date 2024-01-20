@@ -17,4 +17,5 @@ export interface CalculatorResults {
   totalExtended: number
   totalAdditional: number
   totalDaysStraight: number
+  totalOld: number
 }

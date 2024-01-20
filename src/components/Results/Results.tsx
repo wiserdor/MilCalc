@@ -19,6 +19,7 @@ const Results = () => {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
+    totalOld,
     resultsIsStudent,
     resultsIsCombat,
   } = useStore()
@@ -42,7 +43,8 @@ const Results = () => {
         totalSpecialDays,
         totalExtended,
         totalAdditional,
-        totalDaysStraight
+        totalDaysStraight,
+        totalOld
       ),
     [
       totalPerMonth,
@@ -53,6 +55,7 @@ const Results = () => {
       totalExtended,
       totalAdditional,
       totalDaysStraight,
+      totalOld,
     ]
   )
 

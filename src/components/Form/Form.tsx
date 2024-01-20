@@ -16,6 +16,7 @@ const Form = () => {
     isDaysStraight,
     isStudent,
     isIndependent,
+    isOld,
     wifePregnant,
     isUnemployed,
     isSpouseUnemployed,
@@ -117,6 +118,12 @@ const Form = () => {
             label="יש לי ילד/ים עם צרכים מיוחדים"
             name="hasChildrenSpecial"
             checked={hasChildrenSpecial}
+            onChange={handleInputChange}
+          />
+          <FormCheckbox
+            label="אני מוחרג/ת גיל"
+            name="isOld"
+            checked={isOld}
             onChange={handleInputChange}
           />
           <FormCheckbox

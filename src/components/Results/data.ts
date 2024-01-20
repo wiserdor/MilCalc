@@ -8,7 +8,8 @@ export const getApprovedItems = (
   totalSpecialDays: number,
   totalExtended: number,
   totalAdditional: number,
-  totalDaysStraight: number
+  totalDaysStraight: number,
+  totalOld: number
 ): ApprovedItemProps[] => [
   {
     name: 'התגמול הנוסף',
@@ -24,8 +25,14 @@ export const getApprovedItems = (
   },
 
   {
-    name: 'הוצאות אישיות (5 ימים רצופים).',
+    name: 'הוצאות אישיות (5-9 ימים רצופים).',
     totalCompensation: totalDaysStraight,
+    description:
+      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+  },
+  {
+    name: 'תגמול עבור מוחרגי גיל',
+    totalCompensation: totalOld,
     description:
       'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
   },

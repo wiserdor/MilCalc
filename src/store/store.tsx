@@ -82,6 +82,7 @@ const useStore = create<CalculatorState>((set) => ({
   totalExtended: 0,
   totalAdditional: 0,
   totalDaysStraight: 0,
+  totalOld: 0,
   resultsIsStudent: false,
   resultsIsCombat: false,
 
@@ -146,6 +147,7 @@ const useStore = create<CalculatorState>((set) => ({
       totalExtended,
       totalAdditional,
       totalDaysStraight,
+      totalOld,
     } = calculateCompensation({
       isCombat: state.isCombat,
       isDaysStraight: state.isDaysStraight,
@@ -154,6 +156,7 @@ const useStore = create<CalculatorState>((set) => ({
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
       operation24Days: state.operation24Days,
+      isOld: state.isOld,
     })
 
     set({
@@ -169,6 +172,7 @@ const useStore = create<CalculatorState>((set) => ({
       totalExtended,
       totalAdditional,
       totalDaysStraight,
+      totalOld,
       resultsIsCombat: state.isCombat,
       resultsIsStudent: state.isStudent,
     })

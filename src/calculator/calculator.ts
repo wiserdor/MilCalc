@@ -103,9 +103,10 @@ export const isOneRangeMoreThan5Days = (
     endDate: Date
   }[]
 ) => {
-  return dateRanges.some(
-    ({ startDate, endDate }) => totalDaysInRange(startDate, endDate) >= 5
-  )
+  return dateRanges.some(({ startDate, endDate }) => {
+    const totalDays = totalDaysInRange(startDate, endDate)
+    return totalDays >= 5 && totalDays <= 9
+  })
 }
 
 export const getTotalDaysIn2023 = (
@@ -137,7 +138,8 @@ export const getTotalDaysIn2023 = (
 export const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
-  daysStraight: boolean
+  daysStraight: boolean,
+  isOld: boolean
 ) => {
   // 10-14.5 = 1410
   // 15-19.5 = 2820
@@ -155,6 +157,16 @@ export const specialGrantCalculation = (
     totalAdditional = 4230
   } else if (totalDays >= 37) {
     totalAdditional = 5640
+  }
+
+  if (isOld) {
+    return {
+      totalSpecialDays: 0,
+      totalExtended: 0,
+      totalAdditional,
+      totalDaysStraight: 0,
+      totalOld: totalDays * 133,
+    }
   }
 
   // Special Grant
@@ -184,6 +196,7 @@ export const calculateCompensation = (inputs: {
   isDaysStraight: boolean
   hasChildren: boolean
   hasChildrenSpecial: boolean
+  isOld: boolean
   serviceBefore: string
 }) => {
   const {
@@ -193,6 +206,7 @@ export const calculateCompensation = (inputs: {
     isDaysStraight,
     hasChildren,
     hasChildrenSpecial,
+    isOld,
     serviceBefore: serviceBeforeString,
   } = inputs
 
@@ -216,10 +230,12 @@ export const calculateCompensation = (inputs: {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
+    totalOld,
   } = specialGrantCalculation(
     serviceBefore,
     daysInWar,
-    isDaysStraight || isDaysStraightInWar
+    isDaysStraight || isDaysStraightInWar,
+    isOld
   )
 
   let totalPerMonth = calculateMonthlyCompensation(
@@ -258,5 +274,6 @@ export const calculateCompensation = (inputs: {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
+    totalOld,
   }
 }
