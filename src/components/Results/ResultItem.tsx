@@ -54,7 +54,6 @@ const Tooltip = (props: { text: string }) => {
   return (
     <>
       <img
-        style={{ marginTop: 54, position: 'absolute' }}
         src="/svg/circle-exclamation.svg"
         alt="exclamation"
         ref={refs.setReference}
@@ -86,15 +85,21 @@ const ResultItem = (props: ApprovedItemProps) => {
   } = props
   return (
     <div className={style.approvedItem}>
-      {isMoney && (
-        <div className={style.approvedItemTotalCompensation}>
-          {`${
-            nonDirectMoney ? 'בשווי' : ''
-          } ₪${totalCompensation.toLocaleString('he-IL')}`}
+      <div className={style.approvedItemTop}>
+        {isMoney && (
+          <div className={style.approvedItemTotalCompensation}>
+            {`${
+              nonDirectMoney ? 'בשווי' : ''
+            } ₪${totalCompensation.toLocaleString('he-IL')}`}
+          </div>
+        )}
+        <div>{name}</div>
+      </div>
+      {description && (
+        <div style={{ position: 'relative', top: 4, maxHeight: 0 }}>
+          <Tooltip text={description} />
         </div>
       )}
-      <div>{name}</div>
-      {description && <Tooltip text={description} />}
     </div>
   )
 }
