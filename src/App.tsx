@@ -2,7 +2,7 @@ import ReactGA from 'react-ga4'
 import './App.css'
 import FAQ from './components/FAQ/FAQ'
 import Footer from './components/Footer/Footer'
-import Form from './components/Form/Form'
+import CalculatorForm from './components/Form/CalculatorForm'
 import Header from './components/Header/Header'
 import NewsFeed from './components/NewsFeed/NewsFeed'
 import Results from './components/Results/Results'
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Form />
+      <CalculatorForm />
       <Results />
       <RiseupBanner />
       <Independent />

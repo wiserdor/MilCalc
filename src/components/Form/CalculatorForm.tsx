@@ -7,7 +7,7 @@ import FormInput from './FormInput'
 import ValidationSection from './ValidationSection'
 import style from './style/Form.module.css'
 
-const Form = () => {
+const CalculatorForm = () => {
   const {
     setFormState,
     updateCalculatorResults,
@@ -56,10 +56,13 @@ const Form = () => {
           alt="arrow"
         />
       </div>
-      <div className={style.descriptionBold}>
-        רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
+      <div className={style.formHeader}>
+        <div className={style.descriptionBold}>
+          רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
+        </div>
+        <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
       </div>
-      <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
+
       <form className={style.formForm} onSubmit={handleSubmit}>
         <FormDateSection />
         <div className={style.formSection}>
@@ -201,4 +204,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default CalculatorForm

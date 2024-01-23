@@ -1,5 +1,5 @@
 .form {
-  padding-block: 48px;
+  padding-bottom: 48px;
 }
 
 .formForm {
@@ -76,6 +76,10 @@
   padding-inline: 1rem;
 }
 
+.formHeader {
+  padding-block: 20px;
+}
+
 .descriptionFill {
   text-align: center;
   color: #767676;
@@ -87,7 +91,6 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .arrowSvg {
