@@ -17,13 +17,21 @@ const Modal = (props: ModalProps) => {
     <AnimatePresence>
       <div className={`${style.modalWrapper}`}>
         <motion.div
+          layout
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
           <div className={style.modalBackdrop} onClick={handleBackdropClick} />
           <dialog className={style.modal} open={isOpen}>
-            <div className={style.modalChild}>{children}</div>
+            <motion.div
+              layout
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+            >
+              <div className={style.modalChild}>{children}</div>
+            </motion.div>
           </dialog>
         </motion.div>
       </div>
