@@ -24,14 +24,16 @@ const Modal = (props: ModalProps) => {
         >
           <div className={style.modalBackdrop} onClick={handleBackdropClick} />
           <dialog className={style.modal} open={isOpen}>
-            <motion.div
-              layout
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-            >
-              <div className={style.modalChild}>{children}</div>
-            </motion.div>
+            <div className={style.modalChild}>
+              <motion.div
+                layout
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.95 }}
+              >
+                {children}
+              </motion.div>
+            </div>
           </dialog>
         </motion.div>
       </div>

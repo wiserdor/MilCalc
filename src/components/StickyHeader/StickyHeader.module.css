@@ -37,6 +37,7 @@
   background-color: white;
   padding-inline: 100px;
   padding-block: 50px;
+  border-radius: 24px;
 }
 
 .modalClose {
