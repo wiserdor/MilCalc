@@ -1,27 +1,18 @@
-import { useState } from 'react'
 import style from './Modal.module.css'
 
 export interface ModalProps {
   children: React.ReactNode
   isOpen: boolean
+  handleBackdropClick?: () => void
 }
 
 const Modal = (props: ModalProps) => {
-  const { children, isOpen } = props
+  const { children, isOpen, handleBackdropClick } = props
 
-  const [isOpenInner, setIsOpenInner] = useState(true)
-
-  // dismiss modal on backdrop click
-  const handleBackdropClick = () => {
-    setIsOpenInner(false)
-  }
-
-  if (!isOpen || !isOpenInner) return null
+  if (!isOpen) return null
 
   return (
-    <div
-      className={`${style.modalWrapper}  ${isOpenInner ? style.visible : ''}`}
-    >
+    <div className={`${style.modalWrapper}`}>
       <div className={style.modalBackdrop} onClick={handleBackdropClick} />
       <dialog className={style.modal} open={isOpen}>
         <div className={style.modalChild}>{children}</div>

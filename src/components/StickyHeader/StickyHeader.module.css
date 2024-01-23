@@ -1,0 +1,52 @@
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 1.5px solid #dce4ee;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.container {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.shareBtn {
+  padding-inline: 16px;
+  padding-block: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  color: #0066ff;
+  border: 1.5px solid #0066ff;
+  border-radius: 44px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding-inline: 100px;
+  padding-block: 50px;
+}
+
+.modalClose {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  margin: 16px;
+  cursor: pointer;
+  color: #cccccc;
+  font-size: 24px;
+  width: 16px;
+  height: 16px;
+}

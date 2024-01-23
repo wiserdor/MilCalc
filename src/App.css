@@ -4,13 +4,13 @@
   margin: auto;
   overflow: hidden;
   padding-inline: 1rem;
+  padding-top: 65px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 600px) {
     width: 94%; /* Take full width on small screens */
-    padding: 10px; /* Optional: Adjust padding for smaller screens */
     box-shadow: none;
     border: none;
   }

@@ -45,7 +45,7 @@ const OneZero = (props: OneZeroProps) => {
   }
 
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} handleBackdropClick={closeModal}>
       <div className={style.oneZero}>
         <div className={style.modalClose} onClick={closeModal}>
           &times;

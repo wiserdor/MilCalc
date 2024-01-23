@@ -4,10 +4,10 @@ import FAQ from './components/FAQ/FAQ'
 import Footer from './components/Footer/Footer'
 import CalculatorForm from './components/Form/CalculatorForm'
 import Header from './components/Header/Header'
+import Independent from './components/Independent/Independent'
 import NewsFeed from './components/NewsFeed/NewsFeed'
 import Results from './components/Results/Results'
 import RiseupBanner from './components/RiseupBanner/RiseupBanner'
-import Independent from './components/Independent/Independent'
 
 ReactGA.initialize('G-ZE1RDY2L6L')
 
