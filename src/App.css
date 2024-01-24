@@ -1,5 +1,5 @@
 .container {
-  max-width: 360px; /* Maximum width for larger screens */
+  max-width: 384px; /* Maximum width for larger screens */
   margin: auto;
   overflow: hidden;
   padding-top: 65px;
@@ -12,6 +12,7 @@
     box-shadow: none;
     border: none;
     margin: 0;
+    border-radius: 0;
   }
 }
 
