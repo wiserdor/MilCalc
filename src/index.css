@@ -18,5 +18,6 @@ h2 {
 @media screen and (max-width: 600px) {
   :root {
     background-color: #fff;
+    padding: 0;
   }
 }

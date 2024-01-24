@@ -14,13 +14,17 @@ ReactGA.initialize('G-ZE1RDY2L6L')
 function App() {
   return (
     <div className="container">
-      <Header />
-      <CalculatorForm />
-      <Results />
-      <RiseupBanner />
-      <Independent />
+      <div className="padder">
+        <Header />
+        <CalculatorForm />
+        <Results />
+        <RiseupBanner />
+        <Independent />
+      </div>
       <FAQ />
-      <NewsFeed />
+      <div className="padder">
+        <NewsFeed />
+      </div>
       <Footer />
     </div>
   )

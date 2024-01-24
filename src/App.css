@@ -1,17 +1,25 @@
 .container {
-  width: 90%; /* Use percentage for relative width */
   max-width: 360px; /* Maximum width for larger screens */
   margin: auto;
   overflow: hidden;
-  padding-inline: 1rem;
   padding-top: 65px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 600px) {
-    width: 94%; /* Take full width on small screens */
+    max-width: 100%;
     box-shadow: none;
     border: none;
+    margin: 0;
   }
+}
+
+.padder {
+  padding-inline: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
