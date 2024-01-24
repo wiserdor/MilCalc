@@ -21,7 +21,7 @@ const FAQ = () => {
             gap: 8,
           }}
         >
-          <img src="/svg/chatgpt.svg" style={{ width: '100%' }} />
+          <img src="/svg/chatgpt.svg" style={{ width: '55%' }} />
           חדש! בוט שאלות ותשובות
           <br />
           לחצו כאן כדי להתחיל לשוחח
