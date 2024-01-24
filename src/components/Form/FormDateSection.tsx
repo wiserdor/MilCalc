@@ -6,7 +6,7 @@ import FormInput from './FormInput'
 import { Fragment } from 'react'
 
 const FormDateSection = () => {
-  const { dateRanges } = useStore()
+  const dateRanges = useStore((state) => state.dateRanges)
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,

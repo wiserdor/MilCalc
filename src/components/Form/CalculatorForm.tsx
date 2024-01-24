@@ -8,27 +8,29 @@ import ValidationSection from './ValidationSection'
 import style from './style/Form.module.css'
 
 const CalculatorForm = () => {
-  const {
-    setFormState,
-    updateCalculatorResults,
-    serviceBefore,
-    isCombat,
-    isDaysStraight,
-    isStudent,
-    isIndependent,
-    isOld,
-    wifePregnant,
-    isUnemployed,
-    isSpouseUnemployed,
-    hasLostMoney,
-    hasLostMoneyBothServing,
-    isLivingAbroad,
-    didVacationCancelled,
-    personalEquipment,
-    hasChildren,
-    hasChildrenSpecial,
-    validateAndSetErrors,
-  } = useStore()
+  const setFormState = useStore((state) => state.setFormState)
+  const updateCalculatorResults = useStore(
+    (state) => state.updateCalculatorResults
+  )
+  const serviceBefore = useStore((state) => state.serviceBefore)
+  const isCombat = useStore((state) => state.isCombat)
+  const isDaysStraight = useStore((state) => state.isDaysStraight)
+  const isStudent = useStore((state) => state.isStudent)
+  const isIndependent = useStore((state) => state.isIndependent)
+  const isOld = useStore((state) => state.isOld)
+  const wifePregnant = useStore((state) => state.wifePregnant)
+  const isUnemployed = useStore((state) => state.isUnemployed)
+  const isSpouseUnemployed = useStore((state) => state.isSpouseUnemployed)
+  const hasLostMoney = useStore((state) => state.hasLostMoney)
+  const hasLostMoneyBothServing = useStore(
+    (state) => state.hasLostMoneyBothServing
+  )
+  const isLivingAbroad = useStore((state) => state.isLivingAbroad)
+  const didVacationCancelled = useStore((state) => state.didVacationCancelled)
+  const personalEquipment = useStore((state) => state.personalEquipment)
+  const hasChildren = useStore((state) => state.hasChildren)
+  const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial)
+  const validateAndSetErrors = useStore((state) => state.validateAndSetErrors)
 
   const isExperimentalQueryParams = useIsExperimental()
 
@@ -92,7 +94,7 @@ const CalculatorForm = () => {
             onInput={(e: any) => e.target.setCustomValidity('')}
           />
           <FormCheckbox
-            label="האם ביצעת 5 ימי שמ״פ רצופים לפני ה7 לאוקטובר?"
+            label="האם ביצעת בין 5-9 ימי שמ״פ רצופים לפני ה7 לאוקטובר?"
             name="isDaysStraight"
             checked={isDaysStraight}
             onChange={handleInputChange}

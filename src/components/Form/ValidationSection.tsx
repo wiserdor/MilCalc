@@ -3,7 +3,7 @@ import useStore from '../../store/store'
 import style from './style/Form.module.css'
 
 const ValidationSection = () => {
-  const { validationErrors } = useStore()
+  const validationErrors = useStore((state) => state.validationErrors)
 
   const errorRef = useRef<HTMLDivElement>(null)
 

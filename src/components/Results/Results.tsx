@@ -6,23 +6,21 @@ import ResultsSection from './ResultsSection'
 import { getApprovedItems, getApprovedNonPaidItems } from './data'
 
 const Results = () => {
-  const {
-    totalPerMonth,
-    totalMoreThan45,
-    totalFromChildren,
-    totalVacation,
-    totalSpecialChildren,
-    totalMental,
-    totalFamilyCare,
-    validationErrors,
-    totalSpecialDays,
-    totalExtended,
-    totalAdditional,
-    totalDaysStraight,
-    totalOld,
-    resultsIsStudent,
-    resultsIsCombat,
-  } = useStore()
+  const totalPerMonth = useStore((state) => state.totalPerMonth)
+  const totalMoreThan45 = useStore((state) => state.totalMoreThan45)
+  const totalFromChildren = useStore((state) => state.totalFromChildren)
+  const totalVacation = useStore((state) => state.totalVacation)
+  const totalSpecialChildren = useStore((state) => state.totalSpecialChildren)
+  const totalMental = useStore((state) => state.totalMental)
+  const totalFamilyCare = useStore((state) => state.totalFamilyCare)
+  const validationErrors = useStore((state) => state.validationErrors)
+  const totalSpecialDays = useStore((state) => state.totalSpecialDays)
+  const totalExtended = useStore((state) => state.totalExtended)
+  const totalAdditional = useStore((state) => state.totalAdditional)
+  const totalDaysStraight = useStore((state) => state.totalDaysStraight)
+  const totalOld = useStore((state) => state.totalOld)
+  const resultsIsStudent = useStore((state) => state.resultsIsStudent)
+  const resultsIsCombat = useStore((state) => state.resultsIsCombat)
 
   const resultsRef = useRef<HTMLDivElement>(null)
 
