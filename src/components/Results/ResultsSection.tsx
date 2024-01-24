@@ -1,4 +1,3 @@
-import ResultsBar from '../ResultsBar/ResultsBar'
 import ResultItem, { ApprovedItemProps } from './ResultItem'
 import style from './Results.module.css'
 
