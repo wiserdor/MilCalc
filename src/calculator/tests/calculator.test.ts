@@ -4,6 +4,7 @@ import {
   totalDaysInRange,
   isOneRangeMoreThan5Days,
   calculateDays,
+  getTotalDaysInWar2023,
 } from '../calculator'
 
 describe('Calculator', () => {
@@ -24,6 +25,51 @@ describe('Calculator', () => {
       expect(
         totalDaysInRange(new Date('2021-01-01'), new Date('2021-01-31'))
       ).toBe(31)
+    })
+  })
+
+  describe('getTotalDaysInWar2023', () => {
+    it('should return 0 if date ranges before 07/10/2023 or after 31/12/2023', () => {
+      expect(
+        getTotalDaysInWar2023([
+          {
+            startDate: new Date('2023-01-01'),
+            endDate: new Date('2023-10-06'),
+          },
+          {
+            startDate: new Date('2024-01-01'),
+            endDate: new Date('2024-01-31'),
+          },
+        ])
+      ).toBe(0)
+    })
+
+    it('should return currect number of days in 2023', () => {
+      expect(
+        getTotalDaysInWar2023([
+          {
+            startDate: new Date('2023-10-06'),
+            endDate: new Date('2024-01-30'),
+          },
+        ])
+      ).toBe(86)
+
+      expect(
+        getTotalDaysInWar2023([
+          {
+            startDate: new Date('2023-10-07'),
+            endDate: new Date('2023-10-31'),
+          },
+          {
+            startDate: new Date('2023-11-02'),
+            endDate: new Date('2023-11-30'),
+          },
+          {
+            startDate: new Date('2023-12-01'),
+            endDate: new Date('2024-12-01'),
+          },
+        ])
+      ).toBe(85)
     })
   })
 

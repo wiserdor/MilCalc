@@ -1,3 +1,4 @@
+import ResultsBar from '../ResultsBar/ResultsBar'
 import ResultItem, { ApprovedItemProps } from './ResultItem'
 import style from './Results.module.css'
 
@@ -12,6 +13,17 @@ const ResultsSection = (props: ResultsSectionProps) => {
 
   return (
     <div className={style.resultsSection}>
+      {/* <ResultsBar
+        segments={[
+          {
+            label: 'צפוי להכנס',
+            value: 15000,
+            color: '#528322',
+            datePaid: new Date('2024-01-14'),
+          },
+          { label: 'נכנס', value: 5000, color: '#0066FF' },
+        ]}
+      /> */}
       <div className={style.sectionHeader}>
         <div className={style.sectionTitleWrapper}>
           <h2 className={style.sectionTitle}>{` ₪${total.toLocaleString(

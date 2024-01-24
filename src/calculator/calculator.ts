@@ -135,6 +135,32 @@ export const getTotalDaysIn2023 = (
   return totalDays
 }
 
+export const getTotalDaysInWar2023 = (
+  dateRanges: {
+    startDate: Date
+    endDate: Date
+  }[]
+) => {
+  let totalDays = 0
+  const start2023 = new Date('2023-10-07')
+  const end2023 = endOfYear(new Date('2023-01-01'))
+
+  dateRanges.forEach((range) => {
+    if (range.endDate < start2023 || range.startDate > end2023) {
+      return 0
+    }
+
+    if (range.startDate.getFullYear() < 2023) return
+
+    const start = max([start2023, range.startDate])
+    const end = min([end2023, range.endDate])
+
+    totalDays += totalDaysInRange(start, end)
+  })
+
+  return totalDays
+}
+
 export const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
@@ -224,6 +250,7 @@ export const calculateCompensation = (inputs: {
   const isDaysStraightInWar = isOneRangeMoreThan5Days(dateRanges)
 
   const daysInWar = calculateDays(dateRanges)
+  const daysInWar2023 = getTotalDaysIn2023(dateRanges)
 
   const {
     totalSpecialDays,
@@ -238,10 +265,7 @@ export const calculateCompensation = (inputs: {
     isOld
   )
 
-  let totalPerMonth = calculateMonthlyCompensation(
-    isCombat,
-    Math.max(daysInWar, 0)
-  )
+  let totalPerMonth = calculateMonthlyCompensation(isCombat, daysInWar2023)
 
   const daysWarIn2023 = getTotalDaysIn2023(dateRanges)
 
