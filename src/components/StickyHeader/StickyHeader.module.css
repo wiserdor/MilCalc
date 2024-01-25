@@ -22,8 +22,8 @@
   align-items: center;
   gap: 2px;
   cursor: pointer;
-  color: var(--clr-blue);
-  border: 1.5px solid var(--clr-blue);
+  color: white;
+  background-color: var(--clr-idf);
   border-radius: 44px;
   font-weight: 700;
   font-size: 14px;
