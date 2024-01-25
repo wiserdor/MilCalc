@@ -5,7 +5,7 @@
   justify-content: center;
   padding-block: 40px;
   padding-inline: 16px;
-  background-color: #f2f6fd;
+  background-color: var(--clr-ocean);
   margin-top: 2rem;
 }
 

@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   padding-block: 0.8rem;
-  border-bottom: 2px solid #dce4ee;
+  border-bottom: 2px solid var(--clr-stone);
   gap: 16px;
 }
 
@@ -38,7 +38,7 @@
   font-size: 16px;
   font-weight: 400;
   padding-block: 1rem;
-  color: #767676;
+  color: var(--clr-dark-gray);
 }
 
 .accordionItem.active .accordionContent {

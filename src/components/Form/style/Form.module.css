@@ -55,7 +55,7 @@
   padding: 16px 16px 24px 16px;
   border-radius: 16px;
   background-color: #fff;
-  border: 1px solid rgba(0, 102, 255, 0.15);
+  border: 1.5px solid var(--clr-idf);
 }
 
 .formSectionTitle {
@@ -82,7 +82,7 @@
 
 .descriptionFill {
   text-align: center;
-  color: #767676;
+  color: var(--clr-dark-gray);
   font-weight: 400;
 }
 

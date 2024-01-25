@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1;
   width: 100%;
-  border-bottom: 1.5px solid #dce4ee;
+  border-bottom: 1.5px solid var(--clr-stone);
   background-color: white;
   border-radius: 4px;
 }
@@ -22,8 +22,8 @@
   align-items: center;
   gap: 2px;
   cursor: pointer;
-  color: #0066ff;
-  border: 1.5px solid #0066ff;
+  color: var(--clr-blue);
+  border: 1.5px solid var(--clr-blue);
   border-radius: 44px;
   font-weight: 700;
   font-size: 14px;

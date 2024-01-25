@@ -10,11 +10,11 @@
 }
 
 .plusSvg {
-  fill: #0066ff;
+  fill: var(--clr-blue);
 }
 
 .addDateRangeText {
-  color: #6f6f6f;
+  color: var(--clr-dark-gray);
   font-size: 14px;
   font-weight: 700;
 }
@@ -33,11 +33,11 @@
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-  color: #0066ff;
+  color: var(--clr-blue);
   position: absolute;
   height: 18px;
   width: 32px;
-  background-color: #dce4ee;
+  background-color: var(--clr-stone);
   border-radius: 16px;
 }
 

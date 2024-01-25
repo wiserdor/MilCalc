@@ -1,4 +1,12 @@
 :root {
+  /* Colors */
+  --clr-idf: #528322;
+  --clr-ocean: #f2f6fd;
+  --clr-stone: #dce4ee;
+  --clr-blue: #0066ff;
+  --clr-dark-gray: #6f6f6f;
+  --clr-bright-gray: #cccccc;
+
   font-family: 'Rubik', 'Roboto', sans-serif;
   font-weight: 500;
 
