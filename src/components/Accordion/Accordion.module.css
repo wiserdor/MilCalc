@@ -1,6 +1,10 @@
 .accordion {
   border-radius: 4px;
   margin-block: 1.8rem;
+
+  & > * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 .accordionItem {

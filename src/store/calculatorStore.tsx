@@ -31,7 +31,6 @@ export const createCalculatorStore: StateCreator<
       totalOld,
     } = calculateCompensation({
       isCombat: state.isCombat,
-      isDaysStraight: state.isDaysStraight,
       dateRanges: state.dateRanges,
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,

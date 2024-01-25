@@ -14,7 +14,6 @@ const CalculatorForm = () => {
   )
   const serviceBefore = useStore((state) => state.serviceBefore)
   const isCombat = useStore((state) => state.isCombat)
-  const isDaysStraight = useStore((state) => state.isDaysStraight)
   const isStudent = useStore((state) => state.isStudent)
   const isIndependent = useStore((state) => state.isIndependent)
   const isOld = useStore((state) => state.isOld)
@@ -71,7 +70,7 @@ const CalculatorForm = () => {
           <div className={style.formSectionTitle}>
             <NumberCircle number={2} />
             <div style={{ flex: 1 }}>
-              כמות ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10):
+              מספר ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10):
             </div>
           </div>
           <FormInput
@@ -92,13 +91,6 @@ const CalculatorForm = () => {
               }
             }}
             onInput={(e: any) => e.target.setCustomValidity('')}
-          />
-          <FormCheckbox
-            label="האם ביצעת בין 5-9 ימי שמ״פ רצופים לפני ה7 לאוקטובר?"
-            name="isDaysStraight"
-            checked={isDaysStraight}
-            onChange={handleInputChange}
-            disabled={parseFloat(serviceBefore) < 5}
           />
         </div>
 

@@ -26,7 +26,6 @@ export interface CalculatorResults {
 
 export interface FormStore {
   isCombat: boolean
-  isDaysStraight: boolean
   isIndependent: boolean
   wifePregnant: boolean
   isUnemployed: boolean

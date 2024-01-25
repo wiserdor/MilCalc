@@ -219,7 +219,6 @@ export const calculateCompensation = (inputs: {
   dateRanges: DateRange[]
   operation24Days: string
   isCombat: boolean
-  isDaysStraight: boolean
   hasChildren: boolean
   hasChildrenSpecial: boolean
   isOld: boolean
@@ -229,7 +228,6 @@ export const calculateCompensation = (inputs: {
     dateRanges: dateRangesString,
     operation24Days: operation24DaysString,
     isCombat,
-    isDaysStraight,
     hasChildren,
     hasChildrenSpecial,
     isOld,
@@ -261,7 +259,7 @@ export const calculateCompensation = (inputs: {
   } = specialGrantCalculation(
     serviceBefore,
     daysInWar,
-    isDaysStraight || isDaysStraightInWar,
+    isDaysStraightInWar,
     isOld
   )
 

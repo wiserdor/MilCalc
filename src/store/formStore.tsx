@@ -16,7 +16,6 @@ export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
   endDate: new Date().toISOString().split('T')[0],
 
   isCombat: false,
-  isDaysStraight: false,
   hasChildren: false,
   hasChildrenSpecial: false,
   isOld: false,

@@ -37,8 +37,8 @@ const Accordion = (props: AccordionProps) => {
             <div>{item.title}</div>
             {activeIndexes.includes(index) ? (
               <motion.div
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 180 }}
+                initial={{ rotate: 180 }}
+                animate={{ rotate: 0 }}
                 transition={{ duration: 0.4 }}
               >
                 <img
@@ -48,8 +48,8 @@ const Accordion = (props: AccordionProps) => {
               </motion.div>
             ) : (
               <motion.div
-                initial={{ rotate: 180 }}
-                animate={{ rotate: 0 }}
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 180 }}
                 transition={{ duration: 0.4 }}
               >
                 <img
