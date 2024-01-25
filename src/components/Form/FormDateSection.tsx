@@ -46,7 +46,14 @@ const FormDateSection = () => {
       <div className={style.dateRangesWrapper}>
         {dateRanges.map((dateRange, index) => (
           <Fragment key={index}>
-            <div className={style.dateRange}>
+            <div
+              className={style.dateRange}
+              style={{
+                borderBottom:
+                  dateRanges.length > 1 ? '1.5px dotted #ccc' : 'none',
+                paddingBottom: dateRanges.length > 1 ? '24px' : '0',
+              }}
+            >
               <FormInput
                 type="date"
                 label="תאריך גיוס:"
@@ -68,17 +75,14 @@ const FormDateSection = () => {
                 style={{ cursor: 'pointer' }}
               />
             </div>
-            <div
-              className={style.removeDateRangeWrapper}
-              onClick={() => onRemoveDateRange(index)}
-            >
+            {dateRanges.length > 1 && (
               <div
-                className={style.removeDateRange}
-                style={{ display: dateRanges.length === 1 ? 'none' : 'block' }}
+                className={style.removeDateRangeWrapper}
+                onClick={() => onRemoveDateRange(index)}
               >
-                -
+                <div className={style.removeDateRange}>-</div>
               </div>
-            </div>
+            )}
           </Fragment>
         ))}
       </div>
