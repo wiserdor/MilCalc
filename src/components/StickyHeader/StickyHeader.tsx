@@ -53,7 +53,7 @@ const StickyHeader = () => {
         <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
         <div className={style.shareBtn} onClick={handleOpenModal}>
           <img src="/svg/share.svg" alt="שיתוף" />
-          <span>לשיתוף עם היחידה</span>
+          <span>שתפו עם החבר׳ה</span>
         </div>
       </div>
     </div>
