@@ -91,8 +91,8 @@ const CompensationSection = (props: CompensationSectionProps) => {
                       date: p.dateOfPayment,
                       totalCompensation: p.totalCompensation,
                       name: p.name,
-                      color: '#528322',
                       url: p.url,
+                      color: '#B179F9',
                     }))}
                 />
               </div>
@@ -118,7 +118,7 @@ const CompensationSection = (props: CompensationSectionProps) => {
                       date: p.dateOfPayment,
                       totalCompensation: p.totalCompensation,
                       name: p.name,
-                      color: '#B179F9',
+                      color: '#528322',
                       url: p.url,
                     }))}
                 />
