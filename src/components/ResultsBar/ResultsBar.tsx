@@ -140,7 +140,7 @@ const ResultsBar = (props: ResultsBarProps) => {
         ))}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {segments.map((segment, index) => (
+        {[...segments].reverse().map((segment, index) => (
           <div
             key={index}
             style={{ display: 'flex', flexDirection: 'row', gap: 8 }}
