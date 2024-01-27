@@ -1,7 +1,7 @@
 .stickyHeader {
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 9999;
   width: 100%;
   border-bottom: 1.5px solid var(--clr-stone);
   background-color: white;

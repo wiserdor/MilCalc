@@ -1,7 +1,6 @@
 .barContainer {
   position: relative;
   width: 100%;
-  padding-bottom: 60px; /* Space for lines and labels */
 }
 
 .innerBarContainer {
@@ -16,14 +15,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.dottedLine {
-  position: absolute;
-  bottom: 50px; /* Adjust this value to control the line's length */
-  right: 0;
-  border-right: 2px dotted black;
-  height: 60%; /* Adjust if necessary */
 }
 
 .segmentLabel {

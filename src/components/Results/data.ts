@@ -1,48 +1,24 @@
 import { ApprovedItemProps } from './ResultItem'
 
 export const getApprovedItems = (
-  totalPerMonthApproved: number,
-  totalFromChildrenApproved: number,
-  totalSpecialChildren: number,
-  totalMoreThan45: number,
-  totalSpecialDays: number,
-  totalExtended: number,
-  totalAdditional: number,
-  totalDaysStraight: number,
-  totalOld: number
+  totalPerMonthApproved: number = 0,
+  totalFromChildrenApproved: number = 0,
+  totalSpecialChildren: number = 0,
+  totalMoreThan45: number = 0,
+  totalSpecialDays: number = 0,
+  totalExtended: number = 0,
+  totalAdditional: number = 0,
+  totalDaysStraight: number = 0,
+  totalOld: number = 0
 ): ApprovedItemProps[] => [
-  {
-    name: 'התגמול הנוסף',
-    totalCompensation: totalAdditional,
-    description:
-      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-  },
-  {
-    name: 'התגמול המיוחד',
-    totalCompensation: totalSpecialDays + totalExtended,
-    description:
-      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-  },
-
-  {
-    name: 'הוצאות אישיות (5-9 ימים רצופים).',
-    totalCompensation: totalDaysStraight,
-    description:
-      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-  },
-  {
-    name: 'תגמול עבור מוחרגי גיל',
-    totalCompensation: totalOld,
-    description:
-      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-  },
   {
     name: 'מענק הוצאות אישיות מוגדל',
     totalCompensation: totalPerMonthApproved,
     description:
       'ישולם בפעימה ראשונה עד ה- 14/1/24 (עבור השמ"פ שבוצע ב-2023), באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
     paid: true,
-    paidDate: '14/1/24',
+    dateOfPayment: new Date('2024-1-14'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
   {
     name: 'מענק משפחה מוגדל',
@@ -50,19 +26,56 @@ export const getApprovedItems = (
     description:
       'ישולם בפעימה ראשונה עד ה- 14/1/24 (עבור השמ"פ שבוצע ב-2023), באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
     paid: true,
-    paidDate: '14/1/24',
-  },
-  {
-    name: 'מענק כלכלת בית מוגדל',
-    totalCompensation: totalMoreThan45,
-    description:
-      'ישולם ב- 1/9/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל. עשוי להגיע בפעימה נוספת ב- 1/12/24.',
+    dateOfPayment: new Date('2024-1-14'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
   {
     name: 'מענק משפחה מיוחדת',
     totalCompensation: totalSpecialChildren,
     description:
       'ישולם עד 1/3/24 באופן אוטומטי וחד פעמי (ובכפוף לקבלת המידע הנדרש ממשרדי הממשלה) ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+    dateOfPayment: new Date('2024-3-1'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
+  },
+  {
+    name: 'התגמול הנוסף',
+    totalCompensation: totalAdditional,
+    description:
+      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+    dateOfPayment: new Date('2024-5-1'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
+  },
+  {
+    name: 'התגמול המיוחד',
+    totalCompensation: totalSpecialDays + totalExtended,
+    description:
+      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+    dateOfPayment: new Date('2024-5-1'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
+  },
+
+  {
+    name: 'הוצאות אישיות (5-9 ימים רצופים).',
+    totalCompensation: totalDaysStraight,
+    description:
+      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+    dateOfPayment: new Date('2024-5-1'),
+  },
+  {
+    name: 'תגמול עבור מוחרגי גיל',
+    totalCompensation: totalOld,
+    description:
+      'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
+    dateOfPayment: new Date('2024-5-1'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
+  },
+  {
+    name: 'מענק כלכלת בית מוגדל',
+    totalCompensation: totalMoreThan45,
+    description:
+      'ישולם ב- 1/9/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל. עשוי להגיע בפעימה נוספת ב- 1/12/24.',
+    dateOfPayment: new Date('2024-9-1'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
 ]
 
@@ -105,3 +118,22 @@ export const getApprovedNonPaidItems = (
       ]
     : []),
 ]
+
+export const separatePaymentsByDate = (list: ApprovedItemProps[]) => {
+  const currentDate = new Date()
+  const pastPayments: ApprovedItemProps[] = []
+  const upcomingPayments: ApprovedItemProps[] = []
+
+  list.forEach((item) => {
+    if (!item.dateOfPayment) {
+      return
+    }
+    if (item.dateOfPayment < currentDate) {
+      pastPayments.push(item)
+    } else {
+      upcomingPayments.push(item)
+    }
+  })
+
+  return { pastPayments, upcomingPayments }
+}

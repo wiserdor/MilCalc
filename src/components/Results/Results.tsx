@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef } from 'react'
 import useStore from '../../store/store'
 import OneZero from '../OneZero/OneZero'
-import style from './Results.module.css'
+import style from './styles/Results.module.css'
 import ResultsSection from './ResultsSection'
 import { getApprovedItems, getApprovedNonPaidItems } from './data'
+import CompensationSection from './CompensationSection'
 
 const Results = () => {
   const totalPerMonth = useStore((state) => state.totalPerMonth)
@@ -103,10 +104,9 @@ const Results = () => {
       </div>
       <h2 className={style.resultsTitle}>המענקים שמגיעים לך</h2>
       {totalApproved > 0 && (
-        <ResultsSection
-          title="תגמולים ומענקים"
-          total={totalApproved}
-          results={approvedItems}
+        <CompensationSection
+          totalCompensation={totalApproved}
+          items={approvedItems}
         />
       )}
       {totalNonPaidApproved > 0 && (

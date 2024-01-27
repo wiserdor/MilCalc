@@ -12,7 +12,7 @@ import {
   useRole,
 } from '@floating-ui/react'
 import { useState } from 'react'
-import style from './Results.module.css'
+import style from './styles/Results.module.css'
 
 export interface ApprovedItemProps {
   name: string
@@ -21,7 +21,8 @@ export interface ApprovedItemProps {
   nonDirectMoney?: boolean
   isMoney?: boolean
   paid?: boolean
-  paidDate?: string
+  dateOfPayment?: Date
+  url?: string
 }
 
 const Tooltip = (props: { text: string }) => {

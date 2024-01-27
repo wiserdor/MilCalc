@@ -1,5 +1,5 @@
 import ResultItem, { ApprovedItemProps } from './ResultItem'
-import style from './Results.module.css'
+import style from './styles/Results.module.css'
 
 interface ResultsSectionProps {
   results: ApprovedItemProps[]
@@ -8,30 +8,12 @@ interface ResultsSectionProps {
 }
 
 const ResultsSection = (props: ResultsSectionProps) => {
-  const { results, total, title } = props
+  const { results } = props
 
   return (
     <div className={style.resultsSection}>
-      {/* <ResultsBar
-        segments={[
-          {
-            label: 'צפוי להכנס',
-            value: 15000,
-            color: '#528322',
-            datePaid: new Date('2024-01-14'),
-          },
-          { label: 'נכנס', value: 5000, color: '#0066FF' },
-        ]}
-      /> */}
       <div className={style.sectionHeader}>
-        <div className={style.sectionTitleWrapper}>
-          <h2 className={style.sectionTitle}>{` ₪${total.toLocaleString(
-            'he-IL'
-          )}`}</h2>
-
-          <div className={style.subTitle}>{title}</div>
-        </div>
-        <div className={style.approvalBlock}>✓ עבר אישור</div>
+        <h3 className={style.sectionTitle}>שוברים וסיוע</h3>
       </div>
       <div className={style.approvedGrid}>
         {results.map(

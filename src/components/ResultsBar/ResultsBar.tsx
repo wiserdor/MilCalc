@@ -1,5 +1,7 @@
 import {
+  FloatingArrow,
   FloatingPortal,
+  arrow,
   autoUpdate,
   flip,
   offset,
@@ -7,14 +9,14 @@ import {
   useFloating,
   useInteractions,
   useRole,
-  arrow,
-  FloatingArrow,
 } from '@floating-ui/react'
-import React, { CSSProperties, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { CSSProperties, useRef } from 'react'
 import style from './ResultsBar.module.css'
 
 type ResultsBarResult = {
   label: string
+  description?: string
   value: number
   datePaid?: Date
   color: CSSProperties['backgroundColor']
@@ -67,13 +69,17 @@ const Tooltip = (props: {
               textAlign: 'center',
             }}
           >
-            <div style={{ color: props.color, fontWeight: 600, fontSize: 12 }}>
-              {props.value} ש״ח
+            <div style={{ color: props.color, fontWeight: 700, fontSize: 12 }}>
+              {props.value.toLocaleString('he-IL', {
+                maximumFractionDigits: 1,
+              })}{' '}
+              ש״ח
             </div>
             <div
               style={{
                 fontSize: 12,
                 fontWeight: 400,
+                color: '#6f6f6f',
               }}
             >
               {props.text}
@@ -93,20 +99,24 @@ const ResultsBar = (props: ResultsBarProps) => {
     <div className={style.barContainer}>
       <div className={style.innerBarContainer}>
         {segments.map((segment, index) => (
-          <div
+          <motion.div
+            layout
             key={index}
             className={style.barSegment}
             style={{
               width: `${(segment.value / total) * 100}%`,
               background: segment.color,
             }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
           >
             <Tooltip
               value={segment.value}
               text={segment.label}
               color={segment.color}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
       <div style={{ display: 'flex', padding: 8 }}>
@@ -122,50 +132,34 @@ const ResultsBar = (props: ResultsBarProps) => {
               fontSize: 16,
             }}
           >
-            {(segment.value / total) * 100}%
+            {((segment.value / total) * 100).toLocaleString('he-IL', {
+              maximumFractionDigits: 0,
+            })}
+            %
           </div>
         ))}
       </div>
-      {segments.map(
-        (segment, index) =>
-          segment.datePaid && (
-            <React.Fragment key={index}>
-              {index < segments.length - 1 && (
-                <div
-                  className={style.dottedLine}
-                  style={{
-                    right: `${
-                      (segments
-                        .slice(0, index + 1)
-                        .reduce((sum, seg) => sum + seg.value, 0) /
-                        total) *
-                      100
-                    }%`,
-                  }}
-                />
-              )}
-              {index < segments.length - 1 && (
-                <div
-                  className={style.segmentLabel}
-                  style={{
-                    right: `${
-                      (segments
-                        .slice(0, index + 1)
-                        .reduce((sum, seg) => sum + seg.value, 0) /
-                        total) *
-                      100
-                    }%`,
-                  }}
-                >
-                  <div className={style.segmentLabelText}>
-                    <img src="/svg/time-gray.svg" />
-                    <div>ביום: 14.01.2024</div>
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
-          )
-      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {segments.map((segment, index) => (
+          <div
+            key={index}
+            style={{ display: 'flex', flexDirection: 'row', gap: 8 }}
+          >
+            <div
+              style={{
+                width: 12,
+                height: 12,
+                borderRadius: 2.52,
+                backgroundColor: segment.color,
+              }}
+            />
+            <div style={{ fontSize: 12, color: '#6f6f6f' }}>
+              <span style={{ fontWeight: 700 }}>{segment.label}</span>:{' '}
+              <span style={{ fontWeight: 400 }}>{segment.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
