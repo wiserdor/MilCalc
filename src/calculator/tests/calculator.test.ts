@@ -2,7 +2,7 @@ import {
   getTotalDaysIn2023,
   specialGrantCalculation,
   totalDaysInRange,
-  isOneRangeMoreThan5Days,
+  isOneRangeMoreThan5DaysLessThan9,
   calculateDays,
   getTotalDaysInWar2023,
 } from '../calculator'
@@ -173,11 +173,11 @@ describe('Calculator', () => {
 
   describe('isOneRangeMoreThan5Days', () => {
     it('should return false if no ranges', () => {
-      expect(isOneRangeMoreThan5Days([])).toBe(false)
+      expect(isOneRangeMoreThan5DaysLessThan9([])).toBe(false)
     })
     it('should return false if no range is more than 5 days', () => {
       expect(
-        isOneRangeMoreThan5Days([
+        isOneRangeMoreThan5DaysLessThan9([
           {
             startDate: new Date('2021-01-01'),
             endDate: new Date('2021-01-04'),
@@ -192,7 +192,7 @@ describe('Calculator', () => {
 
     it('should return true if one range is more than 5 days', () => {
       expect(
-        isOneRangeMoreThan5Days([
+        isOneRangeMoreThan5DaysLessThan9([
           {
             startDate: new Date('2021-01-01'),
             endDate: new Date('2021-01-04'),
@@ -207,7 +207,7 @@ describe('Calculator', () => {
 
     it('should return false if range is more than 9 days', () => {
       expect(
-        isOneRangeMoreThan5Days([
+        isOneRangeMoreThan5DaysLessThan9([
           {
             startDate: new Date('2021-01-06'),
             endDate: new Date('2021-01-16'),

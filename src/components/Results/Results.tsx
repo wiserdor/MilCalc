@@ -20,6 +20,13 @@ const Results = () => {
   const totalAdditional = useStore((state) => state.totalAdditional)
   const totalDaysStraight = useStore((state) => state.totalDaysStraight)
   const totalOld = useStore((state) => state.totalOld)
+  const totalWarPersonalExpenses = useStore(
+    (state) => state.totalWarPersonalExpenses
+  )
+  const totalWarFamilyExpenses = useStore(
+    (state) => state.totalWarFamilyExpenses
+  )
+
   const resultsIsStudent = useStore((state) => state.resultsIsStudent)
   const resultsIsCombat = useStore((state) => state.resultsIsCombat)
 
@@ -43,7 +50,9 @@ const Results = () => {
         totalExtended,
         totalAdditional,
         totalDaysStraight,
-        totalOld
+        totalOld,
+        totalWarPersonalExpenses,
+        totalWarFamilyExpenses
       ),
     [
       totalPerMonth,
@@ -55,6 +64,8 @@ const Results = () => {
       totalAdditional,
       totalDaysStraight,
       totalOld,
+      totalWarPersonalExpenses,
+      totalWarFamilyExpenses,
     ]
   )
 

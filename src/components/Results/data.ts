@@ -1,22 +1,35 @@
 import { ApprovedItemProps } from './ResultItem'
 
 export const getApprovedItems = (
-  totalPerMonthApproved: number = 0,
-  totalFromChildrenApproved: number = 0,
-  totalSpecialChildren: number = 0,
-  totalMoreThan45: number = 0,
-  totalSpecialDays: number = 0,
-  totalExtended: number = 0,
-  totalAdditional: number = 0,
-  totalDaysStraight: number = 0,
-  totalOld: number = 0
+  totalPerMonthApproved = 0,
+  totalFromChildrenApproved = 0,
+  totalSpecialChildren = 0,
+  totalMoreThan45 = 0,
+  totalSpecialDays = 0,
+  totalExtended = 0,
+  totalAdditional = 0,
+  totalDaysStraight = 0,
+  totalOld = 0,
+  totalWarPersonalExpenses = 0,
+  totalWarFamilyExpenses = 0
 ): ApprovedItemProps[] => [
+  {
+    name: 'מענק הוצאות אישיות',
+    totalCompensation: totalWarPersonalExpenses,
+    dateOfPayment: new Date('2023/11/10'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
+  },
+  {
+    name: 'מענק משפחה',
+    totalCompensation: totalWarFamilyExpenses,
+    dateOfPayment: new Date('2023/11/10'),
+    url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
+  },
   {
     name: 'מענק הוצאות אישיות מוגדל',
     totalCompensation: totalPerMonthApproved,
     description:
       'ישולם בפעימה ראשונה עד ה- 14/1/24 (עבור השמ"פ שבוצע ב-2023), באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    paid: true,
     dateOfPayment: new Date('2024/01/14'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },

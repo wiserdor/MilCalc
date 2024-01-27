@@ -20,6 +20,8 @@ export const createCalculatorResultsStore: StateCreator<
   totalAdditional: 0,
   totalDaysStraight: 0,
   totalOld: 0,
+  totalWarFamilyExpenses: 0,
+  totalWarPersonalExpenses: 0,
   resultsIsStudent: false,
   resultsIsCombat: false,
 

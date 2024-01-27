@@ -15,21 +15,7 @@ export const createCalculatorStore: StateCreator<
       return
     }
 
-    const {
-      totalPerMonth,
-      totalMoreThan45,
-      totalOperation24,
-      totalFromChildren,
-      totalVacation,
-      totalSpecialChildren,
-      totalMental,
-      totalFamilyCare,
-      totalSpecialDays,
-      totalExtended,
-      totalAdditional,
-      totalDaysStraight,
-      totalOld,
-    } = calculateCompensation({
+    const totals = calculateCompensation({
       isCombat: state.isCombat,
       dateRanges: state.dateRanges,
       hasChildren: state.hasChildren,
@@ -40,19 +26,7 @@ export const createCalculatorStore: StateCreator<
     })
 
     set({
-      totalPerMonth,
-      totalMoreThan45,
-      totalOperation24,
-      totalFromChildren,
-      totalVacation,
-      totalSpecialChildren,
-      totalMental,
-      totalFamilyCare,
-      totalSpecialDays,
-      totalExtended,
-      totalAdditional,
-      totalDaysStraight,
-      totalOld,
+      ...totals,
       resultsIsCombat: state.isCombat,
       resultsIsStudent: state.isStudent,
     })

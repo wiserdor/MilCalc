@@ -18,6 +18,8 @@ export interface CalculatorResults {
   totalAdditional: number
   totalDaysStraight: number
   totalOld: number
+  totalWarPersonalExpenses: number
+  totalWarFamilyExpenses: number
   resultsIsStudent: boolean
   resultsIsCombat: boolean
 

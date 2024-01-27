@@ -97,7 +97,7 @@ export const totalDaysInRange = (startDate: Date, endDate: Date) => {
   return Math.max(differenceInCalendarDays(endDate, startDate) + 1, 0)
 }
 
-export const isOneRangeMoreThan5Days = (
+export const isOneRangeMoreThan5DaysLessThan9 = (
   dateRanges: {
     startDate: Date
     endDate: Date
@@ -106,6 +106,18 @@ export const isOneRangeMoreThan5Days = (
   return dateRanges.some(({ startDate, endDate }) => {
     const totalDays = totalDaysInRange(startDate, endDate)
     return totalDays >= 5 && totalDays <= 9
+  })
+}
+
+export const isOneRangeMoreThan5Days = (
+  dateRanges: {
+    startDate: Date
+    endDate: Date
+  }[]
+) => {
+  return dateRanges.some(({ startDate, endDate }) => {
+    const totalDays = totalDaysInRange(startDate, endDate)
+    return totalDays >= 5
   })
 }
 
@@ -245,7 +257,12 @@ export const calculateCompensation = (inputs: {
   const serviceBefore = parseFloat(serviceBeforeString)
   const operation24Days = parseFloat(operation24DaysString)
 
-  const isDaysStraightInWar = isOneRangeMoreThan5Days(dateRanges)
+  const isDaysStraightInWar = isOneRangeMoreThan5DaysLessThan9(dateRanges)
+
+  const moreThan5DaysInWar = isOneRangeMoreThan5Days(dateRanges)
+
+  const totalWarPersonalExpenses = moreThan5DaysInWar ? 1100 : 0
+  const totalWarFamilyExpenses = hasChildren && moreThan5DaysInWar ? 2000 : 0
 
   const daysInWar = calculateDays(dateRanges)
   const daysInWar2023 = getTotalDaysIn2023(dateRanges)
@@ -297,5 +314,7 @@ export const calculateCompensation = (inputs: {
     totalAdditional,
     totalDaysStraight,
     totalOld,
+    totalWarPersonalExpenses,
+    totalWarFamilyExpenses,
   }
 }

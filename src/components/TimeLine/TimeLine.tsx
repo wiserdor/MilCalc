@@ -27,7 +27,7 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
           className={styles.eventContent}
         >
           <div className={styles.eventContentColumn}>
-            <div className={styles.eventDate}>
+            <div className={styles.eventDate} style={{ minWidth: '7ch' }}>
               {date ? format(date.toISOString(), 'dd.MM.yy') : ''}
             </div>
           </div>
