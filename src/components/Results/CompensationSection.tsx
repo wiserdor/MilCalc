@@ -20,14 +20,12 @@ const CompensationSection = (props: CompensationSectionProps) => {
     [items]
   )
 
-  debugger
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{`${totalCompensation.toLocaleString(
+        <h3 className={styles.title}>{`₪${totalCompensation.toLocaleString(
           'he-IL'
-        )} ש״ח`}</h3>
+        )}`}</h3>
         <div className={styles.subtitle}>תגמולים ומענקים</div>
       </div>
       <ResultsBar

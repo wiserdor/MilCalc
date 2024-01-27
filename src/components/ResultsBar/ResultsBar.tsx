@@ -70,10 +70,10 @@ const Tooltip = (props: {
             }}
           >
             <div style={{ color: props.color, fontWeight: 700, fontSize: 12 }}>
+              ₪
               {props.value.toLocaleString('he-IL', {
-                maximumFractionDigits: 1,
+                maximumFractionDigits: 0,
               })}{' '}
-              ש״ח
             </div>
             <div
               style={{

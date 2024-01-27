@@ -36,10 +36,10 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
               className={styles.eventInfo}
               style={{ backgroundColor: color, minWidth: '7ch' }}
             >
+              ₪
               {totalCompensation.toLocaleString('he-IL', {
                 maximumFractionDigits: 0,
               })}
-              ₪
             </div>
           </div>
           <div className={styles.eventContentColumn} style={{ flexGrow: 1 }}>

@@ -74,7 +74,7 @@ const OneZero = (props: OneZeroProps) => {
             <div>סכום להפקדה:</div>
             {/* <input type="number" className={style.totalSumInput} /> */}
             <div className={style.totalSumNumber}>
-              {total.toLocaleString('he-IL')} ש״ח
+              ₪{total.toLocaleString('he-IL')}
             </div>
             <div className={style.disclaimer}>
               *פיקדון בריבית שנתית משתנה של 4.6%. ניתן למשוך את הקרן בכל עת.
@@ -113,10 +113,10 @@ const OneZero = (props: OneZeroProps) => {
                 fontSize: 16,
               }}
             >
+              ₪
               {afterYear.toLocaleString('he-IL', {
                 maximumFractionDigits: 1,
               })}{' '}
-              ש״ח
             </div>
           </div>
           <div className={style.divider} />
@@ -152,10 +152,10 @@ const OneZero = (props: OneZeroProps) => {
                 alignItems: 'center',
               }}
             >
+              ₪
               {afterYearDiff.toLocaleString('he-il', {
                 maximumFractionDigits: 1,
               })}{' '}
-              ש״ח
             </div>
           </div>
         </div>
