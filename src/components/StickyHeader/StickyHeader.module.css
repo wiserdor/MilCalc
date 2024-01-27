@@ -4,7 +4,7 @@
   z-index: 9999;
   width: 100%;
   border-bottom: 1.5px solid var(--clr-stone);
-  background-color: white;
+  background-color: var(--clr-ocean);
   border-radius: 4px;
 }
 
