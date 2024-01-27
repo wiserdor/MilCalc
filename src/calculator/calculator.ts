@@ -116,8 +116,8 @@ export const getTotalDaysIn2023 = (
   }[]
 ) => {
   let totalDays = 0
-  const start2023 = startOfYear(new Date('2023-01-01'))
-  const end2023 = endOfYear(new Date('2023-01-01'))
+  const start2023 = startOfYear(new Date('2023/01/01'))
+  const end2023 = endOfYear(new Date('2023/01/01'))
 
   dateRanges.forEach((range) => {
     if (range.endDate < start2023 || range.startDate > end2023) {
@@ -142,8 +142,8 @@ export const getTotalDaysInWar2023 = (
   }[]
 ) => {
   let totalDays = 0
-  const start2023 = new Date('2023-10-07')
-  const end2023 = endOfYear(new Date('2023-01-01'))
+  const start2023 = new Date('2023/10/07')
+  const end2023 = endOfYear(new Date('2023/01/01'))
 
   dateRanges.forEach((range) => {
     if (range.endDate < start2023 || range.startDate > end2023) {

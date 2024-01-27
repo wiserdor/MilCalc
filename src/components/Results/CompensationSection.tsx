@@ -20,6 +20,8 @@ const CompensationSection = (props: CompensationSectionProps) => {
     [items]
   )
 
+  debugger
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>

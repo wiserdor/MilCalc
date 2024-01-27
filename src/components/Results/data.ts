@@ -17,7 +17,7 @@ export const getApprovedItems = (
     description:
       'ישולם בפעימה ראשונה עד ה- 14/1/24 (עבור השמ"פ שבוצע ב-2023), באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
     paid: true,
-    dateOfPayment: new Date('2024-1-14'),
+    dateOfPayment: new Date('2024/01/14'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
   {
@@ -26,7 +26,7 @@ export const getApprovedItems = (
     description:
       'ישולם בפעימה ראשונה עד ה- 14/1/24 (עבור השמ"פ שבוצע ב-2023), באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
     paid: true,
-    dateOfPayment: new Date('2024-1-14'),
+    dateOfPayment: new Date('2024/01/14'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
   {
@@ -34,7 +34,7 @@ export const getApprovedItems = (
     totalCompensation: totalSpecialChildren,
     description:
       'ישולם עד 1/3/24 באופן אוטומטי וחד פעמי (ובכפוף לקבלת המידע הנדרש ממשרדי הממשלה) ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    dateOfPayment: new Date('2024-3-1'),
+    dateOfPayment: new Date('2024/03/01'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
   {
@@ -42,7 +42,7 @@ export const getApprovedItems = (
     totalCompensation: totalAdditional,
     description:
       'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    dateOfPayment: new Date('2024-5-1'),
+    dateOfPayment: new Date('2024/05/01'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
   },
   {
@@ -50,7 +50,7 @@ export const getApprovedItems = (
     totalCompensation: totalSpecialDays + totalExtended,
     description:
       'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    dateOfPayment: new Date('2024-5-1'),
+    dateOfPayment: new Date('2024/05/01'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
   },
 
@@ -59,14 +59,14 @@ export const getApprovedItems = (
     totalCompensation: totalDaysStraight,
     description:
       'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    dateOfPayment: new Date('2024-5-1'),
+    dateOfPayment: new Date('2024/05/01'),
   },
   {
     name: 'תגמול עבור מוחרגי גיל',
     totalCompensation: totalOld,
     description:
       'ישולם ב- 1/5/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.',
-    dateOfPayment: new Date('2024-5-1'),
+    dateOfPayment: new Date('2024/05/01'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/',
   },
   {
@@ -74,7 +74,7 @@ export const getApprovedItems = (
     totalCompensation: totalMoreThan45,
     description:
       'ישולם ב- 1/9/24 באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל. עשוי להגיע בפעימה נוספת ב- 1/12/24.',
-    dateOfPayment: new Date('2024-9-1'),
+    dateOfPayment: new Date('2024/09/01'),
     url: 'https://www.miluim.idf.il/articles-list/%D7%9E%D7%93%D7%99%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%A2%D7%A0%D7%A7%D7%99%D7%9D-%D7%9C%D7%9E%D7%A9%D7%A8%D7%AA%D7%99-%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D-%D7%91%D7%9E%D7%9C%D7%97%D7%9E%D7%AA-%D7%97%D7%A8%D7%91%D7%95%D7%AA-%D7%91%D7%A8%D7%96%D7%9C/',
   },
 ]

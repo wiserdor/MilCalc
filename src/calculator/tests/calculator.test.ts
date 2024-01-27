@@ -11,13 +11,13 @@ describe('Calculator', () => {
   describe('totalDaysInRange', () => {
     it('should return 0 if start date is after end date', () => {
       expect(
-        totalDaysInRange(new Date('2021-01-02'), new Date('2020-01-01'))
+        totalDaysInRange(new Date('2021/01/02'), new Date('2020/01/01'))
       ).toBe(0)
     })
 
     it('should return 1 if start date is same as end date', () => {
       expect(
-        totalDaysInRange(new Date('2021-01-01'), new Date('2021-01-01'))
+        totalDaysInRange(new Date('2021/01/01'), new Date('2021/01/01'))
       ).toBe(1)
     })
 
