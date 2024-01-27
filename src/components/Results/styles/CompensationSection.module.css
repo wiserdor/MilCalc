@@ -28,7 +28,7 @@
 
 .showMore {
   padding-top: 16px;
-  border-top: 1.5px dashed #cccccc;
+  border-top: 1.5px dashed var(--clr-blue);
   display: flex;
   justify-content: space-between;
   align-items: center;
