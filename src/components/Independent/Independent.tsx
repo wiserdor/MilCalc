@@ -25,13 +25,10 @@ const shuffleArray = (array: any[]) => {
 
 const Independent = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isHovering, setIsHovering] = useState(false)
   const [timer, setTimer] = useState(TIMER_DURATION)
   const shuffledArray = useMemo(() => shuffleArray(data), [])
 
   useEffect(() => {
-    if (isHovering) return
-
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer === 1) {
@@ -66,12 +63,10 @@ const Independent = () => {
 
   return (
     <div style={{ marginTop: 12, width: '100%' }}>
-      <h2 className={style.title}>עצמאים במילואים</h2>
+      <h2 className={style.title}>תומכים במילואימניקים עצמאים</h2>
       <AnimatePresence>
         <motion.div
           className={style.carouselContainer}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
@@ -121,7 +116,7 @@ const Independent = () => {
                   >
                     <div className={style.contactColumn}>
                       <img src="/svg/whatsapp.svg" width={16} />
-                      <div>ווצסאפ</div>
+                      <div>WhatsApp</div>
                     </div>
                   </a>
                   <a
@@ -147,15 +142,15 @@ const Independent = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: 8,
-          marginBottom: 16,
+          gap: 16,
+          paddingBlock: 16,
         }}
       >
         <button onClick={prevItem} className={style.carouselControl}>
-          ‹
+          ‹ הקודם
         </button>
         <button onClick={nextItem} className={style.carouselControl}>
-          ›
+          הבא ›
         </button>
       </div>
       <div className={style.subtitle}>

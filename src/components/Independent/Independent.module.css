@@ -134,8 +134,9 @@
   border: none;
   cursor: pointer;
   /* Style for left and right buttons */
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: var(--clr-blue);
+  font-weight: 400;
 }
 
 /* Left control */
