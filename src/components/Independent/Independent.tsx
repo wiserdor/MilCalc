@@ -1,5 +1,9 @@
+import { useEffect, useMemo, useState } from 'react'
 import data from './data'
 import style from './Independent.module.css'
+import { AnimatePresence, motion } from 'framer-motion'
+
+const TIMER_DURATION = 15
 
 const toPhoneString = (phone: string) => {
   // add - after the third digit
@@ -8,48 +12,151 @@ const toPhoneString = (phone: string) => {
   return `${firstPart}-${secondPart}`
 }
 
+const shuffleArray = (array: any[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate a random index lower than the current index
+    const j = Math.floor(Math.random() * (i + 1))
+
+    // Swap elements at indices i and j
+    ;[array[i], array[j]] = [array[j], array[i]]
+  }
+  return array
+}
+
 const Independent = () => {
-  const { title, description, imgUrl, links, phone } = data[0]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovering, setIsHovering] = useState(false)
+  const [timer, setTimer] = useState(TIMER_DURATION)
+  const shuffledArray = useMemo(() => shuffleArray(data), [])
+
+  useEffect(() => {
+    if (isHovering) return
+
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 1) {
+          nextItem()
+          return TIMER_DURATION // Reset timer after changing item
+        } else {
+          return prevTimer - 1
+        }
+      })
+    }, 1000)
+
+    return () => clearInterval(interval) // Clean up interval on component unmount
+  }, [currentIndex])
+
+  const resetTimer = () => {
+    setTimer(TIMER_DURATION)
+  }
+
+  const nextItem = () => {
+    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % data.length)
+    resetTimer()
+  }
+
+  const prevItem = () => {
+    setCurrentIndex((prevIndex: number) =>
+      prevIndex === 0 ? data.length - 1 : prevIndex - 1
+    )
+    resetTimer()
+  }
+
+  const activeItem = shuffledArray[currentIndex]
 
   return (
     <div style={{ marginTop: 12, width: '100%' }}>
       <h2 className={style.title}>עצמאים במילואים</h2>
-      <div className={style.independent}>
-        <div
-          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+      <AnimatePresence>
+        <motion.div
+          className={style.carouselContainer}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.01 }}
         >
-          <div className={style.imgContainer}>
-            <img className={style.img} src={`/independent/${imgUrl}`} />
+          <div className={style.carousel}>
+            <div className={style.independent}>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <div className={style.imgContainer}>
+                  <img
+                    className={style.img}
+                    src={`/independent/${activeItem.imgUrl}`}
+                  />
+                </div>
+              </div>
+              <h3 className={style.business}>{activeItem.title}</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  flex: 1,
+                }}
+              >
+                <div className={style.description}>
+                  {activeItem.description}
+                </div>
+                <div className={style.contact}>
+                  <a href={`tel:${activeItem.phone}`}>
+                    <div className={style.contactColumn}>
+                      <img src="/svg/phone.svg" width={16} />
+                      <div>{toPhoneString(activeItem.phone)}</div>
+                    </div>
+                  </a>
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=972${activeItem.phone.substring(
+                      1
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className={style.contactColumn}>
+                      <img src="/svg/whatsapp.svg" width={16} />
+                      <div>ווצסאפ</div>
+                    </div>
+                  </a>
+                  <a
+                    href={activeItem.links[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className={style.contactColumn}>
+                      <img src="/svg/click.svg" width={16} />
+                      <div>{activeItem.links[0].text}</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <h3 className={style.business}>{title}</h3>
-        <div className={style.description}>{description}</div>
-        <div className={style.contact}>
-          <a href={`tel:${phone}`}>
-            <div className={style.contactColumn}>
-              <img src="/svg/phone.svg" width={16} />
-              <div>{toPhoneString(phone)}</div>
-            </div>
-          </a>
-          <a
-            href={`https://api.whatsapp.com/send?phone=972${phone.substring(
-              1
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className={style.contactColumn}>
-              <img src="/svg/whatsapp.svg" width={16} />
-              <div>ווצסאפ</div>
-            </div>
-          </a>
-          <a href={links[0].url} target="_blank" rel="noopener noreferrer">
-            <div className={style.contactColumn}>
-              <img src="/svg/click.svg" width={16} />
-              <div>{links[0].text}</div>
-            </div>
-          </a>
-        </div>
+        </motion.div>
+      </AnimatePresence>
+      <div className={style.timer}>{timer} שניות עד שנעבור לעצמאי הבא</div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 8,
+          marginBottom: 16,
+        }}
+      >
+        <button onClick={prevItem} className={style.carouselControl}>
+          ‹
+        </button>
+        <button onClick={nextItem} className={style.carouselControl}>
+          ›
+        </button>
       </div>
       <div className={style.subtitle}>
         חשוב לנו לעזור לעצמאיים שהעסק שלהם נפגע בעקבות המלחמה. רוצים להופיע?

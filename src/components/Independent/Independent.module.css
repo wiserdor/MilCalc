@@ -7,6 +7,7 @@
   margin-block: 24px;
   border: 1.5px solid var(--clr-blue);
   text-align: center;
+  min-height: 550px;
 }
 
 .imgContainer {
@@ -31,6 +32,8 @@
   font-weight: 400;
   text-align: right;
   line-height: 1.185;
+  text-wrap: balance;
+  line-height: 1.5;
 }
 
 .phone {
@@ -113,4 +116,40 @@
   align-items: center;
   gap: 8px;
   width: 100%;
+}
+.carouselContainer {
+  position: relative;
+  width: 100%;
+}
+
+.carouselItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add more styling as needed */
+}
+
+.carouselControl {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* Style for left and right buttons */
+  font-size: 2rem;
+  color: var(--clr-blue);
+}
+
+/* Left control */
+.carouselControl:first-of-type {
+  left: 10px;
+}
+
+/* Right control */
+.carouselControl:last-of-type {
+  right: 10px;
+}
+
+.timer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
