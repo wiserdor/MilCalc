@@ -7,7 +7,7 @@
   margin-block: 24px;
   border: 1.5px solid var(--clr-blue);
   text-align: center;
-  min-height: 550px;
+  min-height: 500px;
 }
 
 .imgContainer {
@@ -31,9 +31,8 @@
   font-size: 14px;
   font-weight: 400;
   text-align: right;
-  line-height: 1.185;
-  text-wrap: balance;
-  line-height: 1.5;
+  text-wrap: pretty;
+  line-height: 1.4;
 }
 
 .phone {

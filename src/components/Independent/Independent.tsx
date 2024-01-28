@@ -12,7 +12,7 @@ const toPhoneString = (phone: string) => {
   return `${firstPart}-${secondPart}`
 }
 
-const shuffleArray = (array: any[]) => {
+function shuffleArray<A>(array: A[]) {
   for (let i = array.length - 1; i > 0; i--) {
     // Generate a random index lower than the current index
     const j = Math.floor(Math.random() * (i + 1))
@@ -101,34 +101,42 @@ const Independent = () => {
                   {activeItem.description}
                 </div>
                 <div className={style.contact}>
-                  <a href={`tel:${activeItem.phone}`}>
-                    <div className={style.contactColumn}>
-                      <img src="/svg/phone.svg" width={16} />
-                      <div>{toPhoneString(activeItem.phone)}</div>
-                    </div>
-                  </a>
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=972${activeItem.phone.substring(
-                      1
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className={style.contactColumn}>
-                      <img src="/svg/whatsapp.svg" width={16} />
-                      <div>WhatsApp</div>
-                    </div>
-                  </a>
-                  <a
-                    href={activeItem.links[0].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className={style.contactColumn}>
-                      <img src="/svg/click.svg" width={16} />
-                      <div>{activeItem.links[0].text}</div>
-                    </div>
-                  </a>
+                  {activeItem.items.map((item) => (
+                    <>
+                      {item.type === 'phone' && (
+                        <a href={`tel:${item.text}`}>
+                          <div className={style.contactColumn}>
+                            <img src="/svg/phone.svg" width={16} />
+                            <div>{toPhoneString(item.text)}</div>
+                          </div>
+                        </a>
+                      )}
+                      {item.type === 'whatsapp' && (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className={style.contactColumn}>
+                            <img src="/svg/whatsapp.svg" width={16} />
+                            <div>WhatsApp</div>
+                          </div>
+                        </a>
+                      )}
+                      {item.type === 'link' && (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className={style.contactColumn}>
+                            <img src="/svg/click.svg" width={16} />
+                            <div>{item.text}</div>
+                          </div>
+                        </a>
+                      )}
+                    </>
+                  ))}
                 </div>
               </div>
             </div>
