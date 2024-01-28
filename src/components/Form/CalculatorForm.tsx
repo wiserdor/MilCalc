@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import useStore from '../../store/store'
 import NumberCircle from '../NumberCircle/NumberCircle'
 import Toggle from '../Toggle/Toggle'
@@ -8,6 +9,7 @@ import style from './style/Form.module.css'
 
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState)
+  const loadStateFromUrl = useStore((state) => state.loadStateFromUrl)
   const updateCalculatorResults = useStore(
     (state) => state.updateCalculatorResults
   )
@@ -19,7 +21,9 @@ const CalculatorForm = () => {
   const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial)
   const validateAndSetErrors = useStore((state) => state.validateAndSetErrors)
 
-  // Results ref
+  useEffect(() => {
+    loadStateFromUrl()
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState(e.target.name, e.target.value)

@@ -49,6 +49,9 @@ export interface FormStore {
 
   setFormState: (name: string, value: any) => void
   validateAndSetErrors: () => void
+
+  saveStateToUrl: () => void
+  loadStateFromUrl: () => void
 }
 
 export interface CalculatorStore {
