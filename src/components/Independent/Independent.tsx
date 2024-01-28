@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import data from './data'
 import style from './Independent.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -101,8 +101,8 @@ const Independent = () => {
                   {activeItem.description}
                 </div>
                 <div className={style.contact}>
-                  {activeItem.items.map((item) => (
-                    <>
+                  {activeItem.items.map((item, index) => (
+                    <Fragment key={index}>
                       {item.type === 'phone' && (
                         <a href={`tel:${item.text}`}>
                           <div className={style.contactColumn}>
@@ -135,7 +135,7 @@ const Independent = () => {
                           </div>
                         </a>
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </div>
               </div>

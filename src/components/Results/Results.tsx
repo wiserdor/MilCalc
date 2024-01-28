@@ -3,7 +3,10 @@ import useStore from '../../store/store'
 import OneZero from '../OneZero/OneZero'
 import style from './styles/Results.module.css'
 import ResultsSection from './ResultsSection'
-import { getApprovedItems, getApprovedNonPaidItems } from './data'
+import {
+  getApprovedItems,
+  getApprovedNonPaidItems,
+} from '../../data/compensation'
 import CompensationSection from './CompensationSection'
 
 const Results = () => {
@@ -29,6 +32,7 @@ const Results = () => {
 
   const resultsIsStudent = useStore((state) => state.resultsIsStudent)
   const resultsIsCombat = useStore((state) => state.resultsIsCombat)
+  const resultsIsIndependent = useStore((state) => state.resultsIsIndependent)
 
   const resultsRef = useRef<HTMLDivElement>(null)
 
@@ -76,7 +80,8 @@ const Results = () => {
         totalMental,
         totalVacation,
         resultsIsStudent,
-        resultsIsCombat
+        resultsIsCombat,
+        resultsIsIndependent
       ),
     [
       totalMental,
@@ -84,6 +89,7 @@ const Results = () => {
       totalVacation,
       resultsIsStudent,
       resultsIsCombat,
+      resultsIsIndependent,
     ]
   )
   const totalApproved = useMemo(
@@ -120,7 +126,8 @@ const Results = () => {
           items={approvedItems}
         />
       )}
-      {totalNonPaidApproved > 0 && (
+      {(totalNonPaidApproved > 0 ||
+        approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection
           title="שוברים וסיוע"
           total={totalNonPaidApproved}

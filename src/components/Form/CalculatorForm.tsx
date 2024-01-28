@@ -17,6 +17,7 @@ const CalculatorForm = () => {
   const isCombat = useStore((state) => state.isCombat)
   const isStudent = useStore((state) => state.isStudent)
   const isOld = useStore((state) => state.isOld)
+  const isIndependent = useStore((state) => state.isIndependent)
   const hasChildren = useStore((state) => state.hasChildren)
   const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial)
   const validateAndSetErrors = useStore((state) => state.validateAndSetErrors)
@@ -120,6 +121,12 @@ const CalculatorForm = () => {
               label="מוחרג/ת גיל"
               name="isOld"
               active={isOld}
+              onChange={handleToggleChange}
+            />
+            <Toggle
+              label="עצמאי/ת"
+              name="isIndependent"
+              active={isIndependent}
               onChange={handleToggleChange}
             />
             <Toggle

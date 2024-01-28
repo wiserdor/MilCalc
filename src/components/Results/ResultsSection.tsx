@@ -1,8 +1,8 @@
-import ResultItem, { ApprovedItemProps } from './ResultItem'
+import ResultItem, { NonApprovedItemProps } from './ResultItem'
 import style from './styles/Results.module.css'
 
 interface ResultsSectionProps {
-  results: ApprovedItemProps[]
+  results: NonApprovedItemProps[]
   total: number
   title: string
 }
@@ -18,7 +18,9 @@ const ResultsSection = (props: ResultsSectionProps) => {
       <div className={style.approvedGrid}>
         {results.map(
           (item, i) =>
-            item.totalCompensation > 0 && <ResultItem key={i} {...item} />
+            (item.totalCompensation > 0 || item.totalCompensationStr) && (
+              <ResultItem key={i} {...item} />
+            )
         )}
       </div>
     </div>

@@ -22,6 +22,7 @@ export interface CalculatorResults {
   totalWarFamilyExpenses: number
   resultsIsStudent: boolean
   resultsIsCombat: boolean
+  resultsIsIndependent: boolean
 
   resetResults: () => void
 }

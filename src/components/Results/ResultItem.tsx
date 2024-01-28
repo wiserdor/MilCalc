@@ -3,6 +3,7 @@ import {
   autoUpdate,
   flip,
   offset,
+  safePolygon,
   shift,
   useDismiss,
   useFloating,
@@ -14,18 +15,21 @@ import {
 import { useState } from 'react'
 import style from './styles/Results.module.css'
 
-export interface ApprovedItemProps {
+export interface NonApprovedItemProps {
   name: string
   totalCompensation: number
+  totalCompensationStr?: string
   description?: string
   nonDirectMoney?: boolean
   isMoney?: boolean
-  paid?: boolean
   dateOfPayment?: Date
-  url?: string
+  link?: { text: string; url: string }
 }
 
-const Tooltip = (props: { text: string }) => {
+const Tooltip = (props: {
+  text: string
+  link?: NonApprovedItemProps['link']
+}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const { refs, floatingStyles, context } = useFloating({
@@ -41,7 +45,12 @@ const Tooltip = (props: { text: string }) => {
       shift(),
     ],
   })
-  const hover = useHover(context, { move: false })
+  const hover = useHover(context, {
+    move: true,
+    handleClose: safePolygon({
+      requireIntent: false,
+    }),
+  })
   const focus = useFocus(context)
   const dismiss = useDismiss(context)
   const role = useRole(context, { role: 'tooltip' })
@@ -62,43 +71,60 @@ const Tooltip = (props: { text: string }) => {
       />
       <FloatingPortal>
         {isOpen && (
-          <div
-            className={style.tooltip}
-            ref={refs.setFloating}
-            style={floatingStyles}
-            {...getFloatingProps()}
-          >
-            {props.text}
-          </div>
+          <>
+            <div
+              className={style.tooltip}
+              ref={refs.setFloating}
+              style={floatingStyles}
+              {...getFloatingProps()}
+            >
+              <div>{props.text}</div>
+              {props.link && (
+                <div style={{ marginTop: 8 }}>
+                  <a
+                    href={props.link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {props.link.text}
+                  </a>
+                </div>
+              )}
+            </div>
+          </>
         )}
       </FloatingPortal>
     </>
   )
 }
 
-const ResultItem = (props: ApprovedItemProps) => {
+const ResultItem = (props: NonApprovedItemProps) => {
   const {
     name,
     totalCompensation,
+    totalCompensationStr,
     description,
     nonDirectMoney = false,
     isMoney = true,
+    link,
   } = props
   return (
     <div className={style.approvedItem}>
       <div className={style.approvedItemTop}>
         {isMoney && (
           <div className={style.approvedItemTotalCompensation}>
-            {`${
-              nonDirectMoney ? 'בשווי' : ''
-            } ₪${totalCompensation.toLocaleString('he-IL')}`}
+            {totalCompensationStr
+              ? totalCompensationStr
+              : `${
+                  nonDirectMoney ? 'בשווי' : ''
+                } ₪${totalCompensation.toLocaleString('he-IL')}`}
           </div>
         )}
         <div>{name}</div>
       </div>
       {description && (
         <div style={{ position: 'relative', top: 4, maxHeight: 0 }}>
-          <Tooltip text={description} />
+          <Tooltip text={description} link={link} />
         </div>
       )}
     </div>

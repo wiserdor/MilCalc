@@ -24,6 +24,7 @@ export const createCalculatorResultsStore: StateCreator<
   totalWarPersonalExpenses: 0,
   resultsIsStudent: false,
   resultsIsCombat: false,
+  resultsIsIndependent: false,
 
   resetResults: () => {
     set({
@@ -42,6 +43,7 @@ export const createCalculatorResultsStore: StateCreator<
       totalDaysStraight: 0,
       resultsIsStudent: false,
       resultsIsCombat: false,
+      resultsIsIndependent: false,
     })
   },
 })

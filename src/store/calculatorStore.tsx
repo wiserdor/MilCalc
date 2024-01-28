@@ -29,6 +29,7 @@ export const createCalculatorStore: StateCreator<
       ...totals,
       resultsIsCombat: state.isCombat,
       resultsIsStudent: state.isStudent,
+      resultsIsIndependent: state.isIndependent,
     })
   },
 })

@@ -1,4 +1,4 @@
-import { ApprovedItemProps } from './ResultItem'
+import { ApprovedItem } from '../components/Results/CompensationSection'
 
 export const getApprovedItems = (
   totalPerMonthApproved = 0,
@@ -12,7 +12,7 @@ export const getApprovedItems = (
   totalOld = 0,
   totalWarPersonalExpenses = 0,
   totalWarFamilyExpenses = 0
-): ApprovedItemProps[] => [
+): ApprovedItem[] => [
   {
     name: 'מענק הוצאות אישיות',
     totalCompensation: totalWarPersonalExpenses,
@@ -82,8 +82,19 @@ export const getApprovedNonPaidItems = (
   totalMental: number,
   totalVacation: number,
   isStudent: boolean,
-  isCombat: boolean
-) => [
+  isCombat: boolean,
+  isIndependent: boolean
+): {
+  name: string
+  totalCompensation: number
+  totalCompensationStr?: string
+  description: string
+  nonDirectMoney: boolean
+  link?: {
+    text: string
+    url: string
+  }
+}[] => [
   {
     name: 'שובר חופשה',
     totalCompensation: totalVacation,
@@ -102,6 +113,23 @@ export const getApprovedNonPaidItems = (
     description: `סיוע חד פעמי במימון טיפול רגשי, נפשי, פסיכותרפי, משלים, אישי, זוגי או משפחתי למשרת מילואים ומשפחתו ששירת 30 ימים ומעלה במסגרת צו 8 'חרבות ברזל'.. הסיוע יינתן בכפוף לתצהיר + קבלה שיגיש משרת המילואים ולא יותר מהתשלום בפועל. הגשת קבלת החזר החל מ- 1.2.24 לאחר שליחת מסרון פרטני.לניצול עד סוף 2026. ניתן לממש רכיב זה ולשמור קבלות לטובת קבלת החזר.`,
     nonDirectMoney: true,
   },
+  ...(isIndependent
+    ? [
+        {
+          name: 'קרן הסיוע עבור עצמאים',
+          description: `"הקרן להוקרה, סיוע ותגמול תטפל ותעניק סיוע למשרתי מילואים ששירתו במלחמת 'חרבות ברזל' החל מיום 7.10.23, בין היתר בגין נזקים כלכליים שנגרמו להם ולבני משפחתם עקב השתתפותם בלחימה או עקב קריאתם לשירות מילואים בהתראה קצרה.
+
+    הקרן תופעל החל מ-15.11.23 למשך שנה. ללא הגבלה לסיבת הפניה. הפניות יישקלו וייבדקו על ידי ועדה מקצועית למענך. ."`,
+          totalCompensationStr: 'ללא הגבלה על סכום הגשת הבקשה',
+          totalCompensation: 0,
+          nonDirectMoney: true,
+          link: {
+            text: 'לחץ כאן להגשת בקשה לקרן הסיוע',
+            url: 'https://wiz.medone.idf.il/MU/m/58UMSPMR6H',
+          },
+        },
+      ]
+    : []),
   ...(isStudent
     ? [
         {
@@ -114,10 +142,10 @@ export const getApprovedNonPaidItems = (
     : []),
 ]
 
-export const separatePaymentsByDate = (list: ApprovedItemProps[]) => {
+export const separatePaymentsByDate = (list: ApprovedItem[]) => {
   const currentDate = new Date()
-  const pastPayments: ApprovedItemProps[] = []
-  const upcomingPayments: ApprovedItemProps[] = []
+  const pastPayments: ApprovedItem[] = []
+  const upcomingPayments: ApprovedItem[] = []
 
   list.forEach((item) => {
     if (!item.dateOfPayment) {

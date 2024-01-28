@@ -67,6 +67,7 @@ export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
       hasChildrenSpecial: state.hasChildrenSpecial.toString(),
       isOld: state.isOld.toString(),
       isStudent: state.isStudent.toString(),
+      isIndependent: state.isIndependent.toString(),
     }).toString()
 
     window.history.pushState({}, '', '?' + queryParams)
@@ -87,6 +88,10 @@ export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
       isOld: queryParams.get('isOld') === 'true' ? true : state.isOld,
       isStudent:
         queryParams.get('isStudent') === 'true' ? true : state.isStudent,
+      isIndependent:
+        queryParams.get('isIndependent') === 'true'
+          ? true
+          : state.isIndependent,
       dateRanges: queryParams.get('dateRanges')
         ? JSON.parse(queryParams.get('dateRanges') || '')
         : state.dateRanges,

@@ -2,13 +2,23 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import ResultsBar from '../ResultsBar/ResultsBar'
 import Timeline from '../TimeLine/TimeLine'
-import { ApprovedItemProps } from './ResultItem'
-import { separatePaymentsByDate } from './data'
+import { separatePaymentsByDate } from '../../data/compensation'
 import styles from './styles/CompensationSection.module.css'
+
+export interface ApprovedItem {
+  name: string
+  totalCompensation: number
+  totalCompensationStr?: string
+  description?: string
+  nonDirectMoney?: boolean
+  isMoney?: boolean
+  dateOfPayment?: Date
+  url?: string
+}
 
 export interface CompensationSectionProps {
   totalCompensation: number
-  items: ApprovedItemProps[]
+  items: ApprovedItem[]
 }
 
 const CompensationSection = (props: CompensationSectionProps) => {
