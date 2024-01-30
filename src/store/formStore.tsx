@@ -58,19 +58,22 @@ export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
   // Function to save form state to URL query
   saveStateToUrl: () => {
     const state = get()
-    const queryParams = new URLSearchParams({
-      // Add all the state properties you want to include in the URL
-      serviceBefore: state.serviceBefore,
-      dateRanges: JSON.stringify(state.dateRanges),
-      isCombat: state.isCombat.toString(),
-      hasChildren: state.hasChildren.toString(),
-      hasChildrenSpecial: state.hasChildrenSpecial.toString(),
-      isOld: state.isOld.toString(),
-      isStudent: state.isStudent.toString(),
-      isIndependent: state.isIndependent.toString(),
-    }).toString()
 
-    window.history.pushState({}, '', '?' + queryParams)
+    // Create a URLSearchParams object from the current URL
+    const currentParams = new URLSearchParams(window.location.search)
+
+    // Update the parameters with the new state values
+    currentParams.set('serviceBefore', state.serviceBefore)
+    currentParams.set('dateRanges', JSON.stringify(state.dateRanges))
+    currentParams.set('isCombat', state.isCombat.toString())
+    currentParams.set('hasChildren', state.hasChildren.toString())
+    currentParams.set('hasChildrenSpecial', state.hasChildrenSpecial.toString())
+    currentParams.set('isOld', state.isOld.toString())
+    currentParams.set('isStudent', state.isStudent.toString())
+    currentParams.set('isIndependent', state.isIndependent.toString())
+
+    // Update the URL with the new query parameters
+    window.history.pushState({}, '', '?' + currentParams.toString())
   },
 
   // Function to load form state from URL query
