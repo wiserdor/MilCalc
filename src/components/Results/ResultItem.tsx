@@ -24,6 +24,7 @@ export interface NonApprovedItemProps {
   isMoney?: boolean
   dateOfPayment?: Date
   link?: { text: string; url: string }
+  idfLink?: string
 }
 
 const Tooltip = (props: {
@@ -107,6 +108,7 @@ const ResultItem = (props: NonApprovedItemProps) => {
     nonDirectMoney = false,
     isMoney = true,
     link,
+    idfLink,
   } = props
   return (
     <div className={style.approvedItem}>
@@ -122,6 +124,9 @@ const ResultItem = (props: NonApprovedItemProps) => {
         )}
         <div>{name}</div>
       </div>
+      <a href={idfLink} target="_blank" rel="noopener noreferrer">
+        <img src="/svg/arrow-left.svg" />
+      </a>
       {description && (
         <div style={{ position: 'relative', top: 4, maxHeight: 0 }}>
           <Tooltip text={description} link={link} />
