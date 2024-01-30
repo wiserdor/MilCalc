@@ -33,12 +33,8 @@ const RiseupBanner = () => {
         <img src="/svg/calculator.svg" alt="calculator" />
       </div>
       <h2>הטבה מיוחדת למשתמשי המחשבון</h2>
-      <div style={{ fontWeight: 400, lineHeight: 1.2, fontSize: 16 }}>
-        רייזאפ, שירות דיגיטלי שיתן לכם ודאות כלכלית, אפילו בימים כל כך חסרי
-        ודאות.{' '}
-        <span style={{ fontWeight: 600 }}>
-          חודש ראשון חינם ו50% הנחה על החודש השני והשלישי.
-        </span>
+      <div style={{ fontWeight: 600, lineHeight: 1.2, fontSize: 16 }}>
+        חודש ראשון חינם ו50% הנחה על החודש השני והשלישי.
       </div>
       <a
         href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
