@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
-import data from './data'
+import data from '../../data/independants'
 import style from './Independent.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
 

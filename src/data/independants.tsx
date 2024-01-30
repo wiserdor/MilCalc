@@ -1,7 +1,7 @@
 const data: {
   title: string
   imgUrl: string
-  description: string
+  description: string | JSX.Element
   items: Array<
     | { type: 'phone'; text: string }
     | { type: 'whatsapp'; url: string }
@@ -62,6 +62,58 @@ const data: {
         type: 'link',
         url: 'https://albertleviart.co.il',
         text: 'albertleviart.co.il',
+      },
+    ],
+  },
+  {
+    title: 'ערן שפיגל',
+    imgUrl: 'eran_shpigel1.jpg',
+    description: (
+      <div>
+        שמי ערן שפיגל נשוי+3 מתל מונד, אני מילואימניק של יחידת מגלן מחטיבת
+        הקומנדו מגויס בצו 8 מה 15.11 עד עצם היום הזה בעלים של
+        חברת YOOZ ,קמעונאית מתפתחת של מוצרים ברי קיימא המציע אלטרנטיבות חדשות
+        ונגישות Reuse as a lifestyle תכירו את YOOZ, ה-A-List של הרב-פעמי. זהו
+        מותג חדש שיאפשר לכם להיפרד ללא מאמץ מההרגלים הישנים, וליהנות מרב-פעמי
+        איכותי מקום אחד שבו יש את כל מה שאתם צריכים כדי לאמץ לעצמכם לייפסטייל
+        סביבתי בפשטות. <br />
+        <br />
+        <div
+          dir="ltr"
+          style={{
+            direction: 'ltr',
+            justifyContent: 'flex-end',
+            display: 'flex',
+            width: '100%',
+            gap: 4,
+            flexDirection: 'column',
+          }}
+        >
+          <a
+            href="https://www.facebook.com/yoozit.co"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>
+          <a href="mailto:office@yoozit.co">Email</a>
+        </div>
+      </div>
+    ),
+    items: [
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send?phone=972504019777',
+      },
+      {
+        type: 'link',
+        url: 'http://www.yoozit.co/',
+        text: 'www.yoozit.co',
+      },
+      {
+        type: 'link',
+        url: 'https://www.instagram.com/yoozit.co/',
+        text: 'Instagram',
       },
     ],
   },
