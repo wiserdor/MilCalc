@@ -82,3 +82,29 @@ export const validateForm = (
 
   return errors
 }
+
+export const doDateRangesOverlap = (dateRanges: DateRange[]): boolean => {
+  for (let i = 0; i < dateRanges.length; i++) {
+    const { startDate, endDate } = dateRanges[i]
+    const startDateDate = new Date(startDate)
+    const endDateDate = new Date(endDate)
+
+    for (let j = 0; j < dateRanges.length; j++) {
+      if (i === j) {
+        continue
+      }
+
+      const { startDate: startDate2, endDate: endDate2 } = dateRanges[j]
+      const startDateDate2 = new Date(startDate2)
+      const endDateDate2 = new Date(endDate2)
+
+      if (
+        (startDateDate >= startDateDate2 && startDateDate <= endDateDate2) ||
+        (endDateDate >= startDateDate2 && endDateDate <= endDateDate2)
+      ) {
+        return true
+      }
+    }
+  }
+  return false
+}
