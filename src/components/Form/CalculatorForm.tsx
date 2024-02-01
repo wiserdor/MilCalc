@@ -1,11 +1,14 @@
 import { useEffect } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import useStore from '../../store/store'
+import { FormValues } from '../../store/types'
 import NumberCircle from '../NumberCircle/NumberCircle'
 import Toggle from '../Toggle/Toggle'
 import FormDateSection from './FormDateSection'
 import FormInput from './FormInput'
 import ValidationSection from './ValidationSection'
 import style from './style/Form.module.css'
+import { validateForm } from './validation'
 
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState)
@@ -20,23 +23,38 @@ const CalculatorForm = () => {
   const isIndependent = useStore((state) => state.isIndependent)
   const hasChildren = useStore((state) => state.hasChildren)
   const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial)
-  const validateAndSetErrors = useStore((state) => state.validateAndSetErrors)
+  const dateRanges = useStore((state) => state.dateRanges)
+
+  const setValidationErrors = useStore((state) => state.setValidationErrors)
+
+  const { handleSubmit, control, register } = useForm<FormValues>({
+    defaultValues: {
+      dateRanges,
+      serviceBefore,
+      isCombat,
+      isStudent,
+      isOld,
+      isIndependent,
+      hasChildren,
+      hasChildrenSpecial,
+    },
+  })
 
   useEffect(() => {
     loadStateFromUrl()
   }, [])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormState(e.target.name, e.target.value)
-  }
-
-  const handleToggleChange = (name: string, active: boolean) => {
-    setFormState(name, active)
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    validateAndSetErrors() // Validate form and update errors in store
+  const onSubmit = (data: FormValues) => {
+    const errors = validateForm(
+      data.dateRanges,
+      data.serviceBefore,
+      data.operation24Days
+    )
+    setValidationErrors(errors)
+    if (errors.length > 0) {
+      return
+    }
+    setFormState({ ...data })
     updateCalculatorResults() // Calculate and update results in store
   }
 
@@ -56,8 +74,8 @@ const CalculatorForm = () => {
         <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
       </div>
 
-      <form className={style.formForm} onSubmit={handleSubmit}>
-        <FormDateSection />
+      <form className={style.formForm} onSubmit={handleSubmit(onSubmit)}>
+        <FormDateSection control={control} register={register} />
         <div className={style.formSection}>
           <div className={style.formSectionTitle}>
             <NumberCircle number={2} />
@@ -67,22 +85,11 @@ const CalculatorForm = () => {
           </div>
           <FormInput
             type="number"
-            name="serviceBefore"
-            value={serviceBefore}
             min={0}
             step={0.5}
-            onChange={(e) => {
-              handleInputChange(e)
-              if (parseFloat(e.target.value) < 5) {
-                setFormState('isDaysStraight', false)
-              }
-            }}
-            onInvalid={(e: any) => {
-              if (parseFloat(e.target.value) % 0.5 !== 0) {
-                e.target.setCustomValidity('המספר צריך להיות בקפיצות של 0.5')
-              }
-            }}
-            onInput={(e: any) => e.target.setCustomValidity('')}
+            register={register}
+            registerOptions={{ required: true, min: 0, max: 365 }}
+            name="serviceBefore"
           />
         </div>
 
@@ -99,41 +106,85 @@ const CalculatorForm = () => {
               rowGap: 20,
             }}
           >
-            <Toggle
-              label="במערך הלוחם"
+            <Controller
+              control={control}
               name="isCombat"
-              active={isCombat}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => {
+                return (
+                  <Toggle
+                    label="במערך הלוחם"
+                    name={name}
+                    active={value}
+                    onChange={onChange}
+                    ref={ref}
+                  />
+                )
+              }}
             />
-            <Toggle
-              label="ילדים עד גיל 14"
+            <Controller
+              control={control}
               name="hasChildren"
-              active={hasChildren}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => (
+                <Toggle
+                  label="ילדים עד גיל 14"
+                  name={name}
+                  active={value}
+                  onChange={onChange}
+                  ref={ref}
+                />
+              )}
             />
-            <Toggle
-              label="ילדים עם צרכים מיוחדים"
+            <Controller
+              control={control}
               name="hasChildrenSpecial"
-              active={hasChildrenSpecial}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => (
+                <Toggle
+                  label="ילדים עם צרכים מיוחדים"
+                  name={name}
+                  active={value}
+                  onChange={onChange}
+                  ref={ref}
+                />
+              )}
             />
-            <Toggle
-              label="מוחרג/ת גיל"
+            <Controller
+              control={control}
               name="isOld"
-              active={isOld}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => (
+                <Toggle
+                  label="מוחרג/ת גיל"
+                  name={name}
+                  active={value}
+                  onChange={onChange}
+                  ref={ref}
+                />
+              )}
             />
-            <Toggle
-              label="עצמאי/ת"
+            <Controller
+              control={control}
               name="isIndependent"
-              active={isIndependent}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => (
+                <Toggle
+                  label="עצמאי/ת"
+                  name={name}
+                  active={value}
+                  onChange={onChange}
+                  ref={ref}
+                />
+              )}
             />
-            <Toggle
-              label="סטודנט/ית"
+            <Controller
+              control={control}
               name="isStudent"
-              active={isStudent}
-              onChange={handleToggleChange}
+              render={({ field: { onChange, value, name, ref } }) => (
+                <Toggle
+                  label="סטודנט/ית"
+                  name={name}
+                  active={value}
+                  onChange={onChange}
+                  ref={ref}
+                />
+              )}
             />
           </div>
         </div>

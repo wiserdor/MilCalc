@@ -1,6 +1,5 @@
 import { StateCreator } from 'zustand'
-import { validateForm } from '../components/Form/validation'
-import { FormStore } from './types'
+import { FormStore, FormValues } from './types'
 
 export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
   set,
@@ -33,21 +32,15 @@ export const createFormStore: StateCreator<FormStore, [], [], FormStore> = (
   operation24Days: '0',
 
   // Function to update form states
-  setFormState: (name: string, value: any) => {
-    set((state) => ({ ...state, [name]: value }))
+  setFormState: (data: FormValues) => {
+    set(data)
     get().saveStateToUrl()
   },
 
   // Results and alerts
   validationErrors: [],
 
-  validateAndSetErrors: () => {
-    const state = get()
-    const errors = validateForm(
-      state.dateRanges,
-      state.serviceBefore,
-      state.operation24Days
-    )
+  setValidationErrors: (errors: string[]) => {
     set({ validationErrors: errors })
   },
 

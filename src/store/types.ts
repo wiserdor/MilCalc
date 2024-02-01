@@ -27,7 +27,7 @@ export interface CalculatorResults {
   resetResults: () => void
 }
 
-export interface FormStore {
+export interface FormValues {
   isCombat: boolean
   isIndependent: boolean
   wifePregnant: boolean
@@ -45,12 +45,12 @@ export interface FormStore {
   isOld: boolean
   serviceBefore: string
   operation24Days: string
+}
 
+export interface FormStore extends FormValues {
   validationErrors: string[]
-
-  setFormState: (name: string, value: any) => void
-  validateAndSetErrors: () => void
-
+  setValidationErrors: (errors: string[]) => void
+  setFormState: (data: FormValues) => void
   saveStateToUrl: () => void
   loadStateFromUrl: () => void
 }

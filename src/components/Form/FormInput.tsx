@@ -1,16 +1,21 @@
 import React from 'react'
 import style from './style/FormInput.module.css'
+import { RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { FormValues } from '../../store/types'
 
 export interface FormInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
+  register: UseFormRegister<FormValues>
+  registerOptions?: RegisterOptions<FormValues, keyof FormValues>
+  name: string
 
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FormInput = (props: FormInputProps) => {
-  const { onChange, label, ...inputProps } = props
-  const id = `formInput-${inputProps.name}`
+  const { label, register, name, registerOptions = {}, ...inputProps } = props
+  const id = `formInput-${name}`
   return (
     <div className={style.inputLabel}>
       {label && (
@@ -21,9 +26,9 @@ const FormInput = (props: FormInputProps) => {
       <input
         dir="rtl"
         className={style.input}
-        onChange={onChange}
         id={id}
         {...inputProps}
+        {...register(name as any, registerOptions)}
       />
     </div>
   )

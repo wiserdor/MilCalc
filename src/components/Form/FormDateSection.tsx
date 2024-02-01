@@ -1,40 +1,34 @@
-import useStore from '../../store/store'
+import { Fragment } from 'react'
+import { Control, UseFormRegister, useFieldArray } from 'react-hook-form'
+import { FormValues } from '../../store/types'
 import NumberCircle from '../NumberCircle/NumberCircle'
+import FormInput from './FormInput'
 import formStyle from './style/Form.module.css'
 import style from './style/FormDateSection.module.css'
-import FormInput from './FormInput'
-import { Fragment } from 'react'
 
-const FormDateSection = () => {
-  const dateRanges = useStore((state) => state.dateRanges)
+interface FormDateSectionProps {
+  control: Control<FormValues>
+  register: UseFormRegister<FormValues>
+}
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { name, value } = e.target
-    const newDateRanges = [...dateRanges]
-    newDateRanges[index] = {
-      ...newDateRanges[index],
-      [name]: value,
-    }
-    useStore.setState({ dateRanges: newDateRanges })
-  }
+const FormDateSection = (props: FormDateSectionProps) => {
+  const { control, register } = props
 
+  const { fields, append, remove } = useFieldArray({
+    name: 'dateRanges',
+    control,
+  })
+
+  // Modify onAddDateRange and onRemoveDateRange to use append and remove
   const onAddDateRange = () => {
-    const newDateRanges = [...dateRanges]
-    newDateRanges.push({
+    append({
       startDate: '2023-10-07',
       endDate: new Date().toISOString().split('T')[0],
     })
-    useStore.setState({ dateRanges: newDateRanges })
   }
 
   const onRemoveDateRange = (index: number) => {
-    if (dateRanges.length === 1) return
-    const newDateRanges = [...dateRanges]
-    newDateRanges.splice(index, 1)
-    useStore.setState({ dateRanges: newDateRanges })
+    remove(index)
   }
 
   return (
@@ -44,38 +38,35 @@ const FormDateSection = () => {
         <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים</div>
       </div>
       <div className={style.dateRangesWrapper}>
-        {dateRanges.map((dateRange, index) => (
+        {fields.map((_, index) => (
           <Fragment key={index}>
             <div
               className={style.dateRange}
               style={{
-                borderBottom:
-                  dateRanges.length > 1 ? '1.5px dotted #ccc' : 'none',
-                paddingBottom: dateRanges.length > 1 ? '24px' : '0',
+                borderBottom: fields.length > 1 ? '1.5px dotted #ccc' : 'none',
+                paddingBottom: fields.length > 1 ? '24px' : '0',
               }}
             >
               <FormInput
                 type="date"
                 label="תאריך גיוס:"
-                name="startDate"
-                value={dateRange.startDate}
+                name={`dateRanges[${index}].startDate`}
                 min="2023-10-07"
-                onChange={(e) => handleInputChange(e, index)}
                 onFocus={(e) => e.target.showPicker()}
                 style={{ cursor: 'pointer' }}
+                register={register}
               />
               <FormInput
                 type="date"
                 label="תאריך שחרור:"
-                name="endDate"
-                value={dateRange.endDate}
+                name={`dateRanges[${index}].endDate`}
                 min="2023-10-07"
-                onChange={(e) => handleInputChange(e, index)}
                 onFocus={(e) => e.target.showPicker()}
                 style={{ cursor: 'pointer' }}
+                register={register}
               />
             </div>
-            {dateRanges.length > 1 && (
+            {fields.length > 1 && (
               <div
                 className={style.removeDateRangeWrapper}
                 onClick={() => onRemoveDateRange(index)}
