@@ -135,7 +135,7 @@ export const getApprovedNonPaidItems = (
           nonDirectMoney: true,
           link: {
             text: 'לחץ כאן להגשת בקשה לקרן הסיוע',
-            url: 'https://wiz.medone.idf.il/MU/m/58UMSPMR6H',
+            url: 'https://go.idf.il/AidFundind',
           },
           idfLink:
             'https://www.miluim.idf.il/articles-list/%D7%A7%D7%A8%D7%9F-%D7%94%D7%A1%D7%99%D7%95%D7%A2/',
