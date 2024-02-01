@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
-import styles from './Timeline.module.css'
+import { AnimatePresence, motion } from 'framer-motion'
 import { CSSProperties } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import styles from './Timeline.module.css'
 
 export type TimelineEvent = {
   date?: Date
