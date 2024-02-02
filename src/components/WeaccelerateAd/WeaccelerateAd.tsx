@@ -1,12 +1,31 @@
 const WeaccelerateAd = () => {
   return (
-    <a
-      href="https://weccelerate.as7.co.il/weccelerate_idf/"
-      target="_blank"
-      rel="noreferrer"
+    <div
+      style={{
+        paddingBlock: 24,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: 16,
+      }}
     >
-      <img width="100%" src="/ads/weCcelerate.png" />
-    </a>
+      <h2>השתחררתם מהמילואים?</h2>
+      <div style={{ fontSize: 14, fontWeight: 400, textAlign: 'center' }}>
+        אם אתם מרגישים שאתם לא בטוחים לגבי העתיד ההכשרה העסקית הזו בדיוק
+        בשבילכם.{' '}
+        <span style={{ fontWeight: 600, lineHeight: 1.2, fontSize: 16 }}>
+          בונוס פגישת ייעוץ אסטרטגית בשווי 500 ש״ח במתנה.
+        </span>
+      </div>
+      <a
+        href="https://weccelerate.as7.co.il/weccelerate_idf/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img width="100%" src="/ads/weCcelerate.png" />
+      </a>
+    </div>
   )
 }
 
