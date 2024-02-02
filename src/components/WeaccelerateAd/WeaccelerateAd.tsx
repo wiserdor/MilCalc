@@ -1,4 +1,14 @@
+import ReactGA from 'react-ga4'
+
 const WeaccelerateAd = () => {
+  const trackLinkClick = (linkName: string) => {
+    ReactGA.event({
+      category: 'Link',
+      action: linkName,
+      label: linkName,
+    })
+  }
+
   return (
     <div
       style={{
@@ -22,6 +32,7 @@ const WeaccelerateAd = () => {
         href="https://weccelerate.as7.co.il/weccelerate_idf/"
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackLinkClick('Weaccelerate')}
       >
         <img width="100%" src="/ads/weCcelerate.png" />
       </a>
