@@ -8,6 +8,7 @@ import Independent from './components/Independent/Independent'
 import NewsFeed from './components/NewsFeed/NewsFeed'
 import Results from './components/Results/Results'
 import RiseupBanner from './components/RiseupBanner/RiseupBanner'
+import WeaccelerateAd from './components/WeaccelerateAd/WeaccelerateAd'
 
 ReactGA.initialize('G-ZE1RDY2L6L')
 
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <CalculatorForm />
         <Results />
+        <WeaccelerateAd />
         <RiseupBanner />
         <Independent />
       </div>
