@@ -5,13 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const TIMER_DURATION = 15
 
-const toPhoneString = (phone: string) => {
-  // add - after the third digit
-  const firstPart = phone.substring(0, 3)
-  const secondPart = phone.substring(3)
-  return `${firstPart}-${secondPart}`
-}
-
 function shuffleArray<A>(array: A[]) {
   for (let i = array.length - 1; i > 0; i--) {
     // Generate a random index lower than the current index
@@ -104,10 +97,9 @@ const Independent = () => {
                   {activeItem.items.map((item, index) => (
                     <Fragment key={index}>
                       {item.type === 'phone' && (
-                        <a href={`tel:${item.text}`}>
+                        <a href={`tel:${item.phone}`}>
                           <div className={style.contactColumn}>
-                            <img src="/svg/phone.svg" width={16} />
-                            <div>{toPhoneString(item.text)}</div>
+                            <img src="/svg/phone.svg" />
                           </div>
                         </a>
                       )}
@@ -117,10 +109,7 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <div className={style.contactColumn}>
-                            <img src="/svg/whatsapp.svg" width={16} />
-                            <div>WhatsApp</div>
-                          </div>
+                          <img src="/svg/whatsapp.svg" />
                         </a>
                       )}
                       {item.type === 'link' && (
@@ -129,10 +118,25 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <div className={style.contactColumn}>
-                            <img src="/svg/click.svg" width={16} />
-                            <div>{item.text}</div>
-                          </div>
+                          <img src="/svg/click.svg" />
+                        </a>
+                      )}
+                      {item.type === 'facebook' && (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img src="/svg/facebook.svg" />
+                        </a>
+                      )}
+                      {item.type === 'instagram' && (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img src="/svg/instagram.svg" />
                         </a>
                       )}
                     </Fragment>
