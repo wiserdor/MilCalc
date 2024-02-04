@@ -13,11 +13,6 @@ test('test', async ({ page }) => {
   await page
     .locator('._innerBarContainer_jm7bm_6 > div:nth-child(2)')
     .isVisible()
-  await page
-    .locator('div')
-    .filter({ hasText: /^הצג מידע נוסף$/ })
-    .first()
-    .click()
   await page.getByText('מענק הוצאות אישיות', { exact: true }).isVisible()
   await page.getByText('מענק משפחה', { exact: true }).isVisible()
   await page.getByText('מענק הוצאות אישיות מוגדל').isVisible()

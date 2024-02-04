@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CSSProperties } from 'react'
 import styles from './TimeLine.module.css'
+import ArrowLeft from '../../svg/ArrowLeft'
 
 export type TimelineEvent = {
   date?: Date
@@ -17,47 +18,54 @@ export interface TimelineProps {
 const TimelineEvent = (props: TimelineEvent & { index: number }) => {
   const { date, totalCompensation = 0, name, color, url, index } = props
   return (
-    <div className={styles.event}>
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.2 }}
-          exit={{ opacity: 0, x: -50 }}
-          className={styles.eventContent}
-        >
-          <div className={styles.eventContentColumn}>
-            <div className={styles.eventDate} style={{ minWidth: '7ch' }}>
-              {date ? format(date.toISOString(), 'dd.MM.yy') : ''}
-            </div>
-          </div>
-          <div className={styles.eventContentColumn}>
-            <div
-              className={styles.eventInfo}
-              style={{ backgroundColor: color, minWidth: '7ch' }}
-            >
-              ₪
-              {totalCompensation.toLocaleString('he-IL', {
-                maximumFractionDigits: 0,
-              })}
-            </div>
-          </div>
-          <div className={styles.eventContentColumn} style={{ flexGrow: 1 }}>
-            <div className={styles.eventInfo2}>{name}</div>
-          </div>
-          <a
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.eventContentColumn}
-            style={{ cursor: 'pointer' }}
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      style={{ cursor: 'pointer' }}
+    >
+      <div className={styles.event}>
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.2 }}
+            exit={{ opacity: 0, x: -50 }}
+            className={styles.eventContent}
           >
-            <img src="/svg/arrow-left.svg" />
-          </a>
-        </motion.div>
-      </AnimatePresence>
-      <div style={{ backgroundColor: color }} className={styles.eventDot}></div>
-    </div>
+            <div className={styles.eventContentColumn}>
+              <div className={styles.eventDate} style={{ minWidth: '7ch' }}>
+                {date ? format(date.toISOString(), 'dd.MM.yy') : ''}
+              </div>
+            </div>
+            <div className={styles.eventContentColumn}>
+              <div
+                className={styles.eventInfo}
+                style={{ backgroundColor: color, minWidth: '7ch' }}
+              >
+                ₪
+                {totalCompensation.toLocaleString('he-IL', {
+                  maximumFractionDigits: 0,
+                })}
+              </div>
+            </div>
+            <div
+              className={styles.eventContentColumn}
+              style={{ flexGrow: 1, color }}
+            >
+              <div className={styles.eventInfo2}>{name}</div>
+            </div>
+            <div className={styles.eventContentColumn}>
+              <ArrowLeft strokeColor={color} />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+        <div
+          style={{ backgroundColor: color }}
+          className={styles.eventDot}
+        ></div>
+      </div>
+    </a>
   )
 }
 

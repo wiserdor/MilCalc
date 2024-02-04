@@ -23,7 +23,6 @@ export interface CompensationSectionProps {
 
 const CompensationSection = (props: CompensationSectionProps) => {
   const { totalCompensation, items } = props
-  const [showMore, setShowMore] = React.useState(false)
 
   const { pastPayments, upcomingPayments } = React.useMemo(
     () => separatePaymentsByDate(items),
@@ -62,104 +61,77 @@ const CompensationSection = (props: CompensationSectionProps) => {
       />
 
       <AnimatePresence>
-        {showMore && (
-          <motion.div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 24,
-            }}
-            layout
-            animate={{
-              height: 'auto',
-              visibility: 'visible',
-            }}
-            initial={{ height: 0, visibility: 'hidden' }}
-            exit={{ height: 0, visibility: 'hidden' }}
-          >
-            <div>
-              <div
-                style={{
-                  fontWeight: 700,
-                  fontSize: 14,
-                }}
-              >
-                מענקים שנכנסו:
-              </div>
-
-              <div
-                style={{
-                  paddingBlock: 16,
-                }}
-              >
-                <Timeline
-                  events={pastPayments
-                    .filter((p) => p.totalCompensation > 0)
-                    .map((p) => ({
-                      date: p.dateOfPayment,
-                      totalCompensation: p.totalCompensation,
-                      name: p.name,
-                      url: p.url,
-                      color: '#B179F9',
-                    }))}
-                />
-              </div>
-            </div>
-            <div>
-              <div
-                style={{
-                  fontWeight: 700,
-                  fontSize: 14,
-                }}
-              >
-                מענקים שצפויים להכנס:
-              </div>
-              <div
-                style={{
-                  paddingBlock: 16,
-                }}
-              >
-                <Timeline
-                  events={upcomingPayments
-                    .filter((p) => p.totalCompensation > 0)
-                    .map((p) => ({
-                      date: p.dateOfPayment,
-                      totalCompensation: p.totalCompensation,
-                      name: p.name,
-                      color: '#528322',
-                      url: p.url,
-                    }))}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className={styles.showMore} onClick={() => setShowMore(!showMore)}>
-        <div>{showMore ? 'הצג פחות מידע' : 'הצג מידע נוסף'}</div>
-        <div
+        <motion.div
           style={{
             display: 'flex',
-            height: 24,
-            width: 24,
-            backgroundColor: '#0066FF',
-            justifyContent: 'center',
-            alignItems: 'center',
-            cursor: 'pointer',
-            borderRadius: 6,
+            flexDirection: 'column',
+            gap: 24,
           }}
+          layout
+          animate={{
+            height: 'auto',
+            visibility: 'visible',
+          }}
+          initial={{ height: 0, visibility: 'hidden' }}
+          exit={{ height: 0, visibility: 'hidden' }}
         >
-          <motion.div
-            animate={{
-              rotate: showMore ? 180 : 0,
-            }}
-            transition={{ duration: 0.4 }}
-          >
-            <img src="/svg/carret.svg" />
-          </motion.div>
-        </div>
-      </div>
+          <div>
+            <div
+              style={{
+                fontWeight: 700,
+                fontSize: 14,
+              }}
+            >
+              מענקים שנכנסו:
+            </div>
+
+            <div
+              style={{
+                paddingBlock: 16,
+              }}
+            >
+              <Timeline
+                events={pastPayments
+                  .filter((p) => p.totalCompensation > 0)
+                  .map((p) => ({
+                    date: p.dateOfPayment,
+                    totalCompensation: p.totalCompensation,
+                    name: p.name,
+                    url: p.url,
+                    color: '#B179F9',
+                  }))}
+              />
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontWeight: 700,
+                fontSize: 14,
+              }}
+            >
+              מענקים שצפויים להכנס:
+            </div>
+            <div
+              style={{
+                paddingBlock: 16,
+              }}
+            >
+              <Timeline
+                events={upcomingPayments
+                  .filter((p) => p.totalCompensation > 0)
+                  .map((p) => ({
+                    date: p.dateOfPayment,
+                    totalCompensation: p.totalCompensation,
+                    name: p.name,
+                    color: '#528322',
+                    url: p.url,
+                  }))}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
