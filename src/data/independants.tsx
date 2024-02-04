@@ -158,6 +158,23 @@ const data: {
       { type: 'email', email: 'Almog334@gmail.com' },
     ],
   },
+  {
+    title: 'זאב אנגל',
+    imgUrl: 'zeev_angel1.jpg',
+    description: `שמי זאב אנגל
+    יוצר אמנות ויודאיקה מעץ טבעי
+     מעביר בסדנאות מיוחדות לאמנות בעץ
+    המשלבות תוכן ייחודי מעולם העץ ויצירה אישית של כל משתתף`,
+    items: [
+      { type: 'link', url: 'https://moriyajudaica.com/' },
+      {
+        type: 'facebook',
+        url: 'https://m.facebook.com/profile.php/?id=100063662465472',
+      },
+      { type: 'email', email: 'ze.etzhaim@gmail.com' },
+      { type: 'phone', phone: '054-522-0000' },
+    ],
+  },
 ]
 
 export default data
