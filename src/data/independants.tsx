@@ -10,6 +10,7 @@ const data: {
     | { type: 'facebook'; url: string }
     | { type: 'instagram'; url: string }
     | { type: 'location'; address: string }
+    | { type: 'email'; email: string }
   >
 }[] = [
   {
@@ -120,6 +121,7 @@ const data: {
         url: 'https://www.instagram.com/guy_cohen_nox_fitness?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
       },
       { type: 'phone', phone: '0524493008' },
+      { type: 'email', email: 'guycohen230@gmail.com' },
     ],
   },
   {
@@ -138,6 +140,22 @@ const data: {
         url: 'https://www.facebook.com/profile.php?id=100063579283525&mibextid=LQQJ4d',
       },
       { type: 'phone', phone: '0529464172' },
+      { type: 'email', email: 'shendi474@gmail.com' },
+    ],
+  },
+  {
+    title: 'אלמוג חלק',
+    imgUrl: 'almog_halek1.jpg',
+    business: 'בומבה לנד הפקות',
+    description: `משרת ביחידת במילואים של סיירת גולני מ7.10 ועדיין במילואים..
+    עסק של אטרקציות והפקות אירועים מתנפחים לייזר טאג, פיינטבול, השור הזועם ועוד המון אטרקציות שיקפיצו אותכם ויגרמו לכם לזוז ולקפוץ. בכל רחבי הארץ.`,
+    items: [
+      { type: 'phone', phone: '0586277918' },
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send/?phone=972586277918',
+      },
+      { type: 'email', email: 'Almog334@gmail.com' },
     ],
   },
 ]
