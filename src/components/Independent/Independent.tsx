@@ -163,8 +163,14 @@ const Independent = () => {
       </div>
       <div className={style.subtitle}>
         חשוב לנו לעזור לעצמאיים שהעסק שלהם נפגע בעקבות המלחמה. רוצים להופיע?
-        דברו איתנו במייל:{' '}
-        <a href="mailto:yslook7@gmail.com">yslook7@gmail.com</a>
+        מלאו את הטופס עם הפרטים שלכם:{' '}
+        <a
+          href="https://wkf.ms/4buZtPI"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          https://wkf.ms/4buZtPI
+        </a>
       </div>
     </div>
   )
