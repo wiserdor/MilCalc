@@ -9,6 +9,7 @@ import FormInput from './FormInput'
 import ValidationSection from './ValidationSection'
 import style from './style/Form.module.css'
 import { validateForm } from './validation'
+import ArrowLeft from '../../svg/ArrowLeft'
 
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState)
@@ -94,9 +95,36 @@ const CalculatorForm = () => {
         </div>
 
         <div className={style.formSection}>
-          <div className={style.formSectionTitle}>
-            <NumberCircle number={3} />
-            <div style={{ flex: 1 }}>בחרו בקטגוריות הרלוונטיות לגביכם/ן:</div>
+          <div>
+            <div
+              className={style.formSectionTitle}
+              style={{
+                marginBottom: 6,
+              }}
+            >
+              <NumberCircle number={3} />
+              <div style={{ flex: 1 }}>בחרו בקטגוריות הרלוונטיות לגביכם/ן:</div>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontWeight: 600,
+                fontSize: 12,
+                color: '#A15FF7',
+                backgroundColor: '#F2F6FD',
+                gap: 6,
+                paddingInline: 8,
+                paddingBlock: 6,
+                width: 'fit-content',
+                borderRadius: 3,
+                marginBottom: 24,
+              }}
+            >
+              <ArrowLeft strokeColor="#A15FF7" />
+              <div>הוספנו קטגוריות חדשות!</div>
+            </div>
           </div>
           <div
             style={{
