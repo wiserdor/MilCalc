@@ -81,7 +81,14 @@ const Independent = () => {
                   />
                 </div>
               </div>
-              <h3 className={style.business}>{activeItem.title}</h3>
+              <div>
+                <h3 className={style.business}>{activeItem.title}</h3>
+                {activeItem?.business && (
+                  <div style={{ fontWeight: 400, fontSize: 16 }}>
+                    {activeItem.business}
+                  </div>
+                )}
+              </div>
               <div
                 style={{
                   display: 'flex',
@@ -98,9 +105,7 @@ const Independent = () => {
                     <Fragment key={index}>
                       {item.type === 'phone' && (
                         <a href={`tel:${item.phone}`}>
-                          <div className={style.contactColumn}>
-                            <img src="/svg/phone.svg" />
-                          </div>
+                          <img src="/svg/phone.svg" />
                         </a>
                       )}
                       {item.type === 'whatsapp' && (

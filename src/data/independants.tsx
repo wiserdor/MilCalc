@@ -2,12 +2,14 @@ const data: {
   title: string
   imgUrl: string
   description: string | JSX.Element
+  business?: string
   items: Array<
     | { type: 'phone'; phone: string }
     | { type: 'whatsapp'; url: string }
     | { type: 'link'; url: string }
     | { type: 'facebook'; url: string }
     | { type: 'instagram'; url: string }
+    | { type: 'location'; address: string }
   >
 }[] = [
   {
@@ -101,6 +103,7 @@ const data: {
   {
     title: 'גאי כהן',
     imgUrl: 'guy_cohen.jpg',
+    business: 'NOX Fitness',
     description: `אהלן חברים, אני גאי. 
     בעקבות המילואים נאלצתי לסגור את הסטודיו שלי לאימונים פונקציונלים, אבל החלום לתרום מהידע שלי ולסייע לאנשים לחיות אורך חיים בריא עדיין ממלא לי את הלב והמחשבות. 
     אז בניתי תוכנית אונליין שתתאים לכל הרמות, בציוד מינימלי, שאפשר לעשות גם מהסלון.
@@ -117,6 +120,24 @@ const data: {
         url: 'https://www.instagram.com/guy_cohen_nox_fitness?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
       },
       { type: 'phone', phone: '0524493008' },
+    ],
+  },
+  {
+    title: 'שני פלצי',
+    business: 'SHANI PALATCHI',
+    description: `סטייליסטית ירוקה ובעלת אתר שופינג און ליין לאופנת ויניטג ויד שנייה שמציע אלטרנטיבה ירוקה, בסטייל ובמחיר סופר משתלם .`,
+    imgUrl: 'shani_peltsi2.jpg',
+    items: [
+      { type: 'link', url: 'https://shani-palatchi.co.il/' },
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send/?phone=972529464172&text=&app_absent=0',
+      },
+      {
+        type: 'facebook',
+        url: 'https://www.facebook.com/profile.php?id=100063579283525&mibextid=LQQJ4d',
+      },
+      { type: 'phone', phone: '0529464172' },
     ],
   },
 ]
