@@ -179,22 +179,22 @@ export const specialGrantCalculation = (
   daysStraight: boolean,
   isOld: boolean
 ) => {
-  // 10-14.5 = 1410
-  // 15-19.5 = 2820
-  // 20-36.5 = 4230
-  //37 and above = 5640
+  // 10-14.5 = 1452
+  // 15-19.5 = 2904
+  // 20-36.5 = 4356
+  //37 and above = 5808
   // did you do 5-9 days straight 266
   const totalDays = daysBefore + daysInWar
 
   let totalAdditional = 0
   if (totalDays >= 10 && totalDays <= 14.5) {
-    totalAdditional = 1410
+    totalAdditional = 1452
   } else if (totalDays >= 15 && totalDays <= 19.5) {
-    totalAdditional = 2820
+    totalAdditional = 2904
   } else if (totalDays >= 20 && totalDays <= 36.5) {
-    totalAdditional = 4230
+    totalAdditional = 4356
   } else if (totalDays >= 37) {
-    totalAdditional = 5640
+    totalAdditional = 5808
   }
 
   if (isOld) {

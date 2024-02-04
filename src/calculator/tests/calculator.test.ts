@@ -132,7 +132,7 @@ describe('Calculator', () => {
         totalDaysStraight: 0,
         totalSpecialDays: 0,
         totalExtended: 0,
-        totalAdditional: 2820,
+        totalAdditional: 2904,
       })
     })
     it('should handle edge case of 14.5 total days', () => {
@@ -140,7 +140,7 @@ describe('Calculator', () => {
         totalDaysStraight: 266,
         totalSpecialDays: 0,
         totalExtended: 0,
-        totalAdditional: 1410,
+        totalAdditional: 1452,
       })
     })
     it('should calculate correctly for days before 32', () => {
@@ -148,7 +148,7 @@ describe('Calculator', () => {
         totalDaysStraight: 266,
         totalSpecialDays: 0,
         totalExtended: 0,
-        totalAdditional: 4230,
+        totalAdditional: 4356,
       })
     })
 
@@ -166,7 +166,7 @@ describe('Calculator', () => {
         totalDaysStraight: 266,
         totalSpecialDays: 0,
         totalExtended: 8512,
-        totalAdditional: 5640,
+        totalAdditional: 5808,
       })
     })
   })
