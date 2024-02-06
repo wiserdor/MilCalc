@@ -231,6 +231,28 @@ const data: {
       },
     ],
   },
+  {
+    title: 'יצחק לקס',
+    imgUrl: 'yitzhak_lax.jpeg',
+    business: 'אקסטרים עמק אילון',
+    description: `אקסטרים עמק איילון הוא עסק שעושה ימי גיבוש לחברות עסקים ופרטיים שרוצים לעשות אקסטרים ולהתפנק בסטייל.
+
+    אני מגויס משמחת תורה ועד לסיום והעסק מחכה ללקוחות
+    בואו ותהנו ממש
+    האטרקציות והפינוקים לא קיבלו צו 8 : )`,
+    items: [
+      { type: 'email', email: 'Laxlogistic@gmail.com' },
+      { type: 'phone', phone: '0504470888' },
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send/?phone=972504470888',
+      },
+      {
+        type: 'facebook',
+        url: 'https://www.facebook.com/profile.php?id=100089372007088',
+      },
+    ],
+  },
 ]
 
 export default data
