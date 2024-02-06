@@ -16,6 +16,7 @@ const data: {
   {
     title: 'אלון זעירה',
     imgUrl: 'zeira.jpeg',
+    business: '24Ride',
     description: `אחרי 104 ימים ברגשות מעורבים כי המשימה עדיין לא הושלמה,השתחררתי ממילואים נכון לעכשיו.
     העסק כמובן נפגע מאוד מ3 חודשיים ללא פעילות סדירה.
     אז אם יש לכם אופנוע ואתם צריכים ציוד רכיבה תעיפו מבט באתר שלי  ,מומלץ לתקשר איתי בוואצפ לגבי מלאי.
@@ -50,6 +51,7 @@ const data: {
   {
     title: 'אלברט לוי',
     imgUrl: 'independant3.jpeg',
+    business: 'Albert Levy Art',
     description: `אני אלברט לוי יש לי סטודיו לאומנות משגעת, אני יוצר אומנות ייחודית וצבעונית לבתים פרטיים ומשרדים,
      אחרי תקופה ארוכה של יותר מ-100 ימים בצבא חזרתי לפעילות עם החץ המכוון שלי - להכניס צבעים ואנרגיות לחיים שלכם ♥️.
      בקרו אותי באתר האינטרנט וברשתות החברתיות 🫶🏽`,
@@ -71,6 +73,7 @@ const data: {
   {
     title: 'ערן שפיגל',
     imgUrl: 'eran_shpigel1.jpg',
+    business: 'YOOZ',
     description: (
       <div>
         שמי ערן שפיגל נשוי+3 מתל מונד, אני מילואימניק של יחידת מגלן מחטיבת
@@ -161,6 +164,7 @@ const data: {
   {
     title: 'זאב אנגל',
     imgUrl: 'zeev_angel1.jpg',
+    business: 'אמנות ויודאיקה מעץ טבעי',
     description: `שמי זאב אנגל
     יוצר אמנות ויודאיקה מעץ טבעי
      מעביר בסדנאות מיוחדות לאמנות בעץ
@@ -173,6 +177,58 @@ const data: {
       },
       { type: 'email', email: 'ze.etzhaim@gmail.com' },
       { type: 'phone', phone: '054-522-0000' },
+    ],
+  },
+  {
+    title: 'יוחנן שוורץ',
+    description: `שמי יוחנן שוורץ, יועץ משכנתא שמתמחה בליווי מקוון בכל הארץ.
+    כל מילואימניק מוסמח לשי יעוץ ראיינת ללא 
+    לבדיקת משכנתא קיימת תשלום - רלוונטי גם למשכנתאות חדשות`,
+    imgUrl: 'yochanan_shwartz.jpg',
+    items: [
+      { type: 'phone', phone: '0547328840' },
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send/?phone=972547328840',
+      },
+      { type: 'link', url: 'https://hfca.org.il/userprofile/?id=506' },
+      { type: 'email', email: 'Jochaschwartz@gmail.com' },
+    ],
+  },
+  {
+    title: 'אורן פצ׳יו',
+    imgUrl: 'oren_patzio.jpg',
+    description: `צ׳יינג׳ להמרת כספים, שליחת כספים לחו״ל ומתן שירותים פיננסים בינלאומיים.`,
+    items: [
+      { type: 'email', email: 'exchange142@gmail.com' },
+      {
+        type: 'whatsapp',
+        url: 'https://call.whatsapp.com/video/oRPjCR9DD9VF4IBsKrCpfs',
+      },
+      { type: 'phone', phone: '0545434905' },
+    ],
+  },
+  {
+    title: 'יהודה ארזוני',
+    imgUrl: 'yehuda_arzoni.jpg',
+    business: 'להקת זמרת הארץ - נגינה והפקת ארועים',
+    description: `אני יהודה ארזוני, נגן קלרינט ומנהל להקת: 'זמרת הארץ', להקת חתונות מובילה בציבור הדתי.
+    לאחר למעלה מ100 ימי מילואים שכללו ביטול ארועים וצורך להביא נגן מחליף במקומי, אני עושה מאמץ לחזור להופיע ולנגן באירועים שלכם: חתונות, בר-מצות, וכל שמחה.
+    אנחנו כאן כדי להיות איתכם בשמחה שלכם!
+    צפו בנו ביוטיוב ובפייסבוק: 'להקת זמרת הארץ'.
+    (בתמונת פרופיל: נגינה לקראת שבת, בהפוגה באימונים בצאלים בתחילת המלחמה)
+    `,
+    items: [
+      { type: 'email', email: 'zimrat123@gmail.com' },
+      { type: 'phone', phone: '0585802887' },
+      {
+        type: 'whatsapp',
+        url: 'https://api.whatsapp.com/send/?phone=972585802887',
+      },
+      {
+        type: 'facebook',
+        url: 'https://www.facebook.com/profile.php?id=100076068781870',
+      },
     ],
   },
 ]

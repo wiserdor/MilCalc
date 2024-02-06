@@ -21,10 +21,10 @@
 }
 
 .img {
-  max-width: 170%; /* Image can be as wide as its container */
+  max-width: 155%; /* Image can be as wide as its container */
   height: auto; /* Keep the image's aspect ratio */
   /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
-  /* filter: brightness(105%) contrast(110%); */
+  filter: brightness(105%);
 }
 
 .description {
