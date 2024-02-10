@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
+import { separatePaymentsByDate } from '../../data/compensation'
 import ResultsBar from '../ResultsBar/ResultsBar'
 import Timeline from '../TimeLine/TimeLine'
-import { separatePaymentsByDate } from '../../data/compensation'
 import styles from './styles/CompensationSection.module.css'
+import Money from '../../svg/Money'
 
 export interface ApprovedItem {
   name: string
@@ -32,6 +33,9 @@ const CompensationSection = (props: CompensationSectionProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <div style={{ marginBottom: 8 }}>
+          <Money strokeColor="#528322" />
+        </div>
         <h3 className={styles.title}>{`₪${totalCompensation.toLocaleString(
           'he-IL'
         )}`}</h3>

@@ -1,3 +1,4 @@
+import Voucher from '../../svg/Voucher'
 import ResultItem, { NonApprovedItemProps } from './ResultItem'
 import style from './styles/Results.module.css'
 
@@ -8,12 +9,16 @@ interface ResultsSectionProps {
 }
 
 const ResultsSection = (props: ResultsSectionProps) => {
-  const { results } = props
+  const { results, total } = props
 
   return (
     <div className={style.resultsSection}>
       <div className={style.sectionHeader}>
-        <h3 className={style.sectionTitle}>שוברים וסיוע</h3>
+        <Voucher strokeColor="#0066FF" />
+        <h3 className={style.sectionTitle}>
+          בשווי {`₪${total.toLocaleString('he-IL')}`}
+        </h3>
+        <div className={style.subTitle}>שוברים וסיוע</div>
       </div>
       <div className={style.approvedGrid}>
         {results.map(

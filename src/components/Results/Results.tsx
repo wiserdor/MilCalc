@@ -8,6 +8,7 @@ import {
   getApprovedNonPaidItems,
 } from '../../data/compensation'
 import CompensationSection from './CompensationSection'
+import HeaderTotalSection from './HeaderTotalSection'
 
 const Results = () => {
   const totalPerMonth = useStore((state) => state.totalPerMonth)
@@ -92,7 +93,7 @@ const Results = () => {
       resultsIsIndependent,
     ]
   )
-  const totalApproved = useMemo(
+  const totalCompensation = useMemo(
     () =>
       approvedItems.reduce(
         (acc, item) => acc + (item.totalCompensation ?? 0),
@@ -112,17 +113,18 @@ const Results = () => {
 
   if (validationErrors?.length > 0) return null
 
-  if (totalApproved + totalNonPaidApproved === 0) return null
+  if (totalCompensation + totalNonPaidApproved === 0) return null
 
   return (
     <div className={style.results} ref={resultsRef}>
-      <div className={style.moneyLogo}>
-        <img src="/svg/money.svg" />
-      </div>
       <h2 className={style.resultsTitle}>המענקים שמגיעים לך</h2>
-      {totalApproved > 0 && (
+      <HeaderTotalSection
+        totalCompensation={totalCompensation}
+        totalVoucher={totalNonPaidApproved}
+      />
+      {totalCompensation > 0 && (
         <CompensationSection
-          totalCompensation={totalApproved}
+          totalCompensation={totalCompensation}
           items={approvedItems}
         />
       )}
@@ -134,7 +136,7 @@ const Results = () => {
           results={approvedNonPaidItems}
         />
       )}
-      <OneZero total={totalApproved} />
+      <OneZero total={totalCompensation} />
     </div>
   )
 }
