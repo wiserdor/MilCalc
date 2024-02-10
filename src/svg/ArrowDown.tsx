@@ -15,7 +15,7 @@ const ArrowDown = ({
     >
       <path
         d="M6.19043 -2.18557e-07L6.19043 13.4243M6.19043 13.4243L1.19043 8.42431M6.19043 13.4243L11.1904 8.42431"
-        stroke="white"
+        stroke={strokeColor}
         stroke-width="1.5"
       />
     </svg>
