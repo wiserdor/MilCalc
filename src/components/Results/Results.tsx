@@ -9,6 +9,7 @@ import {
 } from '../../data/compensation'
 import CompensationSection from './CompensationSection'
 import HeaderTotalSection from './HeaderTotalSection'
+import OneZeroSectionBanner from '../OneZero/OneZeroSectionBanner'
 
 const Results = () => {
   const totalPerMonth = useStore((state) => state.totalPerMonth)
@@ -128,6 +129,7 @@ const Results = () => {
           items={approvedItems}
         />
       )}
+      <OneZeroSectionBanner />
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection

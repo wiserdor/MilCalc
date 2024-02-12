@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Colors */
   --clr-idf: #528322;
@@ -6,6 +10,7 @@
   --clr-blue: #0066ff;
   --clr-dark-gray: #6f6f6f;
   --clr-bright-gray: #cccccc;
+  --clr-one-zero-black: #1f1f1f;
 
   font-family: 'Rubik', 'Roboto', sans-serif;
   font-weight: 500;
@@ -27,6 +32,14 @@ h2,
 h3 {
   margin: 0;
   padding: 0;
+}
+
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
 }
 
 @media screen and (max-width: 600px) {

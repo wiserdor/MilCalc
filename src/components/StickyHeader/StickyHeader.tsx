@@ -50,11 +50,22 @@ const StickyHeader = () => {
         </div>
       </Modal>
       <div className={style.container}>
-        <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
-        <div className={style.shareBtn} onClick={handleOpenModal}>
+        <button
+          style={{
+            backgroundColor: '#1f1f1f',
+            color: 'white',
+            paddingBlock: 8,
+            paddingInline: 16,
+            borderRadius: 44,
+            cursor: 'pointer',
+          }}
+        >
+          לפתיחת חשבון ב-ONE ZERO
+        </button>
+        <button className={style.shareBtn} onClick={handleOpenModal}>
           <img src="/svg/share.svg" alt="שיתוף" />
-          <span>שתפו עם החבר׳ה</span>
-        </div>
+          <span>לשיתוף</span>
+        </button>
       </div>
     </div>
   )
