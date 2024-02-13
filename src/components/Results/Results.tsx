@@ -1,49 +1,48 @@
-import { useEffect, useMemo, useRef } from 'react'
-import useStore from '../../store/store'
-import OneZero from '../OneZero/OneZero'
-import style from './styles/Results.module.css'
-import ResultsSection from './ResultsSection'
+import { useEffect, useMemo, useRef } from "react";
 import {
   getApprovedItems,
   getApprovedNonPaidItems,
-} from '../../data/compensation'
-import CompensationSection from './CompensationSection'
-import HeaderTotalSection from './HeaderTotalSection'
-import OneZeroSectionBanner from '../OneZero/OneZeroSectionBanner'
+} from "../../data/compensation";
+import useStore from "../../store/store";
+import OneZero from "../OneZero/OneZero";
+import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
+import CompensationSection from "./CompensationSection";
+import HeaderTotalSection from "./HeaderTotalSection";
+import ResultsSection from "./ResultsSection";
 
 const Results = () => {
-  const totalPerMonth = useStore((state) => state.totalPerMonth)
-  const totalMoreThan45 = useStore((state) => state.totalMoreThan45)
-  const totalFromChildren = useStore((state) => state.totalFromChildren)
-  const totalVacation = useStore((state) => state.totalVacation)
-  const totalSpecialChildren = useStore((state) => state.totalSpecialChildren)
-  const totalMental = useStore((state) => state.totalMental)
-  const totalFamilyCare = useStore((state) => state.totalFamilyCare)
-  const validationErrors = useStore((state) => state.validationErrors)
-  const totalSpecialDays = useStore((state) => state.totalSpecialDays)
-  const totalExtended = useStore((state) => state.totalExtended)
-  const totalAdditional = useStore((state) => state.totalAdditional)
-  const totalDaysStraight = useStore((state) => state.totalDaysStraight)
-  const totalOld = useStore((state) => state.totalOld)
+  const totalPerMonth = useStore((state) => state.totalPerMonth);
+  const totalMoreThan45 = useStore((state) => state.totalMoreThan45);
+  const totalFromChildren = useStore((state) => state.totalFromChildren);
+  const totalVacation = useStore((state) => state.totalVacation);
+  const totalSpecialChildren = useStore((state) => state.totalSpecialChildren);
+  const totalMental = useStore((state) => state.totalMental);
+  const totalFamilyCare = useStore((state) => state.totalFamilyCare);
+  const validationErrors = useStore((state) => state.validationErrors);
+  const totalSpecialDays = useStore((state) => state.totalSpecialDays);
+  const totalExtended = useStore((state) => state.totalExtended);
+  const totalAdditional = useStore((state) => state.totalAdditional);
+  const totalDaysStraight = useStore((state) => state.totalDaysStraight);
+  const totalOld = useStore((state) => state.totalOld);
   const totalWarPersonalExpenses = useStore(
-    (state) => state.totalWarPersonalExpenses
-  )
+    (state) => state.totalWarPersonalExpenses,
+  );
   const totalWarFamilyExpenses = useStore(
-    (state) => state.totalWarFamilyExpenses
-  )
+    (state) => state.totalWarFamilyExpenses,
+  );
 
-  const resultsIsStudent = useStore((state) => state.resultsIsStudent)
-  const resultsIsCombat = useStore((state) => state.resultsIsCombat)
-  const resultsIsIndependent = useStore((state) => state.resultsIsIndependent)
+  const resultsIsStudent = useStore((state) => state.resultsIsStudent);
+  const resultsIsCombat = useStore((state) => state.resultsIsCombat);
+  const resultsIsIndependent = useStore((state) => state.resultsIsIndependent);
 
-  const resultsRef = useRef<HTMLDivElement>(null)
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Scroll to results on submit
     if (validationErrors?.length === 0 && resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: 'smooth' })
+      resultsRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [validationErrors])
+  }, [validationErrors]);
 
   const approvedItems = useMemo(
     () =>
@@ -58,7 +57,7 @@ const Results = () => {
         totalDaysStraight,
         totalOld,
         totalWarPersonalExpenses,
-        totalWarFamilyExpenses
+        totalWarFamilyExpenses,
       ),
     [
       totalPerMonth,
@@ -72,8 +71,8 @@ const Results = () => {
       totalOld,
       totalWarPersonalExpenses,
       totalWarFamilyExpenses,
-    ]
-  )
+    ],
+  );
 
   const approvedNonPaidItems = useMemo(
     () =>
@@ -83,7 +82,7 @@ const Results = () => {
         totalVacation,
         resultsIsStudent,
         resultsIsCombat,
-        resultsIsIndependent
+        resultsIsIndependent,
       ),
     [
       totalMental,
@@ -92,33 +91,35 @@ const Results = () => {
       resultsIsStudent,
       resultsIsCombat,
       resultsIsIndependent,
-    ]
-  )
+    ],
+  );
   const totalCompensation = useMemo(
     () =>
       approvedItems.reduce(
         (acc, item) => acc + (item.totalCompensation ?? 0),
-        0
+        0,
       ),
-    [approvedItems]
-  )
+    [approvedItems],
+  );
 
   const totalNonPaidApproved = useMemo(
     () =>
       approvedNonPaidItems.reduce(
         (acc, item) => acc + (item.totalCompensation ?? 0),
-        0
+        0,
       ),
-    [approvedNonPaidItems]
-  )
+    [approvedNonPaidItems],
+  );
 
-  if (validationErrors?.length > 0) return null
+  if (validationErrors?.length > 0) return null;
 
-  if (totalCompensation + totalNonPaidApproved === 0) return null
+  if (totalCompensation + totalNonPaidApproved === 0) return null;
 
   return (
-    <div className='mt-8' ref={resultsRef}>
-      <h2 className={`${style.resultsTitle} mb-2 text-center`}>המענקים שמגיעים לך</h2>
+    <div className="mt-8" ref={resultsRef}>
+      <h2 className={`mb-2 py-2 text-center text-[22px]`}>
+        המענקים שמגיעים לך
+      </h2>
       <HeaderTotalSection
         totalCompensation={totalCompensation}
         totalVoucher={totalNonPaidApproved}
@@ -141,6 +142,6 @@ const Results = () => {
       <OneZero total={totalCompensation} />
     </div>
   );
-}
+};
 
-export default Results
+export default Results;

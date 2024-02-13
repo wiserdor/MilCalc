@@ -1,35 +1,40 @@
-import Voucher from '../../svg/Voucher'
-import ResultItem, { NonApprovedItemProps } from './ResultItem'
-import style from './styles/Results.module.css'
+import Voucher from "../../svg/Voucher";
+import ResultItem, { NonApprovedItemProps } from "./ResultItem";
 
 interface ResultsSectionProps {
-  results: NonApprovedItemProps[]
-  total: number
-  title: string
+  results: NonApprovedItemProps[];
+  total: number;
+  title: string;
 }
 
 const ResultsSection = (props: ResultsSectionProps) => {
-  const { results, total } = props
+  const { results, total } = props;
 
   return (
-    <div className={`${style.resultsSection} flex flex-col`}>
-      <div className='text-center'>
-        <Voucher strokeColor="#0066FF" />
-        <h3 className={style.sectionTitle}>
-          בשווי {`₪${total.toLocaleString('he-IL')}`}
+    <div
+      className={`my-4 flex flex-col gap-4 rounded-2xl bg-ocean px-4 pb-4 pt-6`}
+    >
+      <div className="flex flex-col items-center justify-center text-center">
+        <div className="mb-2">
+          <Voucher strokeColor="#0066FF" />
+        </div>
+        <h3 className="text-lg font-semibold leading-tight">
+          בשווי {`₪${total.toLocaleString("he-IL")}`}
         </h3>
-        <div className={`${style.subTitle} font-bold`}>שוברים וסיוע</div>
+        <div className={`text-base font-bold leading-tight text-dark-gray`}>
+          שוברים וסיוע
+        </div>
       </div>
-      <div className={`${style.approvedGrid} grid gap-4`}>
+      <div className={`grid auto-rows-[1fr] grid-cols-[1fr_1fr] gap-4`}>
         {results.map(
           (item, i) =>
             (item.totalCompensation > 0 || item.totalCompensationStr) && (
               <ResultItem key={i} {...item} />
-            )
+            ),
         )}
       </div>
     </div>
   );
-}
+};
 
-export default ResultsSection
+export default ResultsSection;

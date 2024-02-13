@@ -1,53 +1,51 @@
-import { Fragment } from 'react'
-import { Control, UseFormRegister, useFieldArray } from 'react-hook-form'
-import { FormValues } from '../../store/types'
-import NumberCircle from '../NumberCircle/NumberCircle'
-import FormInput from './FormInput'
-import formStyle from './style/Form.module.css'
-import style from './style/FormDateSection.module.css'
+import { Fragment } from "react";
+import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
+import { FormValues } from "../../store/types";
+import NumberCircle from "../NumberCircle/NumberCircle";
+import FormInput from "./FormInput";
 
 interface FormDateSectionProps {
-  control: Control<FormValues>
-  register: UseFormRegister<FormValues>
+  control: Control<FormValues>;
+  register: UseFormRegister<FormValues>;
 }
 
 const FormDateSection = (props: FormDateSectionProps) => {
-  const { control, register } = props
+  const { control, register } = props;
 
   const { fields, append, remove } = useFieldArray({
-    name: 'dateRanges',
+    name: "dateRanges",
     control,
-  })
+  });
 
   // Modify onAddDateRange and onRemoveDateRange to use append and remove
   const onAddDateRange = () => {
     append({
-      startDate: '2023-10-07',
-      endDate: new Date().toISOString().split('T')[0],
-    })
-  }
+      startDate: "2023-10-07",
+      endDate: new Date().toISOString().split("T")[0],
+    });
+  };
 
   const onRemoveDateRange = (index: number) => {
-    remove(index)
-  }
+    remove(index);
+  };
 
   return (
-    <div className="border-solid border-[1.5px] border-idf rounded-2xl px-4 pt-4 pb-6 bg-white flex flex-col">
-      <div className="flex flex-row items-baseline gap-3 mb-4 text-base font-semibold">
+    <div className="flex flex-col rounded-2xl border-[1.5px] border-solid border-idf bg-white px-4 pb-6 pt-4">
+      <div className="mb-4 flex flex-row items-baseline gap-3 text-base font-semibold">
         <NumberCircle number={1} />
         <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים</div>
       </div>
-      <div className="flex flex-col w-full gap-2">
+      <div className="flex w-full flex-col gap-2">
         {fields.map((_, index) => (
           <Fragment key={index}>
             <div
               className={`${
                 fields.length > 1
-                  ? `border-dotted border-b-[#ccc] border-b-[1.5px]`
-                  : ''
+                  ? `border-b-[1.5px] border-dotted border-b-[#ccc]`
+                  : ""
               } ${
-                fields.length > 1 ? 'pb-6' : ''
-              } grid-cols-2 gap-x-2 grid pb-6`}
+                fields.length > 1 ? "pb-6" : ""
+              } grid grid-cols-2 gap-x-2 pb-6`}
             >
               <FormInput
                 type="date"
@@ -55,7 +53,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
                 name={`dateRanges[${index}].startDate`}
                 min="2023-10-07"
                 onFocus={(e) => e.target.showPicker()}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 register={register}
               />
               <FormInput
@@ -64,16 +62,16 @@ const FormDateSection = (props: FormDateSectionProps) => {
                 name={`dateRanges[${index}].endDate`}
                 min="2023-10-07"
                 onFocus={(e) => e.target.showPicker()}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 register={register}
               />
             </div>
             {fields.length > 1 && (
               <div
-                className={`bottom-[9px] items-center flex justify-center relative w-full`}
+                className={`relative bottom-[9px] flex w-full items-center justify-center`}
                 onClick={() => onRemoveDateRange(index)}
               >
-                <div className="absolute flex items-center justify-center w-8 h-6 text-lg font-bold text-center cursor-pointer bg-stone rounded-2xl text-blue">
+                <div className="absolute flex h-6 w-8 cursor-pointer items-center justify-center rounded-2xl bg-stone text-center text-lg font-bold text-blue">
                   <div>-</div>
                 </div>
               </div>
@@ -82,16 +80,16 @@ const FormDateSection = (props: FormDateSectionProps) => {
         ))}
       </div>
       <div
-        className={`${style.addDateRange} items-center cursor-pointer flex flex-col justify-center mt-6 w-full`}
+        className=" mt-8 flex w-full cursor-pointer flex-col items-center justify-center"
         onClick={onAddDateRange}
       >
-        <img className={style.plusSvg} src="/svg/plus.svg" alt="הוסף תאריך" />
-        <div className={`${style.addDateRangeText} font-bold`}>
+        <img className="fill-blue" src="/svg/plus.svg" alt="הוסף תאריך" />
+        <div className={`text-sm font-bold  text-dark-gray`}>
           להוספת טווח תאריכים נוסף
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FormDateSection
+export default FormDateSection;
