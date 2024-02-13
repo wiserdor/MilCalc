@@ -9,29 +9,28 @@ import {
   useFloating,
   useInteractions,
   useRole,
-} from '@floating-ui/react'
-import { motion } from 'framer-motion'
-import { CSSProperties, useRef } from 'react'
-import style from './ResultsBar.module.css'
+} from "@floating-ui/react";
+import { motion } from "framer-motion";
+import { CSSProperties, useRef } from "react";
 
 type ResultsBarResult = {
-  label: string
-  description?: string
-  value: number
-  datePaid?: Date
-  color: CSSProperties['backgroundColor']
-}
+  label: string;
+  description?: string;
+  value: number;
+  datePaid?: Date;
+  color: CSSProperties["backgroundColor"];
+};
 
 export interface ResultsBarProps {
-  segments: ResultsBarResult[]
+  segments: ResultsBarResult[];
 }
 
 const Tooltip = (props: {
-  text: string
-  value: number
-  color: CSSProperties['backgroundColor']
+  text: string;
+  value: number;
+  color: CSSProperties["backgroundColor"];
 }) => {
-  const arrowRef = useRef(null)
+  const arrowRef = useRef(null);
   const { refs, floatingStyles, context } = useFloating({
     open: true,
     // Make sure the tooltip stays on the screen
@@ -39,70 +38,58 @@ const Tooltip = (props: {
     middleware: [
       offset(0),
       flip({
-        fallbackAxisSideDirection: 'start',
+        fallbackAxisSideDirection: "start",
       }),
       shift(),
       arrow({
         element: arrowRef,
       }),
     ],
-    placement: 'top',
-  })
-  const role = useRole(context, { role: 'tooltip' })
-  const { getReferenceProps, getFloatingProps } = useInteractions([role])
+    placement: "top",
+  });
+  const role = useRole(context, { role: "tooltip" });
+  const { getReferenceProps, getFloatingProps } = useInteractions([role]);
 
   return (
     <>
       <div ref={refs.setReference} {...getReferenceProps()} />
       <FloatingPortal>
         <div
-          className={style.tooltip}
+          className={`border-[rgba(204, 204, 204, 0.5)] shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] max-w-60 rounded-lg border border-solid bg-white px-4 py-2 text-sm font-normal text-dark-gray`}
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}
         >
           <FloatingArrow ref={arrowRef} context={context} fill="white" />
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ color: props.color, fontWeight: 700, fontSize: 12 }}>
+          <div className="flex flex-col text-center">
+            <div className="text-xs font-bold" style={{ color: props.color }}>
               ₪
-              {props.value.toLocaleString('he-IL', {
+              {props.value.toLocaleString("he-IL", {
                 maximumFractionDigits: 0,
-              })}{' '}
+              })}{" "}
             </div>
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 400,
-                color: '#6f6f6f',
-              }}
-            >
+            <div className="text-color-[#6f6f6f] text-xs font-normal">
               {props.text}
             </div>
           </div>
         </div>
       </FloatingPortal>
     </>
-  )
-}
+  );
+};
 
 const ResultsBar = (props: ResultsBarProps) => {
-  const { segments } = props
-  const total = segments.reduce((sum, segment) => sum + segment.value, 0)
+  const { segments } = props;
+  const total = segments.reduce((sum, segment) => sum + segment.value, 0);
 
   return (
-    <div className={style.barContainer}>
-      <div className={style.innerBarContainer}>
+    <div className="relative w-full">
+      <div className={`flex h-12 overflow-hidden rounded-2xl`}>
         {segments.map((segment, index) => (
           <motion.div
             layout
             key={index}
-            className={style.barSegment}
+            className="box-border flex items-center justify-center"
             style={{
               width: `${(segment.value / total) * 100}%`,
               background: segment.color,
@@ -119,49 +106,45 @@ const ResultsBar = (props: ResultsBarProps) => {
           </motion.div>
         ))}
       </div>
-      <div style={{ display: 'flex', padding: 8 }}>
+      <div className="flex p-2">
         {segments.map((segment, index) => (
           <div
             key={index}
-            className={style.barSegment}
+            className="box-border flex items-center justify-center"
             style={{
               width: `${(segment.value / total) * 100}%`,
-              textAlign: `${index % 2 === 0 ? 'start' : 'end'}`,
+              textAlign: `${index % 2 === 0 ? "start" : "end"}`,
               color: segment.color,
               fontWeight: 600,
               fontSize: 16,
             }}
           >
-            {((segment.value / total) * 100).toLocaleString('he-IL', {
+            {((segment.value / total) * 100).toLocaleString("he-IL", {
               maximumFractionDigits: 0,
             })}
             %
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <div className="flex flex-col gap-1">
+        {" "}
         {[...segments].reverse().map((segment, index) => (
-          <div
-            key={index}
-            style={{ display: 'flex', flexDirection: 'row', gap: 8 }}
-          >
+          <div key={index} className="flex flex-row gap-2">
             <div
+              className="h-3 w-3 rounded-[2.52px]"
               style={{
-                width: 12,
-                height: 12,
-                borderRadius: 2.52,
                 backgroundColor: segment.color,
               }}
             />
-            <div style={{ fontSize: 12, color: '#6f6f6f' }}>
-              <span style={{ fontWeight: 700 }}>{segment.label}</span>:{' '}
-              <span style={{ fontWeight: 400 }}>{segment.description}</span>
+            <div className="text-xs text-[#6f6f6f]">
+              <span className="font-bold">{segment.label}</span>:{" "}
+              <span className="font-normal">{segment.description}</span>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ResultsBar
+export default ResultsBar;

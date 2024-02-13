@@ -1,83 +1,34 @@
-import ArrowDown from '../../svg/ArrowDown'
-import Money from '../../svg/Money'
-import Voucher from '../../svg/Voucher'
+import ArrowDown from "../../svg/ArrowDown";
+import Money from "../../svg/Money";
+import Voucher from "../../svg/Voucher";
 
 const HeaderTotalSection = (props: {
-  totalCompensation: number
-  totalVoucher: number
+  totalCompensation: number;
+  totalVoucher: number;
 }) => {
-  const { totalCompensation, totalVoucher } = props
+  const { totalCompensation, totalVoucher } = props;
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: 16,
-        color: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 24,
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: '#528322',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          width: ' 100%',
-          paddingBlock: 16,
-          borderRadius: 16,
-          gap: 8,
-        }}
-      >
+    <div className="mb-6 flex items-center justify-center gap-4 text-white">
+      <div className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#528322] py-4 ">
         <Money strokeColor="white" />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+        <div className="flex flex-col justify-center text-center">
           <div>תגמולים ומענקים</div>
-          <div
-            style={{ fontWeight: 700 }}
-          >{`₪${totalCompensation.toLocaleString('he-IL')}`}</div>
+          <div className="font-bold">{`₪${totalCompensation.toLocaleString("he-IL")}`}</div>
         </div>
         <ArrowDown strokeColor="white" />
       </div>
-      <div
-        style={{
-          backgroundColor: '#0066FF',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          width: ' 100%',
-          paddingBlock: 16,
-          borderRadius: 16,
-          gap: 8,
-        }}
-      >
+      <div className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#0066FF] py-4 ">
         <Voucher strokeColor="white" />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+        <div className="flex flex-col items-center justify-center">
           <div>שוברים וסיוע</div>
-          <div style={{ fontWeight: 700 }}>{`₪${totalVoucher.toLocaleString(
-            'he-IL'
+          <div className="font-bold">{`₪${totalVoucher.toLocaleString(
+            "he-IL",
           )}`}</div>
         </div>
         <ArrowDown strokeColor="white" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderTotalSection
+export default HeaderTotalSection;

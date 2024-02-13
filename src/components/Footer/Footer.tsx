@@ -1,49 +1,24 @@
-import BuyMeACoffeeButton from '../DonateButtons/BMACButton'
-import PaypalDonateButton from '../DonateButtons/PaypalDonateButton'
-import styles from './Footer.module.css'
+import BuyMeACoffeeButton from "../DonateButtons/BMACButton";
+import PaypalDonateButton from "../DonateButtons/PaypalDonateButton";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          gap: 6,
-        }}
-      >
-        <div
-          style={{
-            color: 'white',
-            fontWeight: 700,
-            fontSize: 14,
-            marginBottom: 12,
-          }}
-        >
-          לתרומה למיזם:
-        </div>
+    <footer className={`mt-6 bg-[#395712] p-4 text-center text-sm font-normal`}>
+      <div className="flex flex-col items-center justify-center gap-[6px]">
+        <div className="mb-3 text-sm font-bold text-white">לתרומה למיזם:</div>
 
         <BuyMeACoffeeButton />
         <PaypalDonateButton />
 
-        <div
-          style={{
-            color: 'white',
-            fontSize: 14,
-            width: '18rem',
-            textAlign: 'center',
-          }}
-        >
+        <div className="w-72 text-center text-white">
           נשמח לשמוע מכם בכל נושא שקשור למחשבון זה. ניתן ליצור קשר במייל:
-          <a style={{ color: 'white' }} href="mailto:yslook7@gmail.com">
+          <a className="text-white" href="mailto:yslook7@gmail.com">
             yslook7@gmail.com
           </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

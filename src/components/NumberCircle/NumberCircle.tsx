@@ -1,13 +1,17 @@
-import style from './NumberCircle.module.css'
-
 interface NumberCircleProps {
-  number: number
+  number: number;
 }
 
 const NumberCircle = (props: NumberCircleProps) => {
-  const { number } = props
+  const { number } = props;
 
-  return <div className={style.numberCircle}>{number}</div>
-}
+  return (
+    <div
+      className={`flex h-6 w-6 items-center justify-center rounded-full bg-idf text-sm text-white`}
+    >
+      {number}
+    </div>
+  );
+};
 
-export default NumberCircle
+export default NumberCircle;

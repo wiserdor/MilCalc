@@ -1,9 +1,5 @@
 {
-  "trailingComma": "es5",
   "tabWidth": 2,
-  "semi": false,
-  "singleQuote": true,
-  "importOrder": ["^components/(.*)$", "^[./]"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "useTabs": false,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

@@ -1,32 +1,31 @@
-import { useEffect } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import useStore from '../../store/store'
-import { FormValues } from '../../store/types'
-import NumberCircle from '../NumberCircle/NumberCircle'
-import Toggle from '../Toggle/Toggle'
-import FormDateSection from './FormDateSection'
-import FormInput from './FormInput'
-import ValidationSection from './ValidationSection'
-import style from './style/Form.module.css'
-import { validateForm } from './validation'
-import ArrowLeft from '../../svg/ArrowLeft'
+import { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import useStore from "../../store/store";
+import { FormValues } from "../../store/types";
+import NumberCircle from "../NumberCircle/NumberCircle";
+import Toggle from "../Toggle/Toggle";
+import FormDateSection from "./FormDateSection";
+import FormInput from "./FormInput";
+import ValidationSection from "./ValidationSection";
+import { validateForm } from "./validation";
+import ArrowLeft from "../../svg/ArrowLeft";
 
 const CalculatorForm = () => {
-  const setFormState = useStore((state) => state.setFormState)
-  const loadStateFromUrl = useStore((state) => state.loadStateFromUrl)
+  const setFormState = useStore((state) => state.setFormState);
+  const loadStateFromUrl = useStore((state) => state.loadStateFromUrl);
   const updateCalculatorResults = useStore(
-    (state) => state.updateCalculatorResults
-  )
-  const serviceBefore = useStore((state) => state.serviceBefore)
-  const isCombat = useStore((state) => state.isCombat)
-  const isStudent = useStore((state) => state.isStudent)
-  const isOld = useStore((state) => state.isOld)
-  const isIndependent = useStore((state) => state.isIndependent)
-  const hasChildren = useStore((state) => state.hasChildren)
-  const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial)
-  const dateRanges = useStore((state) => state.dateRanges)
+    (state) => state.updateCalculatorResults,
+  );
+  const serviceBefore = useStore((state) => state.serviceBefore);
+  const isCombat = useStore((state) => state.isCombat);
+  const isStudent = useStore((state) => state.isStudent);
+  const isOld = useStore((state) => state.isOld);
+  const isIndependent = useStore((state) => state.isIndependent);
+  const hasChildren = useStore((state) => state.hasChildren);
+  const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial);
+  const dateRanges = useStore((state) => state.dateRanges);
 
-  const setValidationErrors = useStore((state) => state.setValidationErrors)
+  const setValidationErrors = useStore((state) => state.setValidationErrors);
 
   const { handleSubmit, control, register } = useForm<FormValues>({
     defaultValues: {
@@ -39,46 +38,48 @@ const CalculatorForm = () => {
       hasChildren,
       hasChildrenSpecial,
     },
-  })
+  });
 
   useEffect(() => {
-    loadStateFromUrl()
-  }, [])
+    loadStateFromUrl();
+  }, []);
 
   const onSubmit = (data: FormValues) => {
     const errors = validateForm(
       data.dateRanges,
       data.serviceBefore,
-      data.operation24Days
-    )
-    setValidationErrors(errors)
+      data.operation24Days,
+    );
+    setValidationErrors(errors);
     if (errors.length > 0) {
-      return
+      return;
     }
-    setFormState({ ...data })
-    updateCalculatorResults() // Calculate and update results in store
-  }
+    setFormState({ ...data });
+    updateCalculatorResults(); // Calculate and update results in store
+  };
 
   return (
-    <div className={style.form}>
-      <div className={style.arrowSvgWrapper}>
-        <img
-          className={style.arrowSvg}
-          src="/svg/square-arrow.svg"
-          alt="arrow"
-        />
+    <div className="pb-12">
+      <div className="relative mb-5 flex items-center justify-center">
+        <img src="/svg/square-arrow.svg" alt="arrow" />
       </div>
-      <div className={style.formHeader}>
-        <div className={style.descriptionBold}>
+      <div className="pb-5">
+        <div className="px-4 py-2 text-center text-[1.4rem] font-semibold leading-tight">
           רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
         </div>
-        <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
+        <div className="text-center font-normal text-dark-gray">
+          אנא מלאו את הפרטים הבאים:
+        </div>
       </div>
 
-      <form className={style.formForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
         <FormDateSection control={control} register={register} />
-        <div className={style.formSection}>
-          <div className={style.formSectionTitle}>
+        <div
+          className={`flex flex-col rounded-2xl border-[1.5px] border-solid border-idf bg-white px-4 pb-6 pt-4`}
+        >
+          <div
+            className={`mb-4 flex flex-row items-baseline gap-3 text-base font-semibold`}
+          >
             <NumberCircle number={2} />
             <div style={{ flex: 1 }}>
               מספר ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10):
@@ -94,46 +95,18 @@ const CalculatorForm = () => {
           />
         </div>
 
-        <div className={style.formSection}>
+        <div className="flex flex-col rounded-2xl border-[1.5px] border-solid border-idf bg-white px-4 pb-6 pt-4">
           <div>
-            <div
-              className={style.formSectionTitle}
-              style={{
-                marginBottom: 6,
-              }}
-            >
+            <div className="mb-2 flex flex-row items-baseline gap-3 text-base font-semibold">
               <NumberCircle number={3} />
               <div style={{ flex: 1 }}>בחרו בקטגוריות הרלוונטיות לגביכם/ן:</div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontWeight: 600,
-                fontSize: 12,
-                color: '#A15FF7',
-                backgroundColor: '#F2F6FD',
-                gap: 6,
-                paddingInline: 8,
-                paddingBlock: 6,
-                width: 'fit-content',
-                borderRadius: 3,
-                marginBottom: 24,
-              }}
-            >
+            <div className="mb-6 flex w-fit items-center justify-start gap-2 rounded-[3px] bg-[#F2F6FD] px-2 py-[6px] text-xs font-semibold text-[#A15FF7]">
               <ArrowLeft strokeColor="#A15FF7" />
               <div>הוספנו קטגוריות חדשות!</div>
             </div>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 10,
-              rowGap: 20,
-            }}
-          >
+          <div className="flex w-full flex-wrap gap-x-3 gap-y-4">
             <Controller
               control={control}
               name="isCombat"
@@ -146,7 +119,7 @@ const CalculatorForm = () => {
                     onChange={onChange}
                     ref={ref}
                   />
-                )
+                );
               }}
             />
             <Controller
@@ -217,13 +190,18 @@ const CalculatorForm = () => {
           </div>
         </div>
 
-        <div className={style.submitButtonWrapper}>
-          <button className={style.submitButton}>לחישוב המענקים</button>
+        <div className="flex justify-center">
+          <button
+            className="cursor-pointer whitespace-nowrap rounded-full bg-blue px-6 py-3 text-center text-base font-semibold text-white"
+            type="submit"
+          >
+            לחישוב המענקים
+          </button>
         </div>
         <ValidationSection />
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CalculatorForm
+export default CalculatorForm;

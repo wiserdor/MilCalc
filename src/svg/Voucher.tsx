@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react'
+import { CSSProperties } from "react";
 
-const Voucher = ({ strokeColor }: { strokeColor: CSSProperties['color'] }) => {
+const Voucher = ({ strokeColor }: { strokeColor: CSSProperties["color"] }) => {
   return (
     <svg
       width="31"
@@ -11,8 +11,8 @@ const Voucher = ({ strokeColor }: { strokeColor: CSSProperties['color'] }) => {
     >
       <mask id="path-1-inside-1_623_1654" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M30.1904 5.42432H0.19043V11.4243C2.39957 11.4243 4.19043 13.2152 4.19043 15.4243C4.19043 17.6335 2.39957 19.4243 0.19043 19.4243V25.4243H30.1904V5.42432Z"
         />
       </mask>
@@ -24,10 +24,10 @@ const Voucher = ({ strokeColor }: { strokeColor: CSSProperties['color'] }) => {
       <path
         d="M22.1904 6.42432V9.42432M22.1904 11.4243V14.4243M22.1904 16.4243V19.4243M22.1904 21.4243V24.4243"
         stroke={strokeColor}
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Voucher
+export default Voucher;

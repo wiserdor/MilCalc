@@ -1,9 +1,9 @@
-import { CSSProperties } from 'react'
+import { CSSProperties } from "react";
 
 const ArrowDown = ({
   strokeColor,
 }: {
-  strokeColor: CSSProperties['color']
+  strokeColor: CSSProperties["color"];
 }) => {
   return (
     <svg
@@ -16,10 +16,10 @@ const ArrowDown = ({
       <path
         d="M6.19043 -2.18557e-07L6.19043 13.4243M6.19043 13.4243L1.19043 8.42431M6.19043 13.4243L11.1904 8.42431"
         stroke={strokeColor}
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default ArrowDown
+export default ArrowDown;
