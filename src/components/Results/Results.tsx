@@ -30,9 +30,10 @@ const Results = () => {
     (state) => state.totalWarFamilyExpenses,
   );
 
-  const resultsIsStudent = useStore((state) => state.resultsIsStudent);
-  const resultsIsCombat = useStore((state) => state.resultsIsCombat);
-  const resultsIsIndependent = useStore((state) => state.resultsIsIndependent);
+  const isStudent = useStore((state) => state.isStudent);
+  const isCombat = useStore((state) => state.isCombat);
+  const isIndependent = useStore((state) => state.isIndependent);
+  const didVacationCancelled = useStore((state) => state.didVacationCancelled);
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -79,17 +80,19 @@ const Results = () => {
         totalFamilyCare,
         totalMental,
         totalVacation,
-        resultsIsStudent,
-        resultsIsCombat,
-        resultsIsIndependent,
+        isStudent,
+        isCombat,
+        isIndependent,
+        didVacationCancelled,
       ),
     [
       totalMental,
       totalFamilyCare,
       totalVacation,
-      resultsIsStudent,
-      resultsIsCombat,
-      resultsIsIndependent,
+      isStudent,
+      isCombat,
+      isIndependent,
+      didVacationCancelled,
     ],
   );
   const totalCompensation = useMemo(

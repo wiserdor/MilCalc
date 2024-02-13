@@ -1,6 +1,6 @@
-import { StateCreator } from 'zustand'
-import { CalculatorResults, CalculatorStore, FormStore } from './types'
-import { calculateCompensation } from '../calculator'
+import { StateCreator } from "zustand";
+import { CalculatorResults, CalculatorStore, FormStore } from "./types";
+import { calculateCompensation } from "../calculator";
 
 export const createCalculatorStore: StateCreator<
   CalculatorResults & FormStore,
@@ -9,10 +9,10 @@ export const createCalculatorStore: StateCreator<
   CalculatorStore
 > = (set, get) => ({
   updateCalculatorResults: () => {
-    const state = get()
+    const state = get();
     if (state.validationErrors.length > 0) {
-      state.resetResults()
-      return
+      state.resetResults();
+      return;
     }
 
     const totals = calculateCompensation({
@@ -23,13 +23,10 @@ export const createCalculatorStore: StateCreator<
       serviceBefore: state.serviceBefore,
       operation24Days: state.operation24Days,
       isOld: state.isOld,
-    })
+    });
 
     set({
       ...totals,
-      resultsIsCombat: state.isCombat,
-      resultsIsStudent: state.isStudent,
-      resultsIsIndependent: state.isIndependent,
-    })
+    });
   },
-})
+});

@@ -10,6 +10,16 @@ import ValidationSection from "./ValidationSection";
 import { validateForm } from "./validation";
 import ArrowLeft from "../../svg/ArrowLeft";
 
+const toggles = {
+  isCombat: "במערך הלוחם",
+  hasChildren: "ילדים עד גיל 14",
+  hasChildrenSpecial: "ילדים עם צרכים מיוחדים",
+  isOld: "מוחרג/ת גיל",
+  isIndependent: "עצמאי/ת",
+  isStudent: "סטודנט/ית",
+  didVacationCancelled: "ביטלתי חופשה/טיסה",
+};
+
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState);
   const loadStateFromUrl = useStore((state) => state.loadStateFromUrl);
@@ -23,6 +33,7 @@ const CalculatorForm = () => {
   const isIndependent = useStore((state) => state.isIndependent);
   const hasChildren = useStore((state) => state.hasChildren);
   const hasChildrenSpecial = useStore((state) => state.hasChildrenSpecial);
+  const didVacationCancelled = useStore((state) => state.didVacationCancelled);
   const dateRanges = useStore((state) => state.dateRanges);
 
   const setValidationErrors = useStore((state) => state.setValidationErrors);
@@ -35,6 +46,7 @@ const CalculatorForm = () => {
       isStudent,
       isOld,
       isIndependent,
+      didVacationCancelled,
       hasChildren,
       hasChildrenSpecial,
     },
@@ -107,86 +119,23 @@ const CalculatorForm = () => {
             </div>
           </div>
           <div className="flex w-full flex-wrap gap-x-3 gap-y-4">
-            <Controller
-              control={control}
-              name="isCombat"
-              render={({ field: { onChange, value, name, ref } }) => {
-                return (
-                  <Toggle
-                    label="במערך הלוחם"
-                    name={name}
-                    active={value}
-                    onChange={onChange}
-                    ref={ref}
-                  />
-                );
-              }}
-            />
-            <Controller
-              control={control}
-              name="hasChildren"
-              render={({ field: { onChange, value, name, ref } }) => (
-                <Toggle
-                  label="ילדים עד גיל 14"
-                  name={name}
-                  active={value}
-                  onChange={onChange}
-                  ref={ref}
-                />
-              )}
-            />
-            <Controller
-              control={control}
-              name="hasChildrenSpecial"
-              render={({ field: { onChange, value, name, ref } }) => (
-                <Toggle
-                  label="ילדים עם צרכים מיוחדים"
-                  name={name}
-                  active={value}
-                  onChange={onChange}
-                  ref={ref}
-                />
-              )}
-            />
-            <Controller
-              control={control}
-              name="isOld"
-              render={({ field: { onChange, value, name, ref } }) => (
-                <Toggle
-                  label="מוחרג/ת גיל"
-                  name={name}
-                  active={value}
-                  onChange={onChange}
-                  ref={ref}
-                />
-              )}
-            />
-            <Controller
-              control={control}
-              name="isIndependent"
-              render={({ field: { onChange, value, name, ref } }) => (
-                <Toggle
-                  label="עצמאי/ת"
-                  name={name}
-                  active={value}
-                  onChange={onChange}
-                  ref={ref}
-                />
-              )}
-            />
-            <Controller
-              control={control}
-              name="isStudent"
-              render={({ field: { onChange, value, name, ref } }) => (
-                <Toggle
-                  label="סטודנט/ית"
-                  name={name}
-                  active={value}
-                  onChange={onChange}
-                  ref={ref}
-                />
-              )}
-            />
+            {Object.entries(toggles).map(([name, label]) => (
+              <Controller
+                control={control}
+                name={name as keyof typeof toggles}
+                render={({ field: { onChange, value, name, ref } }) => {
+                  return (
+                    <Toggle
+                      label={label}
+                      name={name}
+                      active={value}
+                      onChange={onChange}
+                      ref={ref}
+                    />
+                  );
+                }}
+              />
+            ))}
           </div>
         </div>
 

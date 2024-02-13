@@ -1,5 +1,5 @@
-import { StateCreator } from 'zustand'
-import { CalculatorResults } from './types'
+import { StateCreator } from "zustand";
+import { CalculatorResults } from "./types";
 
 export const createCalculatorResultsStore: StateCreator<
   CalculatorResults,
@@ -22,9 +22,6 @@ export const createCalculatorResultsStore: StateCreator<
   totalOld: 0,
   totalWarFamilyExpenses: 0,
   totalWarPersonalExpenses: 0,
-  resultsIsStudent: false,
-  resultsIsCombat: false,
-  resultsIsIndependent: false,
 
   resetResults: () => {
     set({
@@ -41,9 +38,6 @@ export const createCalculatorResultsStore: StateCreator<
       totalOld: 0,
       totalAdditional: 0,
       totalDaysStraight: 0,
-      resultsIsStudent: false,
-      resultsIsCombat: false,
-      resultsIsIndependent: false,
-    })
+    });
   },
-})
+});
