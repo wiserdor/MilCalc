@@ -19,7 +19,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: Ref<any>) => {
     >
       <div
         onClick={() => onChange(!active)}
-        className={styles.container}
+        className={`${styles.container} cursor-pointer w-max`}
         style={{
           color: active ? '#0066FF' : '#6F6F6F',
           backgroundColor: active ? '#F2F6FD' : '#ffffff',
@@ -30,7 +30,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: Ref<any>) => {
         {label}
       </div>
     </motion.div>
-  )
+  );
 })
 
 export default Toggle

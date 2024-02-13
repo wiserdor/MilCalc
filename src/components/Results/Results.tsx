@@ -117,8 +117,8 @@ const Results = () => {
   if (totalCompensation + totalNonPaidApproved === 0) return null
 
   return (
-    <div className={style.results} ref={resultsRef}>
-      <h2 className={style.resultsTitle}>המענקים שמגיעים לך</h2>
+    <div className='mt-8' ref={resultsRef}>
+      <h2 className={`${style.resultsTitle} mb-2 text-center`}>המענקים שמגיעים לך</h2>
       <HeaderTotalSection
         totalCompensation={totalCompensation}
         totalVoucher={totalNonPaidApproved}
@@ -140,7 +140,7 @@ const Results = () => {
       )}
       <OneZero total={totalCompensation} />
     </div>
-  )
+  );
 }
 
 export default Results

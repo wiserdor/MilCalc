@@ -16,18 +16,16 @@ const ValidationSection = () => {
 
   if (validationErrors.length === 0) return null
 
-  return (
-    <>
-      <div ref={errorRef} className={style.validation}>
-        <div className={style.formSectionTitle}>לא ניתן לחשב:</div>
-        {validationErrors.map((error) => (
-          <div key={error} className={style.error}>
-            {error}
-          </div>
-        ))}
-      </div>
-    </>
-  )
+  return <>
+    <div ref={errorRef} className={`${style.validation} items-center flex flex-col gap-2 justify-center`}>
+      <div className={`${style.formSectionTitle} items-baseline flex flex-row font-semibold mb-4`}>לא ניתן לחשב:</div>
+      {validationErrors.map((error) => (
+        <div key={error} className={`${style.error} font-semibold mb-4`}>
+          {error}
+        </div>
+      ))}
+    </div>
+  </>;
 }
 
 export default ValidationSection

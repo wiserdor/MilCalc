@@ -22,9 +22,9 @@ const Modal = (props: ModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <div className={style.modalBackdrop} onClick={handleBackdropClick} />
+          <div className={`${style.modalBackdrop} h-screen left-0 fixed top-0 w-screen`} onClick={handleBackdropClick} />
           <dialog className={style.modal} open={isOpen}>
-            <div className={style.modalChild}>
+            <div className='h-fit'>
               <motion.div
                 layout
                 initial={{ scale: 0.95 }}
@@ -38,7 +38,7 @@ const Modal = (props: ModalProps) => {
         </motion.div>
       </div>
     </AnimatePresence>
-  )
+  );
 }
 
 export default Modal

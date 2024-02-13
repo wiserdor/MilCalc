@@ -12,20 +12,20 @@ const UpdatesModal = () => {
 
   return (
     <Modal isOpen={isOpen} handleBackdropClick={handleCloseModal}>
-      <div className={style.container}>
-        <div className={style.modalClose} onClick={handleCloseModal}>
+      <div className={`${style.container} flex flex-col justify-center p-6`}>
+        <div className={`${style.modalClose} cursor-pointer h-4 m-4 absolute right-0 w-4`} onClick={handleCloseModal}>
           &times;
         </div>
 
-        <h2 className={style.title}>עדכונים חדשים במחשבון!</h2>
-        <ul className={style.list}>
+        <h2 className='text-center'>עדכונים חדשים במחשבון!</h2>
+        <ul className={`${style.list} font-normal`}>
           {updates.map((update, index) => (
             <li key={index}>{update}</li>
           ))}
         </ul>
       </div>
     </Modal>
-  )
+  );
 }
 
 export default UpdatesModal

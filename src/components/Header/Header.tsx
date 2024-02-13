@@ -1,6 +1,5 @@
 import Disclaimer from '../Disclaimer/Disclaimer'
 import StickyHeader from '../StickyHeader/StickyHeader'
-import styles from './Header.module.css'
 
 export const dateToString = (date: Date) => {
   return (
@@ -25,22 +24,30 @@ const Header = () => {
   }
 
   return (
-    <div className={styles.header}>
+    <div className="items-center flex flex-col justify-center">
       <StickyHeader />
 
-      <div className={styles.lastUpdated}>
+      <div
+        className={`text-sm gap-1 px-3 py-2 bg-ocean text-idf items-center rounded-lg flex justify-center mb-8 mt-4 text-center w-fit`}
+      >
         <img src="/svg/time.svg" /> עדכון אחרון: {getLastModified()}
       </div>
 
-      <div className={styles.logo}>
+      <div className={`flex justify-center fill-[#28a745] text-center w-full`}>
         <img src="/svg/calculator.svg" alt="מחשבון מענקים" />
       </div>
-      <div className={styles.pageTitle}>מחשבון מענקי מילואים</div>
-      <div className={styles.subTitle}>
+      <div
+        className={`leading-none text-[28px] font-extrabold text-center mt-2`}
+      >
+        מחשבון מענקי מילואים
+      </div>
+      <div
+        className={`gap-1 text-idf text-base items-center flex font-semibold justify-center w-full`}
+      >
         <img src="/svg/israel.svg" />
         {' מלחמת חרבות ברזל '}
       </div>
-      <p className={styles.descriptionIntro}>
+      <p className={`leading-5 text-base font-normal text-center mt-3`}>
         בעזרת מחשבון זה תוכלו לחשב מה צפויים להיות המענקים שתקבלו מהמדינה עבור
         שירות המילואים במלחמת חרבות ברזל.
       </p>

@@ -1,11 +1,6 @@
 .newsFeedItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
   color: black;
   gap: 16px;
-  cursor: pointer;
 
   &:hover {
     color: rgba(0, 0, 0, 0.5);
@@ -13,20 +8,8 @@
 }
 
 .imageWrapper {
-  border-radius: 8px;
-  width: 100%;
   height: 180px;
-  overflow: hidden;
-  position: relative;
   box-shadow: 0 4px 36px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  /* object-fit: cover;
-  object-position: center; */
 }
 
 .title {
@@ -34,8 +17,6 @@
 }
 
 .divider {
-  width: 100%;
   height: 3px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin-top: 16px;
 }

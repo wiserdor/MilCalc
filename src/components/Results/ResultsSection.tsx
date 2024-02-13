@@ -12,15 +12,15 @@ const ResultsSection = (props: ResultsSectionProps) => {
   const { results, total } = props
 
   return (
-    <div className={style.resultsSection}>
-      <div className={style.sectionHeader}>
+    <div className={`${style.resultsSection} flex flex-col`}>
+      <div className='text-center'>
         <Voucher strokeColor="#0066FF" />
         <h3 className={style.sectionTitle}>
           בשווי {`₪${total.toLocaleString('he-IL')}`}
         </h3>
-        <div className={style.subTitle}>שוברים וסיוע</div>
+        <div className={`${style.subTitle} font-bold`}>שוברים וסיוע</div>
       </div>
-      <div className={style.approvedGrid}>
+      <div className={`${style.approvedGrid} grid gap-4`}>
         {results.map(
           (item, i) =>
             (item.totalCompensation > 0 || item.totalCompensationStr) && (
@@ -29,7 +29,7 @@ const ResultsSection = (props: ResultsSectionProps) => {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default ResultsSection

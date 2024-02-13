@@ -62,41 +62,39 @@ const Tooltip = (props: {
     role,
   ])
 
-  return (
-    <>
-      <img
-        src="/svg/circle-exclamation.svg"
-        alt="exclamation"
-        ref={refs.setReference}
-        {...getReferenceProps()}
-      />
-      <FloatingPortal>
-        {isOpen && (
-          <>
-            <div
-              className={style.tooltip}
-              ref={refs.setFloating}
-              style={floatingStyles}
-              {...getFloatingProps()}
-            >
-              <div>{props.text}</div>
-              {props.link && (
-                <div style={{ marginTop: 8 }}>
-                  <a
-                    href={props.link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {props.link.text}
-                  </a>
-                </div>
-              )}
-            </div>
-          </>
-        )}
-      </FloatingPortal>
-    </>
-  )
+  return <>
+    <img
+      src="/svg/circle-exclamation.svg"
+      alt="exclamation"
+      ref={refs.setReference}
+      {...getReferenceProps()}
+    />
+    <FloatingPortal>
+      {isOpen && (
+        <>
+          <div
+            className={`${style.tooltip} rounded-lg font-normal`}
+            ref={refs.setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}
+          >
+            <div>{props.text}</div>
+            {props.link && (
+              <div style={{ marginTop: 8 }}>
+                <a
+                  href={props.link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {props.link.text}
+                </a>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </FloatingPortal>
+  </>;
 }
 
 const ResultItem = (props: NonApprovedItemProps) => {
@@ -111,8 +109,8 @@ const ResultItem = (props: NonApprovedItemProps) => {
     idfLink,
   } = props
   return (
-    <div className={style.approvedItem}>
-      <div className={style.approvedItemTop}>
+    <div className={`${style.approvedItem} items-center rounded-lg flex flex-col font-normal justify-between text-center`}>
+      <div className={`${style.approvedItemTop} items-center flex flex-col`}>
         {isMoney && (
           <div className={style.approvedItemTotalCompensation}>
             {totalCompensationStr
@@ -133,7 +131,7 @@ const ResultItem = (props: NonApprovedItemProps) => {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default ResultItem

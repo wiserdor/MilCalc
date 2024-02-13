@@ -1,15 +1,10 @@
 .modal {
-  position: fixed;
-  top: 50%;
-  right: 50%;
+  @apply m-0 overflow-auto p-0 fixed right-2/4 top-2/4;
   transform: translate(50%, -50%);
   border: none;
   z-index: 1000;
   background: none;
-  margin: 0;
-  padding: 0;
   max-width: 360px;
-  overflow: auto;
   max-height: calc(94%);
   border-radius: 24px;
 }
@@ -21,15 +16,6 @@
 }
 
 .modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999; /* Ensure this is less than the modal's z-index */
-}
-
-.modalChild {
-  height: fit-content;
 }

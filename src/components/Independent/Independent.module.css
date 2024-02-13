@@ -1,43 +1,32 @@
 .independent {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
   padding: 32px 24px 24px 24px;
   border-radius: 24px;
   margin-block: 24px;
   border: 1.5px solid var(--clr-blue);
-  text-align: center;
   min-height: 500px;
 }
 
-.imgContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Center vertically */
-  overflow: hidden; /* Hide any overflow */
+.imgContainer { /* Center vertically */ /* Hide any overflow */
   height: 120px; /* Set a fixed height or use relative units */
   width: 120px; /* Set a fixed width or use relative units */
   border-radius: 100%;
 }
 
 .img {
-  max-width: 155%; /* Image can be as wide as its container */
-  height: auto; /* Keep the image's aspect ratio */
+  max-width: 155%; /* Image can be as wide as its container */ /* Keep the image's aspect ratio */
   /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
   filter: brightness(105%);
 }
 
 .description {
   font-size: 14px;
-  font-weight: 400;
-  text-align: right;
   text-wrap: pretty;
   line-height: 1.4;
 }
 
 .phone {
   font-size: 14px;
-  font-weight: 400;
 
   color: #0000ff;
 
@@ -47,10 +36,6 @@
 }
 
 .links {
-  margin-top: 8px;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
   gap: 8px;
 }
 
@@ -58,11 +43,9 @@
   font-size: 16px;
   color: #0000ff;
 
-  font-weight: 400;
-
   &::after {
+    @apply mr-2;
     content: '🔗 ';
-    margin-right: 8px;
   }
 
   &:hover {
@@ -72,71 +55,34 @@
 
 .business {
   font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
-  padding: 0;
   color: var(--clr-idf);
 }
 
 .subtitle {
-  text-align: center;
   color: var(--clr-dark-gray);
-  font-weight: 400;
   font-size: 14px;
   padding-inline: 32px;
 }
 
-.title {
-  text-align: center;
-}
-
 .header {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
-  margin-bottom: 8px;
 }
 
 .contact {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
   color: var(--clr-blue);
   font-size: 14px;
-  font-weight: 400;
 }
 
 .contactColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   gap: 8px;
-  width: 100%;
-}
-.carouselContainer {
-  position: relative;
-  width: 100%;
-}
-
-.carouselItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Add more styling as needed */
 }
 
 .carouselControl {
-  background-color: transparent;
   border: none;
-  cursor: pointer;
   /* Style for left and right buttons */
   font-size: 1.3rem;
   color: var(--clr-blue);
-  font-weight: 400;
 }
 
 /* Left control */
@@ -147,10 +93,4 @@
 /* Right control */
 .carouselControl:last-of-type {
   right: 10px;
-}
-
-.timer {
-  justify-content: center;
-  align-items: center;
-  display: flex;
 }

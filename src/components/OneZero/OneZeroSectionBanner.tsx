@@ -4,7 +4,7 @@ import styles from './OneZeroSectionBanner.module.css'
 
 const OneZeroSectionBanner = () => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} items-center flex flex-col justify-center mt-4`}>
       <div
         style={{
           width: '100%',
@@ -37,7 +37,7 @@ const OneZeroSectionBanner = () => {
         למידע נוסף
       </motion.button>
     </div>
-  )
+  );
 }
 
 export default OneZeroSectionBanner

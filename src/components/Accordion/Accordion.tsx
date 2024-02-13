@@ -23,12 +23,12 @@ const Accordion = (props: AccordionProps) => {
   }
 
   return (
-    <div className={style.accordion}>
+    <div className={`${style.accordion} rounded`}>
       {items.map((item, index) => (
         <div key={item.title} className={style.accordionItem}>
           <div
             onClick={() => handleClick(index)}
-            className={style.accordionButton}
+            className={`${style.accordionButton} items-center cursor-pointer flex font-normal justify-between w-full`}
             style={{
               fontWeight: activeIndexes.includes(index) ? '600' : '400',
               color: activeIndexes.includes(index) ? '#0066FF' : '#000000',
@@ -43,7 +43,7 @@ const Accordion = (props: AccordionProps) => {
               >
                 <img
                   src="/svg/chevron-up.svg"
-                  className={style.accordionButtonIcon}
+                  className={`${style.accordionButtonIcon} font-semibold`}
                 />
               </motion.div>
             ) : (
@@ -54,7 +54,7 @@ const Accordion = (props: AccordionProps) => {
               >
                 <img
                   src="/svg/chevron-up.svg"
-                  className={style.accordionButtonIcon}
+                  className={`${style.accordionButtonIcon} font-semibold`}
                 />
               </motion.div>
             )}
@@ -78,7 +78,7 @@ const Accordion = (props: AccordionProps) => {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default Accordion

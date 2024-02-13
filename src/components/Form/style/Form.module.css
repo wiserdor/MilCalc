@@ -1,35 +1,18 @@
-.form {
-  padding-bottom: 48px;
-}
-
 .formForm {
-  display: flex;
-  flex-direction: column;
   gap: 24px;
 }
 
 .label {
-  display: block;
   margin: 10px 0 5px;
-}
-
-.submitButtonWrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .submitButton {
   background-color: rgba(0, 102, 255, 1);
-  color: #fff;
   border: none;
   padding: 12px 24px 12px 24px;
   border-radius: 44px;
-  cursor: pointer;
 
   font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  white-space: nowrap;
 
   &:hover {
     background-color: rgba(0, 102, 255, 0.9);
@@ -38,44 +21,21 @@
 
 .error {
   color: red;
-  margin-bottom: 1rem;
-  font-weight: 600;
 }
 
 .validation {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
   padding-block: 1rem;
 }
 
 .formSection {
-  display: flex;
-  flex-direction: column;
   padding: 16px 16px 24px 16px;
   border-radius: 16px;
-  background-color: #fff;
   border: 1.5px solid var(--clr-idf);
 }
 
 .formSectionTitle {
   font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
   gap: 0.7rem;
-  align-items: baseline;
-}
-
-.descriptionBold {
-  font-weight: 600;
-  font-size: 1.4rem;
-  text-align: center;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
 }
 
 .formHeader {
@@ -83,17 +43,5 @@
 }
 
 .descriptionFill {
-  text-align: center;
   color: var(--clr-dark-gray);
-  font-weight: 400;
-}
-
-.arrowSvgWrapper {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-
-.arrowSvg {
 }

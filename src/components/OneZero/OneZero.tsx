@@ -46,12 +46,12 @@ const OneZero = (props: OneZeroProps) => {
 
   return (
     <Modal isOpen={isOpen} handleBackdropClick={closeModal}>
-      <div className={style.oneZero}>
-        <div className={style.modalClose} onClick={closeModal}>
+      <div className={`${style.oneZero} items-center flex flex-col justify-center`}>
+        <div className={`${style.modalClose} cursor-pointer h-4 m-4 absolute right-0 w-4`} onClick={closeModal}>
           &times;
         </div>
 
-        <div className={style.header}>
+        <div className={`${style.header} items-center flex font-normal whitespace-nowrap`}>
           פקדון בטוח עם
           <img src="/svg/onezero.svg" />
         </div>
@@ -60,8 +60,8 @@ const OneZero = (props: OneZeroProps) => {
             width: 290,
           }}
         >
-          <h2 className={style.slogan}>בא לך להגדיל את הסכום שמגיע לך?</h2>
-          <div className={style.subSlogan}>
+          <h2 className='text-center'>בא לך להגדיל את הסכום שמגיע לך?</h2>
+          <div className='font-normal mt-2 text-center'>
             הצעד שלך בדרך לחופשה בתאילנד, רכב חדש או שדרוג לבית.
           </div>
         </div>
@@ -70,19 +70,19 @@ const OneZero = (props: OneZeroProps) => {
             width: '100%',
           }}
         >
-          <div className={style.totalSum}>
+          <div className={`${style.totalSum} flex flex-col p-4 text-right`}>
             <div>סכום להפקדה:</div>
             {/* <input type="number" className={style.totalSumInput} /> */}
-            <div className={style.totalSumNumber}>
+            <div className={`${style.totalSumNumber} border-solid`}>
               ₪{total.toLocaleString('he-IL')}
             </div>
-            <div className={style.disclaimer}>
+            <div className={`${style.disclaimer} font-normal`}>
               *פיקדון בריבית שנתית משתנה של 4.6%. ניתן למשוך את הקרן בכל עת.
             </div>
           </div>
         </div>
-        <div className={style.results}>
-          <div className={style.resultsRow}>
+        <div className={`${style.results} grid w-full`}>
+          <div className={`${style.resultsRow} grid text-center`}>
             <div
               style={{
                 display: 'flex',
@@ -119,9 +119,9 @@ const OneZero = (props: OneZeroProps) => {
               })}{' '}
             </div>
           </div>
-          <div className={style.divider} />
+          <div className={`${style.divider} w-full`} />
           <div
-            className={style.resultsRow}
+            className={`${style.resultsRow} grid text-center`}
             style={{ fontWeight: 400, fontSize: 14, color: '#528322' }}
           >
             <div
@@ -159,15 +159,15 @@ const OneZero = (props: OneZeroProps) => {
             </div>
           </div>
         </div>
-        <div className={style.btnWrapper}>
-          <div className={style.btn} onClick={handleOnClick}>
+        <div className={`${style.btnWrapper} items-center flex flex-col justify-center`}>
+          <div className={`${style.btn} cursor-pointer font-semibold`} onClick={handleOnClick}>
             להתנסות ופתיחת חשבון
           </div>
-          <div className={style.btnDescription}>חודשיים התנסות חינם!</div>
+          <div className={`${style.btnDescription} font-normal mt-2`}>חודשיים התנסות חינם!</div>
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
 export default OneZero

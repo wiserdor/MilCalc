@@ -1,5 +1,4 @@
 .container {
-  max-width: 384px; /* Maximum width for larger screens */
   margin: auto;
   overflow: hidden;
   padding-top: 65px;
@@ -8,16 +7,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 600px) {
-    max-width: 100%;
     box-shadow: none;
     border: none;
     margin: 0;
     border-radius: 0;
   }
-}
-
-.padder {
-  padding-inline: 16px;
 }
 
 body {

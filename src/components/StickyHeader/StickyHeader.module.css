@@ -1,38 +1,4 @@
-.stickyHeader {
-  position: fixed;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  border-bottom: 1.5px solid var(--clr-stone);
-  background-color: var(--clr-ocean);
-  border-radius: 4px;
-}
-
-.container {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 14;
-  font-weight: 400;
-}
-
-.shareBtn {
-  padding-inline: 16px;
-  padding-block: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  cursor: pointer;
-  color: white;
-  background-color: var(--clr-idf);
-  border-radius: 44px;
-}
-
 .share {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
   background-color: white;
   padding-inline: 100px;
@@ -41,13 +7,7 @@
 }
 
 .modalClose {
-  position: absolute;
   top: -12px;
-  right: 0;
-  margin: 16px;
-  cursor: pointer;
   color: #cccccc;
   font-size: 24px;
-  width: 16px;
-  height: 16px;
 }

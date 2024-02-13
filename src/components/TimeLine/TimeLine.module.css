@@ -1,31 +1,20 @@
 /* Timeline.css */
 .container {
-  position: relative;
-  display: flex;
   gap: 28px;
-  flex-direction: column;
 }
 
 .event {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  align-items: center;
   gap: 8px;
 }
 
 .eventContent {
   flex: 1;
-  display: flex;
   gap: 16px;
-  font-weight: 400;
   font-size: 14px;
   color: var(--clr-dark-gray);
 }
 
 .eventContentToday {
-  width: 100%;
-  font-weight: 400;
   font-size: 14px;
   color: var(--clr-dark-gray);
 }
@@ -36,12 +25,11 @@
   border-radius: 50%;
   background-color: var(--clr-blue);
   z-index: 1;
-  flex-shrink: 0;
 }
 
 .container::before {
+  @apply absolute;
   content: '';
-  position: absolute;
   top: 6px;
   right: 6px;
   bottom: 10px;
@@ -59,32 +47,15 @@
   padding-inline: 10px;
   padding-block: 6px;
   font-size: 12px;
-  font-weight: 700;
-  border-radius: 4px;
-  text-align: center;
 }
 
 .eventContentColumn {
-  display: flex;
-  align-items: center;
   text-wrap: balance;
 }
 
 .todaySVGWrapper {
   background-color: white;
   z-index: 1;
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
-  position: relative;
   left: 6px;
-}
-
-.todaySVG {
-  width: 24px;
-  height: 24px;
-}
-
-.eventDate {
-  font-weight: 700;
 }

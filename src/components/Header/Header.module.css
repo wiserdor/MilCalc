@@ -1,75 +1,17 @@
-.pageTitle {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
 .subTitle {
   color: var(--clr-idf);
   font-size: 16px;
-  display: flex;
-  font-weight: 600;
-  width: 100%;
   gap: 4px;
-  justify-content: center;
-  align-items: center;
 }
 
 .importantNotice {
   color: #dc3545;
-  text-align: center;
   font-size: 1.2em;
-  display: inline-block;
-  font-weight: 500;
-  width: 100%;
 
   margin-block: 1.5rem;
 }
 
 .share {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-top: 1rem;
-  font-weight: 600;
   font-size: 14px;
-  justify-content: center;
   color: var(--clr-dark-gray);
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo {
-  width: 100%;
-  text-align: center;
-
-  fill: #28a745;
-}
-
-.lastUpdated {
-  font-size: 14px;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.2rem;
-  background-color: var(--clr-ocean);
-  color: var(--clr-idf);
-  border-radius: 8px;
-  padding: 5px 10px 5px 10px;
-  width: fit-content;
-}
-
-.descriptionIntro {
-  font-size: 1rem;
-  font-weight: 400;
-  text-align: center;
 }

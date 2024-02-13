@@ -31,15 +31,15 @@ const CompensationSection = (props: CompensationSectionProps) => {
   )
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <div className={`${styles.container} items-center flex flex-col justify-center`}>
+      <div className='items-center flex flex-col justify-center text-center'>
         <div style={{ marginBottom: 8 }}>
           <Money strokeColor="#528322" />
         </div>
-        <h3 className={styles.title}>{`₪${totalCompensation.toLocaleString(
+        <h3 className='m-0'>{`₪${totalCompensation.toLocaleString(
           'he-IL'
         )}`}</h3>
-        <div className={styles.subtitle}>תגמולים ומענקים</div>
+        <div className={`${styles.subtitle} font-semibold text-center`}>תגמולים ומענקים</div>
       </div>
       <ResultsBar
         segments={[
@@ -137,7 +137,7 @@ const CompensationSection = (props: CompensationSectionProps) => {
         </motion.div>
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 export default CompensationSection

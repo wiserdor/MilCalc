@@ -4,7 +4,7 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} font-normal mt-6 p-4 text-center`}>
       <div
         style={{
           display: 'flex',
@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer

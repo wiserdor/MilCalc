@@ -4,8 +4,8 @@ import { faqQuestions } from './questions'
 
 const FAQ = () => {
   return (
-    <div className={style.FAQ}>
-      <div className={style.FAQTitle}>שאלות ותשובות</div>
+    <div className={`${style.FAQ} items-center flex flex-col justify-center mt-8`}>
+      <div className={`${style.FAQTitle} font-semibold text-center`}>שאלות ותשובות</div>
       <Accordion items={faqQuestions}></Accordion>
       <div style={{ marginTop: 8, textAlign: 'center' }}>
         <a
@@ -38,7 +38,7 @@ const FAQ = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default FAQ

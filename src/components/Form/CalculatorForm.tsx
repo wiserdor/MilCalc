@@ -60,25 +60,33 @@ const CalculatorForm = () => {
   }
 
   return (
-    <div className={style.form}>
-      <div className={style.arrowSvgWrapper}>
+    <div className="pb-12">
+      <div className="relative flex items-center justify-center">
         <img
           className={style.arrowSvg}
           src="/svg/square-arrow.svg"
           alt="arrow"
         />
       </div>
-      <div className={style.formHeader}>
-        <div className={style.descriptionBold}>
+      <div className="pb-5">
+        <div
+          className={`text-[1.4rem] leading-tight px-4 py-2 font-semibold text-center`}
+        >
           רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
         </div>
-        <div className={style.descriptionFill}>אנא מלאו את הפרטים הבאים:</div>
+        <div className={`text-dark-gray font-normal text-center`}>
+          אנא מלאו את הפרטים הבאים:
+        </div>
       </div>
 
-      <form className={style.formForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className={`gap-6 flex flex-col`} onSubmit={handleSubmit(onSubmit)}>
         <FormDateSection control={control} register={register} />
-        <div className={style.formSection}>
-          <div className={style.formSectionTitle}>
+        <div
+          className={`border-solid border-[1.5px] border-idf rounded-2xl px-4 pt-4 pb-6 bg-white flex flex-col`}
+        >
+          <div
+            className={`text-base gap-3 items-baseline flex flex-row font-semibold mb-4`}
+          >
             <NumberCircle number={2} />
             <div style={{ flex: 1 }}>
               מספר ימי המילואים שביצעת בשנת 2023 (לפני ה- 7/10):
@@ -94,46 +102,18 @@ const CalculatorForm = () => {
           />
         </div>
 
-        <div className={style.formSection}>
+        <div className="border-solid border-[1.5px] border-idf rounded-2xl px-4 pt-4 pb-6 bg-white flex flex-col">
           <div>
-            <div
-              className={style.formSectionTitle}
-              style={{
-                marginBottom: 6,
-              }}
-            >
+            <div className="flex flex-row items-baseline gap-3 mb-2 text-base font-semibold">
               <NumberCircle number={3} />
               <div style={{ flex: 1 }}>בחרו בקטגוריות הרלוונטיות לגביכם/ן:</div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontWeight: 600,
-                fontSize: 12,
-                color: '#A15FF7',
-                backgroundColor: '#F2F6FD',
-                gap: 6,
-                paddingInline: 8,
-                paddingBlock: 6,
-                width: 'fit-content',
-                borderRadius: 3,
-                marginBottom: 24,
-              }}
-            >
+            <div className="mb-6 flex gap-6 text-xs px-2 py-[6px] rounded-[3px] w-fit text-[#A15FF7] justify-start items-center font-semibold bg-[#F2F6FD]">
               <ArrowLeft strokeColor="#A15FF7" />
               <div>הוספנו קטגוריות חדשות!</div>
             </div>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 10,
-              rowGap: 20,
-            }}
-          >
+          <div className="flex flex-col flex-wrap w-full gap-2 gap-5">
             <Controller
               control={control}
               name="isCombat"
@@ -217,8 +197,12 @@ const CalculatorForm = () => {
           </div>
         </div>
 
-        <div className={style.submitButtonWrapper}>
-          <button className={style.submitButton}>לחישוב המענקים</button>
+        <div className="flex justify-center">
+          <button
+            className={`${style.submitButton} text-white cursor-pointer font-semibold text-center whitespace-nowrap`}
+          >
+            לחישוב המענקים
+          </button>
         </div>
         <ValidationSection />
       </form>

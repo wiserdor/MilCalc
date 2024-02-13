@@ -56,17 +56,17 @@ const Independent = () => {
 
   return (
     <div style={{ marginTop: 12, width: '100%' }}>
-      <h2 className={style.title}>תומכים במילואימניקים עצמאים</h2>
+      <h2 className='text-center'>תומכים במילואימניקים עצמאים</h2>
       <AnimatePresence>
         <motion.div
-          className={style.carouselContainer}
+          className='relative w-full'
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
           whileHover={{ scale: 1.01 }}
         >
           <div className={style.carousel}>
-            <div className={style.independent}>
+            <div className={`${style.independent} flex flex-col text-center`}>
               <div
                 style={{
                   width: '100%',
@@ -74,15 +74,15 @@ const Independent = () => {
                   justifyContent: 'center',
                 }}
               >
-                <div className={style.imgContainer}>
+                <div className={`${style.imgContainer} items-center flex justify-center overflow-hidden`}>
                   <img
-                    className={style.img}
+                    className={`${style.img} h-auto`}
                     src={`/independent/${activeItem.imgUrl}`}
                   />
                 </div>
               </div>
               <div>
-                <h3 className={style.business}>{activeItem.title}</h3>
+                <h3 className={`${style.business} font-semibold m-0 p-0 text-center`}>{activeItem.title}</h3>
                 {activeItem?.business && (
                   <div style={{ fontWeight: 400, fontSize: 16 }}>
                     {activeItem.business}
@@ -97,10 +97,10 @@ const Independent = () => {
                   flex: 1,
                 }}
               >
-                <div className={style.description}>
+                <div className={`${style.description} font-normal text-right`}>
                   {activeItem.description}
                 </div>
-                <div className={style.contact}>
+                <div className={`${style.contact} items-center flex flex-wrap font-normal justify-center`}>
                   {activeItem.items.map((item, index) => (
                     <Fragment key={index}>
                       {item.type === 'phone' && (
@@ -152,7 +152,7 @@ const Independent = () => {
           </div>
         </motion.div>
       </AnimatePresence>
-      <div className={style.timer}>{timer} שניות עד שנעבור לעצמאי הבא</div>
+      <div className='items-center flex justify-center'>{timer} שניות עד שנעבור לעצמאי הבא</div>
 
       <div
         style={{
@@ -163,14 +163,14 @@ const Independent = () => {
           paddingBlock: 16,
         }}
       >
-        <button onClick={prevItem} className={style.carouselControl}>
+        <button onClick={prevItem} className={`${style.carouselControl} bg-transparent cursor-pointer font-normal`}>
           ‹ הקודם
         </button>
-        <button onClick={nextItem} className={style.carouselControl}>
+        <button onClick={nextItem} className={`${style.carouselControl} bg-transparent cursor-pointer font-normal`}>
           הבא ›
         </button>
       </div>
-      <div className={style.subtitle}>
+      <div className={`${style.subtitle} font-normal text-center`}>
         חשוב לנו לעזור לעצמאיים שהעסק שלהם נפגע בעקבות המלחמה. רוצים להופיע?
         מלאו את הטופס עם הפרטים שלכם:{' '}
         <a
@@ -182,7 +182,7 @@ const Independent = () => {
         </a>
       </div>
     </div>
-  )
+  );
 }
 
 export default Independent

@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* Colors */
-  --clr-idf: #528322;
-  --clr-ocean: #f2f6fd;
-  --clr-stone: #dce4ee;
-  --clr-blue: #0066ff;
-  --clr-dark-gray: #6f6f6f;
-  --clr-bright-gray: #cccccc;
-  --clr-one-zero-black: #1f1f1f;
-
   font-family: 'Rubik', 'Roboto', sans-serif;
   font-weight: 500;
 
@@ -40,6 +31,10 @@ button {
 
 button:focus {
   outline: revert;
+}
+
+input {
+  -webkit-appearance: none;
 }
 
 @media screen and (max-width: 600px) {

@@ -14,20 +14,22 @@ ReactGA.initialize('G-ZE1RDY2L6L')
 
 function App() {
   return (
-    <div className="container">
-      <div className="padder">
-        <Header />
-        <CalculatorForm />
-        <Results />
-        <WeaccelerateAd />
-        <RiseupBanner />
-        <Independent />
+    <div className="w-full flex  justify-center items-center">
+      <div className="md:max-w-96 md:shadow-lg bg-white pt-16 overflow-hidden">
+        <div className="px-4">
+          <Header />
+          <CalculatorForm />
+          <Results />
+          <WeaccelerateAd />
+          <RiseupBanner />
+          <Independent />
+        </div>
+        <FAQ />
+        <div className="px-4">
+          <NewsFeed />
+        </div>
+        <Footer />
       </div>
-      <FAQ />
-      <div className="padder">
-        <NewsFeed />
-      </div>
-      <Footer />
     </div>
   )
 }

@@ -28,10 +28,17 @@ const StickyHeader = () => {
   }
 
   return (
-    <div className={style.stickyHeader}>
+    <div
+      className={`z-10 border-solid border-b-[1.5px] border-b-stone bg-ocean rounded fixed top-0 w-full`}
+    >
       <Modal isOpen={isOpen} handleBackdropClick={handleCloseModal}>
-        <div className={style.share}>
-          <div className={style.modalClose} onClick={handleCloseModal}>
+        <div
+          className={`rounded-3xl gap-2 bg-white py-12 px-24 items-center flex justify-center`}
+        >
+          <div
+            className={`top-[-14px] text-[#ccc] text-2xl cursor-pointer h-4 m-4 absolute right-0 w-4`}
+            onClick={handleCloseModal}
+          >
             &times;
           </div>
           <div>שתפו:</div>
@@ -49,20 +56,14 @@ const StickyHeader = () => {
           </TwitterShareButton>
         </div>
       </Modal>
-      <div className={style.container}>
-        <button
-          style={{
-            backgroundColor: '#1f1f1f',
-            color: 'white',
-            paddingBlock: 8,
-            paddingInline: 16,
-            borderRadius: 44,
-            cursor: 'pointer',
-          }}
-        >
+      <div className={`text-sm flex font-normal justify-between p-4`}>
+        <button className="bg-one-zero-black text-white py-2 px-4 rounded-full cursor-pointer">
           לפתיחת חשבון ב-ONE ZERO
         </button>
-        <button className={style.shareBtn} onClick={handleOpenModal}>
+        <button
+          className={`rounded-full gap-1 px-4 py-2 bg-idf text-white items-center cursor-pointer flex justify-center`}
+          onClick={handleOpenModal}
+        >
           <img src="/svg/share.svg" alt="שיתוף" />
           <span>לשיתוף</span>
         </button>

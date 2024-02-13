@@ -47,44 +47,42 @@ const Tooltip = (props: {
   const role = useRole(context, { role: 'tooltip' })
   const { getReferenceProps, getFloatingProps } = useInteractions([role])
 
-  return (
-    <>
-      <div ref={refs.setReference} {...getReferenceProps()} />
-      <FloatingPortal>
+  return <>
+    <div ref={refs.setReference} {...getReferenceProps()} />
+    <FloatingPortal>
+      <div
+        className={`${styles.tooltip} rounded-lg font-normal`}
+        ref={refs.setFloating}
+        style={floatingStyles}
+        {...getFloatingProps()}
+      >
+        <FloatingArrow ref={arrowRef} context={context} fill="white" />
         <div
-          className={styles.tooltip}
-          ref={refs.setFloating}
-          style={floatingStyles}
-          {...getFloatingProps()}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'center',
+          }}
         >
-          <FloatingArrow ref={arrowRef} context={context} fill="white" />
+          <div style={{ color: props.color, fontWeight: 700, fontSize: 12 }}>
+            ₪
+            {props.value.toLocaleString('he-IL', {
+              maximumFractionDigits: 0,
+            })}{' '}
+          </div>
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              textAlign: 'center',
+              fontSize: 12,
+              fontWeight: 400,
+              color: '#6f6f6f',
             }}
           >
-            <div style={{ color: props.color, fontWeight: 700, fontSize: 12 }}>
-              ₪
-              {props.value.toLocaleString('he-IL', {
-                maximumFractionDigits: 0,
-              })}{' '}
-            </div>
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 400,
-                color: '#6f6f6f',
-              }}
-            >
-              {props.text}
-            </div>
+            {props.text}
           </div>
         </div>
-      </FloatingPortal>
-    </>
-  )
+      </div>
+    </FloatingPortal>
+  </>;
 }
 
 const DonutChart = (props: DonutChartProps) => {

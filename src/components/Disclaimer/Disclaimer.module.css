@@ -1,23 +1,11 @@
 .disclaimer {
-  display: flex;
-  flex-direction: column;
   border-radius: 0.8rem;
   padding-inline: 0.7rem;
-  padding-block: 1rem;
-  line-height: 1.3;
-  background-color: var(--clr-ocean);
-  color: var(--clr-dark-gray);
-  margin-block: 24px;
-  font-weight: 400;
-  gap: 8px;
 }
 
 .disclaimerTitle {
   font-size: 1rem;
-  font-weight: 600;
   color: black;
-  display: flex;
-  align-items: center;
 
   img {
     width: 14px;
