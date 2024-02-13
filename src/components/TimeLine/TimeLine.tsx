@@ -29,14 +29,14 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
             className={`flex flex-1 gap-4 text-sm font-normal text-dark-gray`}
           >
             <div className={`flex items-center text-balance`}>
-              <div className="font-bold" style={{ minWidth: "7ch" }}>
+              <div className="font-bold" style={{ width: "6ch" }}>
                 {date ? format(date.toISOString(), "dd.MM.yy") : ""}
               </div>
             </div>
             <div className={`flex items-center text-balance`}>
               <div
                 className={`rounded px-[10px] py-[6px] text-center text-xs font-bold text-white`}
-                style={{ backgroundColor: color, minWidth: "9ch" }}
+                style={{ backgroundColor: color, width: "8ch" }}
               >
                 ₪
                 {totalCompensation.toLocaleString("he-IL", {

@@ -60,7 +60,7 @@ const CalculatorForm = () => {
 
   return (
     <div className="pb-12">
-      <div className="relative flex items-center justify-center">
+      <div className="relative mb-5 flex items-center justify-center">
         <img src="/svg/square-arrow.svg" alt="arrow" />
       </div>
       <div className="pb-5">

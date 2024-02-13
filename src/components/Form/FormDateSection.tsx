@@ -80,7 +80,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
         ))}
       </div>
       <div
-        className=" mt-8 flex w-full cursor-pointer flex-col items-center justify-center"
+        className=" mt-7 flex w-full cursor-pointer flex-col items-center justify-center"
         onClick={onAddDateRange}
       >
         <img className="fill-blue" src="/svg/plus.svg" alt="הוסף תאריך" />
