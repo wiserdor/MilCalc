@@ -19,14 +19,16 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
   const { date, totalCompensation = 0, name, color, url, index } = props;
   return (
     <a href={url} target="_blank" rel="noreferrer" className="cursor-pointer">
-      <div className={`flex flex-row-reverse items-center justify-end gap-2`}>
+      <div
+        className={`relative flex flex-row-reverse items-center justify-end gap-2`}
+      >
         <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: index * 0.2 }}
             exit={{ opacity: 0, x: -50 }}
-            className={`flex flex-1 gap-4 text-sm font-normal text-dark-gray`}
+            className={`flex flex-1 gap-4 text-sm font-normal text-dark-gray `}
           >
             <div className={`flex items-center text-balance`}>
               <div className="font-bold" style={{ width: "6ch" }}>

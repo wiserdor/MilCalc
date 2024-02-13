@@ -5,7 +5,6 @@ import {
 } from "../../data/compensation";
 import useStore from "../../store/store";
 import OneZero from "../OneZero/OneZero";
-import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
 import CompensationSection from "./CompensationSection";
 import HeaderTotalSection from "./HeaderTotalSection";
 import ResultsSection from "./ResultsSection";
@@ -130,7 +129,7 @@ const Results = () => {
           items={approvedItems}
         />
       )}
-      <OneZeroSectionBanner />
+      {/* <OneZeroSectionBanner /> */}
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection

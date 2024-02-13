@@ -1,21 +1,5 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/shadcn/ui/popover";
-import {
-  FloatingPortal,
-  autoUpdate,
-  flip,
-  offset,
-  safePolygon,
-  shift,
-  useDismiss,
-  useFloating,
-  useFocus,
-  useHover,
-  useInteractions,
-  useRole,
-} from "@floating-ui/react";
 import { PopoverArrow } from "@radix-ui/react-popover";
-import { useState } from "react";
-import { InstagramEmbed } from "react-social-media-embed";
 
 export interface NonApprovedItemProps {
   name: string;
