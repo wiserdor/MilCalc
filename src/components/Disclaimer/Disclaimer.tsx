@@ -1,21 +1,17 @@
-import styles from './Disclaimer.module.css'
-
 const Disclaimer = () => {
   const idfInfoLink =
-    'https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/'
+    "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/";
 
   return (
     <div
-      className={`${styles.disclaimer} px-2 py-3 leading-snug gap-2 text-dark-gray my-6 flex flex-col font-normal bg-ocean  `}
+      className={`my-6 flex flex-col gap-2 rounded-xl bg-ocean px-3 py-3 font-normal leading-snug text-dark-gray  `}
     >
-      <div
-        className={`${styles.disclaimerTitle} items-center flex font-semibold`}
-      >
-        <img src="/svg/heart.svg" />
+      <div className={`flex items-center text-base font-semibold text-black`}>
+        <img className="ml-1 h-4 w-4" src="/svg/heart.svg" />
         הערה חשובה
       </div>
       <div>
-        המחשבון מבוסס על{' '}
+        המחשבון מבוסס על{" "}
         <a
           className="text-blue"
           href={idfInfoLink}
@@ -28,7 +24,7 @@ const Disclaimer = () => {
         על המשתמש בלבד .
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Disclaimer
+export default Disclaimer;
