@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { forwardRef } from "react";
 import { separatePaymentsByDate } from "../../data/compensation";
 import ResultsBar from "../ResultsBar/ResultsBar";
 import Timeline from "../TimeLine/TimeLine";
@@ -21,7 +21,10 @@ export interface CompensationSectionProps {
   items: ApprovedItem[];
 }
 
-const CompensationSection = (props: CompensationSectionProps) => {
+const CompensationSection = (
+  props: CompensationSectionProps,
+  ref: React.Ref<HTMLDivElement>,
+) => {
   const { totalCompensation, items } = props;
 
   const { pastPayments, upcomingPayments } = React.useMemo(
@@ -31,6 +34,7 @@ const CompensationSection = (props: CompensationSectionProps) => {
 
   return (
     <div
+      ref={ref}
       className={`flex flex-col items-center justify-center gap-10 rounded-2xl bg-ocean px-4 pb-4 pt-6`}
     >
       <div className="flex flex-col items-center justify-center text-center">
@@ -119,4 +123,4 @@ const CompensationSection = (props: CompensationSectionProps) => {
   );
 };
 
-export default CompensationSection;
+export default forwardRef(CompensationSection);

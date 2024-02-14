@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import Voucher from "../../svg/Voucher";
 import ResultItem, { NonApprovedItemProps } from "./ResultItem";
 
@@ -7,11 +8,15 @@ interface ResultsSectionProps {
   title: string;
 }
 
-const ResultsSection = (props: ResultsSectionProps) => {
+const ResultsSection = (
+  props: ResultsSectionProps,
+  ref: React.Ref<HTMLDivElement>,
+) => {
   const { results, total } = props;
 
   return (
     <div
+      ref={ref}
       className={`my-4 flex flex-col gap-4 rounded-2xl bg-ocean px-4 pb-4 pt-6`}
     >
       <div className="flex flex-col items-center justify-center text-center">
@@ -37,4 +42,4 @@ const ResultsSection = (props: ResultsSectionProps) => {
   );
 };
 
-export default ResultsSection;
+export default forwardRef(ResultsSection);

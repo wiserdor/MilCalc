@@ -36,6 +36,8 @@ const Results = () => {
   const didVacationCancelled = useStore((state) => state.didVacationCancelled);
 
   const resultsRef = useRef<HTMLDivElement>(null);
+  const compensationRef = useRef<HTMLDivElement>(null);
+  const voucherRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Scroll to results on submit
@@ -125,9 +127,16 @@ const Results = () => {
       <HeaderTotalSection
         totalCompensation={totalCompensation}
         totalVoucher={totalNonPaidApproved}
+        onCompensationClick={() => {
+          compensationRef.current?.scrollIntoView({ behavior: "smooth" });
+        }}
+        onVoucherClick={() => {
+          voucherRef.current?.scrollIntoView({ behavior: "smooth" });
+        }}
       />
       {totalCompensation > 0 && (
         <CompensationSection
+          ref={compensationRef}
           totalCompensation={totalCompensation}
           items={approvedItems}
         />
@@ -136,6 +145,7 @@ const Results = () => {
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection
+          ref={voucherRef}
           title="שוברים וסיוע"
           total={totalNonPaidApproved}
           results={approvedNonPaidItems}
