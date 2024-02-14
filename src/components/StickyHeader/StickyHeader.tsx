@@ -16,8 +16,7 @@ import {
 } from "react-share";
 
 const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
-כנסו לבדוק מה מגיע לכם גם:
-https://miluimnik.info`;
+כנסו לבדוק מה מגיע לכם גם:`;
 const SHARE_MESSAGE =
   "המענקים למילואימניקים אושרו בממשלה! כנסו למחשבון לבדוק לכמה אתם זכאים:";
 const SHARE_URL = "https://miluimnik.info";
