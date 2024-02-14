@@ -15,6 +15,9 @@ import {
   XIcon,
 } from "react-share";
 
+const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
+כנסו לבדוק מה מגיע לכם גם:
+https://miluimnik.info`;
 const SHARE_MESSAGE =
   "המענקים למילואימניקים אושרו בממשלה! כנסו למחשבון לבדוק לכמה אתם זכאים:";
 const SHARE_URL = "https://miluimnik.info";
@@ -48,7 +51,10 @@ const StickyHeader = () => {
               className={`flex items-center justify-center gap-2 rounded-3xl bg-white py-5 `}
             >
               <div>שתפו:</div>
-              <WhatsappShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
+              <WhatsappShareButton
+                url={SHARE_URL}
+                title={SHARE_WHATSAPP_MESSAGE}
+              >
                 <WhatsappIcon size={32} round={true} />
               </WhatsappShareButton>
               <TelegramShareButton url={SHARE_URL} title={SHARE_MESSAGE}>
