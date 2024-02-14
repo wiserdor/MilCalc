@@ -4,7 +4,7 @@ import { PopoverArrow } from "@radix-ui/react-popover";
 export interface NonApprovedItemProps {
   name: string;
   totalCompensation: number;
-  totalCompensationStr?: string;
+  totalCompensationStr?: string | JSX.Element;
   description?: string;
   nonDirectMoney?: boolean;
   isMoney?: boolean;
@@ -20,7 +20,11 @@ const Tooltip = (props: {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <img src="/svg/circle-exclamation.svg" alt="exclamation" />
+        <img
+          className="cursor-pointer"
+          src="/svg/circle-exclamation.svg"
+          alt="exclamation"
+        />
       </PopoverTrigger>
       <PopoverContent>
         <div
@@ -63,24 +67,31 @@ const ResultItem = (props: NonApprovedItemProps) => {
     >
       <div className={`flex flex-col items-center justify-start gap-[2px]`}>
         {isMoney && (
-          <div className="text-blue">
-            {totalCompensationStr
-              ? totalCompensationStr
-              : `${
-                  nonDirectMoney ? "בשווי" : ""
-                } ₪${totalCompensation.toLocaleString("he-IL")}`}
+          <div className="text-dark-gray">
+            {totalCompensationStr ? (
+              totalCompensationStr
+            ) : (
+              <div>
+                <span className="text-dark-gray">
+                  {nonDirectMoney ? "בשווי" : ""}
+                </span>{" "}
+                <span className="font-bold text-black">
+                  ₪{totalCompensation.toLocaleString("he-IL")}
+                </span>
+              </div>
+            )}
           </div>
         )}
-        <div>{name}</div>
+        <a
+          className="text-blue underline"
+          href={idfLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div>{name}</div>
+        </a>
       </div>
-      <a href={idfLink} target="_blank" rel="noopener noreferrer">
-        <img src="/svg/arrow-left.svg" />
-      </a>
-      {description && (
-        <div className="relative top-1 max-h-0">
-          <Tooltip text={description} link={link} />
-        </div>
-      )}
+      {description && <Tooltip text={description} link={link} />}
     </div>
   );
 };

@@ -88,7 +88,7 @@ export const getApprovedNonPaidItems = (
 ): {
   name: string;
   totalCompensation: number;
-  totalCompensationStr?: string;
+  totalCompensationStr?: string | JSX.Element;
   description: string;
   nonDirectMoney: boolean;
   link?: {
@@ -152,7 +152,11 @@ export const getApprovedNonPaidItems = (
     ? [
         {
           name: "פיצוי בגין ביטול חופשות/טיסות",
-          totalCompensationStr: "עד ₪5000",
+          totalCompensationStr: (
+            <div className="text-dark-gray">
+              עד <span className="font-bold text-black">₪5000</span>
+            </div>
+          ),
           totalCompensation: 0,
           description: `קרן הסיוע תפצה משרתי מילואים שהתייצבו בצו 8 ונפגעו כספית כתוצאה מהצורך לבטל/לדחות טיסות/חופשות בארץ או בחו״ל לפי הפירוט הבא:
 

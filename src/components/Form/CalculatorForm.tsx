@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import useStore from "../../store/store";
 import { FormValues } from "../../store/types";
@@ -120,21 +120,23 @@ const CalculatorForm = () => {
           </div>
           <div className="flex w-full flex-wrap gap-x-3 gap-y-4">
             {Object.entries(toggles).map(([name, label]) => (
-              <Controller
-                control={control}
-                name={name as keyof typeof toggles}
-                render={({ field: { onChange, value, name, ref } }) => {
-                  return (
-                    <Toggle
-                      label={label}
-                      name={name}
-                      active={value}
-                      onChange={onChange}
-                      ref={ref}
-                    />
-                  );
-                }}
-              />
+              <Fragment key={name}>
+                <Controller
+                  control={control}
+                  name={name as keyof typeof toggles}
+                  render={({ field: { onChange, value, name, ref } }) => {
+                    return (
+                      <Toggle
+                        label={label}
+                        name={name}
+                        active={value}
+                        onChange={onChange}
+                        ref={ref}
+                      />
+                    );
+                  }}
+                />
+              </Fragment>
             ))}
           </div>
         </div>
