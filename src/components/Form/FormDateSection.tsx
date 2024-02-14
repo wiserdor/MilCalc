@@ -84,7 +84,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
         onClick={onAddDateRange}
       >
         <img className="fill-blue" src="/svg/plus.svg" alt="הוסף תאריך" />
-        <div className={`text-sm font-bold  text-dark-gray`}>
+        <div className={`text-sm font-bold  text-blue`}>
           להוספת טווח תאריכים נוסף
         </div>
       </div>

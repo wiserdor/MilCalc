@@ -47,7 +47,7 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
               </div>
             </div>
             <div
-              className={`flex items-center text-balance`}
+              className={`flex items-center text-balance underline`}
               style={{ flexGrow: 1, color }}
             >
               <div>{name}</div>
