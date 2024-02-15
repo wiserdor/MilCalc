@@ -181,18 +181,20 @@ const data: {
   },
   {
     title: "יוחנן שוורץ",
-    description: `שמי יוחנן שוורץ, יועץ משכנתא שמתמחה בליווי מקוון בכל הארץ.
-    כל מילואימניק מוסמח לשי יעוץ ראיינת ללא 
-    לבדיקת משכנתא קיימת תשלום - רלוונטי גם למשכנתאות חדשות`,
+    description: `שלום חברים,
+    שמי יוחנן שוורץ - ואני יועץ משכנתא.
+    מה זה אומר? שאם יש לכם משכנתא קיימת, או שתצטרכו בקרוב לקחת משכנתא, ממש ממש כדאי לכם לשלוח לי הודעה כדי לתאם שיחת זום בה אסביר לכם ב-ד-י-ו-ק מה תוכלו לקבל, ואיך תעשו את זה.
+    ובגלל שגם אתם וגם אני מילואימניקים - השיחה תהיה בחינם לגמרי!
+    אז יאללה, נדבר.`,
     imgUrl: "yochanan_shwartz.jpg",
     items: [
+      { type: "email", email: "Jochaschwartz@gmail.com" },
       { type: "phone", phone: "0547328840" },
       {
         type: "whatsapp",
         url: "https://api.whatsapp.com/send/?phone=972547328840",
       },
       { type: "link", url: "https://hfca.org.il/userprofile/?id=506" },
-      { type: "email", email: "Jochaschwartz@gmail.com" },
     ],
   },
   {
@@ -229,6 +231,128 @@ const data: {
         type: "facebook",
         url: "https://www.facebook.com/profile.php?id=100076068781870",
       },
+    ],
+  },
+  {
+    title: "דניאל דיבלה",
+    imgUrl: "daniel-d.jpeg",
+    business: "דניאל דבילה פנסיה ביטוח פיננסים",
+    description: `היי
+    אני סוכן ביטוח פנסיוני במילואים מה10/10
+    הכל נעצר מאז וגיוס הלקוחות החדשים גם..
+    מתמחה בבדיקות תיק ביטוח ופנסיוני, ביטוחי בריאות ,חיים, משכנתא ,ייעוץ ועוד
+    אשמח לתת שירות :)`,
+    items: [
+      {
+        type: "email",
+        email: "dveladaniel@outlook.com",
+      },
+      {
+        type: "whatsapp",
+        url: "https://wa.me/message/ZUYVTL6UQTYLD1",
+      },
+      {
+        type: "facebook",
+        url: "https://www.facebook.com/dvelainsurance",
+      },
+      {
+        type: "phone",
+        phone: "0526661008",
+      },
+    ],
+  },
+  {
+    title: "יחיעם שרלו",
+    business: "ספר ״וילכו שניהם יחדיו״",
+    description: `״וילכו שניהם יחדו״
+    ספר שמניע אותנו להיות ״מבוגר משמעותי״ עבור הילדים שלנו (חניכים, תלמידים, פקודים) דרך פרשיות השבוע וחגי ישראל. 
+    מתנה נפלאה לצוותי הוראה ותלמידים המסיימים כיתה יב׳ או תלמידי מכינות היוצאים לדרך. 
+    קטעי פרשנות ייחודיים יחד עם מבט רלוונטי לעוסקים בחינוך וטיפול.
+    לספר מצורפים קטעי פתיחה מאת אנשים יקרים כגון הרב יובל שרלו, יו״ר אמונה ליאורה מינקה, ח״כ לשעבר יוני שטבון, פרופ׳ נתי רונאל מאוני׳ בר אילן ועוד. 
+    ״כל ילד זקוק למבוגר אחד טוב שיאמין בו״!
+    ספר איכותי כריכה קשה מחירים נוחים להזמנה בכמות`,
+    imgUrl: "yehiam_sharlu.jpeg",
+    items: [
+      { type: "email", email: "yehi.ivri@gmail.com" },
+      { type: "phone", phone: "0523003682" },
+    ],
+  },
+  {
+    title: "יעל הרמן",
+    business: "יעל הרמן סטודיו וצילום",
+    description:
+      "צילום מסחרי לעסקים וארגונים, נדלן, מוצרים, תדמית, סטודיו. עם השכלה ונסיון בתקשורת שיווקית, כשרון, נסיון, לב רחב, סטודיו וציוד מדוייק ואיכותי נדע ליצור דימויים שיביאו לכם תוצאות. הכנסו לקישור והתרשמו.",
+    imgUrl: "yael-herman.jpeg",
+    items: [
+      { type: "email", email: "yaalherman@gmail.com" },
+      { type: "whatsapp", url: "https://wa.me/qr/SOM3UYBTNZR4L1" },
+      { type: "facebook", url: "https://www.facebook.com/yaal.herman" },
+      { type: "link", url: "https://www.yaalherman.com/commercial/" },
+    ],
+  },
+  {
+    title: "ליאור שטריגלר",
+    business: "ליאור שטריגלר יועץ משכנתאות",
+    description: `היי נעים להכיר , קוראים לי ליאור שטריגלר ואני יועץ משכנתאות . מלווה אתכם ברכישת הדירה/ איחוד הלוואות  /מיחזור .
+    בונה יחד איתכם את התמהיל שנכון וטוב  לכם  ולא מה שנכון לבנק (-:)  
+    אשמח לשמוע מכם אחרי כמה חודשים  מילואים שלא שמעתי מלקוחות `,
+    imgUrl: "lior-shtringler.jpeg",
+    items: [
+      { type: "email", email: "liorszt@gmail.com" },
+      { type: "whatsapp", url: "https://wa.me/972522675173" },
+      { type: "phone", phone: "0544222222" },
+    ],
+  },
+  {
+    title: "ניסים אלאלוף",
+    imgUrl: "nissim-alaluf.jpeg",
+    business: "DataFusion",
+    description: `אנו Data Fusion חברה שנותנת שירותי פיתוח BI דשבורדים ודוחות שמפותחים על גבי הנתונים מהמערכות התפעוליות של החברה או הארגון שמקבלים את השירות,
+    אנו שואפים לספק פתרונות מותאמים אישית ללקוחותינו מתוך הבנת מלאה של צרכיהם ומטרותיהם. במסגרת ניסיוני של כ-6 שנים כמפתח BI, התמקדתי בפתרונות עסקיים באמצעות טכנולוגיות מיקרוסופט כמו Power BI ו-MSSQL &SSIS . 
+    במהלך דרכי המקצועית, שיפרתי את יכולות הניתוח וההבנה שלי של דרישות הלקוח ופתרונות ה-BI. עבודתינו כוללת פיתוח מקורות נתונים מותאמים אישית, יצירת דוחות מתקדמים וביצוע בדיקות מערכת יעילות.`,
+    items: [
+      { type: "email", email: "Niso10000@gmail.com" },
+      { type: "whatsapp", url: "https://wa.me/0506580123" },
+      { type: "phone", phone: "0506580123" },
+      {
+        type: "link",
+        url: "https://www.linkedin.com/in/nissim-elaluf-bi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
+    ],
+  },
+  {
+    title: "אלי ליין",
+    imgUrl: "eli-line.jpeg",
+    business: "Kelev",
+    description: `עם הרבה אהבה לבעלי חיים.
+    יש לי מותג לציוד לבעלי חיים עם כמה מוצרים יחודיים בפיתוח שלי.
+    בראש המוצרים עומד קולר הזיהוי שלנו, שהוא המצאה ישראלית העוזרת לכלבים שהולכים לאיבוד לחזור לבייתם.
+    כמו כן העסק מוכר מוצרי הדברה נבחרים ומזון לכלבים`,
+    items: [
+      { type: "email", email: "eli@kelev.co" },
+      { type: "whatsapp", url: "https://wa.me/515866523" },
+      { type: "instagram", url: "https://www.instagram.com/kelevwearables/" },
+      { type: "link", url: "https://shop.kelev.co/" },
+    ],
+  },
+  {
+    title: "מינה חיה רוטמן",
+    imgUrl: "mina-rotman.jpg",
+    business: "מינצ׳ - מיתוג • איור • אמנות",
+    description: `היי, אני מינה חיה, אמנית, יוצרת ומעצבת ובעלת סטודיו למיתוג בוטיק לאירועים ועסקים מיוחדים, עיצוב גרפי ואיור.
+
+    כרגע הסטודיו עבר דירה לבסיס בו אני עושה מילואים, ועד שיחזור למשכנו הקבוע אשמח להציע את שירותיי מרחוק:
+    - מיתוג ובניית שפה עיצובית מלאה לעסקים שרוצים לזרוח
+    - מיתוג לאירועים מיוחדים ומרגשים, ליצירת הרמוניה עיצובית מושלמת
+    - איור דיגיטלי, פורטרטים אישיים ואיור לעיצובים, מיתוגים וספרי ילדים
+    - ניהול סושיאל מדיה ויצירת תוכן מדויק ובועט לעסקים 
+    
+    בשורות טובות!`,
+    items: [
+      { type: "email", email: "minchlittlegifts@gmail.com" },
+      { type: "whatsapp", url: "https://wa.me/972526142634" },
+      { type: "instagram", url: "https://www.instagram.com/minachaya/" },
+      { type: "link", url: "https://linktr.ee/MinchDesignStudio" },
     ],
   },
 ];
