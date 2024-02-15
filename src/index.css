@@ -29,6 +29,10 @@ input {
   -webkit-appearance: none;
 }
 
+* {
+  scroll-margin-top: 80px;
+}
+
 @media screen and (max-width: 600px) {
   :root {
     background-color: #fff;
