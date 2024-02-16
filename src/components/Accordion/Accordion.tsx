@@ -30,7 +30,7 @@ const Accordion = (props: AccordionProps) => {
             className={`flex w-full cursor-pointer items-center justify-between gap-4 border-b-2 border-solid border-b-stone px-3 text-lg font-normal`}
             style={{
               fontWeight: activeIndexes.includes(index) ? "600" : "400",
-              color: activeIndexes.includes(index) ? "#0066FF" : "#000000",
+              color: activeIndexes.includes(index) ? "#0066FF" : "#000000"
             }}
           >
             <div className="w-5/6">{item.title}</div>
@@ -44,6 +44,7 @@ const Accordion = (props: AccordionProps) => {
                   <img
                     src="/svg/chevron-up.svg"
                     className={`h-8 w-8 text-base font-semibold`}
+                    alt="arrow"
                   />
                 </motion.div>
               ) : (
@@ -55,6 +56,7 @@ const Accordion = (props: AccordionProps) => {
                   <img
                     src="/svg/chevron-up.svg"
                     className={`h-8 w-8 text-base font-semibold`}
+                    alt="arrow"
                   />
                 </motion.div>
               )}
@@ -68,7 +70,7 @@ const Accordion = (props: AccordionProps) => {
                 exit="collapsed"
                 variants={{
                   open: { opacity: 1, height: "auto" },
-                  collapsed: { opacity: 0, height: 0 },
+                  collapsed: { opacity: 0, height: 0 }
                 }}
                 transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
               >

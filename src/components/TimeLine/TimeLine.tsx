@@ -4,7 +4,7 @@ import { CSSProperties } from "react";
 import clsx from "clsx";
 import ArrowLeft from "../../svg/ArrowLeft";
 
-export type TimelineEvent = {
+export type TimelineEventProps = {
   date?: Date;
   totalCompensation?: number;
   name?: string;
@@ -12,10 +12,10 @@ export type TimelineEvent = {
   color?: CSSProperties["color"];
 };
 export interface TimelineProps {
-  events: TimelineEvent[];
+  events: TimelineEventProps[];
 }
 
-const TimelineEvent = (props: TimelineEvent & { index: number }) => {
+const TimelineEvent = (props: TimelineEventProps & { index: number }) => {
   const { date, totalCompensation = 0, name, color, url, index } = props;
   return (
     <a href={url} target="_blank" rel="noreferrer" className="cursor-pointer">
@@ -42,7 +42,7 @@ const TimelineEvent = (props: TimelineEvent & { index: number }) => {
               >
                 ₪
                 {totalCompensation.toLocaleString("he-IL", {
-                  maximumFractionDigits: 0,
+                  maximumFractionDigits: 0
                 })}
               </div>
             </div>
@@ -90,7 +90,7 @@ const Timeline = (props: TimelineProps) => {
         "before:from-45%",
         "before:to-bright-gray",
         "before:to-50%",
-        "before:bg-[length:2px_10px]",
+        "before:bg-[length:2px_10px]"
       )}
     >
       {events.map((event, index) => (

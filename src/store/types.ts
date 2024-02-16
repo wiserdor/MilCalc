@@ -7,7 +7,6 @@ export interface CalculatorResults {
   // Results
   totalPerMonth: number;
   totalMoreThan45: number;
-  totalOperation24: number;
   totalFromChildren: number;
   totalVacation: number;
   totalSpecialChildren: number;
@@ -34,7 +33,6 @@ export interface FormValues {
   isStudent: boolean;
   isOld: boolean;
   serviceBefore: string;
-  operation24Days: string;
 }
 
 export interface FormStore extends FormValues {
@@ -42,7 +40,6 @@ export interface FormStore extends FormValues {
   setValidationErrors: (errors: string[]) => void;
   setFormState: (data: FormValues) => void;
   saveStateToUrl: () => void;
-  loadStateFromUrl: () => void;
 }
 
 export interface CalculatorStore {

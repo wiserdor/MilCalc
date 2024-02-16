@@ -7,7 +7,7 @@ const Disclaimer = () => {
       className={`my-9 flex flex-col gap-2 rounded-xl bg-ocean px-3 py-3 font-normal leading-snug text-dark-gray  `}
     >
       <div className={`flex items-center text-base font-semibold text-black`}>
-        <img className="ml-1 h-4 w-4" src="/svg/heart.svg" />
+        <img className="ml-1 h-4 w-4" src="/svg/heart.svg" alt="heart" />
         הערה חשובה
       </div>
       <div>

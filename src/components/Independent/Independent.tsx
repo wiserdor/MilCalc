@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import data from "../../data/independants";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -20,6 +20,11 @@ const Independent = () => {
   const [timer, setTimer] = useState(TIMER_DURATION);
   const shuffledArray = useMemo(() => shuffleArray(data), []);
 
+  const nextItem = useCallback(() => {
+    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % data.length);
+    resetTimer();
+  }, [setCurrentIndex]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
@@ -33,20 +38,15 @@ const Independent = () => {
     }, 1000);
 
     return () => clearInterval(interval); // Clean up interval on component unmount
-  }, [currentIndex]);
+  }, [currentIndex, nextItem]);
 
   const resetTimer = () => {
     setTimer(TIMER_DURATION);
   };
 
-  const nextItem = () => {
-    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % data.length);
-    resetTimer();
-  };
-
   const prevItem = () => {
     setCurrentIndex((prevIndex: number) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? data.length - 1 : prevIndex - 1
     );
     resetTimer();
   };
@@ -73,6 +73,7 @@ const Independent = () => {
                   <img
                     className={`filter-[brightness(105%)] h-auto max-w-[155%]`}
                     src={`/independent/${activeItem.imgUrl}`}
+                    alt={activeItem.title}
                   />
                 </div>
               </div>
@@ -99,7 +100,7 @@ const Independent = () => {
                     <Fragment key={index}>
                       {item.type === "phone" && (
                         <a href={`tel:${item.phone}`}>
-                          <img src="/svg/phone.svg" />
+                          <img src="/svg/phone.svg" alt="phone" />
                         </a>
                       )}
                       {item.type === "whatsapp" && (
@@ -108,7 +109,7 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img src="/svg/whatsapp.svg" />
+                          <img src="/svg/whatsapp.svg" alt="whatsapp" />
                         </a>
                       )}
                       {item.type === "link" && (
@@ -117,7 +118,7 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img src="/svg/click.svg" />
+                          <img src="/svg/click.svg" alt="click" />
                         </a>
                       )}
                       {item.type === "facebook" && (
@@ -126,7 +127,7 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img src="/svg/facebook.svg" />
+                          <img src="/svg/facebook.svg" alt="facebook" />
                         </a>
                       )}
                       {item.type === "instagram" && (
@@ -135,7 +136,7 @@ const Independent = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img src="/svg/instagram.svg" />
+                          <img src="/svg/instagram.svg" alt="instagram" />
                         </a>
                       )}
                     </Fragment>

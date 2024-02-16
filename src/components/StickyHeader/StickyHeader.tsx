@@ -12,7 +12,7 @@ import {
   TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-  XIcon,
+  XIcon
 } from "react-share";
 
 const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
@@ -32,7 +32,7 @@ const StickyHeader = () => {
       className={`fixed top-0 z-30 w-full rounded border-b-[1.5px] border-solid border-b-stone bg-ocean`}
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
-        <img src="/svg/calculator.svg" />
+        <img src="/svg/calculator.svg" alt="calculator" />
         {/* <button className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white">
           לפתיחת חשבון ב-ONE ZERO
         </button> */}

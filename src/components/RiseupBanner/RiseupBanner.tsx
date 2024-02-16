@@ -5,7 +5,7 @@ const RiseupBanner = () => {
     ReactGA.event({
       category: "Link",
       action: "Click",
-      label: linkName,
+      label: linkName
     });
   };
 
@@ -17,7 +17,7 @@ const RiseupBanner = () => {
         flexDirection: "column",
         alignItems: "center",
         textAlign: "center",
-        gap: 16,
+        gap: 16
       }}
     >
       <div
@@ -25,10 +25,10 @@ const RiseupBanner = () => {
           display: "flex",
           alignItems: "center",
           gap: 16,
-          marginBottom: 8,
+          marginBottom: 8
         }}
       >
-        <img src="/svg/riseup.svg" />
+        <img src="/svg/riseup.svg" alt="riseup" />
         <span style={{ color: "#6F6F6F", fontSize: 24 }}>+</span>
         <img src="/svg/calculator.svg" alt="calculator" />
       </div>

@@ -5,7 +5,7 @@ const WeaccelerateAd = () => {
     ReactGA.event({
       category: "Link",
       action: linkName,
-      label: linkName,
+      label: linkName
     });
   };
 
@@ -17,7 +17,7 @@ const WeaccelerateAd = () => {
         flexDirection: "column",
         alignItems: "center",
         textAlign: "center",
-        gap: 16,
+        gap: 16
       }}
     >
       <h2 className="text-2xl font-bold">השתחררתם מהמילואים?</h2>
@@ -34,7 +34,7 @@ const WeaccelerateAd = () => {
         rel="noreferrer"
         onClick={() => trackLinkClick("Weaccelerate")}
       >
-        <img width="100%" src="/ads/weCcelerate.png" />
+        <img width="100%" src="/ads/weCcelerate.png" alt="weCcelerate" />
       </a>
     </div>
   );

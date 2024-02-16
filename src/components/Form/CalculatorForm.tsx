@@ -1,14 +1,14 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Controller, useForm } from "react-hook-form";
 import useStore from "../../store/store";
 import { FormValues } from "../../store/types";
+import ArrowLeft from "../../svg/ArrowLeft";
 import NumberCircle from "../NumberCircle/NumberCircle";
 import Toggle from "../Toggle/Toggle";
 import FormDateSection from "./FormDateSection";
 import FormInput from "./FormInput";
 import ValidationSection from "./ValidationSection";
 import { validateForm } from "./validation";
-import ArrowLeft from "../../svg/ArrowLeft";
 
 const toggles = {
   isCombat: "במערך הלוחם",
@@ -22,7 +22,6 @@ const toggles = {
 
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState);
-  const loadStateFromUrl = useStore((state) => state.loadStateFromUrl);
   const updateCalculatorResults = useStore(
     (state) => state.updateCalculatorResults,
   );
@@ -52,16 +51,8 @@ const CalculatorForm = () => {
     },
   });
 
-  useEffect(() => {
-    loadStateFromUrl();
-  }, []);
-
   const onSubmit = (data: FormValues) => {
-    const errors = validateForm(
-      data.dateRanges,
-      data.serviceBefore,
-      data.operation24Days,
-    );
+    const errors = validateForm(data.dateRanges, data.serviceBefore);
     setValidationErrors(errors);
     if (errors.length > 0) {
       return;

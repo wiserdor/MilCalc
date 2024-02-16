@@ -21,7 +21,6 @@ export const createCalculatorStore: StateCreator<
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
-      operation24Days: state.operation24Days,
       isOld: state.isOld,
     });
 

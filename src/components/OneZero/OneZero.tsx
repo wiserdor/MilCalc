@@ -10,14 +10,6 @@ const OneZero = (props: OneZeroProps) => {
   const { total = 0 } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!total) return null;
-
-  const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1;
-
-  const afterYear = total * (1 + afterYearPercentage);
-
-  const afterYearDiff = afterYear - total;
-
   useEffect(() => {
     if (!total) return;
     // get url params
@@ -35,6 +27,14 @@ const OneZero = (props: OneZeroProps) => {
       if (timeout) clearTimeout(timeout);
     };
   }, [total]);
+
+  if (!total) return null;
+
+  const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1;
+
+  const afterYear = total * (1 + afterYearPercentage);
+
+  const afterYearDiff = afterYear - total;
 
   const handleOnClick = () => {
     setIsOpen(false);
@@ -61,11 +61,11 @@ const OneZero = (props: OneZeroProps) => {
             className={`${style.header} flex items-center whitespace-nowrap font-normal`}
           >
             פקדון בטוח עם
-            <img src="/svg/onezero.svg" />
+            <img src="/svg/onezero.svg" alt="onezero" />
           </div>
           <div
             style={{
-              width: 290,
+              width: 290
             }}
           >
             <h2 className="text-center">בא לך להגדיל את הסכום שמגיע לך?</h2>
@@ -75,7 +75,7 @@ const OneZero = (props: OneZeroProps) => {
           </div>
           <div
             style={{
-              width: "100%",
+              width: "100%"
             }}
           >
             <div className={`${style.totalSum} flex flex-col p-4 text-right`}>
@@ -95,7 +95,7 @@ const OneZero = (props: OneZeroProps) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <img src="/svg/time.svg" width={20} />
@@ -107,7 +107,7 @@ const OneZero = (props: OneZeroProps) => {
                   display: "flex",
                   justifyContent: "start",
                   alignItems: "center",
-                  textAlign: "right",
+                  textAlign: "right"
                 }}
               >
                 סכום הפקדון בעוד 12 חודשים:
@@ -118,12 +118,12 @@ const OneZero = (props: OneZeroProps) => {
                   justifyContent: "center",
                   alignItems: "center",
                   fontWeight: 600,
-                  fontSize: 16,
+                  fontSize: 16
                 }}
               >
                 ₪
                 {afterYear.toLocaleString("he-IL", {
-                  maximumFractionDigits: 1,
+                  maximumFractionDigits: 1
                 })}{" "}
               </div>
             </div>
@@ -137,7 +137,7 @@ const OneZero = (props: OneZeroProps) => {
                   width: "90%",
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <img src="/svg/money.svg" width={20} />
@@ -146,7 +146,7 @@ const OneZero = (props: OneZeroProps) => {
                 style={{
                   display: "flex",
                   justifyContent: "start",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 הסכום שחסכת:
@@ -157,12 +157,12 @@ const OneZero = (props: OneZeroProps) => {
                   fontSize: 16,
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 ₪
                 {afterYearDiff.toLocaleString("he-il", {
-                  maximumFractionDigits: 1,
+                  maximumFractionDigits: 1
                 })}{" "}
               </div>
             </div>

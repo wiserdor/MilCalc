@@ -9,7 +9,6 @@ export const createCalculatorResultsStore: StateCreator<
 > = (set) => ({
   totalPerMonth: 0,
   totalMoreThan45: 0,
-  totalOperation24: 0,
   totalFromChildren: 0,
   totalVacation: 0,
   totalSpecialChildren: 0,
@@ -27,7 +26,6 @@ export const createCalculatorResultsStore: StateCreator<
     set({
       totalPerMonth: 0,
       totalMoreThan45: 0,
-      totalOperation24: 0,
       totalFromChildren: 0,
       totalVacation: 0,
       totalSpecialChildren: 0,

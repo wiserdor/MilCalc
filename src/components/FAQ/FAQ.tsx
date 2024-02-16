@@ -19,17 +19,17 @@ const FAQ = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 8,
+            gap: 8
           }}
         >
-          <img src="/svg/chatgpt.svg" style={{ width: "55%" }} />
+          <img src="/svg/chatgpt.svg" style={{ width: "55%" }} alt="chatgpt" />
           חדש! בוט שאלות ותשובות
           <br />
           לחצו כאן כדי להתחיל לשוחח
         </a>
         <div
           style={{
-            color: "#767676",
+            color: "#767676"
           }}
         >
           <br />

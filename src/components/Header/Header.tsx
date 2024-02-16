@@ -28,7 +28,7 @@ const Header = () => {
       <StickyHeader />
 
       <div className="mb-8 mt-4 flex w-fit items-center justify-center gap-1 rounded-lg bg-ocean px-[10px] py-[5px] text-center text-sm text-idf">
-        <img src="/svg/time.svg" /> עדכון אחרון: {getLastModified()}
+        <img src="/svg/time.svg" alt="time" /> עדכון אחרון: {getLastModified()}
       </div>
 
       <div className={`flex w-full justify-center fill-[#28a745] text-center`}>
@@ -38,7 +38,7 @@ const Header = () => {
         מחשבון מענקי מילואים
       </div>
       <div className="flex w-full items-center justify-center gap-1 text-base font-semibold text-idf">
-        <img src="/svg/israel.svg" />
+        <img src="/svg/israel.svg" alt="israel" />
         {" מלחמת חרבות ברזל "}
       </div>
       <p className="mt-3 text-center text-base font-normal leading-5">
