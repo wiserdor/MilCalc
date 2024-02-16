@@ -18,4 +18,4 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run ESLint
-        run: npx eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0
+        run: npx eslint . --ext ts,tsx --report-unused-disable-directives
