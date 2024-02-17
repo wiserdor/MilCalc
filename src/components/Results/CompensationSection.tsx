@@ -23,13 +23,13 @@ export interface CompensationSectionProps {
 
 const CompensationSection = (
   props: CompensationSectionProps,
-  ref: React.Ref<HTMLDivElement>,
+  ref: React.Ref<HTMLDivElement>
 ) => {
   const { totalCompensation, items } = props;
 
   const { pastPayments, upcomingPayments } = React.useMemo(
     () => separatePaymentsByDate(items),
-    [items],
+    [items]
   );
 
   return (
@@ -42,7 +42,7 @@ const CompensationSection = (
           <Money strokeColor="#528322" />
         </div>
         <h3 className=" text-lg font-semibold leading-tight">{`₪${totalCompensation.toLocaleString(
-          "he-IL",
+          "he-IL"
         )}`}</h3>
         <div
           className={` text-center text-base font-bold leading-tight text-dark-gray`}
@@ -56,20 +56,20 @@ const CompensationSection = (
             label: "צפוי להכנס",
             value: upcomingPayments?.reduce(
               (acc, curr) => acc + curr.totalCompensation,
-              0,
+              0
             ),
-            color: "#528322",
-            description: "מענקים שצפויים להיכנס בעתיד",
+            color: "#B179F9",
+            description: "מענקים שצפויים להיכנס בעתיד"
           },
           {
             label: "נכנס",
             value: pastPayments?.reduce(
               (acc, curr) => acc + curr.totalCompensation,
-              0,
+              0
             ),
-            color: "#B179F9",
-            description: "מענקים שהתקבלו בחשבון הבנק שלכם",
-          },
+            color: "#528322",
+            description: "מענקים שהתקבלו בחשבון הבנק שלכם"
+          }
         ]}
       />
 
@@ -79,7 +79,7 @@ const CompensationSection = (
           layout
           animate={{
             height: "auto",
-            visibility: "visible",
+            visibility: "visible"
           }}
           initial={{ height: 0, visibility: "hidden" }}
           exit={{ height: 0, visibility: "hidden" }}
@@ -96,7 +96,7 @@ const CompensationSection = (
                     totalCompensation: p.totalCompensation,
                     name: p.name,
                     url: p.url,
-                    color: "#B179F9",
+                    color: "#528322"
                   }))}
               />
             </div>
@@ -111,8 +111,8 @@ const CompensationSection = (
                     date: p.dateOfPayment,
                     totalCompensation: p.totalCompensation,
                     name: p.name,
-                    color: "#528322",
-                    url: p.url,
+                    color: "#B179F9",
+                    url: p.url
                   }))}
               />
             </div>

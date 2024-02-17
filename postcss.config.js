@@ -1,7 +1,8 @@
-export default {
+const config = {
   plugins: {
-    'tailwindcss/nesting': {},
+    "tailwindcss/nesting": {},
     tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+    autoprefixer: {}
+  }
+};
+export default config;
