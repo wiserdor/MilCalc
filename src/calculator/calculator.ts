@@ -3,7 +3,7 @@ import {
   max,
   min,
   startOfYear,
-  differenceInCalendarDays,
+  differenceInCalendarDays
 } from "date-fns";
 import { DateRange } from "../store/types";
 import {
@@ -12,17 +12,17 @@ import {
   GRANT_DAILY_RATE,
   MENTAL_HEALTH_COMPENSATION,
   NON_COMBAT_RATE,
-  SPECIAL_NEEDS_COMPENSATION,
+  SPECIAL_NEEDS_COMPENSATION
 } from "./constants";
 import {
   getMaxChildApproval,
-  getMaxMonthApproval,
+  getMaxMonthApproval
 } from "../components/Results/constants";
 
 export const calculateVacation = (
   totalDays: number,
   hasChildren: boolean,
-  isCombat: boolean,
+  isCombat: boolean
 ) => {
   if (totalDays < 60) return 0;
 
@@ -33,7 +33,7 @@ export const calculateVacation = (
 };
 
 export const calculateDays = (
-  dateRanges: { startDate: Date; endDate: Date }[],
+  dateRanges: { startDate: Date; endDate: Date }[]
 ) => {
   let total = 0;
   dateRanges.forEach(({ startDate, endDate }) => {
@@ -45,7 +45,7 @@ export const calculateDays = (
 
 export const calculateMonthlyCompensation = (
   isCombat: boolean,
-  days: number,
+  days: number
 ) => {
   if (days < 40) return 0;
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE;
@@ -56,7 +56,7 @@ export const calculateMonthlyCompensation = (
 
 export const calculateChildrenCompensation = (
   isCombat: boolean,
-  days: number,
+  days: number
 ) => {
   // 833 for combat for each 10 days
   //500 for non combat for each 10 days
@@ -101,7 +101,7 @@ export const isOneRangeMoreThan5DaysLessThan9 = (
   dateRanges: {
     startDate: Date;
     endDate: Date;
-  }[],
+  }[]
 ) => {
   return dateRanges.some(({ startDate, endDate }) => {
     const totalDays = totalDaysInRange(startDate, endDate);
@@ -113,7 +113,7 @@ export const isOneRangeMoreThan5Days = (
   dateRanges: {
     startDate: Date;
     endDate: Date;
-  }[],
+  }[]
 ) => {
   return dateRanges.some(({ startDate, endDate }) => {
     const totalDays = totalDaysInRange(startDate, endDate);
@@ -125,7 +125,7 @@ export const getTotalDaysIn2023 = (
   dateRanges: {
     startDate: Date;
     endDate: Date;
-  }[],
+  }[]
 ) => {
   let totalDays = 0;
   const start2023 = startOfYear(new Date("2023/01/01"));
@@ -151,7 +151,7 @@ export const getTotalDaysInWar2023 = (
   dateRanges: {
     startDate: Date;
     endDate: Date;
-  }[],
+  }[]
 ) => {
   let totalDays = 0;
   const start2023 = new Date("2023/10/07");
@@ -177,7 +177,7 @@ export const specialGrantCalculation = (
   daysBefore: number,
   daysInWar: number,
   daysStraight: boolean,
-  isOld: boolean,
+  isOld: boolean
 ) => {
   // 10-14.5 = 1452
   // 15-19.5 = 2904
@@ -203,7 +203,7 @@ export const specialGrantCalculation = (
       totalExtended: 0,
       totalAdditional,
       totalDaysStraight: 0,
-      totalOld: totalDays * 133,
+      totalOld: totalDays * 133
     };
   }
 
@@ -228,8 +228,19 @@ export const specialGrantCalculation = (
     totalDaysStraight,
     totalSpecialDays,
     totalExtended,
-    totalAdditional,
+    totalAdditional
   };
+};
+
+const getStudentCourseCompensation = (daysInWar: number) => {
+  // between 5-10 war days 1000
+  // between 11-20 war days 1500
+  // < 20 war days 2000
+  if (daysInWar < 5) return 0;
+  if (daysInWar < 11) return 1000;
+  if (daysInWar < 21) return 1500;
+
+  return 2000;
 };
 
 export const calculateCompensation = (inputs: {
@@ -238,6 +249,7 @@ export const calculateCompensation = (inputs: {
   hasChildren: boolean;
   hasChildrenSpecial: boolean;
   isOld: boolean;
+  isStudent: boolean;
   serviceBefore: string;
 }) => {
   const {
@@ -246,14 +258,15 @@ export const calculateCompensation = (inputs: {
     hasChildren,
     hasChildrenSpecial,
     isOld,
-    serviceBefore: serviceBeforeString,
+    isStudent,
+    serviceBefore: serviceBeforeString
   } = inputs;
 
   // date Ranges to dates
   const dateRanges = dateRangesString.map((dateRange) => {
     return {
       startDate: new Date(dateRange.startDate),
-      endDate: new Date(dateRange.endDate),
+      endDate: new Date(dateRange.endDate)
     };
   });
 
@@ -274,12 +287,12 @@ export const calculateCompensation = (inputs: {
     totalExtended,
     totalAdditional,
     totalDaysStraight,
-    totalOld,
+    totalOld
   } = specialGrantCalculation(
     serviceBefore,
     daysInWar,
     isDaysStraightInWar,
-    isOld,
+    isOld
   );
 
   let totalPerMonth = calculateMonthlyCompensation(isCombat, daysInWar2023);
@@ -299,6 +312,9 @@ export const calculateCompensation = (inputs: {
 
   let totalMental = daysInWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0;
   let totalFamilyCare = FAMILY_CARE_COMPENSATION;
+  const totalStudentCourse = isStudent
+    ? getStudentCourseCompensation(daysInWar)
+    : 0;
 
   let totalDedication = 0;
 
@@ -318,5 +334,6 @@ export const calculateCompensation = (inputs: {
     totalOld,
     totalWarPersonalExpenses,
     totalWarFamilyExpenses,
+    totalStudentCourse
   };
 };

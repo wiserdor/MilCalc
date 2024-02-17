@@ -19,6 +19,7 @@ export interface CalculatorResults {
   totalOld: number;
   totalWarPersonalExpenses: number;
   totalWarFamilyExpenses: number;
+  totalStudentCourse: number;
 
   resetResults: () => void;
 }

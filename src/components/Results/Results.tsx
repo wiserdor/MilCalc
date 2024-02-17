@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import {
   getApprovedItems,
-  getApprovedNonPaidItems,
+  getApprovedNonPaidItems
 } from "../../data/compensation";
 import useStore from "../../store/store";
 import OneZero from "../OneZero/OneZero";
@@ -23,11 +23,12 @@ const Results = () => {
   const totalAdditional = useStore((state) => state.totalAdditional);
   const totalDaysStraight = useStore((state) => state.totalDaysStraight);
   const totalOld = useStore((state) => state.totalOld);
+  const totalStudentCourse = useStore((state) => state.totalStudentCourse);
   const totalWarPersonalExpenses = useStore(
-    (state) => state.totalWarPersonalExpenses,
+    (state) => state.totalWarPersonalExpenses
   );
   const totalWarFamilyExpenses = useStore(
-    (state) => state.totalWarFamilyExpenses,
+    (state) => state.totalWarFamilyExpenses
   );
 
   const isStudent = useStore((state) => state.isStudent);
@@ -59,7 +60,7 @@ const Results = () => {
         totalDaysStraight,
         totalOld,
         totalWarPersonalExpenses,
-        totalWarFamilyExpenses,
+        totalWarFamilyExpenses
       ),
     [
       totalPerMonth,
@@ -72,8 +73,8 @@ const Results = () => {
       totalDaysStraight,
       totalOld,
       totalWarPersonalExpenses,
-      totalWarFamilyExpenses,
-    ],
+      totalWarFamilyExpenses
+    ]
   );
 
   const approvedNonPaidItems = useMemo(
@@ -86,6 +87,7 @@ const Results = () => {
         isCombat,
         isIndependent,
         didVacationCancelled,
+        totalStudentCourse
       ),
     [
       totalMental,
@@ -95,24 +97,25 @@ const Results = () => {
       isCombat,
       isIndependent,
       didVacationCancelled,
-    ],
+      totalStudentCourse
+    ]
   );
   const totalCompensation = useMemo(
     () =>
       approvedItems.reduce(
         (acc, item) => acc + (item.totalCompensation ?? 0),
-        0,
+        0
       ),
-    [approvedItems],
+    [approvedItems]
   );
 
   const totalNonPaidApproved = useMemo(
     () =>
       approvedNonPaidItems.reduce(
         (acc, item) => acc + (item.totalCompensation ?? 0),
-        0,
+        0
       ),
-    [approvedNonPaidItems],
+    [approvedNonPaidItems]
   );
 
   if (validationErrors?.length > 0) return null;

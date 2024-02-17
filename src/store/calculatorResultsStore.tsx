@@ -21,6 +21,7 @@ export const createCalculatorResultsStore: StateCreator<
   totalOld: 0,
   totalWarFamilyExpenses: 0,
   totalWarPersonalExpenses: 0,
+  totalStudentCourse: 0,
 
   resetResults: () => {
     set({
@@ -36,6 +37,7 @@ export const createCalculatorResultsStore: StateCreator<
       totalOld: 0,
       totalAdditional: 0,
       totalDaysStraight: 0,
+      totalStudentCourse: 0
     });
-  },
+  }
 });

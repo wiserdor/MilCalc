@@ -21,11 +21,12 @@ export const createCalculatorStore: StateCreator<
       hasChildren: state.hasChildren,
       hasChildrenSpecial: state.hasChildrenSpecial,
       serviceBefore: state.serviceBefore,
-      isOld: state.isOld,
+      isStudent: state.isStudent,
+      isOld: state.isOld
     });
 
     set({
-      ...totals,
+      ...totals
     });
-  },
+  }
 });
