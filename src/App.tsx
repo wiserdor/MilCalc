@@ -17,7 +17,7 @@ ReactGA.initialize("G-ZE1RDY2L6L");
 const growthbook = new GrowthBook({
   apiHost: "https://cdn.growthbook.io",
   clientKey: "sdk-gJs2ne46YvtUmVO",
-  enableDevMode: false,
+  enableDevMode: true,
   subscribeToChanges: true,
   trackingCallback: (experiment, result) => {
     ReactGA.event({
@@ -35,13 +35,10 @@ const generateUserId = () => {
 
 function App() {
   useEffect(() => {
-    const a = async () => {
-      await growthbook.loadFeatures();
-      await growthbook.setAttributes({
-        id: generateUserId()
-      });
-    };
-    a();
+    growthbook.loadFeatures();
+    growthbook.setAttributes({
+      id: generateUserId()
+    });
   }, []);
 
   return (
