@@ -17,7 +17,7 @@ ReactGA.initialize("G-ZE1RDY2L6L");
 const growthbook = new GrowthBook({
   apiHost: "https://cdn.growthbook.io",
   clientKey: "sdk-gJs2ne46YvtUmVO",
-  enableDevMode: true,
+  enableDevMode: false,
   subscribeToChanges: true,
   trackingCallback: (experiment, result) => {
     ReactGA.event({
@@ -25,13 +25,23 @@ const growthbook = new GrowthBook({
       action: "Viewed Experiment",
       label: experiment.key + " - " + result.key
     });
+    console.log("GrowthBook", experiment.key, result.key);
   }
 });
 
+const generateUserId = () => {
+  return Math.random().toString(36).substring(7);
+};
+
 function App() {
   useEffect(() => {
-    // Load features asynchronously when the app renders
-    growthbook.loadFeatures();
+    const a = async () => {
+      await growthbook.loadFeatures();
+      await growthbook.setAttributes({
+        id: generateUserId()
+      });
+    };
+    a();
   }, []);
 
   return (
