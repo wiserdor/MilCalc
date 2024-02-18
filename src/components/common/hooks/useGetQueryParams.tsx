@@ -1,18 +1,24 @@
 const useGetQueryParams = () => {
-  const search = window.location.search
-  const params = new URLSearchParams(search)
+  const parseParams = () => {
+    const params = new URLSearchParams(window.location.search);
+    const paramsObject: { [key: string]: string | null } = {};
+    params.forEach((value, key) => {
+      paramsObject[key] = value;
+    });
+    return paramsObject;
+  };
 
   return {
-    get: (key: string) => params.get(key),
-    getAll: () => {
-      const paramsObject: { [key: string]: string } = {}
-      params.forEach((value, key) => {
-        paramsObject[key] = value
-      })
-      return paramsObject
+    get: (key: string) => {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(key);
     },
-    doesExist: (key: string) => params.has(key),
-  }
-}
+    getAll: () => parseParams(),
+    doesExist: (key: string) => {
+      const params = new URLSearchParams(window.location.search);
+      return params.has(key);
+    }
+  };
+};
 
-export default useGetQueryParams
+export default useGetQueryParams;

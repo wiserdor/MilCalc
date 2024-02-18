@@ -1,44 +1,48 @@
-import { useEffect, useMemo, useRef } from "react";
-import {
-  getApprovedItems,
-  getApprovedNonPaidItems
-} from "../../data/compensation";
+import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/store";
 import OneZero from "../OneZero/OneZero";
+import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
+import useGetQueryParams from "../common/hooks/useGetQueryParams";
 import CompensationSection from "./CompensationSection";
 import HeaderTotalSection from "./HeaderTotalSection";
 import ResultsSection from "./ResultsSection";
+import useResultsTotals from "./hooks/useResultsTotals";
 
 const Results = () => {
-  const totalPerMonth = useStore((state) => state.totalPerMonth);
-  const totalMoreThan45 = useStore((state) => state.totalMoreThan45);
-  const totalFromChildren = useStore((state) => state.totalFromChildren);
-  const totalVacation = useStore((state) => state.totalVacation);
-  const totalSpecialChildren = useStore((state) => state.totalSpecialChildren);
-  const totalMental = useStore((state) => state.totalMental);
-  const totalFamilyCare = useStore((state) => state.totalFamilyCare);
   const validationErrors = useStore((state) => state.validationErrors);
-  const totalSpecialDays = useStore((state) => state.totalSpecialDays);
-  const totalExtended = useStore((state) => state.totalExtended);
-  const totalAdditional = useStore((state) => state.totalAdditional);
-  const totalDaysStraight = useStore((state) => state.totalDaysStraight);
-  const totalOld = useStore((state) => state.totalOld);
-  const totalStudentCourse = useStore((state) => state.totalStudentCourse);
-  const totalWarPersonalExpenses = useStore(
-    (state) => state.totalWarPersonalExpenses
-  );
-  const totalWarFamilyExpenses = useStore(
-    (state) => state.totalWarFamilyExpenses
-  );
 
-  const isStudent = useStore((state) => state.isStudent);
-  const isCombat = useStore((state) => state.isCombat);
-  const isIndependent = useStore((state) => state.isIndependent);
-  const didVacationCancelled = useStore((state) => state.didVacationCancelled);
+  const {
+    totalCompensation,
+    totalNonPaidApproved,
+    approvedItems,
+    approvedNonPaidItems
+  } = useResultsTotals();
 
   const resultsRef = useRef<HTMLDivElement>(null);
   const compensationRef = useRef<HTMLDivElement>(null);
   const voucherRef = useRef<HTMLDivElement>(null);
+
+  const isOneZero = useGetQueryParams().get("onezero") === "true";
+  const [oneZeroOpen, setOneZeroOpen] = useState(false);
+
+  const onOneZeroOpenChange = (open: boolean) => {
+    setOneZeroOpen(open);
+  };
+
+  useEffect(() => {
+    if (!totalCompensation) return;
+
+    let timeout: NodeJS.Timeout;
+    if (isOneZero) {
+      timeout = setTimeout(() => {
+        onOneZeroOpenChange(true);
+      }, 4000);
+    }
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [isOneZero, totalCompensation]);
 
   useEffect(() => {
     // Scroll to results on submit
@@ -46,77 +50,6 @@ const Results = () => {
       resultsRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [validationErrors]);
-
-  const approvedItems = useMemo(
-    () =>
-      getApprovedItems(
-        totalPerMonth,
-        totalFromChildren,
-        totalSpecialChildren,
-        totalMoreThan45,
-        totalSpecialDays,
-        totalExtended,
-        totalAdditional,
-        totalDaysStraight,
-        totalOld,
-        totalWarPersonalExpenses,
-        totalWarFamilyExpenses
-      ),
-    [
-      totalPerMonth,
-      totalFromChildren,
-      totalSpecialChildren,
-      totalMoreThan45,
-      totalSpecialDays,
-      totalExtended,
-      totalAdditional,
-      totalDaysStraight,
-      totalOld,
-      totalWarPersonalExpenses,
-      totalWarFamilyExpenses
-    ]
-  );
-
-  const approvedNonPaidItems = useMemo(
-    () =>
-      getApprovedNonPaidItems(
-        totalFamilyCare,
-        totalMental,
-        totalVacation,
-        isStudent,
-        isCombat,
-        isIndependent,
-        didVacationCancelled,
-        totalStudentCourse
-      ),
-    [
-      totalMental,
-      totalFamilyCare,
-      totalVacation,
-      isStudent,
-      isCombat,
-      isIndependent,
-      didVacationCancelled,
-      totalStudentCourse
-    ]
-  );
-  const totalCompensation = useMemo(
-    () =>
-      approvedItems.reduce(
-        (acc, item) => acc + (item.totalCompensation ?? 0),
-        0
-      ),
-    [approvedItems]
-  );
-
-  const totalNonPaidApproved = useMemo(
-    () =>
-      approvedNonPaidItems.reduce(
-        (acc, item) => acc + (item.totalCompensation ?? 0),
-        0
-      ),
-    [approvedNonPaidItems]
-  );
 
   if (validationErrors?.length > 0) return null;
 
@@ -144,7 +77,9 @@ const Results = () => {
           items={approvedItems}
         />
       )}
-      {/* <OneZeroSectionBanner /> */}
+      {isOneZero && (
+        <OneZeroSectionBanner onClick={() => onOneZeroOpenChange(true)} />
+      )}
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection
@@ -154,7 +89,11 @@ const Results = () => {
           results={approvedNonPaidItems}
         />
       )}
-      <OneZero total={totalCompensation} />
+      <OneZero
+        open={oneZeroOpen}
+        onOpenChange={onOneZeroOpenChange}
+        total={totalCompensation}
+      />
     </div>
   );
 };

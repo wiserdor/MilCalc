@@ -5,40 +5,26 @@ import OneZeroSlider from "./OneZeroSlider";
 
 interface OneZeroProps {
   total: number;
+  open: boolean; // New prop to control dialog visibility from outside
+  onOpenChange: (open: boolean) => void; // Callback to notify parent about open state changes
 }
 
-const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1;
-
 const OneZero = (props: OneZeroProps) => {
-  const { total = 0 } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { total = 0, open, onOpenChange } = props; // Destructure the new props
   const [innerTotal, setInnerTotal] = useState(total);
 
   const handleValueChange = (value: number) => {
     setInnerTotal(value);
   };
 
+  const afterYearPercentage = Math.pow(1 + 0.046 / 12, 12) - 1;
   const afterYear = useMemo(
     () => innerTotal * (1 + afterYearPercentage),
-    [innerTotal]
+    [afterYearPercentage, innerTotal]
   );
 
   useEffect(() => {
-    if (!total) return;
-    // get url params
-    const urlParams = new URLSearchParams(window.location.search);
-    const isOneZero = urlParams.get("onezero");
-
-    let timeout: NodeJS.Timeout;
-    if (isOneZero === "true") {
-      timeout = setTimeout(() => {
-        setIsOpen(true);
-      }, 200);
-    }
-
-    return () => {
-      if (timeout) clearTimeout(timeout);
-    };
+    setInnerTotal(total); // Update innerTotal when total changes
   }, [total]);
 
   if (!total) return null;
@@ -46,7 +32,7 @@ const OneZero = (props: OneZeroProps) => {
   const afterYearDiff = afterYear - innerTotal;
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+    <Dialog open={open} onOpenChange={(open) => onOpenChange(open)}>
       <DialogContent className="flex w-fit flex-col gap-6 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white">
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex w-full justify-end">
