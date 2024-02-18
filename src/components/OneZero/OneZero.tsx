@@ -33,7 +33,10 @@ const OneZero = (props: OneZeroProps) => {
 
   return (
     <Dialog open={open} onOpenChange={(open) => onOpenChange(open)}>
-      <DialogContent className="flex w-fit flex-col gap-6 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white">
+      <DialogContent
+        overlayAnimationDuration={1000}
+        className="flex w-fit flex-col gap-6 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white data-[state=open]:duration-1000"
+      >
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex w-full justify-end">
             <OneZeroLogo color="white" />

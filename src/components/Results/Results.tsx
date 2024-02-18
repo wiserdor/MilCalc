@@ -36,7 +36,7 @@ const Results = () => {
     if (isOneZero) {
       timeout = setTimeout(() => {
         onOneZeroOpenChange(true);
-      }, 4000);
+      }, 8000);
     }
 
     return () => {
