@@ -35,9 +35,16 @@ const generateUserId = () => {
 
 function App() {
   useEffect(() => {
+    const userId =
+      document.cookie
+        .match(/_ga=(.+?);/)?.[1]
+        ?.split(".")
+        ?.slice(-2)
+        ?.join(".") ?? generateUserId();
+
     growthbook.loadFeatures();
     growthbook.setAttributes({
-      id: generateUserId()
+      id: userId
     });
   }, []);
 
