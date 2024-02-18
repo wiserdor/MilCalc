@@ -14,6 +14,8 @@ import {
   WhatsappShareButton,
   XIcon
 } from "react-share";
+import useGetQueryParams from "../common/hooks/useGetQueryParams";
+import TextSwitcher from "../TextSwitcher/TextSwitcher";
 
 const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
 כנסו לבדוק מה מגיע לכם גם:`;
@@ -27,15 +29,23 @@ const copyToClipboard = (text: string) => {
 
 const StickyHeader = () => {
   const { toast } = useToast();
+  const isOneZero = useGetQueryParams().get("onezero") === "true";
+
   return (
     <div
       className={`fixed top-0 z-30 w-full rounded border-b-[1.5px] border-solid border-b-stone bg-ocean`}
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
-        <img src="/svg/calculator.svg" alt="calculator" />
-        {/* <button className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white">
-          לפתיחת חשבון ב-ONE ZERO
-        </button> */}
+        {isOneZero ? (
+          <button className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white">
+            <TextSwitcher
+              texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
+              everyMs={7000}
+            />
+          </button>
+        ) : (
+          <img src="/svg/calculator.svg" alt="calculator" />
+        )}
         <Dialog>
           <DialogTrigger asChild>
             <button
