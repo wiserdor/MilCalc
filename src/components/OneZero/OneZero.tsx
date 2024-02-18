@@ -58,7 +58,7 @@ const OneZero = (props: OneZeroProps) => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-6 rounded-2xl  bg-ocean pt-6 text-black">
-          <div className="px-6 ">סכום להפקדה:</div>
+          <div className="px-6 ">בחרו סכום להפקדה:</div>
           <div className="w-full px-6">
             <OneZeroSlider
               value={innerTotal}
