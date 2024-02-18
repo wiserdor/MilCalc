@@ -17,6 +17,15 @@ import {
 import useGetQueryParams from "../common/hooks/useGetQueryParams";
 import TextSwitcher from "../TextSwitcher/TextSwitcher";
 
+import ReactGA from "react-ga4";
+
+const trackLinkClick = () => {
+  ReactGA.event({
+    category: "click_onezero_link",
+    action: "sticky_click"
+  });
+};
+
 const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
 כנסו לבדוק מה מגיע לכם גם:`;
 const SHARE_MESSAGE =
@@ -37,12 +46,22 @@ const StickyHeader = () => {
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
         {isOneZero ? (
-          <button className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white">
-            <TextSwitcher
-              texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
-              everyMs={7000}
-            />
-          </button>
+          <a
+            href="https://onezero.onelink.me/kAPm/0eaw9pjw"
+            target="_blank"
+            rel="noreferrer"
+            onClick={trackLinkClick}
+          >
+            <Button
+              variant="none"
+              className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white"
+            >
+              <TextSwitcher
+                texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
+                everyMs={7000}
+              />
+            </Button>
+          </a>
         ) : (
           <img src="/svg/calculator.svg" alt="calculator" />
         )}

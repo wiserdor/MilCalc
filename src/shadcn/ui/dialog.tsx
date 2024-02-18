@@ -30,12 +30,12 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
-    overlayAnimationDuration?: number;
+    overlayanimationduration?: number;
   }
 >(({ className, children, ...props }, ref) => {
-  const { overlayAnimationDuration } = props;
-  const overlayDurationCn = overlayAnimationDuration
-    ? `data-[state=open]:duration-${overlayAnimationDuration}`
+  const { overlayanimationduration } = props;
+  const overlayDurationCn = overlayanimationduration
+    ? `data-[state=open]:duration-${overlayanimationduration}`
     : "";
 
   return (
