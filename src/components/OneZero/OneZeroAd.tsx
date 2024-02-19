@@ -4,7 +4,7 @@ import ReactGA from "react-ga4";
 const trackLinkClick = (abVariant: string) => {
   ReactGA.event({
     category: "click_onezero_link",
-    action: "banner_click",
+    action: `click_onezero-banner_click-${abVariant}`,
     label: abVariant
   });
 };

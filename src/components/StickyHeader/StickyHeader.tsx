@@ -22,7 +22,7 @@ import ReactGA from "react-ga4";
 const trackLinkClick = () => {
   ReactGA.event({
     category: "click_onezero_link",
-    action: "sticky_click"
+    action: "click_onezero-sticky_click"
   });
 };
 

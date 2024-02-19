@@ -25,7 +25,6 @@ const growthbook = new GrowthBook({
       action: "Viewed Experiment",
       label: experiment.key + " - " + result.key
     });
-    console.log("GrowthBook", experiment.key, result.key);
   }
 });
 

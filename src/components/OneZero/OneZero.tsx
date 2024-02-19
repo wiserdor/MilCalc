@@ -15,7 +15,7 @@ interface OneZeroProps {
 const trackLinkClick = (abVariant: string) => {
   ReactGA.event({
     category: "click_onezero_link",
-    action: "popup_click",
+    action: `click_onezero-popup_click-${abVariant}`,
     label: abVariant
   });
 };
