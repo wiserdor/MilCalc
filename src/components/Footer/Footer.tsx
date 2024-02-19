@@ -3,7 +3,7 @@ import PaypalDonateButton from "../DonateButtons/PaypalDonateButton";
 
 const Footer = () => {
   return (
-    <footer className={`mt-6 bg-[#395712] p-4 text-center text-sm font-normal`}>
+    <footer className={`bg-[#395712] p-4 text-center text-sm font-normal`}>
       <div className="flex flex-col items-center justify-center gap-[6px]">
         <div className="mb-3 text-sm font-bold text-white">לתרומה למיזם:</div>
 

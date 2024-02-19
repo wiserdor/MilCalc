@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import Independent from "./components/Independent/Independent";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
 import Results from "./components/Results/Results";
+import Team from "./components/Team/Team";
 
 ReactGA.initialize("G-ZE1RDY2L6L");
 
@@ -62,6 +63,7 @@ function App() {
           <div className="px-4">
             <NewsFeed />
           </div>
+          <Team />
           <Footer />
         </div>
       </div>
