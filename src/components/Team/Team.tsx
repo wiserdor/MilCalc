@@ -55,7 +55,7 @@ const Team = () => {
           <Member
             img="yarden.png"
             name="ירדן גבעוני"
-            title="איש"
+            title="עיצוב UX/UI"
             linkedin="https://www.linkedin.com/in/yarden-givoni-854046192/"
           />
         </div>
