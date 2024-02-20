@@ -66,9 +66,10 @@ const LinoyCarousel = () => {
         {Array.from({ length: count }).map((_, index) => (
           <span
             key={index}
-            className={`mx-1 inline-block h-2 w-2 rounded-full ${
+            className={`mx-1 inline-block h-2 w-2 cursor-pointer rounded-full ${
               index === current - 1 ? "bg-blue" : "bg-bright-gray"
             }`}
+            onClick={() => api?.scrollTo(index)}
           />
         ))}
       </div>
