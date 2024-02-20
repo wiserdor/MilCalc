@@ -44,13 +44,14 @@ const LinoyCarousel = () => {
         opts={{
           loop: true
         }}
+        dir="ltr"
         setApi={setApi}
         plugins={[WheelGesturesPlugin(), Autoplay({ delay: 5000 })]}
       >
         <CarouselContent>
           {data.map((item, index) => (
             <CarouselItem
-              className="flex w-full flex-col items-center justify-center"
+              className="flex- flex flex-col items-center justify-center"
               key={item.title + index}
             >
               <div className="mb-4 text-base font-normal text-blue">
