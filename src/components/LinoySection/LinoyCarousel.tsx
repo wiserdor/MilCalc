@@ -46,7 +46,10 @@ const LinoyCarousel = () => {
         }}
         dir="ltr"
         setApi={setApi}
-        plugins={[WheelGesturesPlugin(), Autoplay({ delay: 5000 })]}
+        plugins={[
+          WheelGesturesPlugin(),
+          Autoplay({ delay: 5000, stopOnMouseEnter: true })
+        ]}
       >
         <CarouselContent>
           {data.map((item, index) => (
