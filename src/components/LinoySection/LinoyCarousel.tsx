@@ -4,10 +4,10 @@ import {
   CarouselContent,
   CarouselItem
 } from "@/shadcn/ui/carousel";
+import clsx from "clsx";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import React from "react";
 import { InstagramEmbed } from "react-social-media-embed";
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
-import Autoplay from "embla-carousel-autoplay";
 
 const data: Array<{ url: string; title: string }> = [
   {
@@ -24,6 +24,7 @@ const LinoyCarousel = () => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [pointerEventsNone, setPointerEventsNone] = React.useState(false);
 
   React.useEffect(() => {
     if (!api) {
@@ -47,8 +48,8 @@ const LinoyCarousel = () => {
         dir="ltr"
         setApi={setApi}
         plugins={[
-          WheelGesturesPlugin(),
-          Autoplay({ delay: 5000, stopOnMouseEnter: true })
+          WheelGesturesPlugin()
+          // Autoplay({ delay: 5000, stopOnMouseEnter: true })
         ]}
       >
         <CarouselContent>
@@ -60,7 +61,12 @@ const LinoyCarousel = () => {
               <div className="mb-4 text-base font-normal text-blue">
                 {item.title}
               </div>
-              <InstagramEmbed url={item.url} />
+              <InstagramEmbed
+                className={clsx(pointerEventsNone && "pointer-events-none")}
+                url={item.url}
+                onTouchMove={() => setPointerEventsNone(true)}
+                onTouchEnd={() => setPointerEventsNone(false)}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
