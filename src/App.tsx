@@ -23,7 +23,7 @@ const growthbook = new GrowthBook({
   trackingCallback: (experiment, result) => {
     ReactGA.event({
       category: "GrowthBook",
-      action: "Viewed Experiment",
+      action: `onezero_experiment-started_${result.value}`,
       label: experiment.key + " - " + result.key
     });
   }
