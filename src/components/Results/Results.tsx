@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/store";
 import OneZero from "../OneZero/OneZero";
 import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
-import useGetQueryParams from "../common/hooks/useGetQueryParams";
 import CompensationSection from "./CompensationSection";
 import HeaderTotalSection from "./HeaderTotalSection";
 import ResultsSection from "./ResultsSection";
@@ -22,7 +21,6 @@ const Results = () => {
   const compensationRef = useRef<HTMLDivElement>(null);
   const voucherRef = useRef<HTMLDivElement>(null);
 
-  const isOneZero = useGetQueryParams().get("onezero") === "true";
   const [oneZeroOpen, setOneZeroOpen] = useState(false);
 
   const onOneZeroOpenChange = (open: boolean) => {
@@ -33,16 +31,15 @@ const Results = () => {
     if (!totalCompensation) return;
 
     let timeout: NodeJS.Timeout;
-    if (isOneZero) {
-      timeout = setTimeout(() => {
-        onOneZeroOpenChange(true);
-      }, 8000);
-    }
+
+    timeout = setTimeout(() => {
+      onOneZeroOpenChange(true);
+    }, 8000);
 
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [isOneZero, totalCompensation]);
+  }, [totalCompensation]);
 
   useEffect(() => {
     // Scroll to results on submit
@@ -77,9 +74,7 @@ const Results = () => {
           items={approvedItems}
         />
       )}
-      {isOneZero && (
-        <OneZeroSectionBanner onClick={() => onOneZeroOpenChange(true)} />
-      )}
+      <OneZeroSectionBanner onClick={() => onOneZeroOpenChange(true)} />
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection

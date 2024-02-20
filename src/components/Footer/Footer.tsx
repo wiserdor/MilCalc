@@ -11,9 +11,14 @@ const Footer = () => {
         <PaypalDonateButton />
 
         <div className="w-72 text-center text-white">
-          נשמח לשמוע מכם בכל נושא שקשור למחשבון זה. ניתן ליצור קשר במייל:
-          <a className="text-white" href="mailto:yslook7@gmail.com">
-            yslook7@gmail.com
+          נשמח לשמוע מכם בכל נושא שקשור למחשבון זה. ליצירת קשר:
+          <a
+            className="text-white"
+            href="https://wkf.ms/3uzsoBx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://wkf.ms/3uzsoBx
           </a>
         </div>
       </div>

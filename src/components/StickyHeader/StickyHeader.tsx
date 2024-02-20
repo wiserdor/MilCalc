@@ -14,7 +14,6 @@ import {
   WhatsappShareButton,
   XIcon
 } from "react-share";
-import useGetQueryParams from "../common/hooks/useGetQueryParams";
 import TextSwitcher from "../TextSwitcher/TextSwitcher";
 
 import ReactGA from "react-ga4";
@@ -38,33 +37,28 @@ const copyToClipboard = (text: string) => {
 
 const StickyHeader = () => {
   const { toast } = useToast();
-  const isOneZero = useGetQueryParams().get("onezero") === "true";
 
   return (
     <div
       className={`fixed top-0 z-30 w-full rounded border-b-[1.5px] border-solid border-b-stone bg-ocean`}
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
-        {isOneZero ? (
-          <a
-            href="https://onezero.onelink.me/kAPm/0eaw9pjw"
-            target="_blank"
-            rel="noreferrer"
-            onClick={trackLinkClick}
+        <a
+          href="https://onezero.onelink.me/kAPm/0eaw9pjw"
+          target="_blank"
+          rel="noreferrer"
+          onClick={trackLinkClick}
+        >
+          <Button
+            variant="none"
+            className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white"
           >
-            <Button
-              variant="none"
-              className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white"
-            >
-              <TextSwitcher
-                texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
-                everyMs={7000}
-              />
-            </Button>
-          </a>
-        ) : (
-          <img src="/svg/calculator.svg" alt="calculator" />
-        )}
+            <TextSwitcher
+              texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
+              everyMs={7000}
+            />
+          </Button>
+        </a>
         <Dialog>
           <DialogTrigger asChild>
             <button

@@ -1,3 +1,4 @@
+import OneZeroLogo from "@/svg/OneZeroLogo";
 import { useFeatureValue } from "@growthbook/growthbook-react";
 import ReactGA from "react-ga4";
 
@@ -27,7 +28,12 @@ const OneZeroAd = () => {
   const abVariant = useFeatureValue("onezero-banner", "thailand");
 
   return (
-    <section className="py-4">
+    <section className="pb-8 pt-6">
+      <div className="mb-6 flex items-center justify-center gap-4">
+        <OneZeroLogo />
+        <span className="text-xl font-normal text-dark-gray">+</span>
+        <img src="/svg/calculator.svg" alt="calculator" />
+      </div>
       <a
         href={getOneZeroLink(abVariant)}
         target="_blank"
