@@ -71,16 +71,6 @@ const LinoyCarousel = () => {
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="flex items-center justify-center gap-20">
-        <button className="text-blue" onClick={() => api?.scrollPrev()}>
-          <div>הקודם</div>
-          <div>&#8594;</div>
-        </button>
-        <button className="text-blue" onClick={() => api?.scrollNext()}>
-          <div>הבא</div>
-          <div>&#8592;</div>
-        </button>
-      </div>
       <div className="py-2 text-center text-sm text-muted-foreground">
         {Array.from({ length: count }).map((_, index) => (
           <span
@@ -92,6 +82,17 @@ const LinoyCarousel = () => {
           />
         ))}
       </div>
+      <div className="flex items-center justify-center gap-20">
+        <button className="text-blue" onClick={() => api?.scrollPrev()}>
+          <div>הקודם</div>
+          <div>&#8594;</div>
+        </button>
+        <button className="text-blue" onClick={() => api?.scrollNext()}>
+          <div>הבא</div>
+          <div>&#8592;</div>
+        </button>
+      </div>
+      
     </div>
   );
 };
