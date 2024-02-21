@@ -35,7 +35,7 @@ const OneZero = (props: OneZeroProps) => {
   const { total = 0, open, onOpenChange } = props; // Destructure the new props
   const [innerTotal, setInnerTotal] = useState(total);
   const [canDismiss, setCanDismiss] = useState(false);
-  const [countdown, setCountdown] = useState(4);
+  const [countdown, setCountdown] = useState(6);
 
   const abVariant = useFeatureValue("onezero-banner", "thailand");
 
