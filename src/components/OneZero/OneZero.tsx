@@ -34,6 +34,8 @@ const getOneZeroLink = (abVariant: string) => {
 const OneZero = (props: OneZeroProps) => {
   const { total = 0, open, onOpenChange } = props; // Destructure the new props
   const [innerTotal, setInnerTotal] = useState(total);
+  const [canDismiss, setCanDismiss] = useState(false);
+  const [countdown, setCountdown] = useState(4);
 
   const abVariant = useFeatureValue("onezero-banner", "thailand");
 
@@ -51,16 +53,36 @@ const OneZero = (props: OneZeroProps) => {
     setInnerTotal(total); // Update innerTotal when total changes
   }, [total]);
 
+  useEffect(() => {
+    if (open && countdown > 0) {
+      const timerId = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timerId);
+    } else if (countdown <= 0) {
+      setCanDismiss(true);
+    }
+  }, [open, countdown]);
+
   if (!total) return null;
 
   const afterYearDiff = afterYear - innerTotal;
 
   return (
-    <Dialog open={open} onOpenChange={(open) => onOpenChange(open)}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        if (canDismiss) onOpenChange(open);
+      }}
+    >
       <DialogContent
         overlayanimationduration={1000}
         className="flex w-fit flex-col items-center justify-between gap-2 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white data-[state=open]:duration-1000"
       >
+        {countdown > 0 && (
+          <div className="absolute right-2 z-30 bg-one-zero-black text-sm font-normal text-white">
+            ניתן לסגור בעוד {countdown} שניות
+          </div>
+        )}
+
         {(abVariant === "thailand" || abVariant === "best") && (
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center justify-center gap-2">

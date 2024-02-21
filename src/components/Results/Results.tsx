@@ -20,6 +20,7 @@ const Results = () => {
   const resultsRef = useRef<HTMLDivElement>(null);
   const compensationRef = useRef<HTMLDivElement>(null);
   const voucherRef = useRef<HTMLDivElement>(null);
+  const onezeroAlreadyShown = useRef(false);
 
   const [oneZeroOpen, setOneZeroOpen] = useState(false);
 
@@ -30,11 +31,15 @@ const Results = () => {
   useEffect(() => {
     if (!totalCompensation) return;
 
+    // if the user has already seen the onezero banner, don't show it again
+    if (onezeroAlreadyShown.current) return;
+    onezeroAlreadyShown.current = true;
+
     let timeout: NodeJS.Timeout;
 
     timeout = setTimeout(() => {
       onOneZeroOpenChange(true);
-    }, 8000);
+    }, 13000);
 
     return () => {
       if (timeout) clearTimeout(timeout);
