@@ -17,13 +17,13 @@ const toggles = {
   isOld: "מוחרג/ת גיל",
   isIndependent: "עצמאי/ת",
   isStudent: "סטודנט/ית",
-  didVacationCancelled: "ביטלתי חופשה/טיסה",
+  didVacationCancelled: "ביטלתי חופשה/טיסה"
 };
 
 const CalculatorForm = () => {
   const setFormState = useStore((state) => state.setFormState);
   const updateCalculatorResults = useStore(
-    (state) => state.updateCalculatorResults,
+    (state) => state.updateCalculatorResults
   );
   const serviceBefore = useStore((state) => state.serviceBefore);
   const isCombat = useStore((state) => state.isCombat);
@@ -47,8 +47,8 @@ const CalculatorForm = () => {
       isIndependent,
       didVacationCancelled,
       hasChildren,
-      hasChildrenSpecial,
-    },
+      hasChildrenSpecial
+    }
   });
 
   const onSubmit = (data: FormValues) => {
@@ -66,6 +66,7 @@ const CalculatorForm = () => {
       <div className="relative mb-5 flex items-center justify-center">
         <img src="/svg/square-arrow.svg" alt="arrow" />
       </div>
+
       <div className="pb-5">
         <div className="px-4 py-2 text-center text-[1.4rem] font-semibold leading-tight">
           רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
@@ -74,7 +75,21 @@ const CalculatorForm = () => {
           אנא מלאו את הפרטים הבאים:
         </div>
       </div>
-
+      <div
+        className={`mb-8 flex flex-col gap-2 rounded-xl bg-idf px-3 py-3 font-normal leading-snug text-white  `}
+      >
+        אנחנו דואגים לכם ולא רוצים שתפספסו אף מענק שמגיע לכם על השירות שלכם למען
+        המדינה ❤️ לקבוצת וואטצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון וזה שווה לכם
+        כסף:
+        <a
+          href="https://chat.whatsapp.com/F82Qq8PywEkG0OMtu6IMJX"
+          target="_blank"
+          rel="noreferrer"
+          className="text-base font-bold text-white underline"
+        >
+          לכניסה לקבוצה
+        </a>
+      </div>
       <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
         <FormDateSection control={control} register={register} />
         <div
