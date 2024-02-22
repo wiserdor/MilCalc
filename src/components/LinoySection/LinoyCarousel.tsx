@@ -15,8 +15,24 @@ const data: Array<{ url: string; title: string }> = [
     url: "https://www.instagram.com/reel/C3kVCOjtERe/"
   },
   {
-    title: "חישוב מענקי משפחה",
+    title: "עצמאים",
+    url: "https://www.instagram.com/reel/C16a9QCin8R/"
+  },
+  {
+    title: "העדכון האחרון לבעלי משפחות",
     url: "https://www.instagram.com/reel/C15BpTxis7b/"
+  },
+  {
+    title: "מענקי חרבות הברזל העדכון האחרון-אוכלוסיה כללית",
+    url: "https://www.instagram.com/reel/C14siK1Co8u/"
+  },
+  {
+    title: "מענק התמדה ומענק תעסוקה (המענקים של אחרי צו 8)",
+    url: "https://www.instagram.com/reel/C12cEPTNTvC/"
+  },
+  {
+    title: "הגשות לקרן הסיוע",
+    url: "https://www.instagram.com/reel/CzrDmAbN8ae/"
   }
 ];
 
@@ -58,7 +74,7 @@ const LinoyCarousel = () => {
               className="flex- flex flex-col items-center justify-center"
               key={item.title + index}
             >
-              <div className="mb-4 text-base font-normal text-blue">
+              <div className="mb-4 w-2/3 text-base font-normal text-blue">
                 {item.title}
               </div>
               <InstagramEmbed
@@ -92,7 +108,6 @@ const LinoyCarousel = () => {
           <div>&#8592;</div>
         </button>
       </div>
-      
     </div>
   );
 };
