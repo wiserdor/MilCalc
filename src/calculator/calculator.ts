@@ -1,10 +1,19 @@
 import {
+  addMonths,
+  differenceInCalendarDays,
+  eachDayOfInterval,
   endOfYear,
+  getMonth,
+  getYear,
+  isAfter,
   max,
   min,
-  startOfYear,
-  differenceInCalendarDays
+  startOfYear
 } from "date-fns";
+import {
+  getMaxChildApproval,
+  getMaxMonthApproval
+} from "../components/Results/constants";
 import { DateRange } from "../store/types";
 import {
   COMBAT_RATE,
@@ -14,10 +23,6 @@ import {
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION
 } from "./constants";
-import {
-  getMaxChildApproval,
-  getMaxMonthApproval
-} from "../components/Results/constants";
 
 export const calculateVacation = (
   totalDays: number,
@@ -47,6 +52,15 @@ export const calculateMonthlyCompensation = (
   isCombat: boolean,
   days: number
 ) => {
+  const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE;
+
+  return Math.floor(days / 10) * rate;
+};
+
+export const calculateMonthlyCompensation2023 = (
+  isCombat: boolean,
+  days: number
+) => {
   if (days < 40) return 0;
   const rate = isCombat ? COMBAT_RATE : NON_COMBAT_RATE;
 
@@ -54,7 +68,91 @@ export const calculateMonthlyCompensation = (
   return Math.min(getMaxMonthApproval(isCombat), total);
 };
 
-export const calculateChildrenCompensation = (
+export const getMonthlyAfter24Compensation = (
+  isCombat: boolean,
+  dateRanges: { startDate: Date; endDate: Date }[]
+) => {
+  const startOf2024 = new Date("2024-01-01");
+  let monthlyDaysCount = {} as { [key: string]: number };
+
+  // Count days for each month in date ranges
+  dateRanges.forEach(({ startDate, endDate }) => {
+    if (isAfter(startDate, startOf2024) || isAfter(endDate, startOf2024)) {
+      eachDayOfInterval({
+        start: isAfter(startDate, startOf2024) ? startDate : startOf2024,
+        end: endDate
+      }).forEach((day) => {
+        const yearMonth =
+          getYear(day) + "-" + String(getMonth(day) + 1).padStart(2, "0");
+        // Increment the day count for the month
+        monthlyDaysCount[yearMonth] = (monthlyDaysCount[yearMonth] || 0) + 1;
+      });
+    }
+  });
+
+  // Calculate compensation for each month
+  const compensationResults = Object.entries(monthlyDaysCount).map(
+    ([yearMonth, daysCount]) => {
+      const [year, month] = yearMonth.split("-").map(Number);
+      const targetMonth = addMonths(new Date(year, month - 1, 1), 3); // Adjusting for the target month (+2 months)
+      const totalCompensation = calculateMonthlyCompensation(
+        isCombat,
+        daysCount
+      );
+
+      return {
+        month: new Date(targetMonth.toISOString().slice(0, 7)),
+        total: totalCompensation
+      };
+    }
+  );
+
+  return compensationResults;
+};
+
+export const getFromChildrenMonthlyAfter24 = (
+  isCombat: boolean,
+  dateRanges: { startDate: Date; endDate: Date }[]
+) => {
+  const startOf2024 = new Date("2024-01-01");
+  let monthlyDaysCount = {} as { [key: string]: number };
+
+  // Count days for each month in date ranges
+  dateRanges.forEach(({ startDate, endDate }) => {
+    if (isAfter(startDate, startOf2024) || isAfter(endDate, startOf2024)) {
+      eachDayOfInterval({
+        start: isAfter(startDate, startOf2024) ? startDate : startOf2024,
+        end: endDate
+      }).forEach((day) => {
+        const yearMonth =
+          getYear(day) + "-" + String(getMonth(day) + 1).padStart(2, "0");
+        // Increment the day count for the month
+        monthlyDaysCount[yearMonth] = (monthlyDaysCount[yearMonth] || 0) + 1;
+      });
+    }
+  });
+
+  // Calculate compensation for each month
+  const compensationResults = Object.entries(monthlyDaysCount).map(
+    ([yearMonth, daysCount]) => {
+      const [year, month] = yearMonth.split("-").map(Number);
+      const targetMonth = addMonths(new Date(year, month - 1, 1), 3); // Adjusting for the target month (+2 months)
+      const totalCompensation = calculateChildrenCompensation(
+        isCombat,
+        daysCount
+      );
+
+      return {
+        month: new Date(targetMonth.toISOString().slice(0, 7)),
+        total: totalCompensation
+      };
+    }
+  );
+
+  return compensationResults;
+};
+
+export const calculateChildrenCompensation2023 = (
   isCombat: boolean,
   days: number
 ) => {
@@ -64,6 +162,16 @@ export const calculateChildrenCompensation = (
   const rate = isCombat ? 833 : 500;
   const total = Math.floor((days - 30) / 10) * rate;
   return Math.min(total, getMaxChildApproval(isCombat));
+};
+
+export const calculateChildrenCompensation = (
+  isCombat: boolean,
+  days: number
+) => {
+  // 833 for combat for each 10 days
+  //500 for non combat for each 10 days
+  const rate = isCombat ? 833 : 500;
+  return Math.floor(days / 10) * rate;
 };
 
 export const operation24Calculation = (operation24Days: number) => {
@@ -295,33 +403,46 @@ export const calculateCompensation = (inputs: {
     isOld
   );
 
-  let totalPerMonth = calculateMonthlyCompensation(isCombat, daysInWar2023);
+  const totalPerMonth = calculateMonthlyCompensation2023(
+    isCombat,
+    daysInWar2023
+  );
+  const totalPerMonthMonthlyAfter24 = getMonthlyAfter24Compensation(
+    isCombat,
+    dateRanges
+  );
 
   const daysWarIn2023 = getTotalDaysIn2023(dateRanges);
 
-  let totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250;
+  const totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250;
 
-  let totalFromChildren = hasChildren
-    ? calculateChildrenCompensation(isCombat, daysWarIn2023)
+  const totalFromChildren = hasChildren
+    ? calculateChildrenCompensation2023(isCombat, daysWarIn2023)
     : 0;
+
+  const totalFromChildrenMonthlyAfter24 = hasChildren
+    ? getFromChildrenMonthlyAfter24(isCombat, dateRanges)
+    : [];
 
   let totalVacation = calculateVacation(daysInWar, hasChildren, isCombat);
   let totalSpecialChildren = hasChildrenSpecial
     ? SPECIAL_NEEDS_COMPENSATION
     : 0;
 
-  let totalMental = daysInWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0;
-  let totalFamilyCare = FAMILY_CARE_COMPENSATION;
+  const totalMental = daysInWar > 30 ? MENTAL_HEALTH_COMPENSATION : 0;
+  const totalFamilyCare = FAMILY_CARE_COMPENSATION;
   const totalStudentCourse = isStudent
     ? getStudentCourseCompensation(daysInWar)
     : 0;
 
-  let totalDedication = 0;
+  const totalDedication = 0;
 
   return {
     totalPerMonth,
+    totalPerMonthMonthlyAfter24,
     totalMoreThan45,
     totalFromChildren,
+    totalFromChildrenMonthlyAfter24,
     totalVacation,
     totalSpecialChildren,
     totalMental,

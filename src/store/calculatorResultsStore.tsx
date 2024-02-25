@@ -7,9 +7,11 @@ export const createCalculatorResultsStore: StateCreator<
   [],
   CalculatorResults
 > = (set) => ({
-  totalPerMonth: 0,
-  totalMoreThan45: 0,
+  totalPerMonth: 0, // מענק הוצאות אישיות מוגדל
+  totalPerMonthMonthlyAfter24: [],
   totalFromChildren: 0,
+  totalFromChildrenMonthlyAfter24: [],
+  totalMoreThan45: 0,
   totalVacation: 0,
   totalSpecialChildren: 0,
   totalMental: 0,

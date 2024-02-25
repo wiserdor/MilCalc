@@ -4,8 +4,14 @@ import { useMemo } from "react";
 
 const useResultsTotals = () => {
   const totalPerMonth = useStore((state) => state.totalPerMonth);
+  const totalPerMonthMonthlyAfter24 = useStore(
+    (state) => state.totalPerMonthMonthlyAfter24
+  );
   const totalMoreThan45 = useStore((state) => state.totalMoreThan45);
   const totalFromChildren = useStore((state) => state.totalFromChildren);
+  const totalFromChildrenMonthlyAfter24 = useStore(
+    (state) => state.totalFromChildrenMonthlyAfter24
+  );
   const totalVacation = useStore((state) => state.totalVacation);
   const totalSpecialChildren = useStore((state) => state.totalSpecialChildren);
   const totalMental = useStore((state) => state.totalMental);
@@ -32,7 +38,9 @@ const useResultsTotals = () => {
     () =>
       getApprovedItems(
         totalPerMonth,
+        totalPerMonthMonthlyAfter24,
         totalFromChildren,
+        totalFromChildrenMonthlyAfter24,
         totalSpecialChildren,
         totalMoreThan45,
         totalSpecialDays,
@@ -45,7 +53,9 @@ const useResultsTotals = () => {
       ),
     [
       totalPerMonth,
+      totalPerMonthMonthlyAfter24,
       totalFromChildren,
+      totalFromChildrenMonthlyAfter24,
       totalSpecialChildren,
       totalMoreThan45,
       totalSpecialDays,

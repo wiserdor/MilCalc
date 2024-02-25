@@ -1,8 +1,33 @@
 import { ApprovedItem } from "../components/Results/CompensationSection";
+const monthNames = [
+  "ינואר",
+  "פברואר",
+  "מרץ",
+  "אפריל",
+  "מאי",
+  "יוני",
+  "יולי",
+  "אוגוסט",
+  "ספטמבר",
+  "אוקטובר",
+  "נובמבר",
+  "דצמבר"
+];
+
+const getMonthNameHebrew = (month: number) => {
+  // get month minus two
+  month -= 2;
+  if (month < 0) {
+    month += 12;
+  }
+  return monthNames[month];
+};
 
 export const getApprovedItems = (
   totalPerMonthApproved = 0,
+  totalPerMonthMonthlyAfter24 = [] as { month: Date; total: number }[],
   totalFromChildrenApproved = 0,
+  totalFromChildrenMonthlyAfter24 = [] as { month: Date; total: number }[],
   totalSpecialChildren = 0,
   totalMoreThan45 = 0,
   totalSpecialDays = 0,
@@ -33,12 +58,25 @@ export const getApprovedItems = (
     dateOfPayment: new Date("2024/01/14"),
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
   },
+  ...totalPerMonthMonthlyAfter24.map(({ month, total }) => ({
+    name: `מענק הוצאות אישיות מוגדל ${getMonthNameHebrew(month.getMonth())} ${month.getFullYear().toString().substring(2)}`,
+    totalCompensation: total,
+    description: `ישולם לאחר חודשיים, באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.`,
+    dateOfPayment: month,
+    url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
+  })),
   {
     name: "מענק משפחה מוגדל",
     totalCompensation: totalFromChildrenApproved,
     dateOfPayment: new Date("2024/01/14"),
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
   },
+  ...totalFromChildrenMonthlyAfter24.map(({ month, total }) => ({
+    name: `מענק משפחה מוגדל ${getMonthNameHebrew(month.getMonth())} ${month.getFullYear().toString().substring(2)}`,
+    totalCompensation: total,
+    dateOfPayment: month,
+    url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
+  })),
   {
     name: "מענק משפחה מיוחדת",
     totalCompensation: totalSpecialChildren,
@@ -208,6 +246,9 @@ export const getApprovedNonPaidItems = (
     : [])
 ];
 
+const sortByDate = (a: ApprovedItem, b: ApprovedItem) =>
+  a.dateOfPayment?.getTime()! - b.dateOfPayment?.getTime()!;
+
 export const separatePaymentsByDate = (list: ApprovedItem[]) => {
   const currentDate = new Date();
   const pastPayments: ApprovedItem[] = [];
@@ -223,6 +264,7 @@ export const separatePaymentsByDate = (list: ApprovedItem[]) => {
       upcomingPayments.push(item);
     }
   });
-
+  pastPayments.sort(sortByDate);
+  upcomingPayments.sort(sortByDate);
   return { pastPayments, upcomingPayments };
 };

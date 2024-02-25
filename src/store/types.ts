@@ -6,8 +6,10 @@ export interface DateRange {
 export interface CalculatorResults {
   // Results
   totalPerMonth: number;
+  totalPerMonthMonthlyAfter24: Array<{ month: Date; total: number }>;
   totalMoreThan45: number;
   totalFromChildren: number;
+  totalFromChildrenMonthlyAfter24: Array<{ month: Date; total: number }>;
   totalVacation: number;
   totalSpecialChildren: number;
   totalMental: number;

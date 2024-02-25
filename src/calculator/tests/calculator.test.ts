@@ -4,7 +4,9 @@ import {
   totalDaysInRange,
   isOneRangeMoreThan5DaysLessThan9,
   calculateDays,
-  getTotalDaysInWar2023
+  getTotalDaysInWar2023,
+  getMonthlyAfter24Compensation,
+  getFromChildrenMonthlyAfter24
 } from "../calculator";
 
 describe("Calculator", () => {
@@ -246,6 +248,152 @@ describe("Calculator", () => {
           }
         ])
       ).toBe(95);
+    });
+  });
+
+  describe("getMonthlyAfter24Compensation", () => {
+    it("should return empty array if no date ranges", () => {
+      expect(getMonthlyAfter24Compensation(false, [])).toStrictEqual([]);
+    });
+
+    it("should return empty array if all date ranges are before 2024", () => {
+      expect(
+        getMonthlyAfter24Compensation(false, [
+          {
+            startDate: new Date("2023-01-01"),
+            endDate: new Date("2023-01-31")
+          }
+        ])
+      ).toEqual([]);
+    });
+
+    it("should return correct number of months for basic input", () => {
+      expect(
+        getMonthlyAfter24Compensation(true, [
+          {
+            startDate: new Date("2023-10-07"),
+            endDate: new Date("2024-01-11")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 466,
+          month: new Date("2024-03-01")
+        }
+      ]);
+
+      expect(
+        getMonthlyAfter24Compensation(false, [
+          {
+            startDate: new Date("2023-10-07"),
+            endDate: new Date("2024-01-11")
+          },
+          {
+            startDate: new Date("2024-01-12"),
+            endDate: new Date("2024-01-31")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 798,
+          month: new Date("2024-03-01")
+        }
+      ]);
+
+      expect(
+        getMonthlyAfter24Compensation(true, [
+          {
+            startDate: new Date("2024-01-01"),
+            endDate: new Date("2024-03-11")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 1398,
+          month: new Date("2024-03-01")
+        },
+        {
+          total: 932,
+          month: new Date("2024-04-01")
+        },
+        {
+          total: 466,
+          month: new Date("2024-05-01")
+        }
+      ]);
+    });
+  });
+
+  describe("getFromChildrenMonthlyAfter24", () => {
+    it("should return empty array if no date ranges", () => {
+      expect(getFromChildrenMonthlyAfter24(false, [])).toStrictEqual([]);
+    });
+
+    it("should return empty array if all date ranges are before 2024", () => {
+      expect(
+        getFromChildrenMonthlyAfter24(false, [
+          {
+            startDate: new Date("2023-01-01"),
+            endDate: new Date("2023-01-31")
+          }
+        ])
+      ).toEqual([]);
+    });
+
+    it("should return correct number of months for basic input", () => {
+      expect(
+        getFromChildrenMonthlyAfter24(true, [
+          {
+            startDate: new Date("2023-10-07"),
+            endDate: new Date("2024-01-11")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 833,
+          month: new Date("2024-03-01")
+        }
+      ]);
+
+      expect(
+        getFromChildrenMonthlyAfter24(false, [
+          {
+            startDate: new Date("2023-10-07"),
+            endDate: new Date("2024-01-11")
+          },
+          {
+            startDate: new Date("2024-01-12"),
+            endDate: new Date("2024-01-31")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 1500,
+          month: new Date("2024-03-01")
+        }
+      ]);
+
+      expect(
+        getFromChildrenMonthlyAfter24(true, [
+          {
+            startDate: new Date("2024-01-01"),
+            endDate: new Date("2024-03-11")
+          }
+        ])
+      ).toEqual([
+        {
+          total: 2499,
+          month: new Date("2024-03-01")
+        },
+        {
+          total: 1666,
+          month: new Date("2024-04-01")
+        },
+        {
+          total: 833,
+          month: new Date("2024-05-01")
+        }
+      ]);
     });
   });
 });
