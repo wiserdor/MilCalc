@@ -278,7 +278,7 @@ describe("Calculator", () => {
       ).toEqual([
         {
           total: 466,
-          month: new Date("2024-03-01")
+          month: new Date(new Date("2024-03-01").toUTCString())
         }
       ]);
 
