@@ -23,6 +23,14 @@ const getMonthNameHebrew = (month: number) => {
   return monthNames[month];
 };
 
+const getYear = (date: Date) => {
+  // get the year 2 months before
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const currectYear = month < 2 ? year - 1 : year;
+  return currectYear.toString().substring(2);
+};
+
 export const getApprovedItems = (
   totalPerMonthApproved = 0,
   totalPerMonthMonthlyAfter24 = [] as { month: Date; total: number }[],
@@ -59,7 +67,7 @@ export const getApprovedItems = (
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
   },
   ...totalPerMonthMonthlyAfter24.map(({ month, total }) => ({
-    name: `מענק הוצאות אישיות מוגדל ${getMonthNameHebrew(month.getMonth())} ${month.getFullYear().toString().substring(2)}`,
+    name: `מענק הוצאות אישיות מוגדל ${getMonthNameHebrew(month.getMonth())} ${getYear(month)}`,
     totalCompensation: total,
     description: `ישולם לאחר חודשיים, באופן אוטומטי ישירות לחשבון הבנק המדווח במערכות צה״ל.`,
     dateOfPayment: month,
@@ -72,7 +80,7 @@ export const getApprovedItems = (
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
   },
   ...totalFromChildrenMonthlyAfter24.map(({ month, total }) => ({
-    name: `מענק משפחה מוגדל ${getMonthNameHebrew(month.getMonth())} ${month.getFullYear().toString().substring(2)}`,
+    name: `מענק משפחה מוגדל ${getMonthNameHebrew(month.getMonth())} ${getYear(month)}`,
     totalCompensation: total,
     dateOfPayment: month,
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
