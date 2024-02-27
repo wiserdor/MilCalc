@@ -1,4 +1,5 @@
 import {
+  addMonths,
   differenceInCalendarDays,
   eachDayOfInterval,
   endOfYear,
@@ -93,7 +94,7 @@ export const getMonthlyAfter24Compensation = (
   const compensationResults = Object.entries(monthlyDaysCount).map(
     ([yearMonth, daysCount]) => {
       const [year, month] = yearMonth.split("-").map(Number);
-      const targetMonth = new Date(Date.UTC(year, (month + 1) % 12, 1)); // Adjusting for the target month (+2 months)
+      const targetMonth = addMonths(new Date(Date.UTC(year, month, 1, 2)), 1); // Adjusting for the target month (+2 months)
       const totalCompensation = calculateMonthlyCompensation(
         isCombat,
         daysCount
@@ -135,7 +136,7 @@ export const getFromChildrenMonthlyAfter24 = (
   const compensationResults = Object.entries(monthlyDaysCount).map(
     ([yearMonth, daysCount]) => {
       const [year, month] = yearMonth.split("-").map(Number);
-      const targetMonth = new Date(Date.UTC(year, (month + 1) % 12, 1)); // Adjusting for the target month (+2 months)
+      const targetMonth = addMonths(new Date(Date.UTC(year, month, 1, 2)), 1); // Adjusting for the target month (+2 months)
       const totalCompensation = calculateChildrenCompensation(
         isCombat,
         daysCount

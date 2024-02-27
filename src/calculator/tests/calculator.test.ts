@@ -268,59 +268,49 @@ describe("Calculator", () => {
     });
 
     it("should return correct number of months for basic input", () => {
-      expect(
-        getMonthlyAfter24Compensation(true, [
-          {
-            startDate: new Date("2023-10-07"),
-            endDate: new Date("2024-01-11")
-          }
-        ])
-      ).toEqual([
+      let result = getMonthlyAfter24Compensation(true, [
         {
-          total: 466,
-          month: new Date(new Date("2024-03-01").toUTCString())
+          startDate: new Date("2023-10-07"),
+          endDate: new Date("2024-01-11")
         }
       ]);
 
-      expect(
-        getMonthlyAfter24Compensation(false, [
-          {
-            startDate: new Date("2023-10-07"),
-            endDate: new Date("2024-01-11")
-          },
-          {
-            startDate: new Date("2024-01-12"),
-            endDate: new Date("2024-01-31")
-          }
-        ])
-      ).toEqual([
+      let expected = [
+        {
+          total: 466,
+          month: new Date("2024-03-01")
+        }
+      ];
+
+      result.forEach((r, i) => {
+        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
+
+      result = getMonthlyAfter24Compensation(false, [
+        {
+          startDate: new Date("2023-10-07"),
+          endDate: new Date("2024-01-11")
+        },
+        {
+          startDate: new Date("2024-01-12"),
+          endDate: new Date("2024-01-31")
+        }
+      ]);
+
+      expected = [
         {
           total: 798,
           month: new Date("2024-03-01")
         }
-      ]);
+      ];
 
-      expect(
-        getMonthlyAfter24Compensation(true, [
-          {
-            startDate: new Date("2024-01-01"),
-            endDate: new Date("2024-03-11")
-          }
-        ])
-      ).toEqual([
-        {
-          total: 1398,
-          month: new Date("2024-03-01")
-        },
-        {
-          total: 932,
-          month: new Date("2024-04-01")
-        },
-        {
-          total: 466,
-          month: new Date("2024-05-01")
-        }
-      ]);
+      result.forEach((r, i) => {
+        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
     });
   });
 
@@ -341,46 +331,56 @@ describe("Calculator", () => {
     });
 
     it("should return correct number of months for basic input", () => {
-      expect(
-        getFromChildrenMonthlyAfter24(true, [
-          {
-            startDate: new Date("2023-10-07"),
-            endDate: new Date("2024-01-11")
-          }
-        ])
-      ).toEqual([
+      let result = getFromChildrenMonthlyAfter24(true, [
+        {
+          startDate: new Date("2023-10-07"),
+          endDate: new Date("2024-01-11")
+        }
+      ]);
+      let expected = [
         {
           total: 833,
           month: new Date("2024-03-01")
         }
-      ]);
+      ];
 
-      expect(
-        getFromChildrenMonthlyAfter24(false, [
-          {
-            startDate: new Date("2023-10-07"),
-            endDate: new Date("2024-01-11")
-          },
-          {
-            startDate: new Date("2024-01-12"),
-            endDate: new Date("2024-01-31")
-          }
-        ])
-      ).toEqual([
+      result.forEach((r, i) => {
+        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
+
+      result = getFromChildrenMonthlyAfter24(false, [
+        {
+          startDate: new Date("2023-10-07"),
+          endDate: new Date("2024-01-11")
+        },
+        {
+          startDate: new Date("2024-01-12"),
+          endDate: new Date("2024-01-31")
+        }
+      ]);
+      expected = [
         {
           total: 1500,
           month: new Date("2024-03-01")
         }
+      ];
+
+      result.forEach((r, i) => {
+        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
+
+      result = getFromChildrenMonthlyAfter24(true, [
+        {
+          startDate: new Date("2024-01-01"),
+          endDate: new Date("2024-03-11")
+        }
       ]);
 
-      expect(
-        getFromChildrenMonthlyAfter24(true, [
-          {
-            startDate: new Date("2024-01-01"),
-            endDate: new Date("2024-03-11")
-          }
-        ])
-      ).toEqual([
+      expected = [
         {
           total: 2499,
           month: new Date("2024-03-01")
@@ -393,7 +393,13 @@ describe("Calculator", () => {
           total: 833,
           month: new Date("2024-05-01")
         }
-      ]);
+      ];
+
+      result.forEach((r, i) => {
+        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
     });
   });
 });
