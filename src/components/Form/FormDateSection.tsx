@@ -98,9 +98,11 @@ const FormDateSection = (props: FormDateSectionProps) => {
                           })
                         }
                         fromDate={new Date("2023-10-07")}
-                        locale={he}
                         required
+                        locale={he}
+                        dir="rtl"
                         initialFocus
+                        showOutsideDays={false}
                       />
                     </PopoverContent>
                   </Popover>
@@ -141,6 +143,8 @@ const FormDateSection = (props: FormDateSectionProps) => {
                         locale={he}
                         required
                         initialFocus
+                        dir="rtl"
+                        showOutsideDays={false}
                       />
                     </PopoverContent>
                   </Popover>
