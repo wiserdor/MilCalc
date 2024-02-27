@@ -9,6 +9,7 @@ import FormDateSection from "./FormDateSection";
 import FormInput from "./FormInput";
 import ValidationSection from "./ValidationSection";
 import { validateForm } from "./validation";
+import WhatsappLogo from "@/svg/WhatsappLogo";
 
 const toggles = {
   isCombat: "במערך הלוחם",
@@ -76,18 +77,19 @@ const CalculatorForm = () => {
         </div>
       </div>
       <div
-        className={`mb-8 flex flex-col gap-2 rounded-xl bg-idf px-3 py-3 font-normal leading-snug text-white  `}
+        className={`mb-8 flex flex-col gap-4 rounded-xl bg-idf p-4 text-sm font-normal leading-snug text-white `}
       >
         אנחנו דואגים לכם ולא רוצים שתפספסו אף מענק שמגיע לכם על השירות שלכם למען
-        המדינה ❤️ לקבוצת וואטצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון וזה שווה לכם
+        המדינה 💙
+        <br /> לקבוצת וואטצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון וזה שווה לכם
         כסף:
         <a
           href="https://chat.whatsapp.com/F82Qq8PywEkG0OMtu6IMJX"
           target="_blank"
           rel="noreferrer"
-          className="text-base font-bold text-white underline"
+          className="flex items-center gap-1 text-base text-base font-semibold text-white underline"
         >
-          לכניסה לקבוצה
+          <WhatsappLogo color="white" /> לכניסה לקבוצה
         </a>
       </div>
       <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>

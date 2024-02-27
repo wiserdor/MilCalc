@@ -6,7 +6,7 @@ const OneZeroSectionBanner = (props: { onClick: () => void }) => {
 
   return (
     <div
-      className={`color-black mt-4 flex flex-col items-center justify-center gap-4 rounded-2xl border-[1.5px] border-solid border-one-zero-black py-6`}
+      className={`color-black flex flex-col items-center justify-center gap-4 rounded-2xl border-[1.5px] border-solid border-one-zero-black py-6`}
     >
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <OneZeroLogo />

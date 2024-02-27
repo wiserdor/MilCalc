@@ -8,7 +8,7 @@ import {
   shift,
   useFloating,
   useInteractions,
-  useRole,
+  useRole
 } from "@floating-ui/react";
 import { motion } from "framer-motion";
 import { CSSProperties, useRef } from "react";
@@ -38,14 +38,14 @@ const Tooltip = (props: {
     middleware: [
       offset(0),
       flip({
-        fallbackAxisSideDirection: "start",
+        fallbackAxisSideDirection: "start"
       }),
       shift(),
       arrow({
-        element: arrowRef,
-      }),
+        element: arrowRef
+      })
     ],
-    placement: "top",
+    placement: "top"
   });
   const role = useRole(context, { role: "tooltip" });
   const { getReferenceProps, getFloatingProps } = useInteractions([role]);
@@ -65,7 +65,7 @@ const Tooltip = (props: {
             <div className="text-xs font-bold" style={{ color: props.color }}>
               ₪
               {props.value.toLocaleString("he-IL", {
-                maximumFractionDigits: 0,
+                maximumFractionDigits: 0
               })}{" "}
             </div>
             <div className="text-color-[#6f6f6f] text-xs font-normal">
@@ -92,7 +92,7 @@ const ResultsBar = (props: ResultsBarProps) => {
             className="box-border flex items-center justify-center"
             style={{
               width: `${(segment.value / total) * 100}%`,
-              background: segment.color,
+              background: segment.color
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -116,11 +116,11 @@ const ResultsBar = (props: ResultsBarProps) => {
               textAlign: `${index % 2 === 0 ? "start" : "end"}`,
               color: segment.color,
               fontWeight: 600,
-              fontSize: 16,
+              fontSize: 16
             }}
           >
             {((segment.value / total) * 100).toLocaleString("he-IL", {
-              maximumFractionDigits: 0,
+              maximumFractionDigits: 0
             })}
             %
           </div>
@@ -133,7 +133,7 @@ const ResultsBar = (props: ResultsBarProps) => {
             <div
               className="h-3 w-3 rounded-[2.52px]"
               style={{
-                backgroundColor: segment.color,
+                backgroundColor: segment.color
               }}
             />
             <div className="text-xs text-[#6f6f6f]">

@@ -5,6 +5,7 @@ import OneZeroSlider from "./OneZeroSlider";
 import { useFeatureValue } from "@growthbook/growthbook-react";
 import { Button } from "@/shadcn/ui/button";
 import ReactGA from "react-ga4";
+import MoneyPlus from "@/svg/MoneyPlus";
 
 interface OneZeroProps {
   total: number;
@@ -21,11 +22,8 @@ const trackLinkClick = (abVariant: string) => {
 };
 
 const getOneZeroLink = (abVariant: string) => {
-  if (abVariant === "thailand") {
+  if (abVariant === "newad") {
     return "https://onezero.onelink.me/kAPm/jmra5660";
-  }
-  if (abVariant === "best") {
-    return "https://onezero.onelink.me/kAPm/j3loeafn";
   }
 
   return "https://onezero.onelink.me/kAPm/pjjj23ju";
@@ -35,7 +33,7 @@ const OneZero = (props: OneZeroProps) => {
   const { total = 0, open, onOpenChange } = props; // Destructure the new props
   const [innerTotal, setInnerTotal] = useState(total);
 
-  const abVariant = useFeatureValue("onezero-banner", "thailand");
+  const abVariant = useFeatureValue("onezero-new", "newad");
 
   const handleValueChange = useCallback((value: number) => {
     setInnerTotal(value);
@@ -64,21 +62,24 @@ const OneZero = (props: OneZeroProps) => {
     >
       <DialogContent
         overlayanimationduration={1000}
-        className="flex w-fit flex-col items-center justify-between gap-2 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white data-[state=open]:duration-1000"
+        className="flex w-[328px] flex-col items-center justify-between gap-2 rounded-3xl border-one-zero-black bg-one-zero-black px-4 pb-6 pt-4 text-white data-[state=open]:duration-1000"
       >
-        {(abVariant === "thailand" || abVariant === "best") && (
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col items-center justify-center gap-2">
-              <div className="flex w-full justify-end">
-                <OneZeroLogo color="white" />
-              </div>
-              <h2 className="text-[22px] font-bold">4.6% פקדון שנתי</h2>
-              <div className="w-60 text-center text-base font-normal leading-[18.96px]">
-                {abVariant === "thailand" &&
-                  "הצעד שלך בדרך לחופשה בתאילנד, רכב חדש או שדרוג לבית."}
-                {abVariant === "best" && "פיקדון בריבית הגבוהה בישראל"}
-              </div>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex w-full justify-end">
+              <OneZeroLogo color="white" />
             </div>
+            <h2 className="w-3/4 text-center text-[22px] font-bold leading-[26px]">
+              רוצה לשדרג את סכום המענקים שקיבלת?
+            </h2>
+            <div className="w-60 text-center text-base font-normal leading-[18.96px]">
+              {abVariant === "newad" &&
+                "עם ONE ZERO תוכלו להגדיל את הסכום שלכם עם פיקדון שנתי בריבית 4.6%, הגבוהה בישראל:"}
+              {abVariant === "slider" &&
+                "עם ONE ZERO תוכלו להגדיל את הסכום שלכם עם פיקדון שנתי בריבית הגבוהה בישראל."}
+            </div>
+          </div>
+          {abVariant === "slider" && (
             <div className="flex flex-col items-center justify-center gap-6 rounded-2xl  bg-ocean pt-6 text-black">
               <div className="px-6 ">בחרו סכום להפקדה:</div>
               <div className="w-full px-6">
@@ -98,49 +99,52 @@ const OneZero = (props: OneZeroProps) => {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <a
-                href={getOneZeroLink(abVariant)}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackLinkClick(abVariant)}
-              >
-                <Button
-                  variant="none"
-                  className="rounded-full bg-blue px-6 py-3 text-base font-bold text-white"
-                >
-                  {abVariant === "thailand" && "להתנסות ופתיחת חשבון"}
-                  {abVariant === "best" && "לפתיחת חשבון באפליקציה"}
-                </Button>
-              </a>
-            </div>
-          </div>
-        )}
-        {abVariant === "noslider" && (
-          <>
-            <div className="flex w-full justify-end">
-              <OneZeroLogo color="white" />
-            </div>
-            <div className="flex h-[400px] w-[328px] flex-col items-center justify-center gap-8">
-              <div className="w-60 text-center text-[22px] font-bold leading-[18.96px]">
-                4.6% פקדון שנתי בריבית הגבוהה בישראל
+          )}
+          {abVariant === "newad" && (
+            <div className="flex w-full items-center justify-between">
+              <div className="flex w-[107px] flex-col items-center gap-2 rounded-2xl border-[1.5px] border-dark-gray px-6 py-4 text-center ">
+                <div className="text-xs font-normal leading-[14px] text-bright-gray">
+                  סך כל המענקים היום:
+                </div>
+                <div className="text-base font-bold text-white">
+                  {innerTotal.toLocaleString("he-il", {
+                    currency: "ILS",
+                    style: "currency",
+                    maximumFractionDigits: 0
+                  })}
+                </div>
               </div>
-              <a
-                href={getOneZeroLink(abVariant)}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackLinkClick(abVariant)}
-              >
-                <Button
-                  variant={"none"}
-                  className="cursor-pointer rounded-full bg-blue px-6 py-3 text-base font-bold text-white"
-                >
-                  לפתיחת חשבון ב10 דקות
-                </Button>
-              </a>
+              <div className="flex w-[173px] flex-col items-center gap-2 rounded-2xl  bg-ocean px-6 py-4 text-center">
+                <MoneyPlus />
+                <div className="text-xs font-normal leading-[14px] text-dark-gray">
+                  הסכום המשוער לאחר פקדון של 12 חודשים
+                </div>
+                <div className="text-[22px] font-bold text-blue">
+                  {afterYear.toLocaleString("he-il", {
+                    currency: "ILS",
+                    style: "currency",
+                    maximumFractionDigits: 0
+                  })}
+                </div>
+              </div>
             </div>
-          </>
-        )}
+          )}
+          <div className="flex flex-col items-center justify-center">
+            <a
+              href={getOneZeroLink(abVariant)}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackLinkClick(abVariant)}
+            >
+              <Button
+                variant="none"
+                className="rounded-full bg-blue px-6 py-3 text-base font-bold text-white"
+              >
+                למידע נוסף
+              </Button>
+            </a>
+          </div>
+        </div>
         <div className="w-60 text-center text-xs font-normal text-bright-gray">
           *ריבית משתנה P-1.4%, מתואמת 4.6%. בכפוף לתנאי הבנק והפיקדון.
         </div>

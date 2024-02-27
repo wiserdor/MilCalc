@@ -58,9 +58,9 @@ const Results = () => {
           ref={compensationRef}
           totalCompensation={totalCompensation}
           items={approvedItems}
+          onOneZeroOpenChange={onOneZeroOpenChange}
         />
       )}
-      <OneZeroSectionBanner onClick={() => onOneZeroOpenChange(true)} />
       {(totalNonPaidApproved > 0 ||
         approvedNonPaidItems.some((a) => a.totalCompensationStr)) && (
         <ResultsSection
