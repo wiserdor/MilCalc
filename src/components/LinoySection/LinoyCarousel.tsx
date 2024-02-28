@@ -11,6 +11,10 @@ import { InstagramEmbed } from "react-social-media-embed";
 
 const data: Array<{ url: string; title: string }> = [
   {
+    title: "כיצד לממש את הטיפול הרגשי והזוגי",
+    url: "https://www.instagram.com/reel/C35P6eJNzyH/"
+  },
+  {
     title: "חישוב מענקים מוגדלים",
     url: "https://www.instagram.com/reel/C3kVCOjtERe/"
   },
