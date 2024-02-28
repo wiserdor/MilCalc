@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/store";
 import OneZero from "../OneZero/OneZero";
-import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
 import CompensationSection from "./CompensationSection";
 import HeaderTotalSection from "./HeaderTotalSection";
 import ResultsSection from "./ResultsSection";
 import useResultsTotals from "./hooks/useResultsTotals";
+import { useFeatureValue } from "@growthbook/growthbook-react";
 
 const Results = () => {
+  const abVariant = useFeatureValue("onezero-new", "newad");
   const validationErrors = useStore((state) => state.validationErrors);
 
   const {
@@ -20,12 +21,31 @@ const Results = () => {
   const resultsRef = useRef<HTMLDivElement>(null);
   const compensationRef = useRef<HTMLDivElement>(null);
   const voucherRef = useRef<HTMLDivElement>(null);
+  const onezeroAlreadyShown = useRef(false);
 
   const [oneZeroOpen, setOneZeroOpen] = useState(false);
 
   const onOneZeroOpenChange = (open: boolean) => {
     setOneZeroOpen(open);
   };
+
+  useEffect(() => {
+    if (!totalCompensation) return;
+
+    // if the user has already seen the onezero banner, don't show it again
+    if (onezeroAlreadyShown.current || abVariant === "slider") return;
+    onezeroAlreadyShown.current = true;
+
+    let timeout: NodeJS.Timeout;
+
+    timeout = setTimeout(() => {
+      onOneZeroOpenChange(true);
+    }, 13000);
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [abVariant, totalCompensation]);
 
   useEffect(() => {
     // Scroll to results on submit
