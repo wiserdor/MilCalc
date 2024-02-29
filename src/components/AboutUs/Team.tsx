@@ -29,7 +29,9 @@ const Member = ({
 const Team = () => {
   return (
     <section className="flex flex-col items-center justify-center bg-ocean px-4 py-10">
-      <h2 className="mb-8 text-[22px] font-bold">צוות המחשבון</h2>
+      <h3 className="mb-8 text-center text-lg font-semibold leading-tight">
+        צוות המחשבון
+      </h3>
       <div className="grid grid-rows-2 gap-7">
         <div className="grid grid-cols-2 gap-1">
           <Member

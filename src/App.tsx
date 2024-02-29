@@ -3,15 +3,14 @@ import { GrowthBook, GrowthBookProvider } from "@growthbook/growthbook-react";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
 import "./App.css";
+import AboutUs from "./components/AboutUs/AboutUs";
 import AdsSection from "./components/AdsSection/AdsSection";
 import FAQ from "./components/FAQ/FAQ";
 import Footer from "./components/Footer/Footer";
 import CalculatorForm from "./components/Form/CalculatorForm";
 import Header from "./components/Header/Header";
 import Independent from "./components/Independent/Independent";
-import NewsFeed from "./components/NewsFeed/NewsFeed";
 import Results from "./components/Results/Results";
-import Team from "./components/Team/Team";
 
 ReactGA.initialize("G-ZE1RDY2L6L");
 
@@ -60,10 +59,7 @@ function App() {
             <Independent />
           </div>
           <FAQ />
-          <div className="px-4">
-            <NewsFeed />
-          </div>
-          <Team />
+          <AboutUs />
           <Footer />
         </div>
       </div>
