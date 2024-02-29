@@ -81,8 +81,8 @@ const CalculatorForm = () => {
       >
         אנחנו דואגים לכם ולא רוצים שתפספסו אף מענק שמגיע לכם על השירות שלכם למען
         המדינה 💙
-        <br /> לקבוצת וואטצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון וזה שווה לכם
-        כסף:
+        <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
+        לכם כסף 💰
         <a
           href="https://chat.whatsapp.com/F82Qq8PywEkG0OMtu6IMJX"
           target="_blank"
