@@ -20,6 +20,18 @@ const links: Array<
     title: "ראיון בחדשות 12"
   },
   {
+    type: "link",
+    url: "https://www.mako.co.il/news-money/tech12/Article-dc34c1dc798fc81026.htm?sCh=31750a2610f26110&pId=1714755246_534305",
+    title: "Tech12כתבה ב",
+    imgSrc: "tech12.png"
+  },
+  {
+    type: "link",
+    url: "https://www.geektime.co.il/flash/financial-benefits-for-reserves/",
+    title: "Geektimeכתבה ב",
+    imgSrc: "geektime.png"
+  },
+  {
     type: "youtube",
     url: "https://youtu.be/PzwGpwkXd6g",
     title: "ראיון בגל״צ"
@@ -34,18 +46,6 @@ const links: Array<
     url: "https://www.maariv.co.il/business/tech/Article-1077701",
     title: "כתבה במעריב",
     imgSrc: "maariv.png"
-  },
-  {
-    type: "link",
-    url: "https://www.geektime.co.il/flash/financial-benefits-for-reserves/",
-    title: "Geektimeכתבה ב",
-    imgSrc: "geektime.png"
-  },
-  {
-    type: "link",
-    url: "https://www.mako.co.il/news-money/tech12/Article-dc34c1dc798fc81026.htm?sCh=31750a2610f26110&pId=1714755246_534305",
-    title: "Tech12כתבה ב",
-    imgSrc: "tech12.png"
   }
 ];
 
@@ -112,6 +112,8 @@ const InNews = () => {
                 <a
                   href={item.url}
                   className="mb-2 cursor-pointer text-base font-semibold text-blue underline"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   {item.type === "youtube" ? "למעבר לראיון" : "למעבר לכתבה"}
                 </a>
