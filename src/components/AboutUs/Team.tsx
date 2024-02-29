@@ -30,13 +30,13 @@ const Team = () => {
   return (
     <section className="flex flex-col items-center justify-center bg-ocean px-4 py-10">
       <h3 className="mb-8 text-center text-lg font-semibold leading-tight">
-        צוות המחשבון
+        הצוות
       </h3>
       <div className="grid grid-rows-2 gap-7">
         <div className="grid grid-cols-2 gap-1">
           <Member
             img="slook.png"
-            name="יהונתן סלוק"
+            name="יונתן סלוק"
             title="ניהול מוצר"
             linkedin="https://www.linkedin.com/in/yonatan-slook-172b0383/"
           />
