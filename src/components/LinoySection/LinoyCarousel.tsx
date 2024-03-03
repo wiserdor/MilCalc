@@ -11,6 +11,10 @@ import { InstagramEmbed } from "react-social-media-embed";
 
 const data: Array<{ url: string; title: string }> = [
   {
+    title: "אבטלה והארכת חופשת לידה",
+    url: "https://www.instagram.com/reel/C4BiLW6toa8/"
+  },
+  {
     title: "כיצד לממש את הטיפול הרגשי והזוגי",
     url: "https://www.instagram.com/reel/C35P6eJNzyH/"
   },
