@@ -91,6 +91,19 @@ const CalculatorForm = () => {
         >
           <WhatsappLogo color="white" /> לכניסה לקבוצה
         </a>
+        <div>
+          <span className="font-semibold text-white">עדכון:</span> הקבוצה כמעט
+          מלאה, לכן פתחנו קבוצה נוספת.
+        </div>
+        <a
+          href="https://chat.whatsapp.com/GjNeDH1du5N3pS74ggYLS1"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-1 text-base text-base font-semibold text-white underline"
+        >
+          <WhatsappLogo color="white" />
+          לכניסה לקבוצה 2
+        </a>
       </div>
       <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
         <FormDateSection control={control} register={register} />
