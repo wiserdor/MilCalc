@@ -2,12 +2,13 @@ import { Button } from "@/shadcn/ui/button";
 import { Calendar } from "@/shadcn/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shadcn/ui/popover";
 import clsx from "clsx";
-import { differenceInCalendarDays, format } from "date-fns";
-import { he } from "date-fns/locale";
+import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useMemo } from "react";
 import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 import { FormValues } from "../../store/types";
+import { he } from "date-fns/locale";
+import { differenceInCalendarDays } from "date-fns";
 import NumberCircle from "../NumberCircle/NumberCircle";
 
 interface FormDateSectionProps {
@@ -17,8 +18,6 @@ interface FormDateSectionProps {
 
 const FormDateSection = (props: FormDateSectionProps) => {
   const { control } = props;
-  const [isStartCalendarOpen, setIsStartCalendarOpen] = useState(false);
-  const [isEndCalendarOpen, setIsEndCalendarOpen] = useState(false);
 
   const { fields, append, remove, update } = useFieldArray({
     name: "dateRanges",
@@ -70,10 +69,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
                   <label className="mb-1 mt-2 block font-normal">
                     תאריך גיוס:
                   </label>
-                  <Popover
-                    open={isStartCalendarOpen}
-                    onOpenChange={setIsStartCalendarOpen}
-                  >
+                  <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant={"outline"}
@@ -94,14 +90,13 @@ const FormDateSection = (props: FormDateSectionProps) => {
                       <Calendar
                         mode="single"
                         selected={new Date(field.startDate)}
-                        onSelect={(day) => {
+                        onSelect={(day) =>
                           update(index, {
                             ...field,
                             startDate:
                               day?.toDateString() ?? new Date().toString()
-                          });
-                          setIsStartCalendarOpen(false);
-                        }}
+                          })
+                        }
                         fromDate={new Date("2023-10-07")}
                         required
                         locale={he}
@@ -116,10 +111,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
                   <label className="mb-1 mt-2 block font-normal">
                     תאריך שחרור:
                   </label>
-                  <Popover
-                    open={isEndCalendarOpen}
-                    onOpenChange={setIsEndCalendarOpen}
-                  >
+                  <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant={"outline"}
@@ -140,14 +132,13 @@ const FormDateSection = (props: FormDateSectionProps) => {
                       <Calendar
                         mode="single"
                         selected={new Date(field.endDate)}
-                        onSelect={(day) => {
+                        onSelect={(day) =>
                           update(index, {
                             ...field,
                             endDate:
                               day?.toDateString() ?? new Date().toString()
-                          });
-                          setIsEndCalendarOpen(false);
-                        }}
+                          })
+                        }
                         fromDate={new Date("2023-10-07")}
                         locale={he}
                         required
