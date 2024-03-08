@@ -16,7 +16,8 @@ export interface CalculatorResults {
   totalFamilyCare: number;
   totalSpecialDays: number;
   totalExtended: number;
-  totalAdditional: number;
+  totalAdditional2023: number;
+  totalAdditional2024: number;
   totalDaysStraight: number;
   totalOld: number;
   totalWarPersonalExpenses: number;

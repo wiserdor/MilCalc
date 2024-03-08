@@ -1,10 +1,9 @@
 import {
-  getTotalDaysIn2023,
+  getTotalDaysIn,
   specialGrantCalculation,
   totalDaysInRange,
   isOneRangeMoreThan5DaysLessThan9,
   calculateDays,
-  getTotalDaysInWar2023,
   getMonthlyAfter24Compensation,
   getFromChildrenMonthlyAfter24
 } from "../calculator";
@@ -30,93 +29,71 @@ describe("Calculator", () => {
     });
   });
 
-  describe("getTotalDaysInWar2023", () => {
-    it("should return 0 if date ranges before 07/10/2023 or after 31/12/2023", () => {
-      expect(
-        getTotalDaysInWar2023([
-          {
-            startDate: new Date("2023-01-01"),
-            endDate: new Date("2023-10-06")
-          },
-          {
-            startDate: new Date("2024-01-01"),
-            endDate: new Date("2024-01-31")
-          }
-        ])
-      ).toBe(0);
-    });
-
-    it("should return currect number of days in 2023", () => {
-      expect(
-        getTotalDaysInWar2023([
-          {
-            startDate: new Date("2023-10-06"),
-            endDate: new Date("2024-01-30")
-          }
-        ])
-      ).toBe(86);
-
-      expect(
-        getTotalDaysInWar2023([
-          {
-            startDate: new Date("2023-10-07"),
-            endDate: new Date("2023-10-31")
-          },
-          {
-            startDate: new Date("2023-11-02"),
-            endDate: new Date("2023-11-30")
-          },
-          {
-            startDate: new Date("2023-12-01"),
-            endDate: new Date("2024-12-01")
-          }
-        ])
-      ).toBe(85);
-    });
-  });
-
-  describe("getTotalDaysIn2023", () => {
+  describe("getTotalDaysIn", () => {
     it("should return 0 if date ranges not in 2023", () => {
       expect(
-        getTotalDaysIn2023([
-          {
-            startDate: new Date("2021-01-01"),
-            endDate: new Date("2021-01-31")
-          },
-          {
-            startDate: new Date("2024-01-01"),
-            endDate: new Date("2024-01-31")
-          }
-        ])
+        getTotalDaysIn(
+          [
+            {
+              startDate: new Date("2021-01-01"),
+              endDate: new Date("2021-01-31")
+            },
+            {
+              startDate: new Date("2024-01-01"),
+              endDate: new Date("2024-01-31")
+            }
+          ],
+          2023
+        )
       ).toBe(0);
     });
 
     it("should return currect number of days in 2023", () => {
       expect(
-        getTotalDaysIn2023([
-          {
-            startDate: new Date("2023-12-31"),
-            endDate: new Date("2024-01-30")
-          }
-        ])
+        getTotalDaysIn(
+          [
+            {
+              startDate: new Date("2023-12-31"),
+              endDate: new Date("2024-01-30")
+            }
+          ],
+          2023
+        )
       ).toBe(1);
 
       expect(
-        getTotalDaysIn2023([
-          {
-            startDate: new Date("2023-01-01"),
-            endDate: new Date("2023-01-31")
-          },
-          {
-            startDate: new Date("2023-02-01"),
-            endDate: new Date("2023-02-28")
-          },
-          {
-            startDate: new Date("2023-12-31"),
-            endDate: new Date("2024-12-01")
-          }
-        ])
+        getTotalDaysIn(
+          [
+            {
+              startDate: new Date("2023-01-01"),
+              endDate: new Date("2023-01-31")
+            },
+            {
+              startDate: new Date("2023-02-01"),
+              endDate: new Date("2023-02-28")
+            },
+            {
+              startDate: new Date("2023-12-31"),
+              endDate: new Date("2024-12-01")
+            }
+          ],
+          2023
+        )
       ).toBe(60);
+    });
+
+    it("should return correct number of days for date ranges started before 2023 and ended in 2023", () => {
+      expect(
+        getTotalDaysIn(
+          [
+            {
+              startDate: new Date("2022-11-31"),
+              endDate: new Date("2023-01-30")
+            }
+          ],
+          2023
+        )
+      ).toBe(30);
     });
   });
 

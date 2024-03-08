@@ -18,7 +18,8 @@ export const createCalculatorResultsStore: StateCreator<
   totalFamilyCare: 0,
   totalSpecialDays: 0,
   totalExtended: 0,
-  totalAdditional: 0,
+  totalAdditional2023: 0,
+  totalAdditional2024: 0,
   totalDaysStraight: 0,
   totalOld: 0,
   totalWarFamilyExpenses: 0,
@@ -37,7 +38,8 @@ export const createCalculatorResultsStore: StateCreator<
       totalSpecialDays: 0,
       totalExtended: 0,
       totalOld: 0,
-      totalAdditional: 0,
+      totalAdditional2023: 0,
+      totalAdditional2024: 0,
       totalDaysStraight: 0,
       totalStudentCourse: 0
     });

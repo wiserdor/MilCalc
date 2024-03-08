@@ -40,7 +40,8 @@ export const getApprovedItems = (
   totalMoreThan45 = 0,
   totalSpecialDays = 0,
   totalExtended = 0,
-  totalAdditional = 0,
+  totalAdditional2023 = 0,
+  totalAdditional2024 = 0,
   totalDaysStraight = 0,
   totalOld = 0,
   totalWarPersonalExpenses = 0,
@@ -92,9 +93,15 @@ export const getApprovedItems = (
     url: "https://www.miluim.idf.il/articles-list/מגוייסים-למילואים/"
   },
   {
-    name: "התגמול הנוסף",
-    totalCompensation: totalAdditional,
+    name: "התגמול הנוסף 2024",
+    totalCompensation: totalAdditional2023,
     dateOfPayment: new Date("2024/05/01"),
+    url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
+  },
+  {
+    name: "התגמול הנוסף 2025",
+    totalCompensation: totalAdditional2024,
+    dateOfPayment: new Date("2025/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
   {

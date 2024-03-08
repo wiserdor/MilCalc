@@ -229,25 +229,24 @@ export const isOneRangeMoreThan5Days = (
   });
 };
 
-export const getTotalDaysIn2023 = (
+export const getTotalDaysIn = (
   dateRanges: {
     startDate: Date;
     endDate: Date;
-  }[]
+  }[],
+  year: number
 ) => {
   let totalDays = 0;
-  const start2023 = startOfYear(new Date("2023/01/01"));
-  const end2023 = endOfYear(new Date("2023/01/01"));
+  const startDate = startOfYear(new Date(`${year}/01/01`));
+  const endDate = endOfYear(new Date(`${year}/01/01`));
 
   dateRanges.forEach((range) => {
-    if (range.endDate < start2023 || range.startDate > end2023) {
+    if (range.endDate < startDate || range.startDate > endDate) {
       return 0;
     }
 
-    if (range.startDate.getFullYear() < 2023) return;
-
-    const start = max([start2023, range.startDate]);
-    const end = min([end2023, range.endDate]);
+    const start = max([startDate, range.startDate]);
+    const end = min([endDate, range.endDate]);
 
     totalDays += totalDaysInRange(start, end);
   });
@@ -255,30 +254,23 @@ export const getTotalDaysIn2023 = (
   return totalDays;
 };
 
-export const getTotalDaysInWar2023 = (
-  dateRanges: {
-    startDate: Date;
-    endDate: Date;
-  }[]
-) => {
-  let totalDays = 0;
-  const start2023 = new Date("2023/10/07");
-  const end2023 = endOfYear(new Date("2023/01/01"));
+export const calculateAdditionalCompensation = (totalDays: number) => {
+  // 10-14.5 = 1452
+  // 15-19.5 = 2904
+  // 20-36.5 = 4356
+  //37 and above = 5808
+  // did you do 5-9 days straight 266
 
-  dateRanges.forEach((range) => {
-    if (range.endDate < start2023 || range.startDate > end2023) {
-      return 0;
-    }
-
-    if (range.startDate.getFullYear() < 2023) return;
-
-    const start = max([start2023, range.startDate]);
-    const end = min([end2023, range.endDate]);
-
-    totalDays += totalDaysInRange(start, end);
-  });
-
-  return totalDays;
+  if (totalDays >= 10 && totalDays <= 14.5) {
+    return 1452;
+  } else if (totalDays >= 15 && totalDays <= 19.5) {
+    return 2904;
+  } else if (totalDays >= 20 && totalDays <= 36.5) {
+    return 4356;
+  } else if (totalDays >= 37) {
+    return 5808;
+  }
+  return 0;
 };
 
 export const specialGrantCalculation = (
@@ -294,16 +286,7 @@ export const specialGrantCalculation = (
   // did you do 5-9 days straight 266
   const totalDays = daysBefore + daysInWar;
 
-  let totalAdditional = 0;
-  if (totalDays >= 10 && totalDays <= 14.5) {
-    totalAdditional = 1452;
-  } else if (totalDays >= 15 && totalDays <= 19.5) {
-    totalAdditional = 2904;
-  } else if (totalDays >= 20 && totalDays <= 36.5) {
-    totalAdditional = 4356;
-  } else if (totalDays >= 37) {
-    totalAdditional = 5808;
-  }
+  let totalAdditional = calculateAdditionalCompensation(totalDays);
 
   if (isOld) {
     return {
@@ -388,12 +371,12 @@ export const calculateCompensation = (inputs: {
   const totalWarFamilyExpenses = hasChildren && moreThan5DaysInWar ? 2000 : 0;
 
   const daysInWar = calculateDays(dateRanges);
-  const daysInWar2023 = getTotalDaysIn2023(dateRanges);
+  const daysIn2023 = getTotalDaysIn(dateRanges, 2023);
 
   const {
     totalSpecialDays,
     totalExtended,
-    totalAdditional,
+    totalAdditional: totalAdditional2023,
     totalDaysStraight,
     totalOld
   } = specialGrantCalculation(
@@ -403,21 +386,19 @@ export const calculateCompensation = (inputs: {
     isOld
   );
 
-  const totalPerMonth = calculateMonthlyCompensation2023(
-    isCombat,
-    daysInWar2023
-  );
+  const totalDays2024 = getTotalDaysIn(dateRanges, 2024);
+  const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
+
+  const totalPerMonth = calculateMonthlyCompensation2023(isCombat, daysIn2023);
   const totalPerMonthMonthlyAfter24 = getMonthlyAfter24Compensation(
     isCombat,
     dateRanges
   );
 
-  const daysWarIn2023 = getTotalDaysIn2023(dateRanges);
-
   const totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250;
 
   const totalFromChildren = hasChildren
-    ? calculateChildrenCompensation2023(isCombat, daysWarIn2023)
+    ? calculateChildrenCompensation2023(isCombat, daysIn2023)
     : 0;
 
   const totalFromChildrenMonthlyAfter24 = hasChildren
@@ -435,8 +416,6 @@ export const calculateCompensation = (inputs: {
     ? getStudentCourseCompensation(daysInWar)
     : 0;
 
-  const totalDedication = 0;
-
   return {
     totalPerMonth,
     totalPerMonthMonthlyAfter24,
@@ -447,10 +426,10 @@ export const calculateCompensation = (inputs: {
     totalSpecialChildren,
     totalMental,
     totalFamilyCare,
-    totalDedication,
     totalSpecialDays,
     totalExtended,
-    totalAdditional,
+    totalAdditional2023,
+    totalAdditional2024,
     totalDaysStraight,
     totalOld,
     totalWarPersonalExpenses,
