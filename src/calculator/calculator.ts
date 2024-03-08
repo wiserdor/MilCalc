@@ -1,11 +1,14 @@
 import {
   addMonths,
   differenceInCalendarDays,
+  differenceInDays,
   eachDayOfInterval,
   endOfYear,
   getMonth,
   getYear,
   isAfter,
+  isBefore,
+  isSameDay,
   max,
   min,
   startOfYear
@@ -68,9 +71,33 @@ export const calculateMonthlyCompensation2023 = (
   return Math.min(getMaxMonthApproval(isCombat), total);
 };
 
-export const getMonthlyAfter24Compensation = (
-  isCombat: boolean,
+export const getRemaining2023Days = (
   dateRanges: { startDate: Date; endDate: Date }[]
+) => {
+  const endOf2023 = new Date("2023-12-31");
+  let totalDays = 0;
+
+  // Count days for each date range in 2023
+  dateRanges.forEach(({ startDate, endDate }) => {
+    if (isBefore(startDate, endOf2023) || isSameDay(startDate, endOf2023)) {
+      const start = startDate;
+      const end = isBefore(endDate, endOf2023) ? endDate : endOf2023;
+
+      totalDays += differenceInDays(end, start) + 1; // Add 1 to include both start and end dates
+    }
+  });
+
+  // Calculate the remaining days
+  const remainingDays = totalDays > 30 ? (totalDays - 30) % 10 : totalDays;
+
+  return remainingDays;
+};
+
+export const calculateCompensationForEachMonthAfter24 = (
+  isCombat: boolean,
+  dateRanges: { startDate: Date; endDate: Date }[],
+  remainingDays: number = 0,
+  calculationFn: (isCombat: boolean, days: number) => number
 ) => {
   const startOf2024 = new Date("2024-01-01");
   let monthlyDaysCount = {} as { [key: string]: number };
@@ -91,66 +118,60 @@ export const getMonthlyAfter24Compensation = (
   });
 
   // Calculate compensation for each month
-  const compensationResults = Object.entries(monthlyDaysCount).map(
-    ([yearMonth, daysCount]) => {
-      const [year, month] = yearMonth.split("-").map(Number);
-      const targetMonth = addMonths(new Date(Date.UTC(year, month, 1, 2)), 1); // Adjusting for the target month (+2 months)
-      const totalCompensation = calculateMonthlyCompensation(
-        isCombat,
-        daysCount
-      );
+  const compensationResults = [];
+  let carryOverDays = remainingDays; // Initialize carryOverDays with remainingDays from the previous year
 
-      return {
-        month: targetMonth,
-        total: totalCompensation
-      };
-    }
+  const startYear = 2024;
+  const endYear = getYear(
+    max(Object.keys(monthlyDaysCount).map((yearMonth) => new Date(yearMonth)))
   );
+
+  for (let year = startYear; year <= endYear; year++) {
+    for (let month = 1; month <= 12; month++) {
+      const yearMonth = `${year}-${String(month).padStart(2, "0")}`;
+      const daysCount = monthlyDaysCount[yearMonth] || 0;
+      const totalDays = daysCount + carryOverDays;
+
+      const targetMonth = addMonths(new Date(Date.UTC(year, month - 1, 1)), 2); // Adjusting for the target month (+2 months)
+      const totalCompensation = calculationFn(isCombat, totalDays);
+
+      if (totalCompensation > 0) {
+        compensationResults.push({
+          month: targetMonth,
+          total: totalCompensation
+        });
+      }
+
+      carryOverDays = totalDays % 10; // Remaining days to carry over to the next month
+    }
+  }
 
   return compensationResults;
 };
+
+export const getMonthlyAfter24Compensation = (
+  isCombat: boolean,
+  dateRanges: { startDate: Date; endDate: Date }[],
+  remainingDays: number = 0
+) =>
+  calculateCompensationForEachMonthAfter24(
+    isCombat,
+    dateRanges,
+    remainingDays,
+    calculateMonthlyCompensation
+  );
 
 export const getFromChildrenMonthlyAfter24 = (
   isCombat: boolean,
-  dateRanges: { startDate: Date; endDate: Date }[]
-) => {
-  const startOf2024 = new Date("2024-01-01");
-  let monthlyDaysCount = {} as { [key: string]: number };
-
-  // Count days for each month in date ranges
-  dateRanges.forEach(({ startDate, endDate }) => {
-    if (isAfter(startDate, startOf2024) || isAfter(endDate, startOf2024)) {
-      eachDayOfInterval({
-        start: isAfter(startDate, startOf2024) ? startDate : startOf2024,
-        end: endDate
-      }).forEach((day) => {
-        const yearMonth =
-          getYear(day) + "-" + String(getMonth(day) + 1).padStart(2, "0");
-        // Increment the day count for the month
-        monthlyDaysCount[yearMonth] = (monthlyDaysCount[yearMonth] || 0) + 1;
-      });
-    }
-  });
-
-  // Calculate compensation for each month
-  const compensationResults = Object.entries(monthlyDaysCount).map(
-    ([yearMonth, daysCount]) => {
-      const [year, month] = yearMonth.split("-").map(Number);
-      const targetMonth = addMonths(new Date(Date.UTC(year, month, 1, 2)), 1); // Adjusting for the target month (+2 months)
-      const totalCompensation = calculateChildrenCompensation(
-        isCombat,
-        daysCount
-      );
-
-      return {
-        month: targetMonth,
-        total: totalCompensation
-      };
-    }
+  dateRanges: { startDate: Date; endDate: Date }[],
+  remainingDays: number = 0
+) =>
+  calculateCompensationForEachMonthAfter24(
+    isCombat,
+    dateRanges,
+    remainingDays,
+    calculateChildrenCompensation
   );
-
-  return compensationResults;
-};
 
 export const calculateChildrenCompensation2023 = (
   isCombat: boolean,
@@ -379,7 +400,8 @@ export const calculateCompensation = (inputs: {
   const totalPerMonth = calculateMonthlyCompensation2023(isCombat, daysIn2023);
   const totalPerMonthMonthlyAfter24 = getMonthlyAfter24Compensation(
     isCombat,
-    dateRanges
+    dateRanges,
+    getRemaining2023Days(dateRanges)
   );
 
   const totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250;
@@ -389,7 +411,11 @@ export const calculateCompensation = (inputs: {
     : 0;
 
   const totalFromChildrenMonthlyAfter24 = hasChildren
-    ? getFromChildrenMonthlyAfter24(isCombat, dateRanges)
+    ? getFromChildrenMonthlyAfter24(
+        isCombat,
+        dateRanges,
+        getRemaining2023Days(dateRanges)
+      )
     : [];
 
   let totalVacation = calculateVacation(daysInWar, hasChildren, isCombat);

@@ -254,7 +254,7 @@ describe("Calculator", () => {
       ];
 
       result.forEach((r, i) => {
-        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.total).toBe(expected[i].total);
         expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });
@@ -278,7 +278,7 @@ describe("Calculator", () => {
       ];
 
       result.forEach((r, i) => {
-        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.total).toBe(expected[i].total);
         expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });
@@ -316,7 +316,7 @@ describe("Calculator", () => {
       ];
 
       result.forEach((r, i) => {
-        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.total).toBe(expected[i].total);
         expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });
@@ -339,7 +339,7 @@ describe("Calculator", () => {
       ];
 
       result.forEach((r, i) => {
-        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.total).toBe(expected[i].total);
         expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });
@@ -357,7 +357,7 @@ describe("Calculator", () => {
           month: new Date("2024-03-01")
         },
         {
-          total: 1666,
+          total: 2499,
           month: new Date("2024-04-01")
         },
         {
@@ -367,7 +367,7 @@ describe("Calculator", () => {
       ];
 
       result.forEach((r, i) => {
-        expect(r.total).toBeCloseTo(expected[i].total);
+        expect(r.total).toBe(expected[i].total);
         expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });

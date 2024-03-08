@@ -18,7 +18,7 @@ test("test", async ({ page }) => {
   await page.getByText("מענק הוצאות אישיות מוגדל").first().isVisible();
   await page.getByText("מענק משפחה מוגדל").first().isVisible();
   await page.getByText("מענק משפחה מיוחדת").isVisible();
-  await page.getByText("התגמול הנוסף").isVisible();
+  await page.getByText("התגמול הנוסף").first().isVisible();
   await page.getByText("תגמול עבור מוחרגי גיל").isVisible();
   await page.getByText("מענק כלכלת בית מוגדל").isVisible();
   await page.getByText("שובר חופשה").isVisible();
