@@ -1,15 +1,9 @@
-import { Button } from "@/shadcn/ui/button";
-import { Calendar } from "@/shadcn/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/shadcn/ui/popover";
-import clsx from "clsx";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { differenceInCalendarDays } from "date-fns";
 import { Fragment, useMemo } from "react";
 import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 import { FormValues } from "../../store/types";
-import { he } from "date-fns/locale";
-import { differenceInCalendarDays } from "date-fns";
 import NumberCircle from "../NumberCircle/NumberCircle";
+import DateInput from "./DateInput";
 
 interface FormDateSectionProps {
   control: Control<FormValues>;
@@ -18,7 +12,6 @@ interface FormDateSectionProps {
 
 const FormDateSection = (props: FormDateSectionProps) => {
   const { control } = props;
-
   const { fields, append, remove, update } = useFieldArray({
     name: "dateRanges",
     control
@@ -65,90 +58,22 @@ const FormDateSection = (props: FormDateSectionProps) => {
                   fields.length > 1 ? "pb-6" : ""
                 } grid grid-cols-2 gap-x-2 pb-6`}
               >
-                <div className="flex flex-col">
-                  <label className="mb-1 mt-2 block font-normal">
-                    תאריך גיוס:
-                  </label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        className={clsx(
-                          " justify-start text-left font-normal",
-                          !field.startDate && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="ml-2 h-4 w-4" />
-                        {field.startDate ? (
-                          format(field.startDate, "dd/MM/yyyy")
-                        ) : (
-                          <span>בחר תאריך התחלה</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                      <Calendar
-                        mode="single"
-                        selected={new Date(field.startDate)}
-                        onSelect={(day) =>
-                          update(index, {
-                            ...field,
-                            startDate:
-                              day?.toDateString() ?? new Date().toString()
-                          })
-                        }
-                        fromDate={new Date("2023-10-07")}
-                        required
-                        locale={he}
-                        dir="rtl"
-                        initialFocus
-                        showOutsideDays={false}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                <div className="flex flex-col">
-                  <label className="mb-1 mt-2 block font-normal">
-                    תאריך שחרור:
-                  </label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        className={clsx(
-                          " justify-start text-left font-normal",
-                          !field.endDate && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="ml-2 h-4 w-4" />
-                        {field.endDate ? (
-                          format(field.endDate, "dd/MM/yyyy")
-                        ) : (
-                          <span>בחר תאריך שחרור</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                      <Calendar
-                        mode="single"
-                        selected={new Date(field.endDate)}
-                        onSelect={(day) =>
-                          update(index, {
-                            ...field,
-                            endDate:
-                              day?.toDateString() ?? new Date().toString()
-                          })
-                        }
-                        fromDate={new Date("2023-10-07")}
-                        locale={he}
-                        required
-                        initialFocus
-                        dir="rtl"
-                        showOutsideDays={false}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
+                <DateInput
+                  date={field.startDate}
+                  onChange={(date) =>
+                    update(index, { ...field, startDate: date })
+                  }
+                  label="תאריך גיוס:"
+                  placeholder="בחר תאריך התחלה"
+                />
+                <DateInput
+                  date={field.endDate}
+                  onChange={(date) =>
+                    update(index, { ...field, endDate: date })
+                  }
+                  label="תאריך שחרור:"
+                  placeholder="בחר תאריך שחרור"
+                />
               </div>
               {fields.length > 1 && (
                 <div
