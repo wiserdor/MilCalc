@@ -242,7 +242,7 @@ export const getTotalDaysIn = (
 
   dateRanges.forEach((range) => {
     if (range.endDate < startDate || range.startDate > endDate) {
-      return 0;
+      return;
     }
 
     const start = max([startDate, range.startDate]);
@@ -279,20 +279,12 @@ export const specialGrantCalculation = (
   daysStraight: boolean,
   isOld: boolean
 ) => {
-  // 10-14.5 = 1452
-  // 15-19.5 = 2904
-  // 20-36.5 = 4356
-  //37 and above = 5808
-  // did you do 5-9 days straight 266
   const totalDays = daysBefore + daysInWar;
-
-  let totalAdditional = calculateAdditionalCompensation(totalDays);
 
   if (isOld) {
     return {
       totalSpecialDays: 0,
       totalExtended: 0,
-      totalAdditional,
       totalDaysStraight: 0,
       totalOld: totalDays * 133
     };
@@ -318,8 +310,7 @@ export const specialGrantCalculation = (
   return {
     totalDaysStraight,
     totalSpecialDays,
-    totalExtended,
-    totalAdditional
+    totalExtended
   };
 };
 
@@ -372,21 +363,17 @@ export const calculateCompensation = (inputs: {
 
   const daysInWar = calculateDays(dateRanges);
   const daysIn2023 = getTotalDaysIn(dateRanges, 2023);
-
-  const {
-    totalSpecialDays,
-    totalExtended,
-    totalAdditional: totalAdditional2023,
-    totalDaysStraight,
-    totalOld
-  } = specialGrantCalculation(
-    serviceBefore,
-    daysInWar,
-    isDaysStraightInWar,
-    isOld
-  );
-
   const totalDays2024 = getTotalDaysIn(dateRanges, 2024);
+
+  const { totalSpecialDays, totalExtended, totalDaysStraight, totalOld } =
+    specialGrantCalculation(
+      serviceBefore,
+      daysInWar,
+      isDaysStraightInWar,
+      isOld
+    );
+
+  const totalAdditional2023 = calculateAdditionalCompensation(daysIn2023);
   const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
 
   const totalPerMonth = calculateMonthlyCompensation2023(isCombat, daysIn2023);

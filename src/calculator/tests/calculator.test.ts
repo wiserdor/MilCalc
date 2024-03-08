@@ -101,7 +101,6 @@ describe("Calculator", () => {
     it("should return correct number of days", () => {
       expect(specialGrantCalculation(0, 0, false, false)).toStrictEqual({
         totalDaysStraight: 0,
-        totalAdditional: 0,
         totalSpecialDays: 0,
         totalExtended: 0
       });
@@ -110,24 +109,21 @@ describe("Calculator", () => {
       expect(specialGrantCalculation(10, 5, false, false)).toEqual({
         totalDaysStraight: 0,
         totalSpecialDays: 0,
-        totalExtended: 0,
-        totalAdditional: 2904
+        totalExtended: 0
       });
     });
     it("should handle edge case of 14.5 total days", () => {
       expect(specialGrantCalculation(14, 0.5, true, false)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDays: 0,
-        totalExtended: 0,
-        totalAdditional: 1452
+        totalExtended: 0
       });
     });
     it("should calculate correctly for days before 32", () => {
       expect(specialGrantCalculation(20, 10, true, false)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDays: 0,
-        totalExtended: 0,
-        totalAdditional: 4356
+        totalExtended: 0
       });
     });
 
@@ -135,8 +131,7 @@ describe("Calculator", () => {
       expect(specialGrantCalculation(-5, -10, false, false)).toEqual({
         totalDaysStraight: 0,
         totalSpecialDays: 0,
-        totalExtended: 0,
-        totalAdditional: 0
+        totalExtended: 0
       });
     });
 
@@ -144,8 +139,7 @@ describe("Calculator", () => {
       expect(specialGrantCalculation(0, 95, true, false)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDays: 0,
-        totalExtended: 8512,
-        totalAdditional: 5808
+        totalExtended: 8512
       });
     });
   });
