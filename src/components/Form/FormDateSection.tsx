@@ -10,7 +10,6 @@ import { FormValues } from "../../store/types";
 import { he } from "date-fns/locale";
 import { differenceInCalendarDays } from "date-fns";
 import NumberCircle from "../NumberCircle/NumberCircle";
-import { PopoverClose } from "@radix-ui/react-popover";
 
 interface FormDateSectionProps {
   control: Control<FormValues>;
@@ -88,25 +87,23 @@ const FormDateSection = (props: FormDateSectionProps) => {
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
-                      <PopoverClose>
-                        <Calendar
-                          mode="single"
-                          selected={new Date(field.startDate)}
-                          onSelect={(day) =>
-                            update(index, {
-                              ...field,
-                              startDate:
-                                day?.toDateString() ?? new Date().toString()
-                            })
-                          }
-                          fromDate={new Date("2023-10-07")}
-                          required
-                          locale={he}
-                          dir="rtl"
-                          initialFocus
-                          showOutsideDays={false}
-                        />
-                      </PopoverClose>
+                      <Calendar
+                        mode="single"
+                        selected={new Date(field.startDate)}
+                        onSelect={(day) =>
+                          update(index, {
+                            ...field,
+                            startDate:
+                              day?.toDateString() ?? new Date().toString()
+                          })
+                        }
+                        fromDate={new Date("2023-10-07")}
+                        required
+                        locale={he}
+                        dir="rtl"
+                        initialFocus
+                        showOutsideDays={false}
+                      />
                     </PopoverContent>
                   </Popover>
                 </div>
@@ -132,25 +129,23 @@ const FormDateSection = (props: FormDateSectionProps) => {
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
-                      <PopoverClose>
-                        <Calendar
-                          mode="single"
-                          selected={new Date(field.endDate)}
-                          onSelect={(day) =>
-                            update(index, {
-                              ...field,
-                              endDate:
-                                day?.toDateString() ?? new Date().toString()
-                            })
-                          }
-                          fromDate={new Date("2023-10-07")}
-                          locale={he}
-                          required
-                          initialFocus
-                          dir="rtl"
-                          showOutsideDays={false}
-                        />
-                      </PopoverClose>
+                      <Calendar
+                        mode="single"
+                        selected={new Date(field.endDate)}
+                        onSelect={(day) =>
+                          update(index, {
+                            ...field,
+                            endDate:
+                              day?.toDateString() ?? new Date().toString()
+                          })
+                        }
+                        fromDate={new Date("2023-10-07")}
+                        locale={he}
+                        required
+                        initialFocus
+                        dir="rtl"
+                        showOutsideDays={false}
+                      />
                     </PopoverContent>
                   </Popover>
                 </div>
