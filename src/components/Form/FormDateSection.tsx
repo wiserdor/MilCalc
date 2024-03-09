@@ -4,6 +4,7 @@ import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 import { FormValues } from "../../store/types";
 import NumberCircle from "../NumberCircle/NumberCircle";
 import DateInput from "./DateInput";
+import clsx from "clsx";
 
 interface FormDateSectionProps {
   control: Control<FormValues>;
@@ -50,13 +51,11 @@ const FormDateSection = (props: FormDateSectionProps) => {
           {fields.map((field, index) => (
             <Fragment key={index}>
               <div
-                className={`${
-                  fields.length > 1
-                    ? `border-b-[1.5px] border-dotted border-b-[#ccc]`
-                    : ""
-                } ${
-                  fields.length > 1 ? "pb-6" : ""
-                } grid grid-cols-2 gap-x-2 pb-6`}
+                className={clsx(
+                  fields.length > 1 &&
+                    "border-b-[1.5px] border-dotted border-b-[#ccc]",
+                  "grid grid-cols-2 gap-x-2 pb-6"
+                )}
               >
                 <DateInput
                   date={field.startDate}
