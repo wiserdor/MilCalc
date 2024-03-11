@@ -83,17 +83,9 @@ const CalculatorForm = () => {
         המדינה 💙
         <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
         לכם כסף 💰
-        <a
-          href="https://chat.whatsapp.com/F82Qq8PywEkG0OMtu6IMJX"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-1 text-base text-base font-semibold text-white underline"
-        >
-          <WhatsappLogo color="white" /> לכניסה לקבוצה
-        </a>
         <div>
-          <span className="font-semibold text-white">עדכון:</span> הקבוצה כמעט
-          מלאה, לכן פתחנו קבוצה נוספת.
+          <span className="font-semibold text-white">עדכון:</span> הקבוצה
+          הראשונה מלאה, לכן פתחנו קבוצה נוספת.
         </div>
         <a
           href="https://chat.whatsapp.com/GjNeDH1du5N3pS74ggYLS1"
