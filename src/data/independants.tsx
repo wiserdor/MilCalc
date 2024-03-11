@@ -25,28 +25,28 @@ const data: {
       { type: "phone", phone: "0549245898" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send?phone=972549245898",
+        url: "https://api.whatsapp.com/send?phone=972549245898"
       },
       { type: "link", url: "https://24ride.online/" },
-      { type: "link", url: "https://alonzeira.com/" },
-    ],
+      { type: "link", url: "https://alonzeira.com/" }
+    ]
   },
   {
     items: [
       { type: "phone", phone: "0559823040" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send?phone=972559823040",
+        url: "https://api.whatsapp.com/send?phone=972559823040"
       },
       {
         type: "link",
-        url: "https://www.instagram.com/hayot.bar/",
-      },
+        url: "https://www.instagram.com/hayot.bar/"
+      }
     ],
     imgUrl: "independant2.jpeg",
     title: "ניתאי קורן",
     description:
-      "היי זה ניתאי, הבעלים של חיות בר. כל מי שמכיר אותי יודע שהקדשתי כל שנייה בשנתיים האחרונות, בשביל להפוך אותו לבר הכי שמח, מזמין ומרים שיכול להיות, וזה אכן קרה. ב 07.10 התייצבתי להגן על המדינה ואני מודה על כל רגע שעשיתי את זה, ועדיין עושה. אבל אני שמח לבשר לכם שמהיום, חיות בר חוזרים לעבוד. העסק נפגע קשה כלכלית בתקופה הזו, ועכשיו זו ההזדמנות שלנו לפרוח מחדש. עכשיו רק צריך אתכם. אנחנו זמינים ומחכים להגיע לאירוע שלכם, לתת לכם את שירותי הבר הכי מקצועיים, אדיבים ועם החיוכים הכי גדולים שפגשתם מעולם. אנחנו מציעים: סדנאות קוקטיילים, בר אקטיבי לחתונות, בר קוקטיילים לאירועי חברה ואירועים פרטיים, בר קפה ועוד ועוד. אנחנו כאן, כדי להגשים לכם ויחד אתכם, אירועים מהחלומות.",
+      "היי זה ניתאי, הבעלים של חיות בר. כל מי שמכיר אותי יודע שהקדשתי כל שנייה בשנתיים האחרונות, בשביל להפוך אותו לבר הכי שמח, מזמין ומרים שיכול להיות, וזה אכן קרה. ב 07.10 התייצבתי להגן על המדינה ואני מודה על כל רגע שעשיתי את זה, ועדיין עושה. אבל אני שמח לבשר לכם שמהיום, חיות בר חוזרים לעבוד. העסק נפגע קשה כלכלית בתקופה הזו, ועכשיו זו ההזדמנות שלנו לפרוח מחדש. עכשיו רק צריך אתכם. אנחנו זמינים ומחכים להגיע לאירוע שלכם, לתת לכם את שירותי הבר הכי מקצועיים, אדיבים ועם החיוכים הכי גדולים שפגשתם מעולם. אנחנו מציעים: סדנאות קוקטיילים, בר אקטיבי לחתונות, בר קוקטיילים לאירועי חברה ואירועים פרטיים, בר קפה ועוד ועוד. אנחנו כאן, כדי להגשים לכם ויחד אתכם, אירועים מהחלומות."
   },
   {
     title: "אלברט לוי",
@@ -58,17 +58,17 @@ const data: {
     items: [
       {
         type: "whatsapp",
-        url: "https://wa.me/message/CDRZX7RREV5UP1",
+        url: "https://wa.me/message/CDRZX7RREV5UP1"
       },
       {
         type: "instagram",
-        url: "https://www.instagram.com/albertlevyart/",
+        url: "https://www.instagram.com/albertlevyart/"
       },
       {
         type: "link",
-        url: "https://albertleviart.co.il",
-      },
-    ],
+        url: "https://albertleviart.co.il"
+      }
+    ]
   },
   {
     title: "ערן שפיגל",
@@ -88,21 +88,21 @@ const data: {
     items: [
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send?phone=972504019777",
+        url: "https://api.whatsapp.com/send?phone=972504019777"
       },
       {
         type: "link",
-        url: "http://www.yoozit.co/",
+        url: "http://www.yoozit.co/"
       },
       {
         type: "instagram",
-        url: "https://www.instagram.com/yoozit.co/",
+        url: "https://www.instagram.com/yoozit.co/"
       },
       {
         type: "facebook",
-        url: "https://www.facebook.com/yoozit.co",
-      },
-    ],
+        url: "https://www.facebook.com/yoozit.co"
+      }
+    ]
   },
   {
     title: "גאי כהן",
@@ -117,15 +117,15 @@ const data: {
       { type: "link", url: "https://guycohen230.minisite.ms/3" },
       {
         type: "whatsapp",
-        url: "https://wa.me/message/ZO5VM74JBH7PJ1",
+        url: "https://wa.me/message/ZO5VM74JBH7PJ1"
       },
       {
         type: "instagram",
-        url: "https://www.instagram.com/guy_cohen_nox_fitness?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        url: "https://www.instagram.com/guy_cohen_nox_fitness?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
       },
       { type: "phone", phone: "0524493008" },
-      { type: "email", email: "guycohen230@gmail.com" },
-    ],
+      { type: "email", email: "guycohen230@gmail.com" }
+    ]
   },
   {
     title: "שני פלצי",
@@ -136,15 +136,15 @@ const data: {
       { type: "link", url: "https://shani-palatchi.co.il/" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send/?phone=972529464172&text=&app_absent=0",
+        url: "https://api.whatsapp.com/send/?phone=972529464172&text=&app_absent=0"
       },
       {
         type: "facebook",
-        url: "https://www.facebook.com/profile.php?id=100063579283525&mibextid=LQQJ4d",
+        url: "https://www.facebook.com/profile.php?id=100063579283525&mibextid=LQQJ4d"
       },
       { type: "phone", phone: "0529464172" },
-      { type: "email", email: "shendi474@gmail.com" },
-    ],
+      { type: "email", email: "shendi474@gmail.com" }
+    ]
   },
   {
     title: "אלמוג חלק",
@@ -156,10 +156,10 @@ const data: {
       { type: "phone", phone: "0586277918" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send/?phone=972586277918",
+        url: "https://api.whatsapp.com/send/?phone=972586277918"
       },
-      { type: "email", email: "Almog334@gmail.com" },
-    ],
+      { type: "email", email: "Almog334@gmail.com" }
+    ]
   },
   {
     title: "זאב אנגל",
@@ -173,11 +173,11 @@ const data: {
       { type: "link", url: "https://moriyajudaica.com/" },
       {
         type: "facebook",
-        url: "https://m.facebook.com/profile.php/?id=100063662465472",
+        url: "https://m.facebook.com/profile.php/?id=100063662465472"
       },
       { type: "email", email: "ze.etzhaim@gmail.com" },
-      { type: "phone", phone: "054-522-0000" },
-    ],
+      { type: "phone", phone: "054-522-0000" }
+    ]
   },
   {
     title: "יוחנן שוורץ",
@@ -192,10 +192,10 @@ const data: {
       { type: "phone", phone: "0547328840" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send/?phone=972547328840",
+        url: "https://api.whatsapp.com/send/?phone=972547328840"
       },
-      { type: "link", url: "https://hfca.org.il/userprofile/?id=506" },
-    ],
+      { type: "link", url: "https://hfca.org.il/userprofile/?id=506" }
+    ]
   },
   {
     title: "אורן פצ׳יו",
@@ -205,10 +205,10 @@ const data: {
       { type: "email", email: "exchange142@gmail.com" },
       {
         type: "whatsapp",
-        url: "https://call.whatsapp.com/video/oRPjCR9DD9VF4IBsKrCpfs",
+        url: "https://call.whatsapp.com/video/oRPjCR9DD9VF4IBsKrCpfs"
       },
-      { type: "phone", phone: "0545434905" },
-    ],
+      { type: "phone", phone: "0545434905" }
+    ]
   },
   {
     title: "יהודה ארזוני",
@@ -225,13 +225,13 @@ const data: {
       { type: "phone", phone: "0585802887" },
       {
         type: "whatsapp",
-        url: "https://api.whatsapp.com/send/?phone=972585802887",
+        url: "https://api.whatsapp.com/send/?phone=972585802887"
       },
       {
         type: "facebook",
-        url: "https://www.facebook.com/profile.php?id=100076068781870",
-      },
-    ],
+        url: "https://www.facebook.com/profile.php?id=100076068781870"
+      }
+    ]
   },
   {
     title: "דניאל דיבלה",
@@ -245,21 +245,21 @@ const data: {
     items: [
       {
         type: "email",
-        email: "dveladaniel@outlook.com",
+        email: "dveladaniel@outlook.com"
       },
       {
         type: "whatsapp",
-        url: "https://wa.me/message/ZUYVTL6UQTYLD1",
+        url: "https://wa.me/message/ZUYVTL6UQTYLD1"
       },
       {
         type: "facebook",
-        url: "https://www.facebook.com/dvelainsurance",
+        url: "https://www.facebook.com/dvelainsurance"
       },
       {
         type: "phone",
-        phone: "0526661008",
-      },
-    ],
+        phone: "0526661008"
+      }
+    ]
   },
   {
     title: "יחיעם שרלו",
@@ -274,8 +274,8 @@ const data: {
     imgUrl: "yehiam_sharlu.jpeg",
     items: [
       { type: "email", email: "yehi.ivri@gmail.com" },
-      { type: "phone", phone: "0523003682" },
-    ],
+      { type: "phone", phone: "0523003682" }
+    ]
   },
   {
     title: "יעל הרמן",
@@ -287,8 +287,8 @@ const data: {
       { type: "email", email: "yaalherman@gmail.com" },
       { type: "whatsapp", url: "https://wa.me/qr/SOM3UYBTNZR4L1" },
       { type: "facebook", url: "https://www.facebook.com/yaal.herman" },
-      { type: "link", url: "https://www.yaalherman.com/commercial/" },
-    ],
+      { type: "link", url: "https://www.yaalherman.com/commercial/" }
+    ]
   },
   {
     title: "ליאור שטריגלר",
@@ -300,8 +300,8 @@ const data: {
     items: [
       { type: "email", email: "liorszt@gmail.com" },
       { type: "whatsapp", url: "https://wa.me/972522675173" },
-      { type: "phone", phone: "0544222222" },
-    ],
+      { type: "phone", phone: "0544222222" }
+    ]
   },
   {
     title: "ניסים אלאלוף",
@@ -316,9 +316,9 @@ const data: {
       { type: "phone", phone: "0506580123" },
       {
         type: "link",
-        url: "https://www.linkedin.com/in/nissim-elaluf-bi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      },
-    ],
+        url: "https://www.linkedin.com/in/nissim-elaluf-bi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      }
+    ]
   },
   {
     title: "אלי ליין",
@@ -332,8 +332,8 @@ const data: {
       { type: "email", email: "eli@kelev.co" },
       { type: "whatsapp", url: "https://wa.me/515866523" },
       { type: "instagram", url: "https://www.instagram.com/kelevwearables/" },
-      { type: "link", url: "https://shop.kelev.co/" },
-    ],
+      { type: "link", url: "https://shop.kelev.co/" }
+    ]
   },
   {
     title: "מינה חיה רוטמן",
@@ -352,9 +352,29 @@ const data: {
       { type: "email", email: "minchlittlegifts@gmail.com" },
       { type: "whatsapp", url: "https://wa.me/972526142634" },
       { type: "instagram", url: "https://www.instagram.com/minachaya/" },
-      { type: "link", url: "https://linktr.ee/MinchDesignStudio" },
-    ],
+      { type: "link", url: "https://linktr.ee/MinchDesignStudio" }
+    ]
   },
+  {
+    description: `היי, אני אביאל אמיר מדריך נהיגה מתקדמת ונהיגה ספורטיבית, במילואים בגזרה הצפונית מתחילת הלחימה והיד עוד נטויה :) בימים האחרונים הצלחתי להרים את העסק בין ריענון לריענון ואני שמח להזמין אתכם להצטרף אליי ללמוד איך לשלוט ברכב שלכם טוב 
+  יותר ולגלות את סודות הנהיגה (כל מה שלא לימדו אתכם בשיעורי הנהיגה) ההדרכות רלוונטיות לנהגים חדשים ולנהגים וותיקים כאחד, תמיד יש מה לשפר וללמוד איך נהוג טוב יותר ולשמור על עצמכם בכבישים.
+ בין היתר אנחנו עושים ימי קארטינג שמתאימים גם לילדים מגיל 14 ומעלה וכמובן גם לכם הקהל הבוגר יותר.
+ 
+ מוזמנים להיכנס לאתר שלנו וליצור איתי קשר, מחכה לכם :)`,
+    title: "אביאל אמיר",
+    business: "אייפקס דרייב - Apex Drive",
+    imgUrl: "aviel-amir.jpeg",
+    items: [
+      { type: "email", email: "avielamir1@gmail.com" },
+      {
+        type: "whatsapp",
+        url: "https://wa.me/message/V2RAHV2PH25KI1"
+      },
+      { type: "instagram", url: "https://www.instagram.com/apex_drive_il/" },
+      { type: "link", url: "https://apexdrive.co.il/" },
+      { type: "phone", phone: "0545870508" }
+    ]
+  }
 ];
 
 export default data;
