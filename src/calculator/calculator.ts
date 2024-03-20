@@ -191,8 +191,10 @@ export const calculateChildrenCompensation2023 = (
 ) => {
   // 833 for combat for each 10 days
   //500 for non combat for each 10 days
+  if (days < 40) return 0;
+
   const rate = isCombat ? 833 : 500;
-  const total = Math.floor(Math.max(days - 30, 0) / 10) * rate;
+  const total = Math.floor((days - 30) / 10) * rate;
   return Math.min(total, getMaxChildApproval(isCombat));
 };
 
