@@ -283,6 +283,32 @@ describe("Calculator", () => {
         expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
       });
     });
+
+    it("should iterate and remove days to 30 ", () => {
+      let result = getMonthlyAfter24Compensation(
+        true,
+        [
+          {
+            startDate: new Date("2024-01-01"),
+            endDate: new Date("2024-01-11")
+          }
+        ],
+        0,
+        11
+      );
+      let expected = [
+        {
+          total: 0,
+          month: new Date("2024-03-01")
+        }
+      ];
+
+      result.forEach((r, i) => {
+        expect(r.total).toBe(expected[i].total);
+        expect(r.month.getMonth()).toEqual(expected[i].month.getMonth());
+        expect(r.month.getFullYear()).toEqual(expected[i].month.getFullYear());
+      });
+    });
   });
 
   describe("getFromChildrenMonthlyAfter24", () => {

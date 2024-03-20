@@ -90,15 +90,17 @@ export const getRemaining2023Days = (
   // Calculate the remaining days
   const remainingDays = totalDays > 30 ? (totalDays - 30) % 10 : totalDays;
 
-  return remainingDays;
+  return [remainingDays, Math.max(30 - totalDays, 0)];
 };
 
 export const calculateCompensationForEachMonthAfter24 = (
   isCombat: boolean,
   dateRanges: { startDate: Date; endDate: Date }[],
   remainingDays: number = 0,
+  daysToGetTo30: number = 0,
   calculationFn: (isCombat: boolean, days: number) => number
 ) => {
+  let daysToGetTo30Counter = daysToGetTo30;
   const startOf2024 = new Date("2024-01-01");
   let monthlyDaysCount = {} as { [key: string]: number };
 
@@ -111,8 +113,14 @@ export const calculateCompensationForEachMonthAfter24 = (
       }).forEach((day) => {
         const yearMonth =
           getYear(day) + "-" + String(getMonth(day) + 1).padStart(2, "0");
-        // Increment the day count for the month
-        monthlyDaysCount[yearMonth] = (monthlyDaysCount[yearMonth] || 0) + 1;
+        //  // daysToGetTo30Counter needs to go to 0
+
+        if (daysToGetTo30Counter > 0) {
+          daysToGetTo30Counter--;
+        } else {
+          // Increment the day count for the month
+          monthlyDaysCount[yearMonth] = (monthlyDaysCount[yearMonth] || 0) + 1;
+        }
       });
     }
   });
@@ -152,24 +160,28 @@ export const calculateCompensationForEachMonthAfter24 = (
 export const getMonthlyAfter24Compensation = (
   isCombat: boolean,
   dateRanges: { startDate: Date; endDate: Date }[],
-  remainingDays: number = 0
+  remainingDays: number = 0,
+  daysToGetTo30: number = 0
 ) =>
   calculateCompensationForEachMonthAfter24(
     isCombat,
     dateRanges,
     remainingDays,
+    daysToGetTo30,
     calculateMonthlyCompensation
   );
 
 export const getFromChildrenMonthlyAfter24 = (
   isCombat: boolean,
   dateRanges: { startDate: Date; endDate: Date }[],
-  remainingDays: number = 0
+  remainingDays: number = 0,
+  daysToGetTo30: number = 0
 ) =>
   calculateCompensationForEachMonthAfter24(
     isCombat,
     dateRanges,
     remainingDays,
+    daysToGetTo30,
     calculateChildrenCompensation
   );
 
@@ -179,7 +191,6 @@ export const calculateChildrenCompensation2023 = (
 ) => {
   // 833 for combat for each 10 days
   //500 for non combat for each 10 days
-  if (days < 40) return 0;
   const rate = isCombat ? 833 : 500;
   const total = Math.floor((days - 30) / 10) * rate;
   return Math.min(total, getMaxChildApproval(isCombat));
@@ -397,26 +408,38 @@ export const calculateCompensation = (inputs: {
   const totalAdditional2023 = calculateAdditionalCompensation(daysIn2023);
   const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
 
-  const totalPerMonth = calculateMonthlyCompensation2023(isCombat, daysIn2023);
-  const totalPerMonthMonthlyAfter24 = getMonthlyAfter24Compensation(
-    isCombat,
-    dateRanges,
-    getRemaining2023Days(dateRanges)
-  );
+  const [remaining2023Days, daysToGetTo30] = getRemaining2023Days(dateRanges);
+
+  const totalPerMonth =
+    daysInWar >= 40
+      ? calculateMonthlyCompensation2023(isCombat, daysIn2023)
+      : 0;
+  const totalPerMonthMonthlyAfter24 =
+    daysInWar >= 40
+      ? getMonthlyAfter24Compensation(
+          isCombat,
+          dateRanges,
+          remaining2023Days,
+          daysToGetTo30
+        )
+      : [];
 
   const totalMoreThan45 = isCombat && daysInWar > 45 ? 2500 : 1250;
 
-  const totalFromChildren = hasChildren
-    ? calculateChildrenCompensation2023(isCombat, daysIn2023)
-    : 0;
+  const totalFromChildren =
+    hasChildren || daysInWar >= 40
+      ? calculateChildrenCompensation2023(isCombat, daysIn2023)
+      : 0;
 
-  const totalFromChildrenMonthlyAfter24 = hasChildren
-    ? getFromChildrenMonthlyAfter24(
-        isCombat,
-        dateRanges,
-        getRemaining2023Days(dateRanges)
-      )
-    : [];
+  const totalFromChildrenMonthlyAfter24 =
+    hasChildren || daysInWar >= 40
+      ? getFromChildrenMonthlyAfter24(
+          isCombat,
+          dateRanges,
+          remaining2023Days,
+          daysToGetTo30
+        )
+      : [];
 
   let totalVacation = calculateVacation(daysInWar, hasChildren, isCombat);
   let totalSpecialChildren = hasChildrenSpecial
