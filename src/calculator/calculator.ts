@@ -443,8 +443,8 @@ export const calculateCompensation = (inputs: {
         )
       : [];
 
-  let totalVacation = calculateVacation(daysInWar, hasChildren, isCombat);
-  let totalSpecialChildren = hasChildrenSpecial
+  const totalVacation = calculateVacation(daysInWar, hasChildren, isCombat);
+  const totalSpecialChildren = hasChildrenSpecial
     ? SPECIAL_NEEDS_COMPENSATION
     : 0;
 

@@ -1,7 +1,7 @@
-import OneZeroAd from "../OneZero/OneZeroAd";
+import RiseupBanner from "../RiseupBanner/RiseupBanner";
 
 const AdsSection = () => {
-  return <OneZeroAd />;
+  return <RiseupBanner />;
 };
 
 export default AdsSection;

@@ -1,10 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { forwardRef } from "react";
 import { separatePaymentsByDate } from "../../data/compensation";
+import Money from "../../svg/Money";
 import ResultsBar from "../ResultsBar/ResultsBar";
 import Timeline from "../TimeLine/TimeLine";
-import Money from "../../svg/Money";
-import OneZeroSectionBanner from "../OneZero/OneZeroSectionBanner";
 
 export interface ApprovedItem {
   name: string;
@@ -20,14 +19,13 @@ export interface ApprovedItem {
 export interface CompensationSectionProps {
   totalCompensation: number;
   items: ApprovedItem[];
-  onOneZeroOpenChange: (open: boolean) => void;
 }
 
 const CompensationSection = (
   props: CompensationSectionProps,
   ref: React.Ref<HTMLDivElement>
 ) => {
-  const { totalCompensation, items, onOneZeroOpenChange } = props;
+  const { totalCompensation, items } = props;
 
   const { pastPayments, upcomingPayments } = React.useMemo(
     () => separatePaymentsByDate(items),
@@ -74,9 +72,6 @@ const CompensationSection = (
           }
         ]}
       />
-      <div className="w-full">
-        <OneZeroSectionBanner onClick={() => onOneZeroOpenChange(true)} />
-      </div>
       <AnimatePresence>
         <motion.div
           className="flex flex-col gap-6"
