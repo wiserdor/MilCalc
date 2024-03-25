@@ -14,14 +14,13 @@ import {
   WhatsappShareButton,
   XIcon
 } from "react-share";
-import TextSwitcher from "../TextSwitcher/TextSwitcher";
 
 import ReactGA from "react-ga4";
 
 const trackLinkClick = () => {
   ReactGA.event({
-    category: "click_onezero_link",
-    action: "click_onezero-sticky_click"
+    category: "click_riseup_sticky",
+    action: "click_riseup-sticky_click"
   });
 };
 
@@ -44,19 +43,18 @@ const StickyHeader = () => {
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
         <a
-          href="https://onezero.onelink.me/kAPm/0eaw9pjw"
+          href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
           target="_blank"
           rel="noreferrer"
           onClick={trackLinkClick}
         >
           <Button
             variant="none"
-            className="cursor-pointer rounded-full bg-one-zero-black px-4 py-2 text-white"
+            className="flex cursor-pointer gap-[2px] rounded-full bg-[#FBC637] px-4 py-2 text-sm font-medium leading-4"
           >
-            <TextSwitcher
-              texts={["לפתיחת חשבון ב-ONE ZERO", "פקדון שנתי 4.6%"]}
-              everyMs={7000}
-            />
+            <div>להטבה מיוחדת ב</div>
+            <div>-</div>
+            <img src="/svg/riseup-horizontal.svg" alt="riseup horizontal" />
           </Button>
         </a>
         <Dialog>
