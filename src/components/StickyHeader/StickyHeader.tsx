@@ -50,7 +50,7 @@ const StickyHeader = () => {
         >
           <Button
             variant="none"
-            className="flex cursor-pointer gap-[2px] rounded-full bg-[#FBC637] px-4 py-2 text-sm font-medium leading-4"
+            className="flex cursor-pointer gap-[2px] whitespace-nowrap rounded-full bg-[#FBC637] px-4 py-2 text-sm font-medium leading-4"
           >
             <div>להטבה מיוחדת ב</div>
             <div>-</div>
