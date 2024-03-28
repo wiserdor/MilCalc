@@ -18,14 +18,14 @@ const growthbook = new GrowthBook({
   apiHost: "https://cdn.growthbook.io",
   clientKey: "sdk-gJs2ne46YvtUmVO",
   enableDevMode: true,
-  subscribeToChanges: true,
-  trackingCallback: (experiment, result) => {
-    ReactGA.event({
-      category: "GrowthBook",
-      action: `onezero_experiment-started_${result.value}`,
-      label: experiment.key + " - " + result.key
-    });
-  }
+  subscribeToChanges: true
+  // trackingCallback: (experiment, result) => {
+  //   ReactGA.event({
+  //     category: "GrowthBook",
+  //     action: `onezero_experiment-started_${result.value}`,
+  //     label: experiment.key + " - " + result.key
+  //   });
+  // }
 });
 
 const generateUserId = () => {
