@@ -32,7 +32,6 @@ const RiseupBanner = () => {
         <span style={{ color: "#6F6F6F", fontSize: 24 }}>+</span>
         <img src="/svg/calculator.svg" alt="calculator" />
       </div>
-      <h2 className="text-2xl font-bold">הטבה מיוחדת למשתמשי המחשבון</h2>
       <div style={{ fontWeight: 600, lineHeight: 1.2, fontSize: 16 }}>
         חודש ראשון חינם ו50% הנחה על החודש השני והשלישי.
       </div>
