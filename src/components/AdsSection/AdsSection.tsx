@@ -29,7 +29,7 @@ const AdsSection = () => {
           </div>
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="text-base font-semibold">
-              מנוי בסיסי בחינם ו ₪100 מתנה במנוי הפרימיום
+              מנוי בסיסי בחינם ו ₪100 מתנה במנוי הפרימיום.
             </div>
             <a
               href="https://familybiz.onelink.me/kr4R/vhlaa7g0"
