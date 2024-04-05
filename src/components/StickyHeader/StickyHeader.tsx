@@ -16,6 +16,7 @@ import {
 } from "react-share";
 
 import ReactGA from "react-ga4";
+import { chooseRandom, copyToClipboard } from "../common/helpers";
 
 const trackLinkClick = () => {
   ReactGA.event({
@@ -36,14 +37,6 @@ const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, �
 const SHARE_MESSAGE =
   "המענקים למילואימניקים אושרו בממשלה! כנסו למחשבון לבדוק לכמה אתם זכאים:";
 const SHARE_URL = "https://miluimnik.info";
-
-const copyToClipboard = (text: string) => {
-  navigator.clipboard.writeText(text);
-};
-
-const chooseRandom = (arr: string[]) => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
 
 const StickyHeader = () => {
   const { toast } = useToast();
