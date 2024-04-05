@@ -15,8 +15,9 @@ import {
   XIcon
 } from "react-share";
 
+import useStore from "@/store/store";
 import ReactGA from "react-ga4";
-import { chooseRandom, copyToClipboard } from "../common/helpers";
+import { copyToClipboard } from "../common/helpers";
 
 const trackLinkClick = () => {
   ReactGA.event({
@@ -40,14 +41,14 @@ const SHARE_URL = "https://miluimnik.info";
 
 const StickyHeader = () => {
   const { toast } = useToast();
-  const stickyAd = chooseRandom(["riseup", "familybiz"]);
+  const adSelected = useStore((state) => state.adSelected);
 
   return (
     <div
       className={`fixed top-0 z-30 w-full rounded border-b-[1.5px] border-solid border-b-stone bg-ocean`}
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
-        {stickyAd === "riseup" && (
+        {adSelected === "riseup" && (
           <a
             href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
             target="_blank"
@@ -64,7 +65,7 @@ const StickyHeader = () => {
             </Button>
           </a>
         )}
-        {stickyAd === "familybiz" && (
+        {adSelected === "familybiz" && (
           <a
             href="https://familybiz.onelink.me/kr4R/vhlaa7g0"
             target="_blank"

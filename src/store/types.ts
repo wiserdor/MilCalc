@@ -49,3 +49,7 @@ export interface FormStore extends FormValues {
 export interface CalculatorStore {
   updateCalculatorResults: () => void;
 }
+
+export interface GlobalStore {
+  adSelected: string;
+}
