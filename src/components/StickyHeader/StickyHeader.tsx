@@ -24,6 +24,13 @@ const trackLinkClick = () => {
   });
 };
 
+const trackFamilybizLinkClick = () => {
+  ReactGA.event({
+    category: "click_familybiz_sticky",
+    action: "click_familybiz-sticky_click"
+  });
+};
+
 const SHARE_WHATSAPP_MESSAGE = `נכנסתי למחשבון הזה עכשיו, עשו שינויים ואפשר לראות מתי כל סכום נכנס ויש לנו מלא הטבות בתור מילואמינקים!
 כנסו לבדוק מה מגיע לכם גם:`;
 const SHARE_MESSAGE =
@@ -34,29 +41,53 @@ const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text);
 };
 
+const chooseRandom = (arr: string[]) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
 const StickyHeader = () => {
   const { toast } = useToast();
+  const stickyAd = chooseRandom(["riseup", "familybiz"]);
 
   return (
     <div
       className={`fixed top-0 z-30 w-full rounded border-b-[1.5px] border-solid border-b-stone bg-ocean`}
     >
       <div className={`flex justify-between p-4 text-sm font-normal`}>
-        <a
-          href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
-          target="_blank"
-          rel="noreferrer"
-          onClick={trackLinkClick}
-        >
-          <Button
-            variant="none"
-            className="flex cursor-pointer gap-[2px] whitespace-nowrap rounded-full bg-[#FBC637] px-4 py-2 text-sm font-medium leading-4"
+        {stickyAd === "riseup" && (
+          <a
+            href="https://landing.riseup.co.il/wnd_slider_v3/?promoCode=FacebookGroup&utm_source=facebookgroup_model&utm_medium=social&utm_campaign=ru_facebookgroup&utm_content=miluimnik"
+            target="_blank"
+            rel="noreferrer"
+            onClick={trackLinkClick}
           >
-            <div>להטבה מיוחדת ב</div>
-            <div>-</div>
-            <img src="/svg/riseup-horizontal.svg" alt="riseup horizontal" />
-          </Button>
-        </a>
+            <Button
+              variant="none"
+              className="flex cursor-pointer gap-[2px] whitespace-nowrap rounded-full bg-[#FBC637] px-4 py-2 text-sm font-medium leading-4"
+            >
+              <div>להטבה מיוחדת ב</div>
+              <div>-</div>
+              <img src="/svg/riseup-horizontal.svg" alt="riseup horizontal" />
+            </Button>
+          </a>
+        )}
+        {stickyAd === "familybiz" && (
+          <a
+            href="https://familybiz.onelink.me/kr4R/vhlaa7g0"
+            target="_blank"
+            rel="noreferrer"
+            onClick={trackFamilybizLinkClick}
+          >
+            <Button
+              variant="none"
+              className="flex cursor-pointer gap-[2px] whitespace-nowrap rounded-full bg-[#20C8B3] px-4 py-2 text-sm font-medium leading-4"
+            >
+              <div>להטבה מיוחדת ב</div>
+              <div>-</div>
+              <img src="/svg/familybiz.svg" alt="riseup horizontal" />
+            </Button>
+          </a>
+        )}
         <Dialog>
           <DialogTrigger asChild>
             <button
