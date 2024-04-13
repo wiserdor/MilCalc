@@ -41,7 +41,7 @@ const RiseupBanner = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img height="100%" width="100%" src="riseup2.jpeg" alt="Riseup" />
+        <img height="100%" width="100%" src="riseup-new.jpeg" alt="Riseup" />
       </a>
     </div>
   );
