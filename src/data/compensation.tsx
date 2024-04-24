@@ -1,18 +1,5 @@
+import { hebrewMonthNames } from "@/helpers/date";
 import { ApprovedItem } from "../components/Results/CompensationSection";
-const monthNames = [
-  "ינואר",
-  "פברואר",
-  "מרץ",
-  "אפריל",
-  "מאי",
-  "יוני",
-  "יולי",
-  "אוגוסט",
-  "ספטמבר",
-  "אוקטובר",
-  "נובמבר",
-  "דצמבר"
-];
 
 const getMonthNameHebrew = (month: number) => {
   // get month minus two
@@ -20,7 +7,7 @@ const getMonthNameHebrew = (month: number) => {
   if (month < 0) {
     month += 12;
   }
-  return monthNames[month];
+  return hebrewMonthNames[month];
 };
 
 const getYear = (date: Date) => {
@@ -40,7 +27,11 @@ export const getApprovedItems = (
   totalMoreThan45 = 0,
   totalSpecialDaysPayedIn24Total = 0,
   totalSpecialDaysPayedIn25Total = 0,
-  specialDaysIn2024Dates = [] as Array<{ payMonth: number; total: number }>,
+  specialDaysIn2024Dates = [] as Array<{
+    payMonth: number;
+    total: number;
+    label: string;
+  }>,
   totalAdditional2023 = 0,
   totalAdditional2024 = 0,
   totalDaysStraight = 0,
@@ -111,10 +102,12 @@ export const getApprovedItems = (
     dateOfPayment: new Date("2024/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
-  ...specialDaysIn2024Dates.map(({ payMonth, total }) => ({
-    name: `התגמול המיוחד ${getMonthNameHebrew(payMonth)} 24`,
+  ...specialDaysIn2024Dates.map(({ payMonth, label, total }) => ({
+    name: label,
     totalCompensation: total,
-    dateOfPayment: new Date(`2024/${payMonth}/01`),
+    dateOfPayment: new Date(
+      `${payMonth + 3 > 12 ? 2025 : 2024}/${payMonth + 3 > 12 ? payMonth - 9 : payMonth + 3}/01`
+    ),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   })),
   {

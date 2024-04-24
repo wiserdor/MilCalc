@@ -16,7 +16,12 @@ export interface CalculatorResults {
   totalFamilyCare: number;
   totalSpecialDaysPayedIn24Total: number;
   totalSpecialDaysPayedIn25Total: number;
-  specialDaysIn2024Dates: Array<{ payMonth: number; total: number }>;
+  specialDaysIn2024Dates: Array<{
+    payMonth: number;
+    total: number;
+    label: string;
+  }>;
+
   totalAdditional2023: number;
   totalAdditional2024: number;
   totalDaysStraight: number;

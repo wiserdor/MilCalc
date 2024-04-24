@@ -28,6 +28,7 @@ import {
   NON_COMBAT_RATE,
   SPECIAL_NEEDS_COMPENSATION
 } from "./constants";
+import { getMonthNameHebrew } from "@/helpers/date";
 
 export const calculateVacation = (
   totalDays: number,
@@ -421,37 +422,48 @@ export const calculateCompensation = (inputs: {
 
   let totalSpecialDaysPayedIn24Total = 0;
   let totalSpecialDaysPayedIn25Total = 0;
-  let specialDaysIn2024Dates: Array<{ payMonth: number; total: number }> = [];
+  let specialDaysIn2024Dates: Array<{
+    payMonth: number;
+    total: number;
+    label: string;
+  }> = [];
 
-  if (daysIn2023 + serviceBefore >= 32) {
-    const { totalSpecialDaysTotal: totalSpecialDaysPayedIn24 } =
-      specialGrantCalculation(serviceBefore, daysIn2023, false, isOld);
+  if (!isOld) {
+    if (daysIn2023 + serviceBefore >= 32) {
+      const { totalSpecialDaysTotal: totalSpecialDaysPayedIn24 } =
+        specialGrantCalculation(serviceBefore, daysIn2023, false, isOld);
 
-    const totalDaysForSpecialDays24 = getTotalDaysIn(
-      dateRanges,
-      new Date("2024-01-01"),
-      new Date("2024-03-31")
-    );
-    totalSpecialDaysPayedIn24Total =
-      totalDaysForSpecialDays24 * GRANT_DAILY_RATE + totalSpecialDaysPayedIn24;
+      const totalDaysForSpecialDays24 = getTotalDaysIn(
+        dateRanges,
+        new Date("2024-01-01"),
+        new Date("2024-03-31")
+      );
+      totalSpecialDaysPayedIn24Total =
+        totalDaysForSpecialDays24 * GRANT_DAILY_RATE +
+        totalSpecialDaysPayedIn24;
 
-    specialDaysIn2024Dates = [4, 5, 6, 7, 8, 9, 10, 11, 12]
-      .map((month) => {
-        const totalDaysInMonth = getTotalDaysIn(
-          dateRanges,
-          startOfMonth(new Date(`2024-${month}-01`)),
-          endOfMonth(new Date(`2024-${month}-01`))
-        );
-        return {
-          payMonth: month < 12 ? month + 1 : 1,
-          total: totalDaysInMonth * GRANT_DAILY_RATE
-        };
-      })
-      .filter(({ total }) => total > 0);
+      specialDaysIn2024Dates = [4, 5, 6, 7, 8, 9, 10, 11, 12]
+        .map((month) => {
+          const totalDaysInMonth = getTotalDaysIn(
+            dateRanges,
+            startOfMonth(new Date(`2024-${month}-01`)),
+            endOfMonth(new Date(`2024-${month}-01`))
+          );
+
+          const label = `התגמול המיוחד ${getMonthNameHebrew(month - 1)} 24`;
+          return {
+            payMonth: month - 1,
+            total: totalDaysInMonth * GRANT_DAILY_RATE,
+            label
+          };
+        })
+        .filter(({ total }) => total > 0);
+    } else {
+      totalSpecialDaysPayedIn25Total = totalSpecialDaysTotal;
+    }
   } else {
-    totalSpecialDaysPayedIn25Total = totalSpecialDaysTotal;
+    totalSpecialDaysPayedIn24Total = totalSpecialDaysTotal;
   }
-
   const totalAdditional2023 = calculateAdditionalCompensation(daysIn2023);
   const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
 
