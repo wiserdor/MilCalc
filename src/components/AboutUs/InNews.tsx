@@ -16,6 +16,11 @@ const links: Array<
 > = [
   {
     type: "youtube",
+    url: "https://youtu.be/GVFjNbaOC6Y",
+    title: "ראיון בטק טוק, ערוץ רלוונט"
+  },
+  {
+    type: "youtube",
     url: "https://youtu.be/XmZcVSFertw",
     title: "ראיון בחדשות 12"
   },

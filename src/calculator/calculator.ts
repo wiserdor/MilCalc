@@ -3,6 +3,7 @@ import {
   differenceInCalendarDays,
   differenceInDays,
   eachDayOfInterval,
+  endOfMonth,
   endOfYear,
   getMonth,
   getYear,
@@ -11,6 +12,7 @@ import {
   isSameDay,
   max,
   min,
+  startOfMonth,
   startOfYear
 } from "date-fns";
 import {
@@ -268,11 +270,10 @@ export const getTotalDaysIn = (
     startDate: Date;
     endDate: Date;
   }[],
-  year: number
+  startDate: Date,
+  endDate: Date
 ) => {
   let totalDays = 0;
-  const startDate = startOfYear(new Date(`${year}/01/01`));
-  const endDate = endOfYear(new Date(`${year}/01/01`));
 
   dateRanges.forEach((range) => {
     if (range.endDate < startDate || range.startDate > endDate) {
@@ -286,6 +287,19 @@ export const getTotalDaysIn = (
   });
 
   return totalDays;
+};
+
+export const getTotalDaysInYear = (
+  dateRanges: {
+    startDate: Date;
+    endDate: Date;
+  }[],
+  year: number
+) => {
+  const startDate = startOfYear(new Date(`${year}/01/01`));
+  const endDate = endOfYear(new Date(`${year}/01/01`));
+
+  return getTotalDaysIn(dateRanges, startDate, endDate);
 };
 
 export const calculateAdditionalCompensation = (totalDays: number) => {
@@ -317,8 +331,7 @@ export const specialGrantCalculation = (
 
   if (isOld) {
     return {
-      totalSpecialDays: 0,
-      totalExtended: 0,
+      totalSpecialDaysTotal: 0,
       totalDaysStraight: 0,
       totalOld: totalDays * 133
     };
@@ -326,7 +339,7 @@ export const specialGrantCalculation = (
 
   // Special Grant
   const specialDays = Math.min(Math.max(daysBefore - 32, 0), 28);
-  let totalSpecialDays = specialDays * GRANT_DAILY_RATE;
+  let totalSpecialDaysTotal = specialDays * GRANT_DAILY_RATE;
 
   let extendedDays = 0;
   if (daysBefore >= 60) {
@@ -337,14 +350,13 @@ export const specialGrantCalculation = (
     extendedDays = Math.max(daysInWar - (31 - daysBefore), 0);
   }
 
-  const totalExtended = extendedDays * GRANT_DAILY_RATE;
+  totalSpecialDaysTotal += extendedDays * GRANT_DAILY_RATE;
 
   const totalDaysStraight = daysStraight ? 266 : 0;
 
   return {
     totalDaysStraight,
-    totalSpecialDays,
-    totalExtended
+    totalSpecialDaysTotal
   };
 };
 
@@ -396,16 +408,49 @@ export const calculateCompensation = (inputs: {
   const totalWarFamilyExpenses = hasChildren && moreThan5DaysInWar ? 2000 : 0;
 
   const daysInWar = calculateDays(dateRanges);
-  const daysIn2023 = getTotalDaysIn(dateRanges, 2023);
-  const totalDays2024 = getTotalDaysIn(dateRanges, 2024);
+  const daysIn2023 = getTotalDaysInYear(dateRanges, 2023);
+  const totalDays2024 = getTotalDaysInYear(dateRanges, 2024);
 
-  const { totalSpecialDays, totalExtended, totalDaysStraight, totalOld } =
+  const { totalSpecialDaysTotal, totalDaysStraight, totalOld } =
     specialGrantCalculation(
       serviceBefore,
       daysInWar,
       isDaysStraightInWar,
       isOld
     );
+
+  let totalSpecialDaysPayedIn24Total = 0;
+  let totalSpecialDaysPayedIn25Total = 0;
+  let specialDaysIn2024Dates: Array<{ payMonth: number; total: number }> = [];
+
+  if (daysIn2023 + serviceBefore >= 32) {
+    const { totalSpecialDaysTotal: totalSpecialDaysPayedIn24 } =
+      specialGrantCalculation(serviceBefore, daysIn2023, false, isOld);
+
+    const totalDaysForSpecialDays24 = getTotalDaysIn(
+      dateRanges,
+      new Date("2024-01-01"),
+      new Date("2024-03-31")
+    );
+    totalSpecialDaysPayedIn24Total =
+      totalDaysForSpecialDays24 * GRANT_DAILY_RATE + totalSpecialDaysPayedIn24;
+
+    specialDaysIn2024Dates = [4, 5, 6, 7, 8, 9, 10, 11, 12]
+      .map((month) => {
+        const totalDaysInMonth = getTotalDaysIn(
+          dateRanges,
+          startOfMonth(new Date(`2024-${month}-01`)),
+          endOfMonth(new Date(`2024-${month}-01`))
+        );
+        return {
+          payMonth: month < 12 ? month + 1 : 1,
+          total: totalDaysInMonth * GRANT_DAILY_RATE
+        };
+      })
+      .filter(({ total }) => total > 0);
+  } else {
+    totalSpecialDaysPayedIn25Total = totalSpecialDaysTotal;
+  }
 
   const totalAdditional2023 = calculateAdditionalCompensation(daysIn2023);
   const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
@@ -464,8 +509,9 @@ export const calculateCompensation = (inputs: {
     totalSpecialChildren,
     totalMental,
     totalFamilyCare,
-    totalSpecialDays,
-    totalExtended,
+    totalSpecialDaysPayedIn24Total,
+    totalSpecialDaysPayedIn25Total,
+    specialDaysIn2024Dates,
     totalAdditional2023,
     totalAdditional2024,
     totalDaysStraight,

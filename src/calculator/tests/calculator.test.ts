@@ -1,5 +1,5 @@
 import {
-  getTotalDaysIn,
+  getTotalDaysInYear,
   specialGrantCalculation,
   totalDaysInRange,
   isOneRangeMoreThan5DaysLessThan9,
@@ -32,7 +32,7 @@ describe("Calculator", () => {
   describe("getTotalDaysIn", () => {
     it("should return 0 if date ranges not in 2023", () => {
       expect(
-        getTotalDaysIn(
+        getTotalDaysInYear(
           [
             {
               startDate: new Date("2021-01-01"),
@@ -48,9 +48,9 @@ describe("Calculator", () => {
       ).toBe(0);
     });
 
-    it("should return currect number of days in 2023", () => {
+    it("should return correct number of days in 2023", () => {
       expect(
-        getTotalDaysIn(
+        getTotalDaysInYear(
           [
             {
               startDate: new Date("2023-12-31"),
@@ -62,7 +62,7 @@ describe("Calculator", () => {
       ).toBe(1);
 
       expect(
-        getTotalDaysIn(
+        getTotalDaysInYear(
           [
             {
               startDate: new Date("2023-01-01"),
@@ -84,7 +84,7 @@ describe("Calculator", () => {
 
     it("should return correct number of days for date ranges started before 2023 and ended in 2023", () => {
       expect(
-        getTotalDaysIn(
+        getTotalDaysInYear(
           [
             {
               startDate: new Date("2022-11-31"),
@@ -101,45 +101,39 @@ describe("Calculator", () => {
     it("should return correct number of days", () => {
       expect(specialGrantCalculation(0, 0, false, false)).toStrictEqual({
         totalDaysStraight: 0,
-        totalSpecialDays: 0,
-        totalExtended: 0
+        totalSpecialDaysTotal: 0
       });
     });
     it("should calculate correctly for basic input", () => {
       expect(specialGrantCalculation(10, 5, false, false)).toEqual({
         totalDaysStraight: 0,
-        totalSpecialDays: 0,
-        totalExtended: 0
+        totalSpecialDaysTotal: 0
       });
     });
     it("should handle edge case of 14.5 total days", () => {
       expect(specialGrantCalculation(14, 0.5, true, false)).toEqual({
         totalDaysStraight: 266,
-        totalSpecialDays: 0,
-        totalExtended: 0
+        totalSpecialDaysTotal: 0
       });
     });
     it("should calculate correctly for days before 32", () => {
       expect(specialGrantCalculation(20, 10, true, false)).toEqual({
         totalDaysStraight: 266,
-        totalSpecialDays: 0,
-        totalExtended: 0
+        totalSpecialDaysTotal: 0
       });
     });
 
     it("should calculate zero for negative values", () => {
       expect(specialGrantCalculation(-5, -10, false, false)).toEqual({
         totalDaysStraight: 0,
-        totalSpecialDays: 0,
-        totalExtended: 0
+        totalSpecialDaysTotal: 0
       });
     });
 
     it("should calculate correctly for 95 war days", () => {
       expect(specialGrantCalculation(0, 95, true, false)).toEqual({
         totalDaysStraight: 266,
-        totalSpecialDays: 0,
-        totalExtended: 8512
+        totalSpecialDaysTotal: 8512
       });
     });
   });

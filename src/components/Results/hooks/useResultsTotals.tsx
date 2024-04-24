@@ -16,8 +16,15 @@ const useResultsTotals = () => {
   const totalSpecialChildren = useStore((state) => state.totalSpecialChildren);
   const totalMental = useStore((state) => state.totalMental);
   const totalFamilyCare = useStore((state) => state.totalFamilyCare);
-  const totalSpecialDays = useStore((state) => state.totalSpecialDays);
-  const totalExtended = useStore((state) => state.totalExtended);
+  const totalSpecialDaysPayedIn24Total = useStore(
+    (state) => state.totalSpecialDaysPayedIn24Total
+  );
+  const totalSpecialDaysPayedIn25Total = useStore(
+    (state) => state.totalSpecialDaysPayedIn25Total
+  );
+  const specialDaysIn2024Dates = useStore(
+    (state) => state.specialDaysIn2024Dates
+  );
   const totalAdditional2023 = useStore((state) => state.totalAdditional2023);
   const totalAdditional2024 = useStore((state) => state.totalAdditional2024);
   const totalDaysStraight = useStore((state) => state.totalDaysStraight);
@@ -44,8 +51,9 @@ const useResultsTotals = () => {
         totalFromChildrenMonthlyAfter24,
         totalSpecialChildren,
         totalMoreThan45,
-        totalSpecialDays,
-        totalExtended,
+        totalSpecialDaysPayedIn24Total,
+        totalSpecialDaysPayedIn25Total,
+        specialDaysIn2024Dates,
         totalAdditional2023,
         totalAdditional2024,
         totalDaysStraight,
@@ -60,8 +68,9 @@ const useResultsTotals = () => {
       totalFromChildrenMonthlyAfter24,
       totalSpecialChildren,
       totalMoreThan45,
-      totalSpecialDays,
-      totalExtended,
+      totalSpecialDaysPayedIn24Total,
+      totalSpecialDaysPayedIn25Total,
+      specialDaysIn2024Dates,
       totalAdditional2023,
       totalAdditional2024,
       totalDaysStraight,

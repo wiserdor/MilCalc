@@ -38,8 +38,9 @@ export const getApprovedItems = (
   totalFromChildrenMonthlyAfter24 = [] as { month: Date; total: number }[],
   totalSpecialChildren = 0,
   totalMoreThan45 = 0,
-  totalSpecialDays = 0,
-  totalExtended = 0,
+  totalSpecialDaysPayedIn24Total = 0,
+  totalSpecialDaysPayedIn25Total = 0,
+  specialDaysIn2024Dates = [] as Array<{ payMonth: number; total: number }>,
   totalAdditional2023 = 0,
   totalAdditional2024 = 0,
   totalDaysStraight = 0,
@@ -105,12 +106,23 @@ export const getApprovedItems = (
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
   {
-    name: "התגמול המיוחד",
-    totalCompensation: totalSpecialDays + totalExtended,
+    name: "התגמול המיוחד 2024",
+    totalCompensation: totalSpecialDaysPayedIn24Total,
     dateOfPayment: new Date("2024/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
-
+  ...specialDaysIn2024Dates.map(({ payMonth, total }) => ({
+    name: `התגמול המיוחד ${getMonthNameHebrew(payMonth)} 24`,
+    totalCompensation: total,
+    dateOfPayment: new Date(`2024/${payMonth}/01`),
+    url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
+  })),
+  {
+    name: "התגמול המיוחד 2025",
+    totalCompensation: totalSpecialDaysPayedIn25Total,
+    dateOfPayment: new Date("2025/05/01"),
+    url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
+  },
   {
     name: "הוצאות אישיות (5-9 ימים רצופים).",
     totalCompensation: totalDaysStraight,
