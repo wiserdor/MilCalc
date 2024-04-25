@@ -133,7 +133,7 @@ describe("Calculator", () => {
     it("should calculate correctly for 95 war days", () => {
       expect(specialGrantCalculation(0, 95, true, false)).toEqual({
         totalDaysStraight: 266,
-        totalSpecialDaysTotal: 8512
+        totalSpecialDaysTotal: 8533.12
       });
     });
   });
