@@ -459,7 +459,23 @@ export const calculateCompensation = (inputs: {
         })
         .filter(({ total }) => total > 0);
     } else {
-      totalSpecialDaysPayedIn25Total = totalSpecialDaysTotal;
+      const totalDaysFor24 = getTotalDaysIn(
+        dateRanges,
+        startOfMonth(new Date(`2023-10-07`)),
+        endOfMonth(new Date(`2024-03-31`))
+      );
+      const { totalSpecialDaysTotal: totalSpecialDaysPayedIn24 } =
+        specialGrantCalculation(serviceBefore, totalDaysFor24, false, isOld);
+      totalSpecialDaysPayedIn24Total = totalSpecialDaysPayedIn24;
+
+      const totalDaysFor25 = getTotalDaysIn(
+        dateRanges,
+        startOfMonth(new Date(`2024-04-01`)),
+        endOfMonth(new Date(`2024-12-31`))
+      );
+      const { totalSpecialDaysTotal: totalSpecialDaysPayedIn25 } =
+        specialGrantCalculation(0, totalDaysFor25, false, isOld);
+      totalSpecialDaysPayedIn25Total = totalSpecialDaysPayedIn25;
     }
   } else {
     totalSpecialDaysPayedIn24Total = totalSpecialDaysTotal;
