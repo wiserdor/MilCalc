@@ -372,54 +372,20 @@ const getStudentCourseCompensation = (daysInWar: number) => {
   return 2000;
 };
 
-export const calculateCompensation = (inputs: {
-  dateRanges: DateRange[];
-  isCombat: boolean;
-  hasChildren: boolean;
-  hasChildrenSpecial: boolean;
-  isOld: boolean;
-  isStudent: boolean;
-  serviceBefore: string;
-}) => {
-  const {
-    dateRanges: dateRangesString,
-    isCombat,
-    hasChildren,
-    hasChildrenSpecial,
-    isOld,
-    isStudent,
-    serviceBefore: serviceBeforeString
-  } = inputs;
-
-  // date Ranges to dates
-  const dateRanges = dateRangesString.map((dateRange) => {
-    return {
-      startDate: new Date(dateRange.startDate),
-      endDate: new Date(dateRange.endDate)
-    };
-  });
-
-  const serviceBefore = parseFloat(serviceBeforeString);
-
-  const isDaysStraightInWar = isOneRangeMoreThan5DaysLessThan9(dateRanges);
-
-  const moreThan5DaysInWar = isOneRangeMoreThan5Days(dateRanges);
-
-  const totalWarPersonalExpenses = moreThan5DaysInWar ? 1100 : 0;
-  const totalWarFamilyExpenses = hasChildren && moreThan5DaysInWar ? 2000 : 0;
-
-  const daysInWar = calculateDays(dateRanges);
-  const daysIn2023 = getTotalDaysInYear(dateRanges, 2023);
-  const totalDays2024 = getTotalDaysInYear(dateRanges, 2024);
-
-  const { totalSpecialDaysTotal, totalDaysStraight, totalOld } =
-    specialGrantCalculation(
-      serviceBefore,
-      daysInWar,
-      isDaysStraightInWar,
-      isOld
-    );
-
+const calculateSpecialDaysPayments = (
+  dateRanges: { startDate: Date; endDate: Date }[],
+  serviceBefore: number,
+  daysIn2023: number,
+  isOld: boolean
+): {
+  totalSpecialDaysPayedIn24Total: number;
+  totalSpecialDaysPayedIn25Total: number;
+  specialDaysIn2024Dates: Array<{
+    payMonth: number;
+    total: number;
+    label: string;
+  }>;
+} => {
   let totalSpecialDaysPayedIn24Total = 0;
   let totalSpecialDaysPayedIn25Total = 0;
   let specialDaysIn2024Dates: Array<{
@@ -478,8 +444,80 @@ export const calculateCompensation = (inputs: {
       totalSpecialDaysPayedIn25Total = totalSpecialDaysPayedIn25;
     }
   } else {
+    const { totalSpecialDaysTotal } = specialGrantCalculation(
+      serviceBefore,
+      daysIn2023,
+      false,
+      isOld
+    );
     totalSpecialDaysPayedIn24Total = totalSpecialDaysTotal;
   }
+
+  return {
+    totalSpecialDaysPayedIn24Total,
+    totalSpecialDaysPayedIn25Total,
+    specialDaysIn2024Dates
+  };
+};
+
+export const calculateCompensation = (inputs: {
+  dateRanges: DateRange[];
+  isCombat: boolean;
+  hasChildren: boolean;
+  hasChildrenSpecial: boolean;
+  isOld: boolean;
+  isStudent: boolean;
+  serviceBefore: string;
+}) => {
+  const {
+    dateRanges: dateRangesString,
+    isCombat,
+    hasChildren,
+    hasChildrenSpecial,
+    isOld,
+    isStudent,
+    serviceBefore: serviceBeforeString
+  } = inputs;
+
+  // date Ranges to dates
+  const dateRanges = dateRangesString.map((dateRange) => {
+    return {
+      startDate: new Date(dateRange.startDate),
+      endDate: new Date(dateRange.endDate)
+    };
+  });
+
+  const serviceBefore = parseFloat(serviceBeforeString);
+
+  const isDaysStraightInWar = isOneRangeMoreThan5DaysLessThan9(dateRanges);
+
+  const moreThan5DaysInWar = isOneRangeMoreThan5Days(dateRanges);
+
+  const totalWarPersonalExpenses = moreThan5DaysInWar ? 1100 : 0;
+  const totalWarFamilyExpenses = hasChildren && moreThan5DaysInWar ? 2000 : 0;
+
+  const daysInWar = calculateDays(dateRanges);
+  const daysIn2023 = getTotalDaysInYear(dateRanges, 2023);
+  const totalDays2024 = getTotalDaysInYear(dateRanges, 2024);
+
+  const { totalDaysStraight, totalOld } = specialGrantCalculation(
+    serviceBefore,
+    daysInWar,
+    isDaysStraightInWar,
+    isOld
+  );
+
+  const {
+    totalSpecialDaysPayedIn24Total,
+    totalSpecialDaysPayedIn25Total,
+    specialDaysIn2024Dates
+  } = calculateSpecialDaysPayments(
+    dateRanges,
+    serviceBefore,
+    daysIn2023,
+    isOld
+  );
+
   const totalAdditional2023 = calculateAdditionalCompensation(daysIn2023);
   const totalAdditional2024 = calculateAdditionalCompensation(totalDays2024);
 
