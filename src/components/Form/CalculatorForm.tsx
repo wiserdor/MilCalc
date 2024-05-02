@@ -85,16 +85,16 @@ const CalculatorForm = () => {
         לכם כסף 💰
         <div>
           <span className="font-semibold text-white">עדכון:</span> הקבוצות
-          הראשונה והשניה מלאות, לכן פתחנו קבוצה נוספת.
+          הראשונה, השניה והשלישית מלאות, לכן פתחנו קבוצה נוספת.
         </div>
         <a
-          href="https://chat.whatsapp.com/KkKM8evm1kV9dLV8QTVhSl"
+          href="https://chat.whatsapp.com/EwOkSri0RuGFOxF6E8Kyml"
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-1 text-base font-semibold text-white underline"
         >
           <WhatsappLogo color="white" />
-          לכניסה לקבוצה 3
+          לכניסה לקבוצה 4
         </a>
       </div>
       <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
