@@ -8,5 +8,8 @@ export const createGlobalStore: StateCreator<
   [],
   GlobalStore
 > = () => ({
-  adSelected: chooseRandom(["riseup", "familybiz"])
+  adSelected: chooseRandom([
+    // "riseup",
+    "familybiz"
+  ])
 });
