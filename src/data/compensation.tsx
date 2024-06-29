@@ -102,17 +102,19 @@ export const getApprovedItems = (
     dateOfPayment: new Date("2024/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
-  ...specialDaysIn2024Dates.map(({ payMonth, label, total }) => ({
-    name: label,
-    totalCompensation: total,
-    dateOfPayment: new Date(
-      `${payMonth + 3 > 12 ? 2025 : 2024}/${payMonth + 3 > 12 ? payMonth - 9 : payMonth + 3}/01`
-    ),
-    url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
-  })),
+  // ...specialDaysIn2024Dates.map(({ payMonth, label, total }) => ({
+  //   name: label,
+  //   totalCompensation: total,
+  //   dateOfPayment: new Date(
+  //     `${payMonth + 3 > 12 ? 2025 : 2024}/${payMonth + 3 > 12 ? payMonth - 9 : payMonth + 3}/01`
+  //   ),
+  //   url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
+  // })),
   {
     name: "התגמול המיוחד 2025",
-    totalCompensation: totalSpecialDaysPayedIn25Total,
+    totalCompensation:
+      totalSpecialDaysPayedIn25Total ||
+      specialDaysIn2024Dates.reduce((acc, { total }) => acc + total, 0),
     dateOfPayment: new Date("2025/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },

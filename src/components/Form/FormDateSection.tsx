@@ -45,7 +45,7 @@ const FormDateSection = (props: FormDateSectionProps) => {
       <div className="px-4 pb-6  pt-4">
         <div className="mb-4 flex flex-row items-baseline gap-3 text-base font-semibold">
           <NumberCircle number={1} />
-          <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים</div>
+          <div style={{ flex: 1 }}>בחרו את תאריכי שירות המילואים (צו 8)</div>
         </div>
         <div className="flex w-full flex-col gap-2">
           {fields.map((field, index) => (
