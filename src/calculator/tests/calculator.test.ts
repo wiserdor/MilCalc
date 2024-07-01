@@ -99,39 +99,39 @@ describe("Calculator", () => {
 
   describe("specialGrantCalculation", () => {
     it("should return correct number of days", () => {
-      expect(specialGrantCalculation(0, 0, false, false)).toStrictEqual({
+      expect(specialGrantCalculation(0, 0, false)).toStrictEqual({
         totalDaysStraight: 0,
         totalSpecialDaysTotal: 0
       });
     });
     it("should calculate correctly for basic input", () => {
-      expect(specialGrantCalculation(10, 5, false, false)).toEqual({
+      expect(specialGrantCalculation(10, 5, false)).toEqual({
         totalDaysStraight: 0,
         totalSpecialDaysTotal: 0
       });
     });
     it("should handle edge case of 14.5 total days", () => {
-      expect(specialGrantCalculation(14, 0.5, true, false)).toEqual({
+      expect(specialGrantCalculation(14, 0.5, true)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDaysTotal: 0
       });
     });
     it("should calculate correctly for days before 32", () => {
-      expect(specialGrantCalculation(20, 10, true, false)).toEqual({
+      expect(specialGrantCalculation(20, 10, true)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDaysTotal: 0
       });
     });
 
     it("should calculate zero for negative values", () => {
-      expect(specialGrantCalculation(-5, -10, false, false)).toEqual({
+      expect(specialGrantCalculation(-5, -10, false)).toEqual({
         totalDaysStraight: 0,
         totalSpecialDaysTotal: 0
       });
     });
 
     it("should calculate correctly for 95 war days", () => {
-      expect(specialGrantCalculation(0, 95, true, false)).toEqual({
+      expect(specialGrantCalculation(0, 95, true)).toEqual({
         totalDaysStraight: 266,
         totalSpecialDaysTotal: 8533.12
       });

@@ -35,7 +35,8 @@ export const getApprovedItems = (
   totalAdditional2023 = 0,
   totalAdditional2024 = 0,
   totalDaysStraight = 0,
-  totalOld = 0,
+  totalOld2024 = 0,
+  totalOld2025 = 0,
   totalWarPersonalExpenses = 0,
   totalWarFamilyExpenses = 0
 ): ApprovedItem[] => [
@@ -124,9 +125,15 @@ export const getApprovedItems = (
     dateOfPayment: new Date("2024/05/01")
   },
   {
-    name: "תגמול עבור מוחרגי גיל",
-    totalCompensation: totalOld,
+    name: "תגמול עבור מוחרגי גיל 2024",
+    totalCompensation: totalOld2024,
     dateOfPayment: new Date("2024/05/01"),
+    url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
+  },
+  {
+    name: "תגמול עבור מוחרגי גיל 2025",
+    totalCompensation: totalOld2025,
+    dateOfPayment: new Date("2025/05/01"),
     url: "https://www.miluim.idf.il/articles-list/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D/"
   },
   {

@@ -25,7 +25,8 @@ export interface CalculatorResults {
   totalAdditional2023: number;
   totalAdditional2024: number;
   totalDaysStraight: number;
-  totalOld: number;
+  totalOld2024: number;
+  totalOld2025: number;
   totalWarPersonalExpenses: number;
   totalWarFamilyExpenses: number;
   totalStudentCourse: number;

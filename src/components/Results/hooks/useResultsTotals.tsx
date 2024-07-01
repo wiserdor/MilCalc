@@ -28,7 +28,8 @@ const useResultsTotals = () => {
   const totalAdditional2023 = useStore((state) => state.totalAdditional2023);
   const totalAdditional2024 = useStore((state) => state.totalAdditional2024);
   const totalDaysStraight = useStore((state) => state.totalDaysStraight);
-  const totalOld = useStore((state) => state.totalOld);
+  const totalOld2024 = useStore((state) => state.totalOld2024);
+  const totalOld2025 = useStore((state) => state.totalOld2025);
   const totalStudentCourse = useStore((state) => state.totalStudentCourse);
   const totalWarPersonalExpenses = useStore(
     (state) => state.totalWarPersonalExpenses
@@ -57,7 +58,8 @@ const useResultsTotals = () => {
         totalAdditional2023,
         totalAdditional2024,
         totalDaysStraight,
-        totalOld,
+        totalOld2024,
+        totalOld2025,
         totalWarPersonalExpenses,
         totalWarFamilyExpenses
       ),
@@ -74,7 +76,8 @@ const useResultsTotals = () => {
       totalAdditional2023,
       totalAdditional2024,
       totalDaysStraight,
-      totalOld,
+      totalOld2024,
+      totalOld2025,
       totalWarPersonalExpenses,
       totalWarFamilyExpenses
     ]
