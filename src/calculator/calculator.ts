@@ -395,10 +395,12 @@ const calculateSpecialDaysPayments = (
 
     specialDaysIn2024Dates = [4, 5, 6, 7, 8, 9, 10, 11, 12]
       .map((month) => {
+        const formattedMonth = month.toString().padStart(2, "0");
+
         const totalDaysInMonth = getTotalDaysIn(
           dateRanges,
-          startOfMonth(new Date(`2024-${month}-01`)),
-          endOfMonth(new Date(`2024-${month}-01`))
+          startOfMonth(new Date(`2024-${formattedMonth}-01`)),
+          endOfMonth(new Date(`2024-${formattedMonth}-01`))
         );
 
         const label = `התגמול המיוחד ${getMonthNameHebrew(month - 1)} 24`;
