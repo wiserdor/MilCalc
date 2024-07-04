@@ -64,38 +64,49 @@ const CalculatorForm = () => {
 
   return (
     <div className="pb-12">
-      <div className="relative mb-5 flex items-center justify-center">
-        <img src="/svg/square-arrow.svg" alt="arrow" />
-      </div>
+      <div className="">
+        <div className="relative mb-5 flex items-center justify-center">
+          <img src="/svg/square-arrow.svg" alt="arrow" />
+        </div>
 
-      <div className="pb-5">
-        <div className="px-4 py-2 text-center text-[1.4rem] font-semibold leading-tight">
-          רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
+        <div className="pb-5">
+          <div className="px-4 py-2 text-center text-[1.4rem] font-semibold leading-tight">
+            רוצים לדעת כמה מגיע לכם/ן? בדקו עכשיו
+          </div>
+          <div className="text-center font-normal text-dark-gray">
+            אנא מלאו את הפרטים הבאים:
+          </div>
         </div>
-        <div className="text-center font-normal text-dark-gray">
-          אנא מלאו את הפרטים הבאים:
-        </div>
-      </div>
-      <div
-        className={`mb-8 flex flex-col gap-4 rounded-xl bg-idf p-4 text-sm font-normal leading-snug text-white `}
-      >
-        אנחנו דואגים לכם ולא רוצים שתפספסו אף מענק שמגיע לכם על השירות שלכם למען
-        המדינה 💙
-        <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
-        לכם כסף 💰
-        <div>
-          <span className="font-semibold text-white">עדכון:</span> הקבוצות
-          הראשונה, השניה, השלישית הרביעית והחמישית מלאות, לכן פתחנו קבוצה נוספת.
-        </div>
-        <a
-          href="https://chat.whatsapp.com/C0efh7jG4nZ0RSDARqOqHO"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-1 text-base font-semibold text-white underline"
+        <div
+          className={`mb-8 flex flex-col gap-4 rounded-xl bg-idf p-4 text-sm font-normal leading-snug text-white `}
         >
-          <WhatsappLogo color="white" />
-          לכניסה לקבוצה 6
-        </a>
+          אנחנו דואגים לכם ולא רוצים שתפספסו אף מענק שמגיע לכם על השירות שלכם
+          למען המדינה 💙
+          <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
+          לכם כסף 💰
+          <a
+            href="https://chat.whatsapp.com/FQrrmWA9bgK5z9ijUXF8bP"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1 text-base font-semibold text-white underline"
+          >
+            <WhatsappLogo color="white" />
+            כניסה לקבוצה של קהילת המילואים
+          </a>
+        </div>
+        <div className="flex flex-col items-center gap-2 pb-12 text-center">
+          <img className="w-60" src="benefits-logo.webp" alt="benefits-logo" />
+          <div className="text-center text-[1.2rem] font-semibold"></div>
+          <a
+            href="https://chat.whatsapp.com/FQrrmWA9bgK5z9ijUXF8bP"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-1 text-base font-semibold text-[#001155] underline"
+          >
+            <WhatsappLogo color="#001155" />
+            לכניסה לקבוצת ההטבות
+          </a>
+        </div>
       </div>
       <form className={`flex flex-col gap-6`} onSubmit={handleSubmit(onSubmit)}>
         <FormDateSection control={control} register={register} />
