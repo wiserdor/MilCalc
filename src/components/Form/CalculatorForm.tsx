@@ -98,7 +98,7 @@ const CalculatorForm = () => {
           <img className="w-60" src="benefits-logo.webp" alt="benefits-logo" />
           <div className="text-center text-[1.2rem] font-semibold"></div>
           <a
-            href="https://chat.whatsapp.com/G5ixEqLfQcYB0KMzGMCGX6"
+            href="https://chat.whatsapp.com/H2R0T2GnLL9CgsP394rYsa"
             target="_blank"
             rel="noreferrer"
             className="flex items-center justify-center gap-1 text-base font-semibold text-[#001155] underline"
