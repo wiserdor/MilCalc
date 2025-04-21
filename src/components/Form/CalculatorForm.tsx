@@ -85,7 +85,7 @@ const CalculatorForm = () => {
           <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
           לכם כסף 💰
           <a
-            href="https://chat.whatsapp.com/FQrrmWA9bgK5z9ijUXF8bP"
+            href="https://chat.whatsapp.com/C0efh7jG4nZ0RSDARqOqHO"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-1 text-base font-semibold text-white underline"
