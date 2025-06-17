@@ -85,7 +85,7 @@ const CalculatorForm = () => {
           <br /> הצטרפו לקבוצת ווצאפ שקטה שמעדכנת רק כשיש עדכון במחשבון. זה שווה
           לכם כסף 💰
           <a
-            href="https://chat.whatsapp.com/C0efh7jG4nZ0RSDARqOqHO"
+            href="https://chat.whatsapp.com/BYJwWlH8WzBIxDo6nPS7MC"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-1 text-base font-semibold text-white underline"
@@ -98,7 +98,7 @@ const CalculatorForm = () => {
           <img className="w-60" src="benefits-logo.webp" alt="benefits-logo" />
           <div className="text-center text-[1.2rem] font-semibold"></div>
           <a
-            href="https://chat.whatsapp.com/H2R0T2GnLL9CgsP394rYsa"
+            href="https://chat.whatsapp.com/E67jjDWlhKOBlvezYPzdQi"
             target="_blank"
             rel="noreferrer"
             className="flex items-center justify-center gap-1 text-base font-semibold text-[#001155] underline"
