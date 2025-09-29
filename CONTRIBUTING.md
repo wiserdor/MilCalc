@@ -8,7 +8,7 @@ We welcome contributions to the MilCalc project! This document provides guidelin
 
 2. **Clone your fork**: Clone your fork to your local machine for development.
 
-`git clone https://github.com/[your-username]/MilCalc.git`
+`git clone https://github.com/wiserdor/MilCalc.git`
 
 3. **Set up the development environment**: Follow the setup instructions in the README to get the development environment running.
 
